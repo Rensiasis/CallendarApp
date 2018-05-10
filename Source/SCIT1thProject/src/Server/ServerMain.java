@@ -1,11 +1,20 @@
 package Server;
 
+import Parser.EventDayParser;
+import Parser.WeatherPlanetParser;
+
 public class ServerMain {
 
-	// ¼­¹ö Å¬¶óÀÌ¾ðÆ® CUI ¿¹Á¤
+	// ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® CUI ï¿½ï¿½ï¿½ï¿½
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
 		System.out.println("this is Server");
+		
+		
+		// íŒŒì‹± í…ŒìŠ¤íŠ¸ìš©
+		new EventDayParser();
+		new WeatherPlanetParser().parshing();
 	}
 
 }

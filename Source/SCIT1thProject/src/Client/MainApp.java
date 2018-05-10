@@ -10,17 +10,17 @@ public class MainApp extends Application {
 	private Stage primaryStage;
 	private AnchorPane rootLayout;
 
-	// Å¬¶óÀÌ¾ğÆ® ½ÃÀÛ ¸Ş¼Òµå
+	// Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½Ş¼Òµï¿½
 	@Override
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
-		this.primaryStage.setTitle("ÄÉÄ¡µ¥¸ğ ´ÙÀÌÁÒºÎ ver0.1");
+		this.primaryStage.setTitle("ì¼€ì¹˜ë°ëª¨ ë‹¤ì´ì£ ë¶€ ver0.1");
 
 		initRootLayout();
 
 	}
 	
-	// ·çÆ® ·¹ÀÌ¾Æ¿ô ÃÊ±âÈ­
+	// ï¿½ï¿½Æ® ï¿½ï¿½ï¿½Ì¾Æ¿ï¿½ ï¿½Ê±ï¿½È­
 	public void initRootLayout() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -36,7 +36,7 @@ public class MainApp extends Application {
 		}
 	}
 	
-	// ¸ŞÀÎ ½ºÅ×ÀÌÁö ¹İÈ¯
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
 	public Stage getPrimaryStage() {
 		return primaryStage;
 	}

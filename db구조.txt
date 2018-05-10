@@ -1,0 +1,57 @@
+members
+member_seq varchar2(6)
+id varchar2(20)
+password varchar2(20)
+name varchar2(10)
+gender varchar2(5) constraint in('M','F')
+email varchar2(50)
+phone_number varchar2(30)
+indate date
+ldate date
+inuser varchar2(10)
+luser varchar2(10)
+
+address
+member_seq varchar2(6) foreign key reference members
+address_city varchar2(20)
+address_country varchar2(20)
+address_village varchar2(20)
+indate date
+ldate date
+inuser varchar2(10)
+luser varchar2(10)
+
+HouseHolds
+household_seq varchar2(6) 
+member_seq varchar2(6) foreign key reference members
+product varchar2(100) 
+price number
+count number
+date date
+content varchar2(500)
+indate date
+ldate date
+inuser varchar2(10)
+luser varchar2(10)
+
+Accounts
+member_seq varchar(6) foreign key reference members
+account number
+montly_salary number
+montly_save number
+indate date
+ldate date
+inuser varchar2(10)
+luser varchar2(10)
+
+Schedule
+member_seq varchar2(6) foreign key reference members
+from_date date
+to_date date
+content varchar2(500)
+indate date
+ldate date
+inuser varchar2(10)
+luser varchar2(10)
+
+

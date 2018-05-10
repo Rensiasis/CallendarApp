@@ -1,0 +1,47 @@
+package Client;
+
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+
+public class MainApp extends Application {
+	private Stage primaryStage;
+	private AnchorPane rootLayout;
+
+	// 클라이언트 시작 메소드
+	@Override
+	public void start(Stage primaryStage) {
+		this.primaryStage = primaryStage;
+		this.primaryStage.setTitle("케치데모 다이죠부 ver0.1");
+
+		initRootLayout();
+
+	}
+	
+	// 루트 레이아웃 초기화
+	public void initRootLayout() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("/view/RootLayout.fxml"));
+			rootLayout = (AnchorPane) loader.load();
+			
+			Scene scene=new Scene(rootLayout);
+			
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	// 메인 스테이지 반환
+	public Stage getPrimaryStage() {
+		return primaryStage;
+	}
+
+	public static void main(String[] args) {
+		launch(args);
+	}
+}

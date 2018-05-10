@@ -10,7 +10,6 @@ public class MainApp extends Application {
 	private Stage primaryStage;
 	private AnchorPane rootLayout;
 
-	// Ŭ���̾�Ʈ ���� �޼ҵ�
 	@Override
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
@@ -20,7 +19,6 @@ public class MainApp extends Application {
 
 	}
 	
-	// ��Ʈ ���̾ƿ� �ʱ�ȭ
 	public void initRootLayout() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -36,7 +34,6 @@ public class MainApp extends Application {
 		}
 	}
 	
-	// ���� �������� ��ȯ
 	public Stage getPrimaryStage() {
 		return primaryStage;
 	}

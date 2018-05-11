@@ -7,7 +7,7 @@
 
 	<!-- Java Class에 대한 alias 지정 -->
 	<typeAliases>
-		<typeAlias type="user.vo.User" alias="User" />
+		<typeAlias type="VO.Members" alias="Member" />
 	</typeAliases>
 	
 	<!-- DB접속 정보 셋팅 - 암기x--> 
@@ -25,7 +25,7 @@
 	
 	<!-- Mapper 파일 include -->
 	<mappers>
-		<mapper resource="userMapper.xml" />
+		<mapper resource="MemberMapper.xml" />
 	</mappers>
 	
 </configuration>

@@ -15,26 +15,35 @@ import com.google.gson.JsonParser;
 import VO.EventDay;
 
 public class EventDayParser {
-	private final static String TDCProductKey="c40fc6d5-daa6-4b00-8513-093434c8893b";
-	private final static String apiURL="https://apis.sktelecom.com/v1/eventday/days?type=h";
+	private final static String TDCProductKey = "c40fc6d5-daa6-4b00-8513-093434c8893b";
+	private final static String apiURL = "https://apis.sktelecom.com/v1/eventday/days?type=h";
+	ArrayList<EventDay> eventList = new ArrayList<>();
+
+	public ArrayList<EventDay> getEventList() {
+		return eventList;
+	}
+
+	public void setEventList(ArrayList<EventDay> eventList) {
+		this.eventList = eventList;
+	}
+
 	public void parshing() {
 		StringBuffer inputData = null;
 		try {
-			URL url=new URL(apiURL);
-			HttpURLConnection con=(HttpURLConnection)url.openConnection();
+			URL url = new URL(apiURL);
+			HttpURLConnection con = (HttpURLConnection) url.openConnection();
 			con.setRequestMethod("GET");
 			con.setDoOutput(false);
 			con.setDoInput(true);
 			con.setUseCaches(false);
 			con.setRequestProperty("tdcprojectkey", TDCProductKey);
-			con.setRequestProperty("Accept","application/json");
-			InputStream ist=con.getInputStream();
-			BufferedReader in=new BufferedReader(new InputStreamReader(ist));
-			StringBuilder sb=new StringBuilder();
-			String input="";
-			inputData=new StringBuffer();
-			while((input=in.readLine())!=null) {
-				System.out.println(input);
+			con.setRequestProperty("Accept", "application/json");
+			InputStream ist = con.getInputStream();
+			BufferedReader in = new BufferedReader(new InputStreamReader(ist));
+			StringBuilder sb = new StringBuilder();
+			String input = "";
+			inputData = new StringBuffer();
+			while ((input = in.readLine()) != null) {
 				inputData.append(input);
 			}
 			in.close();
@@ -43,16 +52,12 @@ public class EventDayParser {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String json=inputData.toString();
-		Gson gson=new Gson();
-		JsonObject root=new JsonParser().parse(json).getAsJsonObject();
-		JsonArray subnode=root.get("results").getAsJsonArray();
-		ArrayList<EventDay> eventList= new ArrayList<>();
-		for(int i=0;i<subnode.size();i++) {
+		String json = inputData.toString();
+		Gson gson = new Gson();
+		JsonObject root = new JsonParser().parse(json).getAsJsonObject();
+		JsonArray subnode = root.get("results").getAsJsonArray();
+		for (int i = 0; i < subnode.size(); i++) {
 			eventList.add(gson.fromJson(subnode.get(i), EventDay.class));
-		}
-		for(int i=0;i<eventList.size();i++) {
-			System.out.println(eventList.get(i));
 		}
 	}
 }

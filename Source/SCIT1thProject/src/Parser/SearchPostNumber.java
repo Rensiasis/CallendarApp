@@ -20,6 +20,11 @@ public class SearchPostNumber {
 	private final static String serviceKey = "%2FK6rEXdufql9pjWM3hfGNOdz0NQ2ChmJFK%2FpjLQtXibSAAnCgJdZ3Rpx0%2FLcKmOan4BTu5VowVDfy2Ik%2FJIxFA%3D%3D";
 	ArrayList<Address> resultList;
 	private String keyWord = null;
+	private int totalCount;
+
+	public int getTotalCount() {
+		return totalCount;
+	}
 
 	public ArrayList<Address> searchAddress(String keyWord) {
 		HttpURLConnection con = null;
@@ -37,7 +42,7 @@ public class SearchPostNumber {
 			String nodeName;
 			Node node;
 			NodeList nodeList = document.getElementsByTagName("cmmMsgHeader");
-			int total = 0;
+			totalCount = 0;
 			resultList = new ArrayList<>();
 			for (node = nodeList.item(0).getFirstChild(); node != null; node = node.getNextSibling()) {
 				nodeName = node.getNodeName();
@@ -49,8 +54,8 @@ public class SearchPostNumber {
 						return null;
 					}
 				} else {
-					if (node.getNodeName().equals("totalPage")) {
-						total = Integer.parseInt(node.getTextContent());
+					if (node.getNodeName().equals("totalCount")) {
+						totalCount = Integer.parseInt(node.getTextContent());
 						break;
 					}
 				}

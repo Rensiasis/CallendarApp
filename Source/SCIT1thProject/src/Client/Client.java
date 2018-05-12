@@ -1,37 +1,48 @@
 package Client;
 
-import java.io.BufferedReader;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.net.Socket;
-import java.util.Scanner;
+
+import VO.SocketDB;
 
 public class Client {
-	public static void main(String[] args) {
-		BufferedReader reader = null;
-		PrintWriter writer = null;
+	public static Object summit(SocketDB socketDB) {
+		Socket socket = null;
+		InputStream is = null;
+		OutputStream os = null;
+		BufferedInputStream bis = null;
+		BufferedOutputStream bos = null;
+		ObjectInputStream ois = null;
+		ObjectOutputStream oos = null;
+		Object result=null;
 		try {
-			Socket socket = new Socket("localhost", 7777);
-			reader = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
-			writer = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"));
-			Scanner ki = new Scanner(System.in);
-			writer.write(ki.nextLine());
-			writer.flush();
-			System.out.println(reader.readLine());
-			socket.close();
+			socket = new Socket("localhost", 7777);
+			is = socket.getInputStream();
+			os = socket.getOutputStream();
+			bis = new BufferedInputStream(is);
+			bos = new BufferedOutputStream(os);
+			ois = new ObjectInputStream(bis);
+			oos = new ObjectOutputStream(bos);
+			oos.writeObject(socketDB);
+			result=ois.readObject();
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} finally {
 			try {
-				reader.close();
-				writer.close();
+				socket.close();
+				ois.close();
+				oos.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
+		return result;
 	}
-
 }

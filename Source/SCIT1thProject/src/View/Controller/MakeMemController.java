@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import DAO.MemberDAO;
 import VO.Members;
+import VO.SocketDB;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -115,7 +116,7 @@ public class MakeMemController implements Initializable {
 					m_vo.setEmail(Input_Email.getText());
 					m_vo.setPhone_number(Input_Phone.getText());
 
-					m_dao.InsertMember(m_vo);
+					Client.Client.summit(new SocketDB("insertMember", m_vo));
 					try {
 						AnchorPane parent = FXMLLoader.load(getClass().getResource("/View/RootLayout.fxml"));
 						mPane.getChildren().setAll(parent);
@@ -161,7 +162,7 @@ public class MakeMemController implements Initializable {
 
 	@FXML
 	public void ChkrepeatID(ActionEvent event) {
-		if (m_dao.chkRepeatID(Input_ID.getText()) != 0) {
+		if ((int) Client.Client.summit(new SocketDB("chkRepeatID", Input_ID.getText())) != 0) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("아이디 중복");
 			alert.setHeaderText("아이디 중복 오류");

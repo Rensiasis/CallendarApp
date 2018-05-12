@@ -8,9 +8,9 @@ import VO.Members;
 
 public class MemberDAO {
 
-	private SqlSessionFactory factory = MybatisConfig.getSqlSessionFactory(); // 마이바티스 객체
+	private static SqlSessionFactory factory = MybatisConfig.getSqlSessionFactory(); // 마이바티스 객체
 
-	public void InsertMember(Members m_vo) {// 회원등록
+	public static void insertMember(Members m_vo) {// 회원등록
 		SqlSession session = null;
 
 		try {
@@ -27,7 +27,7 @@ public class MemberDAO {
 		}
 	}
 
-	public int chkRepeatID(String id) {// 회원등록
+	public static int chkRepeatID(String id) {// 회원등록
 		SqlSession session = null;
 		int i = 0;
 

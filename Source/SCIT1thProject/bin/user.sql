@@ -10,7 +10,6 @@ indate date,
 ldate date,
 inuser varchar2(10),
 luser varchar2(10)
-
 )
 
 create sequence member_seq

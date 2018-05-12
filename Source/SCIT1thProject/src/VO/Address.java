@@ -118,7 +118,6 @@ public class Address {
 
 	@Override
 	public String toString() {
-		return "Adress [postNumber=" + postNumber + ", oldAddress=" + oldAddress + ", newAddress=" + newAddress
-				+ ", city=" + city + ", county=" + county + ", village=" + village + "]";
+		return newAddress;
 	}
 }

@@ -3,15 +3,14 @@ member_seq varchar2(6) primary key,
 id varchar2(20) not null,
 password varchar2(20) not null,
 name varchar2(10),
-gender varchar2(5),
+gender char(1) default 'M',
 email varchar2(50),
 phone_number varchar2(30),
 indate date,
 ldate date,
 inuser varchar2(10),
-luser varchar2(10),
+luser varchar2(10)
 
-constraint gender_chk CHECK(gender IN('M','F'))
 )
 
 create sequence member_seq
@@ -29,6 +28,7 @@ luser varchar2(10),
 constraint member_fk
 foreign key (member_seq)
 references members (member_seq)
+on delete cascade
 )
 
 create table households(
@@ -47,6 +47,7 @@ luser varchar2(10),
 constraint house_member_fk
 foreign key (member_seq)
 references members (member_seq)
+on delete cascade
 )
 
 create sequence household_seq
@@ -64,6 +65,7 @@ luser varchar2(10),
 constraint account_member_fk
 foreign key (member_seq)
 references members (member_seq)
+on delete cascade
 )
 
 create table schedule(
@@ -79,4 +81,7 @@ luser varchar2(10),
 constraint sch_member_fk
 foreign key (member_seq)
 references members (member_seq)
+on delete cascade
 )
+
+select * from MEMBERS

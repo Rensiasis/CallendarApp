@@ -1,8 +1,5 @@
-/VO/
-/MemberMapper.xml
-/userMapper.xml
-/DAO/
-/View/
 /Client/
+/View/
+/DAO/
 /Parser/
-/Server/
+/VO/

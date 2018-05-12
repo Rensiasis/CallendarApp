@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="mPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Controller.MakeMemController">
+	<children>
+		<MenuBar prefHeight="25.0" prefWidth="600.0">
+			<menus>
+				<Menu mnemonicParsing="false" text="File">
+					<items>
+						<MenuItem mnemonicParsing="false" text="Close" />
+					</items>
+				</Menu>
+				<Menu mnemonicParsing="false" text="Edit">
+					<items>
+						<MenuItem mnemonicParsing="false" text="Delete" />
+					</items>
+				</Menu>
+				<Menu mnemonicParsing="false" text="Help">
+					<items>
+						<MenuItem mnemonicParsing="false" text="About" />
+					</items>
+				</Menu>
+			</menus>
+		</MenuBar>
+		<Label fx:id="사용자약관" layoutX="21.0" layoutY="39.0" prefHeight="25.0" prefWidth="65.0" text="사용자약관" />
+		<TextArea layoutX="21.0" layoutY="64.0" prefHeight="80.0" prefWidth="558.0" text=" '케치데모 다이죠부'에 오신 것을 환영합니다. 본 프로그램은 여러분의 건강한 경제활동을 위해 도움&#10;이 되기 위해 만들어졌습니다. 회원등록에 사용된 개인정보는 개인정보보호법을 준수하여 관리될 것&#10;을 약속합니다. 프로그램에 등록한 정보에는 거짓이 없어야 하며 프로그램 운영을 위해 사용될 것 입&#10;니다. &#10;&#10;                                                                                           케치데모 다이죠부 대표 이재만&#10;&#10;" />
+		<ScrollBar layoutX="565.0" layoutY="65.0" orientation="VERTICAL" prefHeight="80.0" prefWidth="14.0" />
+		<Separator layoutX="299.0" layoutY="175.0" orientation="VERTICAL" prefHeight="164.0" prefWidth="7.0" />
+		<CheckBox fx:id="Chk_true_agree" layoutX="472.0" layoutY="151.0" mnemonicParsing="false" text="예" />
+		<CheckBox fx:id="Chk_false_agree" layoutX="522.0" layoutY="151.0" mnemonicParsing="false" text="아니오" />
+		<Label layoutX="305.0" layoutY="152.0" text="위 약관에 동의하는 바입니다." />
+		<Label layoutX="9.0" layoutY="220.0" text="*비밀번호" />
+		<Label layoutX="9.0" layoutY="260.0" text="*비밀번호 확인" />
+		<Label layoutX="9.0" layoutY="300.0" text="*주소" />
+		<Label layoutX="322.0" layoutY="225.0" text="성별" />
+		<Label layoutX="322.0" layoutY="265.0" text="이메일" />
+		<Label layoutX="322.0" layoutY="306.0" text="연락처" />
+		<Label layoutX="9.0" layoutY="175.0" prefHeight="25.0" prefWidth="65.0" text="*ID" />
+		<Button fx:id="Input_Member" layoutX="300.0" layoutY="350.0" mnemonicParsing="false" onAction="#operand" prefHeight="23.0" prefWidth="104.0" text="회원가입 하기" />
+		<Button fx:id="Return_Menu" layoutX="420.0" layoutY="350.0" mnemonicParsing="false" onAction="#returnMenu" text="메뉴로 돌아가기" />
+		<TextField fx:id="Input_ID" layoutX="100.0" layoutY="175.0" prefHeight="23.0" prefWidth="113.0" />
+		<TextField fx:id="Input_Pass" layoutX="100.0" layoutY="220.0" prefHeight="23.0" prefWidth="113.0" />
+		<TextField fx:id="Chk_Pass" layoutX="100.0" layoutY="260.0" prefHeight="23.0" prefWidth="113.0" />
+		<TextField fx:id="Input_Adress" layoutX="100.0" layoutY="300.0" prefHeight="23.0" prefWidth="113.0" />
+		<ComboBox fx:id="Chk_Gender" layoutX="374.0" layoutY="221.0" prefWidth="150.0" />
+		<TextField fx:id="Input_Email" layoutX="374.0" layoutY="261.0" prefHeight="23.0" prefWidth="150.0" />
+		<TextField fx:id="Input_Phone" layoutX="374.0" layoutY="302.0" prefHeight="23.0" prefWidth="150.0" />
+		<Button fx:id="Chk_ID" layoutX="220.0" layoutY="175.0" mnemonicParsing="false" onAction="#ChkrepeatID" text="ID중복확인" />
+      <Button fx:id="Chk_address" layoutX="220.0" layoutY="300.0" mnemonicParsing="false" onAction="#Open_add_page" prefHeight="23.0" prefWidth="77.0" text="주소 입력" />
+      <Label layoutX="323.0" layoutY="181.0" text="이름" />
+      <TextField fx:id="Input_name" layoutX="374.0" layoutY="177.0" prefHeight="23.0" prefWidth="150.0" />
+	</children>
+</AnchorPane>

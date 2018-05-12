@@ -4,8 +4,8 @@ public class HouseHolds {
 	private String household_seq;
 	private String member_seq;
 	private String product;
-	private double price;
-	private int count;
+	private String price;
+	private String count;
 	private String date;
 	private String content;
 	private String indate;
@@ -13,7 +13,7 @@ public class HouseHolds {
 	private String inuser;
 	private String luser;
 
-	public HouseHolds(String household_seq, String member_seq, String product, double price, int count, String date,
+	public HouseHolds(String household_seq, String member_seq, String product, String price, String count, String date,
 			String content, String indate, String ldate, String inuser, String luser) {
 		super();
 		this.household_seq = household_seq;
@@ -57,19 +57,19 @@ public class HouseHolds {
 		this.product = product;
 	}
 
-	public double getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 
-	public double getCount() {
+	public String getCount() {
 		return count;
 	}
 
-	public void setCount(int count) {
+	public void setCount(String count) {
 		this.count = count;
 	}
 
@@ -123,9 +123,9 @@ public class HouseHolds {
 
 	@Override
 	public String toString() {
-		return "가계부번호=" + household_seq + ", 회원번호=" + member_seq + ", 상품명=" + product + ", 가격=" + price + ", 갯수="
-				+ count + ", 구매일자=" + date + ", 메모=" + content + ", 데이터등록일=" + indate + ", 데이터수정일=" + ldate
-				+ ", 등록인=" + inuser + ", 수정인=" + luser;
+		return "HouseHolds [household_seq=" + household_seq + ", member_seq=" + member_seq + ", product=" + product
+				+ ", price=" + price + ", count=" + count + ", date=" + date + ", content=" + content + ", indate="
+				+ indate + ", ldate=" + ldate + ", inuser=" + inuser + ", luser=" + luser + "]";
 	}
 
 }

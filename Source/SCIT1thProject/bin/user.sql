@@ -1,30 +1,82 @@
+create table members(
+member_seq varchar2(6) primary key,
+id varchar2(20) not null,
+password varchar2(20) not null,
+name varchar2(10),
+gender varchar2(5),
+email varchar2(50),
+phone_number varchar2(30),
+indate date,
+ldate date,
+inuser varchar2(10),
+luser varchar2(10),
 
---회원 정보 테이블
-create table userinfo (
-	id 			varchar2(20) 	primary key,	--회원 ID
-	name 		varchar2(20) 	not null,  		--작성자 이름
-	gender 		char(1) 		default 'M' 	--성별
-);
+constraint gender_chk CHECK(gender IN('M','F'))
+)
 
--- 회원들의 주소 정보 테이블
-create table useraddr (
-	id			varchar2(20) unique, 		--회원 ID
-	phone		varchar2(50) not null, 		--전화번호
-	address		varchar2(100) not null,  	--주소
-	constraint useraddr_fk foreign key(id) 
-	references userinfo(id) on delete cascade
-);
+create sequence member_seq
 
--- 샘플 데이터
-insert into userinfo values ('aaa', '홍길동', 'M');
-insert into userinfo values ('bbb', '김철수', 'M');
-insert into userinfo values ('ccc', '이영희', 'F');
-insert into useraddr values ('aaa', '010-1111-1111', '서울시 강남구 삼성동 1');
-insert into useraddr values ('bbb', '010-2222-2222', '경기도 고양시 일산동구 백석동 1');
+create table address(
+member_seq varchar2(6),
+address_city varchar2(20),
+address_country varchar2(20),
+address_village varchar2(20),
+indate date,
+ldate date,
+inuser varchar2(10),
+luser varchar2(10),
 
--- Outer Join (useraddr 쪽에 데이터가 없어도 결과로 나오도록)
-select
-    i.id, i.name, i.gender, a.phone, a.address
-from userinfo i, useraddr a 
-where i.id = a.id(+);
+constraint member_fk
+foreign key (member_seq)
+references members (member_seq)
+)
 
+create table households(
+household_seq varchar2(6) primary key, 
+member_seq varchar2(6), 
+product varchar2(100), 
+price number,
+count number,
+get_date date,
+content varchar2(500),
+indate date,
+ldate date,
+inuser varchar2(10),
+luser varchar2(10),
+
+constraint house_member_fk
+foreign key (member_seq)
+references members (member_seq)
+)
+
+create sequence household_seq
+
+create table accounts(
+member_seq varchar(6),
+account number,
+montly_salary number,
+montly_save number,
+indate date,
+ldate date,
+inuser varchar2(10),
+luser varchar2(10),
+
+constraint account_member_fk
+foreign key (member_seq)
+references members (member_seq)
+)
+
+create table schedule(
+member_seq varchar2(6),
+from_date date,
+to_date date,
+content varchar2(500),
+indate date,
+ldate date,
+inuser varchar2(10),
+luser varchar2(10),
+
+constraint sch_member_fk
+foreign key (member_seq)
+references members (member_seq)
+)

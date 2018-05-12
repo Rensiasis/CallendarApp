@@ -1,13 +1,17 @@
 package VO;
 
 public class Address {
-
+	private String member_seq;
 	private String postNumber;
 	private String oldAddress;
 	private String newAddress;
 	private String city;
 	private String county;
 	private String village;
+	private String inuser;
+	private String luser;
+	private String indate;
+	private String ldate;
 
 	public Address(String postNumber, String oldAddress, String newAddress, String city, String county,
 			String village) {
@@ -22,6 +26,46 @@ public class Address {
 
 	public Address() {
 		super();
+	}
+
+	public String getMember_seq() {
+		return member_seq;
+	}
+
+	public void setMember_seq(String member_seq) {
+		this.member_seq = member_seq;
+	}
+
+	public String getInuser() {
+		return inuser;
+	}
+
+	public void setInuser(String inuser) {
+		this.inuser = inuser;
+	}
+
+	public String getLuser() {
+		return luser;
+	}
+
+	public void setLuser(String luser) {
+		this.luser = luser;
+	}
+
+	public String getIndate() {
+		return indate;
+	}
+
+	public void setIndate(String indate) {
+		this.indate = indate;
+	}
+
+	public String getLdate() {
+		return ldate;
+	}
+
+	public void setLdate(String ldate) {
+		this.ldate = ldate;
 	}
 
 	public String getPostNumber() {

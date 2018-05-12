@@ -1,7 +1,10 @@
 package Client;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
+import Parser.SearchPostNumber;
+import VO.Address;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -28,6 +31,11 @@ public class MainApp extends Application {
 			this.primaryStage = primaryStage;
 			rootLayout = (AnchorPane) FXMLLoader.load(getClass().getResource("/View/RootLayout.fxml")); 
 			Scene scene = new Scene(rootLayout);
+			SearchPostNumber spn=new SearchPostNumber();
+			ArrayList<Address> aList=spn.searchAddress("논현동");
+			for(int i=0;i<aList.size();i++) {
+			System.out.println(aList.get(i));
+			}
 			primaryStage.setTitle("Title");
 			primaryStage.setScene(scene);
 			primaryStage.show();

@@ -41,7 +41,6 @@ public class SearchPostNumber {
 			resultList = new ArrayList<>();
 			for (node = nodeList.item(0).getFirstChild(); node != null; node = node.getNextSibling()) {
 				nodeName = node.getNodeName();
-				System.out.println(nodeName);
 				if (!flag) {
 					if (nodeName.equals("successYN")) {
 						if (node.getTextContent().equals("Y"))
@@ -57,27 +56,19 @@ public class SearchPostNumber {
 				}
 			}
 			if (flag) {
-				for (pageNO = 1; pageNO <= total; pageNO++) {
-					URL currentURL = new URL(getURLPerPage(pageNO));
-					con = (HttpURLConnection) currentURL.openConnection();
-					con.setRequestProperty("Accept-language", "ko");
-					factory = DocumentBuilderFactory.newInstance();
-					builder = factory.newDocumentBuilder();
-					document = builder.parse(con.getInputStream());
-					nodeList = document.getElementsByTagName("newAddressListAreaCdSearchAll");
-					for (int i = 0; i < nodeList.getLength(); i++) {
-						node = nodeList.item(i).getFirstChild();
-						String postNumber = node.getTextContent();
-						node = node.getNextSibling();
-						String newAddress = node.getTextContent();
-						node = node.getNextSibling();
-						String oldAddress = node.getTextContent();
-						Address address = new Address();
-						address.setPostNumber(postNumber);
-						address.setNewAddress(newAddress);
-						address.setOldAddress(oldAddress);
-						resultList.add(address);
-					}
+				nodeList = document.getElementsByTagName("newAddressListAreaCdSearchAll");
+				for (int i = 0; i < nodeList.getLength(); i++) {
+					node = nodeList.item(i).getFirstChild();
+					String postNumber = node.getTextContent();
+					node = node.getNextSibling();
+					String newAddress = node.getTextContent();
+					node = node.getNextSibling();
+					String oldAddress = node.getTextContent();
+					Address address = new Address();
+					address.setPostNumber(postNumber);
+					address.setNewAddress(newAddress);
+					address.setOldAddress(oldAddress);
+					resultList.add(address);
 				}
 			}
 		} catch (Exception e) {

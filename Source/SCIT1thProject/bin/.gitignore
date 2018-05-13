@@ -1,6 +1,4 @@
-/Server/
-/Client/
-/Parser/
-/VO/
-/DAO/
 /View/
+/DAO/
+/Parser/
+/Client/

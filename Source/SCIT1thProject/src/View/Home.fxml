@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="610.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Controller.HomeController">
+   <children>
+      <MenuBar prefHeight="38.0" prefWidth="610.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+                  <MenuItem mnemonicParsing="false" text="메인화면으로 돌아가기" />
+              <MenuItem mnemonicParsing="false" onAction="#btnExitAction" text="종료" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+                  <MenuItem mnemonicParsing="false" text="개인정보 수정" />
+              <MenuItem mnemonicParsing="false" text="개인정보 삭제" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Button fx:id="logIn" layoutX="14.0" layoutY="286.0" mnemonicParsing="false" onAction="#btnLogInAction" prefHeight="100.0" prefWidth="150.0" text="LOG IN" />
+      <Button fx:id="signIn" layoutX="230.0" layoutY="286.0" mnemonicParsing="false" onAction="#btnSignInAction" prefHeight="100.0" prefWidth="150.0" text="SIGN IN" />
+      <Button fx:id="exit" layoutX="446.0" layoutY="286.0" mnemonicParsing="false" onAction="#btnExitAction" prefHeight="100.0" prefWidth="150.0" text="EXIT" />
+      <Label fx:id="lId" layoutX="14.0" layoutY="229.0" text="ID :" />
+      <Label fx:id="lPassword" layoutX="265.0" layoutY="229.0" text="PASSWORD :" />
+      <TextField fx:id="tfId" layoutX="45.0" layoutY="223.0" promptText="ID 입력" />
+      <PasswordField fx:id="pfPw" layoutX="375.0" layoutY="223.0" promptText="PASSWORD 입력" />
+      <Label fx:id="lblMessage" alignment="CENTER" layoutX="135.0" layoutY="155.0" prefHeight="33.0" prefWidth="341.0" text="" />
+   </children>
+</AnchorPane>

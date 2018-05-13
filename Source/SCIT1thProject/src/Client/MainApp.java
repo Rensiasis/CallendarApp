@@ -33,6 +33,20 @@ public class MainApp extends Application {
 			primaryStage.setTitle("케치데모 다이죠부");
 			primaryStage.setScene(scene);
 			primaryStage.show();
+			
+			
+		/*	Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
+
+			Scene scene = new Scene(root, 600, 400);
+
+			primaryStage.setScene(scene);
+			primaryStage.setTitle("けちでも大丈夫(짠돌이라도 괜찮아)");
+	        primaryStage.setResizable(false);
+	        primaryStage.sizeToScene();
+	        primaryStage.show();*/
+			
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

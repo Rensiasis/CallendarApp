@@ -2,7 +2,7 @@
 
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Controller.CalendarController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Controller.CalendarController">
 	<!-- TODO Add Nodes -->
 </AnchorPane>
 

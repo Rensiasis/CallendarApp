@@ -1,10 +1,9 @@
 package View.Controller;
 
 import java.net.URL;
-import java.util.Calendar;
 import java.util.ResourceBundle;
-
-import Parser.Switcher;
+import Client.Calendar;
+import Util.Switcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -48,7 +47,7 @@ public class HomeController implements Initializable{
 
 			//new Popup("ȯ���մϴ�! "+tfId.getText()+" ��!").start(null);
 
-			Switcher.switchWindow((Stage)logIn.getScene().getWindow(), new Calendar());
+			Util.Switcher.switchWindow((Stage)logIn.getScene().getWindow(), new Calendar());
 		} else {
 			lblMessage.setText("ID 나 PASSWORD가 일치하지 않습니다! \n 다시 입력바랍니다.");
 

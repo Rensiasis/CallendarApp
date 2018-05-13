@@ -6,11 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import DAO.MybatisConfig;
-<<<<<<< HEAD
 import VO.HouseHolds;
-=======
 import VO.Address;
->>>>>>> master_branch
 import VO.Members;
 
 public class MemberDAO {
@@ -53,7 +50,7 @@ public class MemberDAO {
 		return i;
 	}
 
-<<<<<<< HEAD
+
 	public static void insertHouseHold(HouseHolds vo) {
 		SqlSession session = null;
 
@@ -121,7 +118,4 @@ public class MemberDAO {
 		}
 		return result;
 	}
-=======
-
->>>>>>> master_branch
 }

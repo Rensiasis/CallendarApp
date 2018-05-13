@@ -43,7 +43,6 @@ public class SocketDB implements Serializable {
 		case "chkRepeatID":
 			result = MemberDAO.chkRepeatID((String) inputObject);
 			break;
-<<<<<<< HEAD
 		case "insertHouseHold":
 			MemberDAO.insertHouseHold((HouseHolds) inputObject);
 			break;
@@ -56,9 +55,6 @@ public class SocketDB implements Serializable {
 		case "getHouseHoldList":
 			result = MemberDAO.getHouseHoldList((Members) inputObject);
 			break;
-=======
-		
->>>>>>> master_branch
 		}
 		return result;
 	}

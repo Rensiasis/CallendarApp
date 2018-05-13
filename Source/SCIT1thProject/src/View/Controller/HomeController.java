@@ -3,7 +3,9 @@ package View.Controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 import Client.Calendar;
+import DAO.MemberDAO;
 import Util.Switcher;
+import VO.Members;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,18 +38,18 @@ public class HomeController implements Initializable {
 	@FXML
 	private AnchorPane mPane;
 
+	MemberDAO dao = new MemberDAO();
+
 	@FXML
 	private void btnLogInAction(ActionEvent event) throws Exception {
+		Members m_vo = new Members();
+		m_vo.setId(tfId.getText());
+		m_vo.setPassword(pfPw.getText());
 
-		if (tfId.getText().equals("test") && pfPw.getText().equals("test")) {
+		if (dao.loginID(m_vo) != 0) {
 
 			lblMessage.setText("환영합니다! " + tfId.getText() + " 님!");
 
-			// ((Node) (event.getSource())).getScene().getWindow().hide();
-
-			// new Popup("ȯ���մϴ�! "+tfId.getText()+" ��!").start(null);
-
-//			Util.Switcher.switchWindow((Stage) logIn.getScene().getWindow(), new Calendar());
 			try {
 				AnchorPane memberPane = FXMLLoader.load(getClass().getResource("/View/Calendar.fxml"));
 				mPane.getChildren().setAll(memberPane);

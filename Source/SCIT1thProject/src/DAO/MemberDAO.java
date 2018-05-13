@@ -118,4 +118,23 @@ public class MemberDAO {
 		}
 		return result;
 	}
+	
+	public static int loginID(Members vo) {
+		SqlSession session = null;
+		int i = 0;
+
+		try {
+			session = factory.openSession();
+			MemberMapper mapper = session.getMapper(MemberMapper.class);
+			i = mapper.loginID(vo);
+			session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+		return i;
+	}
 }

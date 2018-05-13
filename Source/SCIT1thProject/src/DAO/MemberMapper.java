@@ -24,4 +24,7 @@ public interface MemberMapper {
 	
 	//가계부리스트반환
 	public ArrayList<HouseHolds> getHouseHoldList(Members vo);
+	
+	//로그인
+	public int loginID(Members vo);
 }

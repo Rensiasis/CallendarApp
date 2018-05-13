@@ -70,7 +70,8 @@
 	</insert>
 
 	<delete id="deleteHouseHold" parameterType="HouseHold">
-		delete from houseHolds
+		delete from
+		houseHolds
 		where household_seq=#{household_seq}
 	</delete>
 
@@ -86,21 +87,32 @@
 		household_seq=#{household_seq}
 	</update>
 
-	<select id="getHouseHoldList" parameterType="Member" resultType="HouseHold">
+	<select id="getHouseHoldList" parameterType="Member"
+		resultType="HouseHold">
 		select
 		household_seq
 		, member_seq
 		, product
 		, price
 		, count
-		, date
+		,
+		date
 		, content
 		, indate
 		, ldate
 		, inuser
 		, luser
 		from HouseHolds
-		where member_seq=#{member_seq}
+		where
+		member_seq=#{member_seq}
+	</select>
+
+	<select id="loginID" parameterType="Member" resultType="Integer">
+		select
+		count(id)
+		from members
+		where
+		id=#{id} and password=#{password}
 	</select>
 
 </mapper>

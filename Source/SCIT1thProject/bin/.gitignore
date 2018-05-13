@@ -1,0 +1,10 @@
+/Client/
+/DAO/
+/Parser/
+/Server/
+/Util/
+/VO/
+/View/
+/db.properties
+/mybatis-config.xml
+/user.sql

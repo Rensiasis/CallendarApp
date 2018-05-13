@@ -3,7 +3,7 @@ member_seq varchar2(6) primary key,
 id varchar2(20) not null,
 password varchar2(20) not null,
 name varchar2(10),
-gender char(1) default 'M',
+gender varchar2(1) default 'M',
 email varchar2(50),
 phone_number varchar2(30),
 indate date,
@@ -83,4 +83,3 @@ references members (member_seq)
 on delete cascade
 )
 
-select * from MEMBERS

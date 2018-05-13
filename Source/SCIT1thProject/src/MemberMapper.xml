@@ -2,34 +2,37 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
-  <mapper namespace="DAO.MemberMapper">
-  
-  <insert id="insertMember" parameterType="Member">
-  insert into members(
-  		member_seq,
+
+<mapper namespace="DAO.MemberMapper">
+
+	<insert id="insertMember" parameterType="Member">
+		insert into members(
+		member_seq,
 		id,
 		password,
 		name,
+		gender,
 		email,
 		phone_number,
 		indate
-  ) values (
-  		member_seq.nextval,
-  		#{id},
-  		#{password},
-  		#{name},
-  		#{email},
-  		#{phone_number},
-  		sysdate
-  )  
-  </insert>
-  
-  <select id="chkRepeatID" parameterType="String" resultType="Integer">
-  select count(id)
-  from members
-  where id=#{id}
-  </select>
-  
-  </mapper>
+		) values (
+		member_seq.nextval,
+		#{id},
+		#{password},
+		#{name},
+		#{gender},
+		#{email},
+		#{phone_number},
+		sysdate
+		)
+	</insert>
+
+	<select id="chkRepeatID" parameterType="String"
+		resultType="Integer">
+		select count(id)
+		from members
+		where id=#{id}
+	</select>
+
+</mapper>
   

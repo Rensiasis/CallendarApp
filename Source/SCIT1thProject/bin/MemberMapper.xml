@@ -34,5 +34,64 @@
 		where id=#{id}
 	</select>
 
+	<insert id="insertHouseHold" parameterType="HouseHold">
+		insert into
+		HouseHolds(
+		household_seq
+		, member_seq
+		, product
+		, price
+		, get_date
+		,
+		content
+		, indate
+		, inuser
+		) values (
+		household_seq.nextval
+		, #{product}
+		,
+		#{product}
+		, #{price}
+		, sysdate
+		, #{content}
+		, sysdate
+		, #{inuser}
+		)
+	</insert>
+
+	<delete id="deleteHouseHold" parameterType="HouseHold">
+		delete from houseHolds
+		where household_seq=#{household_seq}
+	</delete>
+
+	<update id="fixHouseHold" parameterType="HouseHold">
+		update HouseHold
+		set
+		product=#{product}
+		,price=#{price}
+		,content=#{content}
+		,ldate=sysdate
+		,luser=#{inuser}
+		where
+		household_seq=#{household_seq}
+	</update>
+
+	<select id="getHouseHoldList" parameterType="Member" resultType="HouseHold">
+		select
+		household_seq
+		, member_seq
+		, product
+		, price
+		, count
+		, date
+		, content
+		, indate
+		, ldate
+		, inuser
+		, luser
+		from HouseHolds
+		where member_seq=#{member_seq}
+	</select>
+
 </mapper>
   

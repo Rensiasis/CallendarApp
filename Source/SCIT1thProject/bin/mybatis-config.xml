@@ -8,6 +8,7 @@
 	<!-- Java Class에 대한 alias 지정 -->
 	<typeAliases>
 		<typeAlias type="VO.Members" alias="Member" />
+		<typeAlias type="VO.HouseHolds" alias="HouseHold"/>
 	</typeAliases>
 	
 	<!-- DB접속 정보 셋팅 - 암기x--> 

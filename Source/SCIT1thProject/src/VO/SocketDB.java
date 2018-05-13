@@ -43,6 +43,18 @@ public class SocketDB implements Serializable {
 		case "chkRepeatID":
 			result = MemberDAO.chkRepeatID((String) inputObject);
 			break;
+		case "insertHouseHold":
+			MemberDAO.insertHouseHold((HouseHolds) inputObject);
+			break;
+		case "deleteHouseHold":
+			MemberDAO.deleteHouseHold((HouseHolds) inputObject);
+			break;
+		case "fixHouseHold":
+			MemberDAO.fixHouseHold((HouseHolds) inputObject);
+			break;
+		case "getHouseHoldList":
+			result = MemberDAO.getHouseHoldList((Members) inputObject);
+			break;
 		}
 		return result;
 	}

@@ -29,7 +29,13 @@ public class MakeMemController implements Initializable {
 	private AnchorPane mPane;
 
 	@FXML
-	private TextField Input_Adress;
+	private TextField postNum;
+
+	@FXML
+	private TextField address;
+
+	@FXML
+	private TextField detailAddress;
 
 	@FXML
 	private ComboBox<String> Chk_Gender;
@@ -72,10 +78,9 @@ public class MakeMemController implements Initializable {
 
 	@FXML
 	private TextField Input_Phone;
-	
-	public static Receiver receiver;
 
-	private Stage as;
+	public static Receiver receiver;
+	public static Stage stage;
 	MemberDAO m_dao = new MemberDAO(); // DAO호출
 
 	@FXML
@@ -89,7 +94,7 @@ public class MakeMemController implements Initializable {
 
 				if (Chk_true_agree.isSelected()) {
 					if (Input_ID.getText().length() == 0 || Input_Pass.getText().length() == 0
-							|| Input_Adress.getText().length() == 0 || Chk_Pass.getText().length() == 0) {
+							|| postNum.getText().length() == 0 || Chk_Pass.getText().length() == 0) {
 						Alert alert = new Alert(AlertType.ERROR);
 						alert.setTitle("회원가입 실패");
 						alert.setHeaderText("회원가입에 실패하셨습니다.");
@@ -128,7 +133,7 @@ public class MakeMemController implements Initializable {
 							e.printStackTrace();
 						}
 					}
-				} else if(Chk_false_agree.isSelected()){
+				} else if (Chk_false_agree.isSelected()) {
 					try {
 						AnchorPane parent = FXMLLoader.load(getClass().getResource("/View/Home.fxml"));
 						mPane.getChildren().setAll(parent);
@@ -151,10 +156,15 @@ public class MakeMemController implements Initializable {
 
 	@FXML
 	public void Open_add_page(ActionEvent event) {
-		receiver=new Receiver();
+		receiver = new Receiver();
 		try {
 			AnchorPane memberPane = FXMLLoader.load(getClass().getResource("/View/FindAddress.fxml"));
-			mPane.getChildren().setAll(memberPane);
+			Scene scene = new Scene(memberPane);
+			stage = new Stage();
+			stage.setScene(scene);
+			stage.setTitle("우편번호 검색");
+			stage.setResizable(false);
+			stage.show();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

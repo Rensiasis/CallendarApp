@@ -50,14 +50,13 @@ public class FindAddressController implements Initializable {
 		Add_list.setItems(addlist);
 	}
 
-	class addressInput extends Button {
-		public addressInput(String text) {
-
-		}
-	}
-
 	@FXML
 	public void addressInput(ActionEvent event) {
+		Address selectedAddress=Add_list.getSelectionModel().getSelectedItem();
+		selectedAddress.getPostNumber();
+		selectedAddress.getNewAddress();
+		View.Controller.MakeMemController.stage.close();
+		
 	}
 
 	@Override

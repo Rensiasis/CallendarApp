@@ -20,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -40,16 +41,16 @@ public class MakeMemController implements Initializable {
 	private ComboBox<String> Chk_Gender;
 
 	@FXML
-	private TextField Chk_Pass;
-
-	@FXML
 	private TextField Input_Email;
 
 	@FXML
 	private Button Chk_address;
 
 	@FXML
-	private TextField Input_Pass;
+	private PasswordField Chk_password;
+
+	@FXML
+	private PasswordField Input_Pass;
 
 	@FXML
 	private Button Return_Menu;
@@ -73,9 +74,6 @@ public class MakeMemController implements Initializable {
 	private CheckBox Chk_true_agree;
 
 	@FXML
-	private CheckBox Chk_false_agree;
-
-	@FXML
 	private TextField Input_Phone;
 
 	public static Receiver receiver;
@@ -93,15 +91,9 @@ public class MakeMemController implements Initializable {
 				// TODO Auto-generated method stub
 				Members m_vo = new Members();
 
-				if (Chk_true_agree.isSelected() && Chk_false_agree.isSelected()) {
-					Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("사용자 약관 선택 오류");
-					alert.setHeaderText("사용자 약관 중복 선택함.");
-					alert.setContentText("사용자 약관을 하나만 선택해주시기 바랍니다.");
-					alert.showAndWait();
-				} else if (Chk_true_agree.isSelected()) {
+				if (Chk_true_agree.isSelected()) {
 					if (Input_ID.getText().length() == 0 || Input_Pass.getText().length() == 0
-							|| postNum.getText().length() == 0 || Chk_Pass.getText().length() == 0) {
+							|| postNum.getText().length() == 0) {
 						Alert alert = new Alert(AlertType.ERROR);
 						alert.setTitle("회원가입 실패");
 						alert.setHeaderText("회원가입에 실패하셨습니다.");
@@ -111,7 +103,7 @@ public class MakeMemController implements Initializable {
 					} else {
 						m_vo.setId(Input_ID.getText());
 
-						if (Input_Pass.getText().equals(Chk_Pass.getText())) {
+						if (Input_Pass.getText().equals(Chk_password.getText())) {
 							m_vo.setPassword(Input_Pass.getText());
 						} else {
 							Alert alert = new Alert(AlertType.ERROR);
@@ -139,14 +131,6 @@ public class MakeMemController implements Initializable {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-					}
-				} else if (Chk_false_agree.isSelected()) {
-					try {
-						AnchorPane parent = FXMLLoader.load(getClass().getResource("/View/Home.fxml"));
-						mPane.getChildren().setAll(parent);
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
 					}
 				} else {
 					Alert alert = new Alert(AlertType.ERROR);

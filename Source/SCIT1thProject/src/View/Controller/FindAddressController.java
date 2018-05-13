@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
@@ -33,12 +34,16 @@ public class FindAddressController implements Initializable {
 
 	@FXML
 	private ListView<Address> Add_list;
+	
+	@FXML
+	private Label resultLabel;
 
 	@FXML
 	public void Click_find_add(ActionEvent event) {
 		ObservableList<Address> addlist = FXCollections.observableArrayList();
 		SearchPostNumber spn = new SearchPostNumber();
 		ArrayList<Address> aList = spn.searchAddress(Input_address2.getText());
+		resultLabel.setText("총 "+spn.getTotalCount()+"개의 검색결과가 있습니다.");
 		for (int i = 0; i < aList.size(); i++) {
 			addlist.add(aList.get(i));
 		}

@@ -83,3 +83,4 @@ references members (member_seq)
 on delete cascade
 )
 
+select * from MEMBERS

@@ -78,6 +78,11 @@ public class MakeMemController implements Initializable {
 
 	@FXML
 	private TextField Input_Phone;
+<<<<<<< Updated upstream
+=======
+
+	public static Receiver receiver;
+>>>>>>> Stashed changes
 
 	public static Receiver receiver;
 	public static Stage stage;
@@ -92,7 +97,13 @@ public class MakeMemController implements Initializable {
 				// TODO Auto-generated method stub
 				Members m_vo = new Members();
 
-				if (Chk_true_agree.isSelected()) {
+				if (Chk_true_agree.isSelected() && Chk_false_agree.isSelected()) {
+					Alert alert = new Alert(AlertType.ERROR);
+					alert.setTitle("사용자 약관 선택 오류");
+					alert.setHeaderText("사용자 약관 중복 선택함.");
+					alert.setContentText("사용자 약관을 하나만 선택해주시기 바랍니다.");
+					alert.showAndWait();
+				} else if (Chk_true_agree.isSelected()) {
 					if (Input_ID.getText().length() == 0 || Input_Pass.getText().length() == 0
 							|| postNum.getText().length() == 0 || Chk_Pass.getText().length() == 0) {
 						Alert alert = new Alert(AlertType.ERROR);
@@ -191,12 +202,26 @@ public class MakeMemController implements Initializable {
 
 	@FXML
 	public void ChkrepeatID(ActionEvent event) {
-		if ((int) Client.Client.summit(new SocketDB("chkRepeatID", Input_ID.getText())) != 0) {
+		if (Input_ID.getText().length() == 0) {
 			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("아이디 중복");
-			alert.setHeaderText("아이디 중복 오류");
-			alert.setContentText("중복되는 아이디가 존재합니다.");
+			alert.setTitle("아이디 미입력");
+			alert.setHeaderText("아이디 미입력 오류");
+			alert.setContentText("아이디를 입력해주세요.");
 			alert.showAndWait();
+		} else {
+			if (((int) Client.Client.summit(new SocketDB("chkRepeatID", Input_ID.getText()))) != 0) {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("아이디 중복");
+				alert.setHeaderText("아이디 중복 오류");
+				alert.setContentText("중복되는 아이디가 존재합니다.");
+				alert.showAndWait();
+			} else {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("아이디 중복");
+				alert.setHeaderText("아이디 사용 가능");
+				alert.setContentText("입력하신 아이디는 사용 가능한 아이디입니다.");
+				alert.showAndWait();
+			}
 		}
 	}
 

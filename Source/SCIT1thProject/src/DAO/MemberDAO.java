@@ -27,7 +27,7 @@ public class MemberDAO {
 		}
 	}
 
-	public static int chkRepeatID(String id) {// 회원등록
+	public static int chkRepeatID(String id) {// 회원아이디 중복체크
 		SqlSession session = null;
 		int i = 0;
 

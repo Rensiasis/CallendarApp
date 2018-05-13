@@ -47,7 +47,14 @@ public class HomeController implements Initializable {
 
 			// new Popup("ȯ���մϴ�! "+tfId.getText()+" ��!").start(null);
 
-			Util.Switcher.switchWindow((Stage) logIn.getScene().getWindow(), new Calendar());
+//			Util.Switcher.switchWindow((Stage) logIn.getScene().getWindow(), new Calendar());
+			try {
+				AnchorPane memberPane = FXMLLoader.load(getClass().getResource("/View/Calendar.fxml"));
+				mPane.getChildren().setAll(memberPane);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else {
 			lblMessage.setText("ID 나 PASSWORD가 일치하지 않습니다! \n 다시 입력바랍니다.");
 
@@ -69,30 +76,11 @@ public class HomeController implements Initializable {
 	@FXML
 	private void btnExitAction(ActionEvent event) {
 		System.exit(0);
-
 	}
 
 	@FXML
-	// ù ȭ������ ���ư��� �޼ҵ�
+	// 메뉴바에 FILE에 메뉴바로 돌아가는 기능
 	private void backToMain(ActionEvent event) {
-	}
-
-	@FXML
-	// ȸ�� ���� �������� ���� �޼ҵ�
-	public void signIn(ActionEvent event) {
-
-	}
-
-	@FXML
-	// �α��� �� ���̾�� �̵�
-	public void goToLogIn(ActionEvent event) {
-		Switcher.switchWindow((Stage) logIn.getScene().getWindow(), new Calendar());
-	}
-
-	@FXML
-	// ȸ�������������� �̵�
-	public void goToSignIn(ActionEvent event) {
-		Switcher.switchWindow((Stage) signIn.getScene().getWindow(), new Calendar());
 	}
 
 	@Override

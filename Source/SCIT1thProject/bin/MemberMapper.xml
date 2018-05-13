@@ -16,6 +16,9 @@
 		phone_number,
 		postNumber,
 		newAddress,
+		city,
+		county,
+		village,
 		indate
 		) values (
 		member_seq.nextval,
@@ -27,6 +30,9 @@
 		#{phone_number},
 		#{postNumber},
 		#{newAddress},
+		#{city},
+		#{county},
+		#{village},
 		sysdate
 		)
 	</insert>

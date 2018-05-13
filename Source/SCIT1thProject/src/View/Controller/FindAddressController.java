@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import Parser.SearchPostNumber;
 import VO.Address;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -52,10 +53,19 @@ public class FindAddressController implements Initializable {
 
 	@FXML
 	public void addressInput(ActionEvent event) {
-		Address selectedAddress = Add_list.getSelectionModel().getSelectedItem();
-		View.Controller.MakeMemController.staticPostNo.setText(selectedAddress.getPostNumber());
-		View.Controller.MakeMemController.staticAddress.setText(selectedAddress.getNewAddress());
-		View.Controller.MakeMemController.stage.close();
+		Platform.runLater(new Runnable() {
+			Address selectedAddress = Add_list.getSelectionModel().getSelectedItem();
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				View.Controller.MakeMemController.staticPostNo.setText(selectedAddress.getPostNumber());
+				View.Controller.MakeMemController.staticAddress.setText(selectedAddress.getNewAddress());
+				View.Controller.MakeMemController.oldAddress=selectedAddress.getOldAddress();
+				View.Controller.MakeMemController.stage.close();
+			}
+
+		});
 	}
 
 	@Override

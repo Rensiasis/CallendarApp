@@ -81,6 +81,9 @@ public class MakeMemController implements Initializable {
 	public static Stage stage;
 	public static TextField staticPostNo;
 	public static TextField staticAddress;
+	public static String oldAddress;
+
+	private boolean chkID;
 
 	MemberDAO m_dao = new MemberDAO(); // DAO호출
 
@@ -103,6 +106,12 @@ public class MakeMemController implements Initializable {
 						alert.setContentText("필수정보를 입력해주세요.(아이디, 패스워드, 주소)");
 						alert.showAndWait();
 
+					} else if (!chkID) {
+						Alert alert = new Alert(AlertType.ERROR);
+						alert.setTitle("회원가입 실패");
+						alert.setHeaderText("아이디 중복검사 오류");
+						alert.setContentText("아이디 중복검사를 해주세요.");
+						alert.showAndWait();
 					} else {
 						m_vo.setId(Input_ID.getText());
 
@@ -127,33 +136,21 @@ public class MakeMemController implements Initializable {
 						m_vo.setPhone_number(Input_Phone.getText());
 						m_vo.setPostNumber(postNum.getText());
 						m_vo.setNewAddress(address.getText() + " " + detailAddress.getText());
-						String oldAddress = a_vo.getOldAddress();
-						String[] splitAddress = oldAddress.split("\\s");
-						for(int i=0;i<splitAddress.length;i++) {
-							System.out.println(splitAddress[i]);
-						}
-						String city = "";
-						String county = "";
-						String village = "";
-						for (int i = 0; i < splitAddress.length; i++) {
-							String splitdata = splitAddress[i];
-							if (splitdata.contains("특별시") || splitdata.contains("광역시")) {
-								city = splitdata;
-							} else {
-								char c = splitdata.charAt(splitdata.length() - 1);
-								if (c == '도') {
-									city = splitdata;
-								} else if (c == '시' || c == '군' || c == '구') {
-									county = splitdata;
-								} else if (c == '읍' || c == '면' || c == '동') {
-									village = splitdata;
-								}
-							}
-						}
+
+						String[] splitadd = oldAddress.split("\\s");
+						System.out.println(oldAddress);
+						String city = splitadd[0];
+						String county = splitadd[1];
+						String village = splitadd[2];
+						System.out.println(city);
+						System.out.println(county);
+						System.out.println(village);
 						m_vo.setCity(city);
 						m_vo.setCounty(county);
 						m_vo.setVillage(village);
-
+						System.out.println(m_vo.getCity());
+						System.out.println(m_vo.getCounty());
+						System.out.println(m_vo.getVillage());
 						Client.Client.summit(new SocketDB("insertMember", m_vo)); // 회원정보 DB등록
 
 						try {
@@ -177,21 +174,30 @@ public class MakeMemController implements Initializable {
 
 	@FXML
 	public void Open_add_page(ActionEvent event) {
-		receiver = new Receiver();
-		try {
-			AnchorPane memberPane = FXMLLoader.load(getClass().getResource("/View/FindAddress.fxml"));
-			staticAddress = address;
-			staticPostNo = postNum;
-			Scene scene = new Scene(memberPane);
-			stage = new Stage();
-			stage.setScene(scene);
-			stage.setTitle("우편번호 검색");
-			stage.setResizable(false);
-			stage.show();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				receiver = new Receiver();
+
+				try {
+					AnchorPane memberPane = FXMLLoader.load(getClass().getResource("/View/FindAddress.fxml"));
+					staticAddress = address;
+					staticPostNo = postNum;
+					oldAddress = null;
+					Scene scene = new Scene(memberPane);
+					stage = new Stage();
+					stage.setScene(scene);
+					stage.setTitle("우편번호 검색");
+					stage.setResizable(false);
+					stage.show();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
 	@FXML
@@ -210,6 +216,7 @@ public class MakeMemController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		Chk_Gender.getItems().addAll("남자", "여자");
+		chkID = false;
 	}
 
 	@FXML
@@ -228,6 +235,7 @@ public class MakeMemController implements Initializable {
 				alert.setContentText("중복되는 아이디가 존재합니다.");
 				alert.showAndWait();
 			} else {
+				chkID = true;
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("아이디 중복");
 				alert.setHeaderText("아이디 사용 가능");

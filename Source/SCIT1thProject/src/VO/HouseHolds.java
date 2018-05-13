@@ -1,6 +1,8 @@
 package VO;
 
-public class HouseHolds {
+import java.io.Serializable;
+
+public class HouseHolds implements Serializable{
 	private String household_seq;
 	private String member_seq;
 	private String product;
@@ -13,7 +15,7 @@ public class HouseHolds {
 	private String inuser;
 	private String luser;
 
-	public HouseHolds(String household_seq, String member_seq, String product, String price, String count, String date,
+	public HouseHolds (String household_seq, String member_seq, String product, String price, String count, String date,
 			String content, String indate, String ldate, String inuser, String luser) {
 		super();
 		this.household_seq = household_seq;

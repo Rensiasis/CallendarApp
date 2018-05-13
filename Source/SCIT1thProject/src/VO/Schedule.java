@@ -1,6 +1,8 @@
 package VO;
 
-public class Schedule {
+import java.io.Serializable;
+
+public class Schedule implements Serializable{
 
 	private String member_seq;
 	private String from_date;

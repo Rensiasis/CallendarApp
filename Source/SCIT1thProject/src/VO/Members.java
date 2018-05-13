@@ -1,6 +1,8 @@
 package VO;
 
-public class Members {
+import java.io.Serializable;
+
+public class Members implements Serializable{
 
 	private String member_seq;
 	private String id;

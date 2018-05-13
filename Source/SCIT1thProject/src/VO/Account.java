@@ -1,6 +1,8 @@
 package VO;
 
-public class Account {
+import java.io.Serializable;
+
+public class Account implements Serializable{
 	private String member_seq;
 	private String account;
 	private String montly_salary;

@@ -1,8 +1,10 @@
 package VO;
 
+import java.io.Serializable;
+
 import DAO.MemberDAO;
 
-public class SocketDB {
+public class SocketDB implements Serializable{
 	private String toDo; // 처리해야할 기능
 	private Object inputObject;
 

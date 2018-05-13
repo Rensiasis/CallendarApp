@@ -16,7 +16,7 @@ public class MemberDAO {
 		try {
 			session = factory.openSession();
 			MemberMapper mapper = session.getMapper(MemberMapper.class);
-			mapper.InsertMember(m_vo);
+			mapper.insertMember(m_vo);
 			session.commit();
 		} catch (Exception e) {
 			e.printStackTrace();

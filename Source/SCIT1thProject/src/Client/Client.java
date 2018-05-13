@@ -1,7 +1,5 @@
 package Client;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
@@ -16,28 +14,32 @@ public class Client {
 		Socket socket = null;
 		InputStream is = null;
 		OutputStream os = null;
-		BufferedInputStream bis = null;
-		BufferedOutputStream bos = null;
 		ObjectInputStream ois = null;
 		ObjectOutputStream oos = null;
 		Object result=null;
 		try {
 			socket = new Socket("localhost", 7777);
-			is = socket.getInputStream();
+			System.out.println("OK!");
+			
 			os = socket.getOutputStream();
-			bis = new BufferedInputStream(is);
-			bos = new BufferedOutputStream(os);
-			ois = new ObjectInputStream(bis);
-			oos = new ObjectOutputStream(bos);
+			oos = new ObjectOutputStream(os);
 			oos.writeObject(socketDB);
+			oos.flush();
+			System.out.println("OK!");
+			
+			is = socket.getInputStream();
+			ois = new ObjectInputStream(is);
 			result=ois.readObject();
+			System.out.println("OK!");
+		
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
 				socket.close();
-				ois.close();
 				oos.close();
+				ois.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

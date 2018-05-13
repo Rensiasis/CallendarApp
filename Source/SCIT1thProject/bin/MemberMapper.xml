@@ -5,7 +5,7 @@
   
   <mapper namespace="DAO.MemberMapper">
   
-  <insert id="InsertMember" parameterType="Member">
+  <insert id="insertMember" parameterType="Member">
   insert into members(
   		member_seq,
 		id,

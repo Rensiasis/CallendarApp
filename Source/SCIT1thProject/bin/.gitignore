@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /Client/
 /DAO/
 /Parser/
@@ -8,3 +9,6 @@
 /db.properties
 /mybatis-config.xml
 /user.sql
+=======
+/View/
+>>>>>>> master_branch

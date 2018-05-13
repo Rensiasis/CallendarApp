@@ -118,7 +118,7 @@ public class MakeMemController implements Initializable {
 
 					Client.Client.summit(new SocketDB("insertMember", m_vo));
 					try {
-						AnchorPane parent = FXMLLoader.load(getClass().getResource("/View/RootLayout.fxml"));
+						AnchorPane parent = FXMLLoader.load(getClass().getResource("/View/Home.fxml"));
 						mPane.getChildren().setAll(parent);
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
@@ -145,7 +145,7 @@ public class MakeMemController implements Initializable {
 	@FXML
 	public void returnMenu(ActionEvent event) {
 		try {
-			AnchorPane parent = FXMLLoader.load(getClass().getResource("/View/RootLayout.fxml"));
+			AnchorPane parent = FXMLLoader.load(getClass().getResource("/View/Home.fxml"));
 			mPane.getChildren().setAll(parent);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

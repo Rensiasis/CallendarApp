@@ -28,25 +28,22 @@ public class MainApp extends Application {
 		// TODO Auto-generated method stub
 		try {
 			this.primaryStage = primaryStage;
-			rootLayout = (AnchorPane) FXMLLoader.load(getClass().getResource("/View/RootLayout.fxml"));
+			rootLayout = (AnchorPane) FXMLLoader.load(getClass().getResource("/View/Home.fxml"));
 			Scene scene = new Scene(rootLayout);
 			primaryStage.setTitle("케치데모 다이죠부");
 			primaryStage.setScene(scene);
 			primaryStage.show();
-			
-			
-		/*	Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
 
-			Scene scene = new Scene(root, 600, 400);
+			/*
+			 * Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
+			 * 
+			 * Scene scene = new Scene(root, 600, 400);
+			 * 
+			 * primaryStage.setScene(scene); primaryStage.setTitle("けちでも大丈夫(짠돌이라도 괜찮아)");
+			 * primaryStage.setResizable(false); primaryStage.sizeToScene();
+			 * primaryStage.show();
+			 */
 
-			primaryStage.setScene(scene);
-			primaryStage.setTitle("けちでも大丈夫(짠돌이라도 괜찮아)");
-	        primaryStage.setResizable(false);
-	        primaryStage.sizeToScene();
-	        primaryStage.show();*/
-			
-			
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

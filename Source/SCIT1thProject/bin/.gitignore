@@ -1,8 +1,11 @@
-/View/
-<<<<<<< HEAD
-/DAO/
-/Parser/
 /Client/
-=======
+/DAO/
+/MemberMapper.xml
+/Parser/
+/Server/
 /Util/
->>>>>>> master_branch
+/VO/
+/View/
+/db.properties
+/mybatis-config.xml
+/user.sql

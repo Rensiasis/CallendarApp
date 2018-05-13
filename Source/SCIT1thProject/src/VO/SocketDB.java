@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import DAO.MemberDAO;
 
-public class SocketDB implements Serializable{
+public class SocketDB implements Serializable {
 	private String toDo; // 처리해야할 기능
 	private Object inputObject;
 
@@ -35,7 +35,7 @@ public class SocketDB implements Serializable{
 	}
 
 	public Object update() {
-		Object result=null;
+		Object result = null;
 		switch (toDo) {
 		case "insertMember":
 			MemberDAO.insertMember((Members) inputObject);

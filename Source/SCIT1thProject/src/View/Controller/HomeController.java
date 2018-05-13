@@ -61,10 +61,6 @@ public class HomeController implements Initializable{
 	@FXML	
 	private void btnSignInAction(ActionEvent event) {
 
-		//ȭ����ȯ ���� - ��Ʈ�ѷ��� ����
-		//signIn �ڸ��� ��ư�̳� ������ ���Ե� ������Ʈ ����
-		//signInb �ڸ��� ��ȯ�Ǿ����� â�� ��Ÿ���� Ŭ���� �̸� ����
-		
 		//Switcher.switchWindow((Stage)signIn.getScene().getWindow(), new signInb());
 
 	}

@@ -72,6 +72,8 @@ public class MakeMemController implements Initializable {
 
 	@FXML
 	private TextField Input_Phone;
+	
+	public static Receiver receiver;
 
 	private Stage as;
 	MemberDAO m_dao = new MemberDAO(); // DAO호출
@@ -149,6 +151,7 @@ public class MakeMemController implements Initializable {
 
 	@FXML
 	public void Open_add_page(ActionEvent event) {
+		receiver=new Receiver();
 		try {
 			AnchorPane memberPane = FXMLLoader.load(getClass().getResource("/View/FindAddress.fxml"));
 			mPane.getChildren().setAll(memberPane);

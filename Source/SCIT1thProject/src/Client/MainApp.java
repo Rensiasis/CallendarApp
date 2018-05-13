@@ -30,7 +30,8 @@ public class MainApp extends Application {
 			this.primaryStage = primaryStage;
 			rootLayout = (AnchorPane) FXMLLoader.load(getClass().getResource("/View/Home.fxml"));
 			Scene scene = new Scene(rootLayout);
-			primaryStage.setTitle("케치데모 다이죠부");
+			primaryStage.setTitle("けちでも大丈夫(짠돌이라도 괜찮아)");
+			primaryStage.setResizable(false);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 

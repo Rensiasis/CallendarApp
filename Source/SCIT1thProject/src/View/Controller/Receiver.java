@@ -19,5 +19,7 @@ public class Receiver {
 	public void setMessage(Object message) {
 		this.message = message;
 	}
+	
+	
 
 }

@@ -53,10 +53,9 @@ public class FindAddressController implements Initializable {
 	@FXML
 	public void addressInput(ActionEvent event) {
 		Address selectedAddress=Add_list.getSelectionModel().getSelectedItem();
-		selectedAddress.getPostNumber();
-		selectedAddress.getNewAddress();
+		View.Controller.MakeMemController.staticPostNo.setText(selectedAddress.getPostNumber());
+		View.Controller.MakeMemController.staticAddress.setText(selectedAddress.getNewAddress());
 		View.Controller.MakeMemController.stage.close();
-		
 	}
 
 	@Override

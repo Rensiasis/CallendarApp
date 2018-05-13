@@ -12,7 +12,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -78,14 +77,11 @@ public class MakeMemController implements Initializable {
 
 	@FXML
 	private TextField Input_Phone;
-<<<<<<< Updated upstream
-=======
-
-	public static Receiver receiver;
->>>>>>> Stashed changes
 
 	public static Receiver receiver;
 	public static Stage stage;
+	public static TextField staticPostNo;
+	public static TextField staticAddress;
 	MemberDAO m_dao = new MemberDAO(); // DAO호출
 
 	@FXML
@@ -170,6 +166,8 @@ public class MakeMemController implements Initializable {
 		receiver = new Receiver();
 		try {
 			AnchorPane memberPane = FXMLLoader.load(getClass().getResource("/View/FindAddress.fxml"));
+			staticAddress=address;
+			staticPostNo=postNum;
 			Scene scene = new Scene(memberPane);
 			stage = new Stage();
 			stage.setScene(scene);

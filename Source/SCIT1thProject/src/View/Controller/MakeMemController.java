@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import DAO.MemberDAO;
+import VO.Address;
 import VO.Members;
 import VO.SocketDB;
 import javafx.application.Platform;
@@ -29,6 +30,15 @@ public class MakeMemController implements Initializable {
 	private AnchorPane mPane;
 
 	@FXML
+	private TextField Input_name;
+
+	@FXML
+	private PasswordField Input_Pass;
+
+	@FXML
+	private PasswordField Chk_password;
+
+	@FXML
 	private TextField postNum;
 
 	@FXML
@@ -47,19 +57,10 @@ public class MakeMemController implements Initializable {
 	private Button Chk_address;
 
 	@FXML
-	private PasswordField Chk_password;
-
-	@FXML
-	private PasswordField Input_Pass;
-
-	@FXML
 	private Button Return_Menu;
 
 	@FXML
 	private Button Chk_ID;
-
-	@FXML
-	private TextField Input_name;
 
 	@FXML
 	private TextField Input_ID;
@@ -80,6 +81,7 @@ public class MakeMemController implements Initializable {
 	public static Stage stage;
 	public static TextField staticPostNo;
 	public static TextField staticAddress;
+
 	MemberDAO m_dao = new MemberDAO(); // DAO호출
 
 	@FXML
@@ -90,6 +92,7 @@ public class MakeMemController implements Initializable {
 			public void run() {
 				// TODO Auto-generated method stub
 				Members m_vo = new Members();
+				Address a_vo = new Address();
 
 				if (Chk_true_agree.isSelected()) {
 					if (Input_ID.getText().length() == 0 || Input_Pass.getText().length() == 0
@@ -122,8 +125,37 @@ public class MakeMemController implements Initializable {
 						m_vo.setName(Input_name.getText());
 						m_vo.setEmail(Input_Email.getText());
 						m_vo.setPhone_number(Input_Phone.getText());
+						m_vo.setPostNumber(postNum.getText());
+						m_vo.setNewAddress(address.getText() + " " + detailAddress.getText());
+						String oldAddress = a_vo.getOldAddress();
+						String[] splitAddress = oldAddress.split("\\s");
+						for(int i=0;i<splitAddress.length;i++) {
+							System.out.println(splitAddress[i]);
+						}
+						String city = "";
+						String county = "";
+						String village = "";
+						for (int i = 0; i < splitAddress.length; i++) {
+							String splitdata = splitAddress[i];
+							if (splitdata.contains("특별시") || splitdata.contains("광역시")) {
+								city = splitdata;
+							} else {
+								char c = splitdata.charAt(splitdata.length() - 1);
+								if (c == '도') {
+									city = splitdata;
+								} else if (c == '시' || c == '군' || c == '구') {
+									county = splitdata;
+								} else if (c == '읍' || c == '면' || c == '동') {
+									village = splitdata;
+								}
+							}
+						}
+						m_vo.setCity(city);
+						m_vo.setCounty(county);
+						m_vo.setVillage(village);
 
-						Client.Client.summit(new SocketDB("insertMember", m_vo));
+						Client.Client.summit(new SocketDB("insertMember", m_vo)); // 회원정보 DB등록
+
 						try {
 							AnchorPane parent = FXMLLoader.load(getClass().getResource("/View/Home.fxml"));
 							mPane.getChildren().setAll(parent);
@@ -140,9 +172,7 @@ public class MakeMemController implements Initializable {
 					alert.showAndWait();
 				}
 			}
-
 		});
-
 	}
 
 	@FXML
@@ -150,8 +180,8 @@ public class MakeMemController implements Initializable {
 		receiver = new Receiver();
 		try {
 			AnchorPane memberPane = FXMLLoader.load(getClass().getResource("/View/FindAddress.fxml"));
-			staticAddress=address;
-			staticPostNo=postNum;
+			staticAddress = address;
+			staticPostNo = postNum;
 			Scene scene = new Scene(memberPane);
 			stage = new Stage();
 			stage.setScene(scene);

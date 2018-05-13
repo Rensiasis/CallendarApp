@@ -14,6 +14,8 @@
 		gender,
 		email,
 		phone_number,
+		postNumber,
+		newAddress,
 		indate
 		) values (
 		member_seq.nextval,
@@ -23,6 +25,8 @@
 		#{gender},
 		#{email},
 		#{phone_number},
+		#{postNumber},
+		#{newAddress},
 		sysdate
 		)
 	</insert>

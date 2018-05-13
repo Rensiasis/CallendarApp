@@ -43,6 +43,7 @@ public class SocketDB implements Serializable {
 		case "chkRepeatID":
 			result = MemberDAO.chkRepeatID((String) inputObject);
 			break;
+		
 		}
 		return result;
 	}

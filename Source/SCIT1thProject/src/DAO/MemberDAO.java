@@ -4,6 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import DAO.MybatisConfig;
+import VO.Address;
 import VO.Members;
 
 public class MemberDAO {
@@ -45,4 +46,6 @@ public class MemberDAO {
 		}
 		return i;
 	}
+
+
 }

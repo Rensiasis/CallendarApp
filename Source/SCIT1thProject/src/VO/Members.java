@@ -2,7 +2,7 @@ package VO;
 
 import java.io.Serializable;
 
-public class Members implements Serializable{
+public class Members implements Serializable {
 
 	private String member_seq;
 	private String id;
@@ -15,9 +15,15 @@ public class Members implements Serializable{
 	private String ldate;
 	private String inuser;
 	private String luser;
+	private String postNumber;
+	private String newAddress;
+	private String city;
+	private String county;
+	private String village;
 
 	public Members(String member_seq, String id, String password, String name, String gender, String email,
-			String phone_number, String indate, String ldate, String inuser, String luser) {
+			String phone_number, String indate, String ldate, String inuser, String luser, String postNumber,
+			String newAddress, String city, String county, String village) {
 		super();
 		this.member_seq = member_seq;
 		this.id = id;
@@ -30,6 +36,11 @@ public class Members implements Serializable{
 		this.ldate = ldate;
 		this.inuser = inuser;
 		this.luser = luser;
+		this.postNumber = postNumber;
+		this.newAddress = newAddress;
+		this.city = city;
+		this.county = county;
+		this.village = village;
 	}
 
 	public Members() {
@@ -124,11 +135,51 @@ public class Members implements Serializable{
 		this.luser = luser;
 	}
 
+	public String getPostNumber() {
+		return postNumber;
+	}
+
+	public void setPostNumber(String postNumber) {
+		this.postNumber = postNumber;
+	}
+
+	public String getNewAddress() {
+		return newAddress;
+	}
+
+	public void setNewAddress(String newAddress) {
+		this.newAddress = newAddress;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getCounty() {
+		return county;
+	}
+
+	public void setCounty(String county) {
+		this.county = county;
+	}
+
+	public String getVillage() {
+		return village;
+	}
+
+	public void setVillage(String village) {
+		this.village = village;
+	}
+
 	@Override
 	public String toString() {
 		return "회원번호=" + member_seq + ", 아이디=" + id + ", 비밀번호=" + password + ", 이름=" + name + ", 성별=" + gender
-				+ ", 이메일=" + email + ", 연락처=" + phone_number + ", 가입일자=" + indate + ", 회원정보수정일=" + ldate + ", 등록자="
-				+ inuser + ", 회원정보수정인=" + luser;
+				+ ", 이메일=" + email + ", 전화번호=" + phone_number + ", 등록일=" + indate + ", 최종수정일=" + ldate + ", 등록인="
+				+ inuser + ", 수정인=" + luser + ", 우편번호=" + postNumber + ", 주소=" + newAddress + ", 도시=";
 	}
 
 }

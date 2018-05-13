@@ -1,5 +1,6 @@
 package DAO;
 
+import VO.Address;
 import VO.Members;
 
 public interface MemberMapper {
@@ -8,4 +9,6 @@ public interface MemberMapper {
 
 	// 중복아이디검사
 	public int chkRepeatID(String id);
+	
+
 }

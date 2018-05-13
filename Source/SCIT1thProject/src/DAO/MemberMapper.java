@@ -1,8 +1,12 @@
 package DAO;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 
 import VO.HouseHolds;
+=======
+import VO.Address;
+>>>>>>> master_branch
 import VO.Members;
 
 public interface MemberMapper {
@@ -12,6 +16,7 @@ public interface MemberMapper {
 	// 중복아이디검사
 	public int chkRepeatID(String id);
 	
+<<<<<<< HEAD
 	//가계부등록
 	public void insertHouseHold(HouseHolds vo);
 	
@@ -23,4 +28,7 @@ public interface MemberMapper {
 	
 	//가계부리스트반환
 	public ArrayList<HouseHolds> getHouseHoldList(Members vo);
+=======
+
+>>>>>>> master_branch
 }

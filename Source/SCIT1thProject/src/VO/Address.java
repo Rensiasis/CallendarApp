@@ -2,7 +2,7 @@ package VO;
 
 import java.io.Serializable;
 
-public class Address implements Serializable{
+public class Address implements Serializable {
 	private String member_seq;
 	private String postNumber;
 	private String oldAddress;
@@ -120,6 +120,6 @@ public class Address implements Serializable{
 
 	@Override
 	public String toString() {
-		return newAddress;
+		return oldAddress;
 	}
 }

@@ -34,7 +34,7 @@ public class FindAddressController implements Initializable {
 
 	@FXML
 	private ListView<Address> Add_list;
-	
+
 	@FXML
 	private Label resultLabel;
 
@@ -43,7 +43,7 @@ public class FindAddressController implements Initializable {
 		ObservableList<Address> addlist = FXCollections.observableArrayList();
 		SearchPostNumber spn = new SearchPostNumber();
 		ArrayList<Address> aList = spn.searchAddress(Input_address2.getText());
-		resultLabel.setText("총 "+spn.getTotalCount()+"개의 검색결과가 있습니다.");
+		resultLabel.setText("총 " + spn.getTotalCount() + "개의 검색결과가 있습니다.");
 		for (int i = 0; i < aList.size(); i++) {
 			addlist.add(aList.get(i));
 		}
@@ -52,7 +52,7 @@ public class FindAddressController implements Initializable {
 
 	@FXML
 	public void addressInput(ActionEvent event) {
-		Address selectedAddress=Add_list.getSelectionModel().getSelectedItem();
+		Address selectedAddress = Add_list.getSelectionModel().getSelectedItem();
 		View.Controller.MakeMemController.staticPostNo.setText(selectedAddress.getPostNumber());
 		View.Controller.MakeMemController.staticAddress.setText(selectedAddress.getNewAddress());
 		View.Controller.MakeMemController.stage.close();
@@ -61,7 +61,20 @@ public class FindAddressController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-
+		Input_address2.setOnKeyPressed(event -> {
+			switch (event.getCode()) {
+			case ENTER:
+				ObservableList<Address> addlist = FXCollections.observableArrayList();
+				SearchPostNumber spn = new SearchPostNumber();
+				ArrayList<Address> aList = spn.searchAddress(Input_address2.getText());
+				resultLabel.setText("총 " + spn.getTotalCount() + "개의 검색결과가 있습니다.");
+				for (int i = 0; i < aList.size(); i++) {
+					addlist.add(aList.get(i));
+				}
+				Add_list.setItems(addlist);
+				break;
+			}
+		});
 	}
 
 }

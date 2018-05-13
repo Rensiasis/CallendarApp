@@ -1,14 +1,7 @@
-<<<<<<< HEAD
+/View/
 /Client/
 /DAO/
 /Parser/
 /Server/
 /Util/
 /VO/
-/View/
-/db.properties
-/mybatis-config.xml
-/user.sql
-=======
-/View/
->>>>>>> master_branch

@@ -6,6 +6,11 @@ name varchar2(10),
 gender varchar2(1) default 'M',
 email varchar2(50),
 phone_number varchar2(30),
+postNumber varchar2(30),
+newAddress varchar2(1000),
+city varchar2(30),
+county varchar2(30),
+village varchar2(30),
 indate date,
 ldate date,
 inuser varchar2(10),
@@ -13,22 +18,6 @@ luser varchar2(10)
 )
 
 create sequence member_seq
-
-create table address(
-member_seq varchar2(6),
-address_city varchar2(20),
-address_country varchar2(20),
-address_village varchar2(20),
-indate date,
-ldate date,
-inuser varchar2(10),
-luser varchar2(10),
-
-constraint member_fk
-foreign key (member_seq)
-references members (member_seq)
-on delete cascade
-)
 
 create table households(
 household_seq varchar2(6) primary key, 
@@ -83,3 +72,5 @@ on delete cascade
 )
 
 select * from MEMBERS
+
+drop table members;

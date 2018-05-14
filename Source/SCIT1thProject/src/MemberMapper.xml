@@ -151,21 +151,11 @@
 
 	<!-- 가계부 설정 입력 -->
 	<insert id="insertAccount" parameterType="Account">
-<<<<<<< Updated upstream
-		insert into accounts(
-		member_seq, account, montly_salary, montly_save,
-		indate, inuser
-		)values(
-		#{member_seq}, #{account}, #{montly_salary}, #{montly_save}, sysdate,
-		#{inuser}
-		)
-=======
 	insert into accounts(
 		member_seq, account, montly_salary, montly_save, indate,
 	)values(
 		#{member_seq}, #{account}, #{montly_salary}, #{montly_save}, sysdate
 	)
->>>>>>> Stashed changes
 	</insert>
 
 	<!-- 1개월 이내 검색 -->

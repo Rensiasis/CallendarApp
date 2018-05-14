@@ -498,7 +498,8 @@ public class CalendarController implements Initializable {
 	public void setEvent(ArrayList<EventDay> eventList) {
 		for (int i = 0; i < eventList.size(); i++) {
 			EventDay event = eventList.get(i);
-			String key = event.getYear() + event.getMonth();
+			String keyStr = event.getYear() + event.getMonth();
+			int key = Integer.parseInt(keyStr);
 			int day = Integer.parseInt(event.getDay());
 			calList.get(key).get(day - 1).getEvent().add(event);
 		}

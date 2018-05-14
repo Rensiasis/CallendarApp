@@ -13,10 +13,14 @@ public class Day {
 		this.date = date;
 		this.event = event;
 		this.schedule = schedule;
+		event=new ArrayList<>();
+		schedule=new ArrayList<>();
 	}
 
 	public Day() {
 		super();
+		event=new ArrayList<>();
+		schedule=new ArrayList<>();
 	}
 
 	public Date getDate() {

@@ -51,6 +51,7 @@ public class HomeController implements Initializable {
 		if ((member = (Members) Client.Client.summit(new SocketDB("loginID", m_vo))) != null) {
 
 			Client.User.user = member;
+			Client.Client.summit(new SocketDB("insertAccount", User.getUser().getMember_seq()));
 			lblMessage.setText("환영합니다! " + tfId.getText() + " 님!");
 
 			try {

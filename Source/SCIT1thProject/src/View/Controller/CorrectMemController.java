@@ -99,7 +99,7 @@ public class CorrectMemController implements Initializable {
 
 				if (rePassword.getText().equals(rePassChk.getText())) {
 					m_vo.setMember_seq(user.getUser().getMember_seq());// 로그인되어있는아이디시퀀스!
-					m_vo.setName(user.getUser().getId());
+					m_vo.setId(user.getUser().getId());
 					m_vo.setName(reName.getText());
 					m_vo.setPassword(rePassword.getText());
 

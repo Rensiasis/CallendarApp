@@ -134,7 +134,7 @@
 	<update id="updateMemInfo" parameterType="Member">
 		update members
 		set
-		id = #{id}
+		id =#{id}
 		, password = #{password}
 		, name=#{name}
 		, email=#{email}
@@ -150,43 +150,58 @@
 	</update>
 
 	<!-- 가계부 설정 입력 -->
-	<insert id="insertAccount" parameterType="Account">
-	insert into accounts(
-		member_seq, account, montly_salary, montly_save, indate,
-	)values(
-		#{member_seq}, #{account}, #{montly_salary}, #{montly_save}, sysdate
-	)
+	<insert id="insertAccount" parameterType="String">
+		insert into accounts(
+		member_seq
+		)values(
+		#{member_seq}
+		)
 	</insert>
 
+	<!-- 가계부 수정 -->
+	<update id="updateAccount" parameterType="Account">
+		update accounts set
+		account = #{account}
+		, montly_salary=#{montly_salary}
+		, montly_save=#{montly_save}
+		, indate=sysdate
+		, inuser=#{inuser}
+		where member_seq=#{member_seq}
+	</update>
+
 	<!-- 1개월 이내 검색 -->
-	<select parameterType="HouseHold" id="searchForAMonth" resultType="String"> 
-		select product, price, get_date, content 
+	<select parameterType="HouseHold" id="searchForAMonth"
+		resultType="String">
+		select product, price, get_date, content
 		from HouseHolds
-		where get_date between sysdate-30 and sysdate 
+		where get_date between sysdate-30 and sysdate
 		order by get_date desc
 	</select>
 
 	<!-- 3개월 이내 검색 -->
-	<select parameterType="HouseHold" id="searchForThreeMonth" resultType="String"> 
-		select product, price, get_date, content 
+	<select parameterType="HouseHold" id="searchForThreeMonth"
+		resultType="String">
+		select product, price, get_date, content
 		from HouseHolds
-		where get_date between sysdate-90 and sysdate 
+		where get_date between sysdate-90 and sysdate
 		order by get_date desc
 	</select>
 
 	<!-- 6개월 이내 검색 -->
-	<select parameterType="HouseHold" id="searchForSixMonth" resultType="String">
-		select product, price, get_date, content 
+	<select parameterType="HouseHold" id="searchForSixMonth"
+		resultType="String">
+		select product, price, get_date, content
 		from HouseHolds
-		where get_date between sysdate-120 and sysdate 
+		where get_date between sysdate-120 and sysdate
 		order by get_date desc
 	</select>
 
 	<!-- 1년 이내 검색 -->
-	<select parameterType="HouseHold" id="searchForAnYear" resultType="String">	
-		select product, price, get_date, content 
+	<select parameterType="HouseHold" id="searchForAnYear"
+		resultType="String">
+		select product, price, get_date, content
 		from HouseHolds
-		where get_date between sysdate-365 and sysdate 
+		where get_date between sysdate-365 and sysdate
 		order by get_date desc
 	</select>
 

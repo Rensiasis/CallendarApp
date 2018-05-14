@@ -40,7 +40,7 @@ on delete cascade
 create sequence household_seq
 
 create table accounts(
-member_seq varchar(6),
+member_seq varchar(6) primary key,
 account number,
 montly_salary number,
 montly_save number,

@@ -33,8 +33,11 @@ public interface MemberMapper {
 	public void updateMemInfo(Members vo);
 
 	//가계부 설정 등록
-	public void insertAccount(Account vo);
+	public void insertAccount(String member_seq);
 
+	//가계부
+	public void updateAccount(Account a_vo);
+	
 	//최근 1개월 이내 내역 검색
 	public ArrayList<HouseHolds> searchForAMonth(HouseHolds vo);
 

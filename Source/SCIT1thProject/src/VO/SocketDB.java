@@ -62,7 +62,10 @@ public class SocketDB implements Serializable {
 			MemberDAO.updateMemInfo((Members) inputObject);
 			break;
 		case "insertAccount":
-			MemberDAO.insertAccount((Account) inputObject);
+			MemberDAO.insertAccount((String) inputObject);
+			break;
+		case "updateAccount":
+			MemberDAO.updateAccount((Account) inputObject);
 			break;
 		}
 		return result;

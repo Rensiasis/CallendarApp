@@ -3,6 +3,7 @@ package View.Controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 import Client.Calendar;
+import Client.User;
 import DAO.MemberDAO;
 import Util.Switcher;
 import VO.Members;
@@ -43,14 +44,16 @@ public class HomeController implements Initializable {
 	@FXML
 	private void btnLogInAction(ActionEvent event) throws Exception {
 		Members m_vo = new Members();
+		User user = new User();
 		m_vo.setId(tfId.getText());
 		m_vo.setPassword(pfPw.getText());
 
 		if (dao.loginID(m_vo) != 0) {
-
+			
 			lblMessage.setText("환영합니다! " + tfId.getText() + " 님!");
-
+			
 			try {
+				user.setUser(dao.loginMember(m_vo));
 				AnchorPane memberPane = FXMLLoader.load(getClass().getResource("/View/Calendar.fxml"));
 				Client.MainApp.primaryStage.setHeight(650);
 				Client.MainApp.primaryStage.setWidth(1200);
@@ -85,7 +88,7 @@ public class HomeController implements Initializable {
 	}
 
 	@FXML
-	// 메뉴바에 FILE에 메뉴바로 돌아가는 기능
+	// 메뉴바에 FILE에 메뉴바로 돌아가는 기능	
 	private void backToMain(ActionEvent event) {
 	}
 

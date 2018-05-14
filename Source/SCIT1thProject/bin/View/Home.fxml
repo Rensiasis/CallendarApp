@@ -10,21 +10,14 @@
    <children>
       <MenuBar prefHeight="38.0" prefWidth="610.0">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" text="프로그램">
             <items>
-                  <MenuItem mnemonicParsing="false" text="메인화면으로 돌아가기" />
-              <MenuItem mnemonicParsing="false" onAction="#btnExitAction" text="종료" />
+              <MenuItem mnemonicParsing="false" onAction="#btnExitAction" text="프로그램 종료" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
+          <Menu mnemonicParsing="false" text="도움말">
             <items>
-                  <MenuItem mnemonicParsing="false" text="개인정보 수정" />
-              <MenuItem mnemonicParsing="false" text="개인정보 삭제" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem mnemonicParsing="false" text="프로그램 도움말" />
             </items>
           </Menu>
         </menus>

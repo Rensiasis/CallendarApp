@@ -50,7 +50,6 @@ public class MemberDAO {
 		return i;
 	}
 
-
 	public static void insertHouseHold(HouseHolds vo) {
 		SqlSession session = null;
 
@@ -118,7 +117,7 @@ public class MemberDAO {
 		}
 		return result;
 	}
-	
+
 	public static int loginID(Members vo) {
 		SqlSession session = null;
 		int i = 0;
@@ -136,5 +135,24 @@ public class MemberDAO {
 			}
 		}
 		return i;
+	}
+
+	public static Members loginMember(Members vo) {
+		SqlSession session = null;
+		Members vo2 = new Members();
+
+		try {
+			session = factory.openSession();
+			MemberMapper mapper = session.getMapper(MemberMapper.class);
+			vo2 = mapper.loginMember(vo2);
+			session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+		return vo2;
 	}
 }

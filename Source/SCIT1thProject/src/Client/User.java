@@ -1,5 +1,8 @@
 package Client;
 
+import java.util.ArrayList;
+
+import DAO.MemberDAO;
 import VO.Members;
 
 public class User {
@@ -12,5 +15,5 @@ public class User {
 	public static void setUser(Members user) {
 		User.user = user;
 	}
-	
+
 }

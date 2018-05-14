@@ -115,5 +115,25 @@
 		id=#{id} and password=#{password}
 	</select>
 
+	<select id="loginMember" parameterType="Member" resultType="Member">
+		select
+		member_seq,
+		id,
+		password,
+		name,
+		gender,
+		email,
+		phone_number,
+		postNumber,
+		newAddress,
+		city,
+		county,
+		village,
+		indate
+		from member
+		where id=#{id} and
+		password=#{password}
+	</select>
+
 </mapper>
   

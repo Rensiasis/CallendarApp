@@ -142,15 +142,11 @@ public class MakeMemController implements Initializable {
 						String city = splitadd[0];
 						String county = splitadd[1];
 						String village = splitadd[2];
-						System.out.println(city);
-						System.out.println(county);
-						System.out.println(village);
+						
 						m_vo.setCity(city);
 						m_vo.setCounty(county);
 						m_vo.setVillage(village);
-						System.out.println(m_vo.getCity());
-						System.out.println(m_vo.getCounty());
-						System.out.println(m_vo.getVillage());
+						
 						Client.Client.summit(new SocketDB("insertMember", m_vo)); // 회원정보 DB등록
 
 						try {

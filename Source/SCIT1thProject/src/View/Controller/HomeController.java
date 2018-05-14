@@ -7,6 +7,7 @@ import Client.User;
 import DAO.MemberDAO;
 import Util.Switcher;
 import VO.Members;
+import VO.SocketDB;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -41,19 +42,19 @@ public class HomeController implements Initializable {
 
 	MemberDAO dao = new MemberDAO();
 
-	@FXML//로그인버튼
+	@FXML // 로그인버튼
 	private void btnLogInAction(ActionEvent event) throws Exception {
 		Members m_vo = new Members();
-		User user = new User();
 		m_vo.setId(tfId.getText());
 		m_vo.setPassword(pfPw.getText());
 
-		if (dao.loginID(m_vo) != 0) {
+		Members member = null;
+		if ((member = (Members) Client.Client.summit(new SocketDB("loginID", m_vo))) != null) {
 
+			Client.User.user = member;
 			lblMessage.setText("환영합니다! " + tfId.getText() + " 님!");
 
 			try {
-				user.setUser(dao.loginMember(m_vo));
 				AnchorPane memberPane = FXMLLoader.load(getClass().getResource("/View/Calendar.fxml"));
 				Client.MainApp.primaryStage.setHeight(650);
 				Client.MainApp.primaryStage.setWidth(1200);
@@ -70,9 +71,8 @@ public class HomeController implements Initializable {
 		}
 
 	}
-	
-	
-	@FXML//회원가입버튼
+
+	@FXML // 회원가입버튼
 	private void btnSignInAction(ActionEvent event) {
 		try {
 			AnchorPane memberPane = FXMLLoader.load(getClass().getResource("/View/MakeMember.fxml"));

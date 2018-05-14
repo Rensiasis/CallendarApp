@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="CorrectMember" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <MenuBar prefHeight="25.0" prefWidth="300.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="프로그램">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#btnExitAction" text="프로그램종료" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="도움말">
+            <items>
+              <MenuItem mnemonicParsing="false" text="프로그램 도움말" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Label layoutX="23.0" layoutY="41.0" text="1. 현재 보유하고 있는 재산을 입력해 주세요." />
+      <TextField fx:id="totalmoney" layoutX="21.0" layoutY="73.0" />
+      <Button layoutX="21.0" layoutY="378.0" mnemonicParsing="false" onAction="#InputHHinfo" text="가계부 정보 입력" />
+      <Button layoutX="150.0" layoutY="378.0" mnemonicParsing="false" onAction="#returnCalendar" prefHeight="25.0" prefWidth="129.0" text="취소하기" />
+      <Label layoutX="23.0" layoutY="117.0" text="2. 회원님의 월 수입을 입력해 주세요. " />
+      <TextField fx:id="monthsalary" layoutX="21.0" layoutY="148.0" />
+      <Label layoutX="23.0" layoutY="193.0" text="2. 한달 동안에 저축 목표 금액을 알려 주세요." />
+      <TextField fx:id="savesalary" layoutX="21.0" layoutY="227.0" />
+   </children>
+</AnchorPane>

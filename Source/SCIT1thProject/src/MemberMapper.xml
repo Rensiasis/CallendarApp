@@ -107,15 +107,8 @@
 		member_seq=#{member_seq}
 	</select>
 
-	<select id="loginID" parameterType="Member" resultType="Integer">
-		select
-		count(id)
-		from members
-		where
-		id=#{id} and password=#{password}
-	</select>
-
-	<select id="loginMember" parameterType="Member" resultType="Member">
+	<!-- 아이디 비밀번호 체크하고 로그인 하기 기능 -->
+	<select id="loginID" parameterType="Member" resultType="Member">
 		select
 		member_seq,
 		id,
@@ -130,10 +123,28 @@
 		county,
 		village,
 		indate
-		from member
-		where id=#{id} and
-		password=#{password}
+		from members
+		where
+		id=#{id} and password=#{password}
 	</select>
-
+	
+	<!-- 회원정보 수정 -->
+	<update id="updateMemInfo" parameterType="Member">
+		update members
+		set
+			id = #{id}
+			, password = #{password}
+			, name=#{name}
+			, email=#{email}
+			, phone_number=#{phone_number}
+			, postNumber=#{postNumber}
+			, newAddress=#{newAddress}
+			, city=#{city}
+			, county=#{county}
+			, village=#{village}
+			, ldate=sysdate
+		where 
+			member_seq = #{member_seq}
+	</update>
 </mapper>
   

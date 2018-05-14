@@ -61,6 +61,9 @@ public class SocketDB implements Serializable {
 		case "loginMember":
 			result = MemberDAO.loginMember((Members) inputObject);
 			break;
+		case "updateMemInfo":
+			MemberDAO.updateMemInfo((Members) inputObject);
+			break;
 		}
 		return result;
 	}

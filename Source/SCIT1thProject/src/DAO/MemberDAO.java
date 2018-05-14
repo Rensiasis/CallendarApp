@@ -12,9 +12,11 @@ import VO.Members;
 
 public class MemberDAO {
 
-	private static SqlSessionFactory factory = MybatisConfig.getSqlSessionFactory(); // 마이바티스 객체
+	// 마이바티스 객체
+	private static SqlSessionFactory factory = MybatisConfig.getSqlSessionFactory();
 
-	public static void insertMember(Members m_vo) {// 회원등록
+	// 회원등록
+	public static void insertMember(Members m_vo) {
 		SqlSession session = null;
 
 		try {
@@ -118,14 +120,14 @@ public class MemberDAO {
 		return result;
 	}
 
-	public static int loginID(Members vo) {
+	// 아이디 비밀번호 일치 확인후 로그인 하기
+	public static Members loginID(Members vo) {
 		SqlSession session = null;
-		int i = 0;
-
+		Members result = null;
 		try {
 			session = factory.openSession();
 			MemberMapper mapper = session.getMapper(MemberMapper.class);
-			i = mapper.loginID(vo);
+			result = mapper.loginID(vo);
 			session.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -134,9 +136,10 @@ public class MemberDAO {
 				session.close();
 			}
 		}
-		return i;
+		return result;
 	}
 
+	// 로그인하고 회원 정보 USER에 입력하기.
 	public static Members loginMember(Members vo) {
 		SqlSession session = null;
 		Members vo2 = new Members();
@@ -144,7 +147,7 @@ public class MemberDAO {
 		try {
 			session = factory.openSession();
 			MemberMapper mapper = session.getMapper(MemberMapper.class);
-			vo2 = mapper.loginMember(vo2);
+			vo2 = mapper.loginMember(vo);
 			session.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -154,5 +157,23 @@ public class MemberDAO {
 			}
 		}
 		return vo2;
+	}
+
+	// 회원정보 수정
+	public static void updateMemInfo(Members vo) {
+		SqlSession session = null;
+
+		try {
+			session = factory.openSession();
+			MemberMapper mapper = session.getMapper(MemberMapper.class);
+			mapper.updateMemInfo(vo);
+			session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
 	}
 }

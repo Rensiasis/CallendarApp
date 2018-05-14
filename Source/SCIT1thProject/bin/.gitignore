@@ -1,10 +1,3 @@
-/VO/
-/View/
-<<<<<<< Updated upstream
-/Client/
-=======
->>>>>>> Stashed changes
-/DAO/
-/Image/
-/Parser/
 /TestMain.class
+/View/
+/DAO/

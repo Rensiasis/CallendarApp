@@ -13,25 +13,38 @@ public interface MemberMapper {
 
 	// 중복아이디검사
 	public int chkRepeatID(String id);
-	
+
 	//가계부등록
 	public void insertHouseHold(HouseHolds vo);
-	
+
 	//가계부삭제
 	public void deleteHouseHold(HouseHolds vo);
-	
+
 	//가계부수정
 	public void fixHouseHold(HouseHolds vo);
-	
+
 	//가계부리스트반환
 	public ArrayList<HouseHolds> getHouseHoldList(Members vo);
-	
+
 	//로그인
 	public Members loginID(Members vo);
-	
+
 	//회원정보수정
 	public void updateMemInfo(Members vo);
-	
+
 	//가계부 설정 등록
 	public void insertAccount(Account vo);
+
+	//최근 1개월 이내 내역 검색
+	public ArrayList<HouseHolds> searchForAMonth(HouseHolds vo);
+
+	//최근 3개월 이내 내역 검색
+	public ArrayList<HouseHolds> searchForThreeMonth(HouseHolds vo);
+
+	//최근 6개월 이내 내역 검색
+	public ArrayList<HouseHolds> searchForSixMonth(HouseHolds vo);
+
+	//최근 12개월 이내 내역 검색
+	public ArrayList<HouseHolds> searchForAnYear(HouseHolds vo);
+
 }

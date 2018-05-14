@@ -1,6 +1,5 @@
 package View.Controller;
 
-import java.awt.GridLayout;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -9,10 +8,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.ResourceBundle;
-
-import org.apache.ibatis.reflection.SystemMetaObject;
 
 import VO.Day;
 import javafx.application.Platform;
@@ -21,13 +17,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
-<<<<<<< HEAD
 import javafx.scene.Scene;
-=======
 import javafx.scene.control.Button;
->>>>>>> master_branch
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -281,7 +273,7 @@ public class CalendarController implements Initializable {
 			ca.clear();
 			ca.set(year + k, 0, 1);
 			for (int i = 0; i < 12; i++) {
-				ca.set(year+k, i, 1);
+				ca.set(year + k, i, 1);
 				monthly = ca.getTime();
 				keyStr = format.format(monthly);
 				key = Integer.parseInt(keyStr);
@@ -323,12 +315,7 @@ public class CalendarController implements Initializable {
 		refreshCalendar(keyStr);
 	}
 
-<<<<<<< HEAD
-	public void refreshCalandar(String keyStr) {
-		Label[] labelList = new Label[35];
-=======
 	public void refreshCalendar(String keyStr) {
->>>>>>> master_branch
 		int key = Integer.parseInt(keyStr);
 		ArrayList<Day> dayList = calList.get(key);
 		Date firstDay = dayList.get(0).getDate();
@@ -348,10 +335,6 @@ public class CalendarController implements Initializable {
 		SimpleDateFormat format = new SimpleDateFormat("YYYYMM");
 		keyStr = format.format(monthly);
 		key = Integer.parseInt(keyStr);
-<<<<<<< HEAD
-=======
-		System.out.println(keyStr);
->>>>>>> master_branch
 		dayList = calList.get(key);
 		System.out.println(dayList);
 		for (int i = 0; i < dayList.size(); i++) {
@@ -393,7 +376,7 @@ public class CalendarController implements Initializable {
 			month = 1;
 			year++;
 		}
-		if(year>2030){
+		if (year > 2030) {
 			return;
 		}
 		if (month < 10) {
@@ -419,7 +402,7 @@ public class CalendarController implements Initializable {
 			month = 12;
 			year--;
 		}
-		if(year<2018) {
+		if (year < 2018) {
 			return;
 		}
 		if (month < 10) {
@@ -435,18 +418,13 @@ public class CalendarController implements Initializable {
 		this.month.setText(month + "");
 	}
 
-<<<<<<< HEAD
-		// 라벨 추가
-		for (int i = 0; i < 35; i++) {
-			gridPane.add(labelList[i], i % 7, 1 + (i / 7));
-=======
 	@FXML
 	public void yearAfter() {
 		String keyStr = "";
 		int month = Integer.parseInt(this.month.getText());
 		int year = Integer.parseInt(this.year.getText());
 		year = year + 1;
-		if(year>2030) {
+		if (year > 2030) {
 			return;
 		}
 		if (month < 10) {
@@ -467,7 +445,7 @@ public class CalendarController implements Initializable {
 		int month = Integer.parseInt(this.month.getText());
 		int year = Integer.parseInt(this.year.getText());
 		year = year - 1;
-		if(year<2018) {
+		if (year < 2018) {
 			return;
 		}
 		if (month < 10) {
@@ -478,7 +456,6 @@ public class CalendarController implements Initializable {
 		int key = Integer.parseInt(keyStr);
 		if (calList.get(key) != null) {
 			refreshCalendar(keyStr);
->>>>>>> master_branch
 		}
 		this.year.setText(year + "");
 	}

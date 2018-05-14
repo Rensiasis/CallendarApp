@@ -2,7 +2,7 @@ package VO;
 
 import java.io.Serializable;
 
-public class Schedule implements Serializable{
+public class Schedule implements Serializable, calListVO{
 
 	private String member_seq;
 	private String from_date;

@@ -50,8 +50,9 @@ public class ManageHHController implements Initializable {
 				a_vo.setMontly_salary(monthsalary.getText());
 				a_vo.setMontly_save(savesalary.getText());
 				a_vo.setInuser(user.getUser().getId());
+				
 
-				Client.Client.summit(new SocketDB("updateMemInfo", a_vo));
+				Client.Client.summit(new SocketDB("insertAccount", a_vo));
 				View.Controller.CalendarController.stage.close();
 			}
 		});

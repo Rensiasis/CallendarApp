@@ -15,12 +15,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-<<<<<<< Updated upstream
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
-=======
 import javafx.scene.control.Label;
->>>>>>> Stashed changes
 import javafx.scene.layout.GridPane;
 
 public class CalendarController implements Initializable {

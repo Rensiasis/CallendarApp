@@ -85,7 +85,13 @@ public class MakeMemController implements Initializable {
 
 	private boolean chkID;
 
-	MemberDAO m_dao = new MemberDAO(); // DAO호출
+	// DAO호출
+	MemberDAO m_dao = new MemberDAO();
+
+	@FXML
+	public void btnActionExit(ActionEvent event) {
+		System.exit(0);
+	}
 
 	@FXML
 	public void operand(ActionEvent event) {
@@ -142,11 +148,11 @@ public class MakeMemController implements Initializable {
 						String city = splitadd[0];
 						String county = splitadd[1];
 						String village = splitadd[2];
-						
+
 						m_vo.setCity(city);
 						m_vo.setCounty(county);
 						m_vo.setVillage(village);
-						
+
 						Client.Client.summit(new SocketDB("insertMember", m_vo)); // 회원정보 DB등록
 
 						try {

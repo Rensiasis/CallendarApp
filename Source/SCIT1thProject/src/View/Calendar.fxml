@@ -19,7 +19,7 @@
 
 <AnchorPane fx:id="calendarPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Controller.CalendarController">
    <children>
-      <GridPane fx:id="gridPane" gridLinesVisible="true" layoutX="6.0" layoutY="40.0" prefHeight="550.0" prefWidth="870.0" style="-fx-background-color: white; -fx-border-color: black;">
+      <GridPane fx:id="gridPane" gridLinesVisible="true" layoutY="25.0" prefHeight="625.0" prefWidth="875.0" style="-fx-background-color: white; -fx-border-color: black;">
         <columnConstraints>
             <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -44,7 +44,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="90.0" prefWidth="130.0" styleClass="sunday" stylesheets="@CalendarStyle.css" text="일">
+            <Label alignment="CENTER" prefHeight="57.0" prefWidth="137.0" styleClass="sunday" stylesheets="@CalendarStyle.css" text="일">
                <font>
                   <Font size="15.0" />
                </font></Label>
@@ -383,7 +383,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="6">
+            <AnchorPane prefHeight="112.0" prefWidth="125.0" GridPane.rowIndex="6">
                <children>
                   <Label fx:id="day36" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" textFill="RED">
                      <font>

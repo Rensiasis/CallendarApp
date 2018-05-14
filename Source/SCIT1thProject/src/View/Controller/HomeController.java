@@ -52,6 +52,10 @@ public class HomeController implements Initializable {
 
 			try {
 				AnchorPane memberPane = FXMLLoader.load(getClass().getResource("/View/Calendar.fxml"));
+				Client.MainApp.primaryStage.setHeight(650);
+				Client.MainApp.primaryStage.setWidth(1200);
+				Client.MainApp.primaryStage.setX(30);
+				Client.MainApp.primaryStage.setY(10);
 				mPane.getChildren().setAll(memberPane);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block

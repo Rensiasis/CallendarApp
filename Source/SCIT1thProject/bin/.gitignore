@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 /Image/
 /MemberMapper.xml
 /View/
@@ -11,3 +12,6 @@
 /mybatis-config.xml
 /user.sql
 /TestMain.class
+=======
+/View/
+>>>>>>> Stashed changes

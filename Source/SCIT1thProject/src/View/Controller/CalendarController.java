@@ -354,10 +354,6 @@ public class CalendarController implements Initializable {
 		keyStr = format.format(monthly);
 		key = Integer.parseInt(keyStr);
 		dayList = calList.get(key);
-		System.out.println(dayList);
-		for (int i = 0; i < dayList.size(); i++) {
-			System.out.println(dayList.get(i).getDate());
-		}
 		for (int i = 0; i < firstIndex; i++) {
 			Calendar calendar = Calendar.getInstance();
 			calendar.clear();

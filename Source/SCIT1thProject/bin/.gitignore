@@ -1,9 +1,13 @@
-<<<<<<< HEAD
-/TestMain.class
+/Image/
+/MemberMapper.xml
 /View/
+/Client/
 /DAO/
-=======
 /Parser/
+/Server/
+/Util/
 /VO/
-/View/
->>>>>>> master_branch
+/db.properties
+/mybatis-config.xml
+/user.sql
+/TestMain.class

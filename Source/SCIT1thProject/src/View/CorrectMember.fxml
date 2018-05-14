@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="CorrectMember" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <MenuBar prefHeight="25.0" prefWidth="300.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="프로그램">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#btnExitAction" text="프로그램종료" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="도움말">
+            <items>
+              <MenuItem mnemonicParsing="false" text="프로그램 도움말" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Label layoutX="21.0" layoutY="82.0" text="비밀번호" />
+      <Label layoutX="21.0" layoutY="119.0" text="비밀번호 확인" />
+      <Label layoutX="23.0" layoutY="159.0" text="우편번호" />
+      <Label layoutX="23.0" layoutY="220.0" text="주소" />
+      <Label layoutX="23.0" layoutY="258.0" text="상세주소" />
+      <Label layoutX="23.0" layoutY="41.0" text="이름" />
+      <Label layoutX="27.0" layoutY="296.0" text="이메일" />
+      <Label layoutX="25.0" layoutY="337.0" text="연락처" />
+      <TextField fx:id="reName" layoutX="129.0" layoutY="37.0" />
+      <TextField fx:id="rePassword" layoutX="129.0" layoutY="78.0" />
+      <TextField fx:id="rePassChk" layoutX="129.0" layoutY="115.0" />
+      <TextField fx:id="PostalNum" layoutX="129.0" layoutY="155.0" />
+      <TextField layoutX="129.0" layoutY="216.0" />
+      <TextField layoutX="129.0" layoutY="254.0" />
+      <TextField layoutX="129.0" layoutY="292.0" />
+      <TextField layoutX="129.0" layoutY="333.0" />
+      <Button layoutX="214.0" layoutY="184.0" mnemonicParsing="false" text="주소검색" />
+      <Button layoutX="21.0" layoutY="378.0" mnemonicParsing="false" text="회원정보 수정하기" />
+      <Button layoutX="150.0" layoutY="378.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="129.0" text="취소하기" />
+   </children>
+</AnchorPane>

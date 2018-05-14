@@ -41,7 +41,7 @@ public class HomeController implements Initializable {
 
 	MemberDAO dao = new MemberDAO();
 
-	@FXML
+	@FXML//로그인버튼
 	private void btnLogInAction(ActionEvent event) throws Exception {
 		Members m_vo = new Members();
 		User user = new User();
@@ -49,9 +49,9 @@ public class HomeController implements Initializable {
 		m_vo.setPassword(pfPw.getText());
 
 		if (dao.loginID(m_vo) != 0) {
-			
+
 			lblMessage.setText("환영합니다! " + tfId.getText() + " 님!");
-			
+
 			try {
 				user.setUser(dao.loginMember(m_vo));
 				AnchorPane memberPane = FXMLLoader.load(getClass().getResource("/View/Calendar.fxml"));
@@ -70,8 +70,9 @@ public class HomeController implements Initializable {
 		}
 
 	}
-
-	@FXML
+	
+	
+	@FXML//회원가입버튼
 	private void btnSignInAction(ActionEvent event) {
 		try {
 			AnchorPane memberPane = FXMLLoader.load(getClass().getResource("/View/MakeMember.fxml"));
@@ -88,7 +89,7 @@ public class HomeController implements Initializable {
 	}
 
 	@FXML
-	// 메뉴바에 FILE에 메뉴바로 돌아가는 기능	
+	// 메뉴바에 FILE에 메뉴바로 돌아가는 기능
 	private void backToMain(ActionEvent event) {
 	}
 

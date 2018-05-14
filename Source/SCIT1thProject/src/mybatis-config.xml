@@ -9,6 +9,7 @@
 	<typeAliases>
 		<typeAlias type="VO.Members" alias="Member" />
 		<typeAlias type="VO.HouseHolds" alias="HouseHold"/>
+		<typeAlias type="VO.Account" alias="Account"/>
 	</typeAliases>
 	
 	<!-- DB접속 정보 셋팅 - --> 

@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import DAO.MybatisConfig;
 import VO.HouseHolds;
+import VO.Account;
 import VO.Address;
 import VO.Members;
 
@@ -138,7 +139,7 @@ public class MemberDAO {
 		}
 		return result;
 	}
-	
+
 	// 회원정보 수정
 	public static void updateMemInfo(Members vo) {
 		SqlSession session = null;
@@ -147,6 +148,24 @@ public class MemberDAO {
 			session = factory.openSession();
 			MemberMapper mapper = session.getMapper(MemberMapper.class);
 			mapper.updateMemInfo(vo);
+			session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+	}
+
+	//가계부 설정 입력
+	public static void insertAccount(Account vo) {
+		SqlSession session = null;
+
+		try {
+			session = factory.openSession();
+			MemberMapper mapper = session.getMapper(MemberMapper.class);
+			mapper.insertAccount(vo);
 			session.commit();
 		} catch (Exception e) {
 			e.printStackTrace();

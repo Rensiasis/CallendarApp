@@ -147,5 +147,15 @@
 		where 
 			member_seq = #{member_seq}
 	</update>
+	
+	<!-- 가계부 설정 입력 -->
+	<insert id="insertAccount" parameterType="Account">
+	insert into accounts(
+		member_seq, account, montly_salary, montly_save, indate, inuser
+	)values(
+		#{member_seq}, #{account}, #{montly_salary}, #{montly_save}, sysdate, #{inuser}
+	)
+	</insert>
+	
 </mapper>
   

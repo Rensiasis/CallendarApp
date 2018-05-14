@@ -140,23 +140,27 @@ public class CalendarController implements Initializable {
 
 	@FXML
 	public void btnLogout(ActionEvent event) {
-		//
-		// try {
-		// AnchorPane memberPane =
-		// FXMLLoader.load(getClass().getResource("/View/Calendar.fxml"));
-		// Client.MainApp.primaryStage.setHeight(650);
-		// Client.MainApp.primaryStage.setWidth(1200);
-		// Client.MainApp.primaryStage.setX(30);
-		// Client.MainApp.primaryStage.setY(10);
-		// calendarPane.getChildren().setAll(memberPane);
-		// } catch (IOException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
+		Platform.runLater(new Runnable() {
 
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				try {
+					AnchorPane memberPane = FXMLLoader.load(getClass().getResource("/View/Home.fxml"));
+					Client.MainApp.primaryStage.setHeight(420);
+					Client.MainApp.primaryStage.setWidth(600);
+					Client.MainApp.primaryStage.setX(100);
+					Client.MainApp.primaryStage.setY(100);
+					calendarPane.getChildren().setAll(memberPane);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
-	@FXML
+	@FXML // 메뉴바 회원정보 수정
 	public void btnMemCorrect(ActionEvent event) {
 		Platform.runLater(new Runnable() {
 
@@ -180,9 +184,28 @@ public class CalendarController implements Initializable {
 		});
 	}
 
-	@FXML
+	@FXML // 메뉴바 가계부설정
 	public void btnHhManage(ActionEvent event) {
+		Platform.runLater(new Runnable() {
 
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+
+				try {
+					AnchorPane memberPane = FXMLLoader.load(getClass().getResource("/View/ManageHH.fxml"));
+					Scene scene = new Scene(memberPane);
+					stage = new Stage();
+					stage.setScene(scene);
+					stage.setTitle("가계부 설정");
+					stage.setResizable(false);
+					stage.show();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
 	@Override

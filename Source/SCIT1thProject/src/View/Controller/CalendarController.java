@@ -1,5 +1,6 @@
 package View.Controller;
 
+import java.awt.GridLayout;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -17,12 +18,26 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
 public class CalendarController implements Initializable {
 	@FXML
 	private GridPane gridPane;
+	@FXML
+	private Label year;
+	@FXML
+	private Label month;
+	@FXML
+	private Button yearAfter;
+	@FXML
+	private Button yearBefore;
+	@FXML
+	private Button monthAfter;
+	@FXML
+	private Button monthBefore;
+
 	Map<Integer, ArrayList<Day>> calList;
 
 	@FXML
@@ -50,7 +65,14 @@ public class CalendarController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
+
 		gridPane.setGridLinesVisible(true);
+
+		yearAfter.setOnMouseClicked(event -> yearAfter());
+		yearBefore.setOnMouseClicked(event -> yearBefore());
+		monthAfter.setOnMouseClicked(event -> monthAfter());
+		monthBefore.setOnMouseClicked(event -> monthBefore());
+
 		calList = new HashMap<>();
 		makeCalandar();
 	}
@@ -60,6 +82,8 @@ public class CalendarController implements Initializable {
 		int year = today.get(Calendar.YEAR);
 		int month = today.get(Calendar.MONTH);
 		int day = today.get(Calendar.DATE);
+		setYearMonthLabel(year, month);
+
 		Calendar ca = Calendar.getInstance();
 		ca.clear();
 
@@ -91,7 +115,6 @@ public class CalendarController implements Initializable {
 					Day dayVO = new Day();
 					dayVO.setDate(ca.getTime());
 					calList.get(key).add(dayVO);
-					System.out.println(ca.getTime());
 				}
 			}
 		}
@@ -111,12 +134,12 @@ public class CalendarController implements Initializable {
 
 		Date todayDate = new Date();
 		keyStr = format.format(todayDate);
-		refreshCalandar(keyStr);
+		refreshCalendar(keyStr);
 	}
 
-	public void refreshCalandar(String keyStr) {
+	public void refreshCalendar(String keyStr) {
 		Label[] labelList = new Label[35];
-		int key=Integer.parseInt(keyStr);
+		int key = Integer.parseInt(keyStr);
 		ArrayList<Day> dayList = calList.get(key);
 		Date firstDay = dayList.get(0).getDate();
 		Calendar cal = Calendar.getInstance();
@@ -134,7 +157,7 @@ public class CalendarController implements Initializable {
 		Date monthly = cal.getTime();
 		SimpleDateFormat format = new SimpleDateFormat("YYYYMM");
 		keyStr = format.format(monthly);
-		key=Integer.parseInt(keyStr);
+		key = Integer.parseInt(keyStr);
 		dayList = calList.get(key);
 		for (int i = 0; i < firstIndex; i++) {
 			labelList[i] = new Label();
@@ -148,7 +171,7 @@ public class CalendarController implements Initializable {
 		cal.add(Calendar.MONTH, 2);
 		monthly = cal.getTime();
 		keyStr = format.format(monthly);
-		key=Integer.parseInt(keyStr);
+		key = Integer.parseInt(keyStr);
 		dayList = calList.get(key);
 		for (int i = lastIndex; i < 35; i++) {
 			labelList[i] = new Label();
@@ -157,7 +180,45 @@ public class CalendarController implements Initializable {
 
 		// 라벨 추가
 		for (int i = 0; i < 35; i++) {
-			gridPane.add(labelList[i], i % 7, 1+(i / 7));
+			gridPane.add(labelList[i], i % 7, 1 + (i / 7));
 		}
+	}
+
+	public void setYearMonthLabel(int year, int month) {
+		this.year.setText(year + "");
+		this.month.setText(month + "");
+	}
+
+	@FXML
+	public void monthAfter() {
+		System.out.println("일전");
+	}
+
+	@FXML
+	public void monthBefore() {
+		System.out.println("일후");
+	}
+
+	@FXML
+	public void yearAfter() {
+		String keyStr="";
+		int month=Integer.parseInt(this.month.getText());
+		int year=Integer.parseInt(this.year.getText());
+		year=year+1;
+		if (month < 10) {
+			keyStr+=Integer.toString(year)+"0"+Integer.toString(month);
+		} else {
+			keyStr+=Integer.toString(year)+Integer.toString(month);
+		}
+		int key = Integer.parseInt(keyStr);
+		if(calList.get(key)!=null) {
+			refreshCalendar(keyStr);
+		}
+		this.year.setText(year+"");
+	}
+
+	@FXML
+	public void yearBefore() {
+		System.out.println("년후");
 	}
 }

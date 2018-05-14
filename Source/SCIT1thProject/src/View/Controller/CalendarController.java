@@ -2,9 +2,11 @@ package View.Controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -13,14 +15,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+<<<<<<< Updated upstream
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
+=======
+import javafx.scene.control.Label;
+>>>>>>> Stashed changes
 import javafx.scene.layout.GridPane;
 
 public class CalendarController implements Initializable {
 	@FXML
 	private GridPane gridPane;
-	Map<Date, ArrayList<Day>> calList;
+	Map<Integer, ArrayList<Day>> calList;
 
 	@FXML
 	private AnchorPane calendarPane;
@@ -48,6 +54,7 @@ public class CalendarController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		gridPane.setGridLinesVisible(true);
+		calList = new HashMap<>();
 		makeCalandar();
 	}
 
@@ -58,15 +65,102 @@ public class CalendarController implements Initializable {
 		int day = today.get(Calendar.DATE);
 		Calendar ca = Calendar.getInstance();
 		ca.clear();
+
+		// 전년 12월 데이터
+		ca.set(year - 1, 11, 1);
+		Date monthly = ca.getTime();
+		SimpleDateFormat format = new SimpleDateFormat("YYYYMM");
+		String keyStr = format.format(monthly);
+		int key = Integer.parseInt(keyStr);
+		calList.put(key, new ArrayList<>());
+		for (int i = 1; i <= ca.getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
+			ca.set(Calendar.DATE, i);
+			Day dayVO = new Day();
+			dayVO.setDate(ca.getTime());
+			calList.get(key).add(dayVO);
+		}
+
+		// 전체 데이터
 		for (int k = 0; k <= 10; k++) {
 			ca.set(year + k, 1, 1);
 			for (int i = 0; i < 12; i++) {
-				ca.set(Calendar.MONTH, i);
+				ca.add(Calendar.MONTH, 1);
+				monthly = ca.getTime();
+				keyStr = format.format(monthly);
+				key = Integer.parseInt(keyStr);
+				calList.put(key, new ArrayList<>());
 				for (int j = 1; j <= ca.getActualMaximum(Calendar.DAY_OF_MONTH); j++) {
 					ca.set(Calendar.DATE, j);
+					Day dayVO = new Day();
+					dayVO.setDate(ca.getTime());
+					calList.get(key).add(dayVO);
 					System.out.println(ca.getTime());
 				}
 			}
+		}
+
+		// 후년 1월 데이터
+		ca.set(year + 11, 1, 1);
+		monthly = ca.getTime();
+		keyStr = format.format(monthly);
+		key = Integer.parseInt(keyStr);
+		calList.put(key, new ArrayList<>());
+		for (int i = 1; i <= ca.getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
+			ca.set(Calendar.DATE, i);
+			Day dayVO = new Day();
+			dayVO.setDate(ca.getTime());
+			calList.get(key).add(dayVO);
+		}
+
+		Date todayDate = new Date();
+		keyStr = format.format(todayDate);
+		refreshCalandar(keyStr);
+	}
+
+	public void refreshCalandar(String keyStr) {
+		Label[] labelList = new Label[35];
+		int key=Integer.parseInt(keyStr);
+		ArrayList<Day> dayList = calList.get(key);
+		Date firstDay = dayList.get(0).getDate();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(firstDay);
+
+		// 이번달 세팅
+		int firstIndex = cal.get(Calendar.DAY_OF_WEEK) - 1;
+		for (int i = firstIndex; i < dayList.size() + firstIndex; i++) {
+			labelList[i] = new Label();
+			labelList[i].setText((int) (i - firstIndex + 1) + "");
+		}
+		int lastIndex = dayList.size() + firstIndex;
+		// 전달 세팅
+		cal.add(Calendar.MONTH, -1);
+		Date monthly = cal.getTime();
+		SimpleDateFormat format = new SimpleDateFormat("YYYYMM");
+		keyStr = format.format(monthly);
+		key=Integer.parseInt(keyStr);
+		dayList = calList.get(key);
+		for (int i = 0; i < firstIndex; i++) {
+			labelList[i] = new Label();
+			Calendar calendar = Calendar.getInstance();
+			calendar.clear();
+			calendar.setTime(dayList.get(dayList.size() - 1).getDate());
+			labelList[i].setText(calendar.get(Calendar.DATE) + "");
+		}
+
+		// 다음달 세팅
+		cal.add(Calendar.MONTH, 2);
+		monthly = cal.getTime();
+		keyStr = format.format(monthly);
+		key=Integer.parseInt(keyStr);
+		dayList = calList.get(key);
+		for (int i = lastIndex; i < 35; i++) {
+			labelList[i] = new Label();
+			labelList[i].setText((int) (i - lastIndex + 1) + "");
+		}
+
+		// 라벨 추가
+		for (int i = 0; i < 35; i++) {
+			gridPane.add(labelList[i], i % 7, 1+(i / 7));
 		}
 	}
 }

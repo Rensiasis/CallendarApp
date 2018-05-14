@@ -17,7 +17,11 @@
 
 <AnchorPane fx:id="calendarPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Controller.CalendarController">
    <children>
+<<<<<<< Updated upstream
       <GridPane fx:id="gridPane" gridLinesVisible="true" layoutX="6.0" layoutY="40.0" prefHeight="550.0" prefWidth="870.0" style="-fx-background-color: white; -fx-border-color: black;">
+=======
+      <GridPane fx:id="gridPane" alignment="CENTER" layoutX="6.0" layoutY="46.0" prefHeight="366.0" prefWidth="600.0">
+>>>>>>> Stashed changes
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

@@ -11,14 +11,17 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 import VO.Day;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 public class CalendarController implements Initializable {
 	@FXML
@@ -33,13 +36,48 @@ public class CalendarController implements Initializable {
 		System.exit(0);
 	}
 
+	public static Stage stage;
+
 	@FXML
 	public void btnLogout(ActionEvent event) {
+		//
+		// try {
+		// AnchorPane memberPane =
+		// FXMLLoader.load(getClass().getResource("/View/Calendar.fxml"));
+		// Client.MainApp.primaryStage.setHeight(650);
+		// Client.MainApp.primaryStage.setWidth(1200);
+		// Client.MainApp.primaryStage.setX(30);
+		// Client.MainApp.primaryStage.setY(10);
+		// calendarPane.getChildren().setAll(memberPane);
+		// } catch (IOException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
+
 	}
 
 	@FXML
 	public void btnMemCorrect(ActionEvent event) {
+		Platform.runLater(new Runnable() {
 
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+
+				try {
+					AnchorPane memberPane = FXMLLoader.load(getClass().getResource("/View/CorrectMember.fxml"));
+					Scene scene = new Scene(memberPane);
+					stage = new Stage();
+					stage.setScene(scene);
+					stage.setTitle("회원정보 수정");
+					stage.setResizable(false);
+					stage.show();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
 	@FXML
@@ -116,7 +154,7 @@ public class CalendarController implements Initializable {
 
 	public void refreshCalandar(String keyStr) {
 		Label[] labelList = new Label[35];
-		int key=Integer.parseInt(keyStr);
+		int key = Integer.parseInt(keyStr);
 		ArrayList<Day> dayList = calList.get(key);
 		Date firstDay = dayList.get(0).getDate();
 		Calendar cal = Calendar.getInstance();
@@ -134,7 +172,7 @@ public class CalendarController implements Initializable {
 		Date monthly = cal.getTime();
 		SimpleDateFormat format = new SimpleDateFormat("YYYYMM");
 		keyStr = format.format(monthly);
-		key=Integer.parseInt(keyStr);
+		key = Integer.parseInt(keyStr);
 		dayList = calList.get(key);
 		for (int i = 0; i < firstIndex; i++) {
 			labelList[i] = new Label();
@@ -148,7 +186,7 @@ public class CalendarController implements Initializable {
 		cal.add(Calendar.MONTH, 2);
 		monthly = cal.getTime();
 		keyStr = format.format(monthly);
-		key=Integer.parseInt(keyStr);
+		key = Integer.parseInt(keyStr);
 		dayList = calList.get(key);
 		for (int i = lastIndex; i < 35; i++) {
 			labelList[i] = new Label();
@@ -157,7 +195,7 @@ public class CalendarController implements Initializable {
 
 		// 라벨 추가
 		for (int i = 0; i < 35; i++) {
-			gridPane.add(labelList[i], i % 7, 1+(i / 7));
+			gridPane.add(labelList[i], i % 7, 1 + (i / 7));
 		}
 	}
 }

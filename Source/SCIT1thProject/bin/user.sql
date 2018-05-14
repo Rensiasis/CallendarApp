@@ -73,4 +73,6 @@ on delete cascade
 
 select * from MEMBERS
 
-drop table members;
+drop table accounts;
+
+select * from ACCOUNTS

@@ -1,13 +1,13 @@
 package VO;
 
-public class HoilDay implements EventDay {
+public class EventDay {
 	private String year;
 	private String month;
 	private String day;
 	private String type;
 	private String name;
 
-	public HoilDay(String year, String month, String day, String type, String name) {
+	public EventDay(String year, String month, String day, String type, String name) {
 		super();
 		this.year = year;
 		this.month = month;
@@ -16,7 +16,7 @@ public class HoilDay implements EventDay {
 		this.name = name;
 	}
 
-	public HoilDay() {
+	public EventDay() {
 		super();
 	}
 
@@ -62,9 +62,10 @@ public class HoilDay implements EventDay {
 
 	@Override
 	public String toString() {
-		return "HoilDay [year=" + year + ", month=" + month + ", day=" + day + ", type=" + type + ", name=" + name
+		return "EventDay [year=" + year + ", month=" + month + ", day=" + day + ", type=" + type + ", name=" + name
 				+ "]";
 	}
 
 	
+
 }

@@ -22,7 +22,7 @@ public class MainApp extends Application {
 			rootLayout = (AnchorPane) FXMLLoader.load(getClass().getResource("/View/Home.fxml"));
 			Scene scene = new Scene(rootLayout);
 			primaryStage.setTitle("けちでも大丈夫(짠돌이라도 괜찮아)");
-			primaryStage.setResizable(false);
+			primaryStage.setResizable(true);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 

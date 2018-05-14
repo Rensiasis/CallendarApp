@@ -175,4 +175,87 @@ public class MemberDAO {
 			}
 		}
 	}
+
+	public ArrayList<HouseHolds> searchForAMonth(HouseHolds vo) {
+
+		SqlSession session = null;
+		ArrayList<HouseHolds> hh = new  ArrayList<HouseHolds>();
+		try {
+			session = factory.openSession();
+			MemberMapper mapper = session.getMapper(MemberMapper.class);
+
+			hh = mapper.searchForAMonth(vo);
+
+			session.commit();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+		return hh;
+	}
+	public ArrayList<HouseHolds> searchForThreeMonth(HouseHolds vo) {
+		SqlSession session = null;
+		ArrayList<HouseHolds> hh = new  ArrayList<HouseHolds>();
+		try {
+			session = factory.openSession();
+			MemberMapper mapper = session.getMapper(MemberMapper.class);
+
+			hh = mapper.searchForThreeMonth(vo);
+
+			session.commit();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+		return hh;
+	}
+	public ArrayList<HouseHolds> searchForSixMonth(HouseHolds vo) {
+		SqlSession session = null;
+		ArrayList<HouseHolds> hh = new  ArrayList<HouseHolds>();
+		try {
+			session = factory.openSession();
+			MemberMapper mapper = session.getMapper(MemberMapper.class);
+
+			hh = mapper.searchForSixMonth(vo);
+
+			session.commit();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+		return hh;
+	}
+	public ArrayList<HouseHolds> searchForAnYear(HouseHolds vo) {
+		SqlSession session = null;
+		ArrayList<HouseHolds> hh = new  ArrayList<HouseHolds>();
+		try {
+			session = factory.openSession();
+			MemberMapper mapper = session.getMapper(MemberMapper.class);
+
+			hh = mapper.searchForAnYear(vo);
+
+			session.commit();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+		return hh;
+	}
+
 }

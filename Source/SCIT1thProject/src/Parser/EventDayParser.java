@@ -16,7 +16,7 @@ import VO.EventDay;
 
 public class EventDayParser {
 	private final static String TDCProductKey = "c40fc6d5-daa6-4b00-8513-093434c8893b";
-	private final static String apiURL = "https://apis.sktelecom.com/v1/eventday/days?type=h";
+	private final static String apiURL = "https://apis.sktelecom.com/v1/eventday/days?type=";
 	ArrayList<EventDay> eventList = new ArrayList<>();
 
 	public ArrayList<EventDay> getEventList() {
@@ -27,10 +27,10 @@ public class EventDayParser {
 		this.eventList = eventList;
 	}
 
-	public void parshing() {
+	public void parshing(String type) {
 		StringBuffer inputData = null;
 		try {
-			URL url = new URL(apiURL);
+			URL url = new URL(apiURL+type);
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
 			con.setRequestMethod("GET");
 			con.setDoOutput(false);

@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="DAO.MemberMapper">
-
+	<!-- 회원정보 최초 등록 -->
 	<insert id="insertMember" parameterType="Member">
 		insert into members(
 		member_seq,
@@ -37,6 +37,7 @@
 		)
 	</insert>
 
+	<!-- 아이디중복확인 -->
 	<select id="chkRepeatID" parameterType="String"
 		resultType="Integer">
 		select count(id)

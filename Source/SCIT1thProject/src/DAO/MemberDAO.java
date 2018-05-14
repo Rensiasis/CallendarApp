@@ -138,27 +138,7 @@ public class MemberDAO {
 		}
 		return result;
 	}
-
-	// 로그인하고 회원 정보 USER에 입력하기.
-	public static Members loginMember(Members vo) {
-		SqlSession session = null;
-		Members vo2 = new Members();
-
-		try {
-			session = factory.openSession();
-			MemberMapper mapper = session.getMapper(MemberMapper.class);
-			vo2 = mapper.loginMember(vo);
-			session.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (session != null) {
-				session.close();
-			}
-		}
-		return vo2;
-	}
-
+	
 	// 회원정보 수정
 	public static void updateMemInfo(Members vo) {
 		SqlSession session = null;

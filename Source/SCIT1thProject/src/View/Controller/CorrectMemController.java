@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import Client.User;
 import DAO.MemberDAO;
 import VO.Members;
+import VO.SocketDB;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -96,8 +97,6 @@ public class CorrectMemController implements Initializable {
 			public void run() {
 				// TODO Auto-generated method stub
 
-				System.out.println(user.getUser().getMember_seq());
-				System.out.println(user.getUser().getId()+"이앞에 아이디 적히면 잘불러온거다");
 				if (rePassword.getText().equals(rePassChk.getText())) {
 					m_vo.setMember_seq(user.getUser().getMember_seq());// 로그인되어있는아이디시퀀스!
 					m_vo.setName(user.getUser().getId());
@@ -120,7 +119,7 @@ public class CorrectMemController implements Initializable {
 					m_vo.setPhone_number(re_phone.getText());
 					m_vo.setEmail(re_email.getText());
 
-					dao.updateMemInfo(m_vo);
+					Client.Client.summit(new SocketDB("updateMemInfo", m_vo));
 					View.Controller.CalendarController.stage.close();
 
 				} else {

@@ -28,9 +28,6 @@ public interface MemberMapper {
 	//로그인
 	public Members loginID(Members vo);
 	
-	//로그인아이디정보 User.java에 저장하기
-	public Members loginMember(Members vo);
-	
 	//회원정보수정
 	public void updateMemInfo(Members vo);
 }

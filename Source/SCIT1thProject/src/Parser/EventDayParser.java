@@ -17,20 +17,12 @@ import VO.EventDay;
 public class EventDayParser {
 	private final static String TDCProductKey = "c40fc6d5-daa6-4b00-8513-093434c8893b";
 	private final static String apiURL = "https://apis.sktelecom.com/v1/eventday/days?type=";
-	ArrayList<EventDay> eventList = new ArrayList<>();
 
-	public ArrayList<EventDay> getEventList() {
-		return eventList;
-	}
-
-	public void setEventList(ArrayList<EventDay> eventList) {
-		this.eventList = eventList;
-	}
-
-	public void parshing(String type) {
+	public static ArrayList<EventDay> parshing(String type, String year) {
+		ArrayList<EventDay> eventList = new ArrayList<>();
 		StringBuffer inputData = null;
 		try {
-			URL url = new URL(apiURL+type);
+			URL url = new URL(apiURL + type + "&year=" + year);
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
 			con.setRequestMethod("GET");
 			con.setDoOutput(false);
@@ -59,5 +51,6 @@ public class EventDayParser {
 		for (int i = 0; i < subnode.size(); i++) {
 			eventList.add(gson.fromJson(subnode.get(i), EventDay.class));
 		}
+		return eventList;
 	}
 }

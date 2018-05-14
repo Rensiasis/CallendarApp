@@ -10,7 +10,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import Parser.EventDayParser;
 import VO.Day;
+import VO.EventDay;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -323,18 +325,11 @@ public class CalendarController implements Initializable {
 			dayVO.setDate(ca.getTime());
 			calList.get(key).add(dayVO);
 		}
-		/*
-		 * for(Entry<Integer, ArrayList<Day>> a: calList.entrySet()) { for(int
-		 * i=0;i<a.getValue().size();i++) { SimpleDateFormat format2=new
-		 * SimpleDateFormat("YYYYMMdd");
-		 * System.out.println(format2.format(a.getValue().get(i).getDate())); } }
-		 */
-		/*
-		 * ArrayList<Day> arrayDay=calList.get(201906); for(int
-		 * i=0;i<arrayDay.size();i++) { System.out.println(arrayDay.get(i).getDate()); }
-		 */
 		Date todayDate = new Date();
 		keyStr = format.format(todayDate);
+
+		setEventDay();
+
 		refreshCalendar(keyStr);
 	}
 
@@ -481,5 +476,31 @@ public class CalendarController implements Initializable {
 			refreshCalendar(keyStr);
 		}
 		this.year.setText(year + "");
+	}
+
+	public void setEventDay() {
+		for (int year = 2018; year <= 2030; year++) {
+			ArrayList<EventDay> holidayList = EventDayParser.parshing("h", Integer.toString(year)); // 법정공휴일
+			ArrayList<EventDay> adayList = EventDayParser.parshing("a", Integer.toString(year)); // 법정기념일
+			ArrayList<EventDay> sdayList = EventDayParser.parshing("s", Integer.toString(year)); // 24절기
+			ArrayList<EventDay> tdayList = EventDayParser.parshing("t", Integer.toString(year)); // 그 외 절기
+			ArrayList<EventDay> pdayList = EventDayParser.parshing("p", Integer.toString(year)); // 대중 기념일
+			ArrayList<EventDay> edayList = EventDayParser.parshing("e", Integer.toString(year)); // 기타 기념일
+			setEvent(holidayList);
+			setEvent(adayList);
+			setEvent(sdayList);
+			setEvent(tdayList);
+			setEvent(pdayList);
+			setEvent(edayList);
+		}
+	}
+
+	public void setEvent(ArrayList<EventDay> eventList) {
+		for (int i = 0; i < eventList.size(); i++) {
+			EventDay event = eventList.get(i);
+			String key = event.getYear() + event.getMonth();
+			int day = Integer.parseInt(event.getDay());
+			calList.get(key).get(day - 1).getEvent().add(event);
+		}
 	}
 }

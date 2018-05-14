@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="CorrectMember" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="CorrectMember" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Controller.ManageHHController">
    <children>
       <MenuBar prefHeight="25.0" prefWidth="300.0">
         <menus>
@@ -29,5 +29,8 @@
       <TextField fx:id="monthsalary" layoutX="21.0" layoutY="148.0" />
       <Label layoutX="23.0" layoutY="193.0" text="2. 한달 동안에 저축 목표 금액을 알려 주세요." />
       <TextField fx:id="savesalary" layoutX="21.0" layoutY="227.0" />
+      <Label layoutX="173.0" layoutY="77.0" text="원" />
+      <Label layoutX="173.0" layoutY="152.0" text="원" />
+      <Label layoutX="173.0" layoutY="231.0" text="원" />
    </children>
 </AnchorPane>

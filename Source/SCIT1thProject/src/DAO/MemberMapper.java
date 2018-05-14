@@ -3,6 +3,7 @@ package DAO;
 import java.util.ArrayList;
 
 import VO.HouseHolds;
+import VO.Account;
 import VO.Address;
 import VO.Members;
 
@@ -30,4 +31,7 @@ public interface MemberMapper {
 	
 	//회원정보수정
 	public void updateMemInfo(Members vo);
+	
+	//가계부 설정 등록
+	public void insertAccount(Account vo);
 }

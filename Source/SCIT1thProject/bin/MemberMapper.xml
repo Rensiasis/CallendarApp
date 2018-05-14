@@ -126,26 +126,71 @@
 		indate
 		from members
 		where
-		id=#{id} and password=#{password}
+		id=#{id} and
+		password=#{password}
 	</select>
-	
+
 	<!-- 회원정보 수정 -->
 	<update id="updateMemInfo" parameterType="Member">
 		update members
 		set
-			id = #{id}
-			, password = #{password}
-			, name=#{name}
-			, email=#{email}
-			, phone_number=#{phone_number}
-			, postNumber=#{postNumber}
-			, newAddress=#{newAddress}
-			, city=#{city}
-			, county=#{county}
-			, village=#{village}
-			, ldate=sysdate
-		where 
-			member_seq = #{member_seq}
+		id = #{id}
+		, password = #{password}
+		, name=#{name}
+		, email=#{email}
+		, phone_number=#{phone_number}
+		, postNumber=#{postNumber}
+		, newAddress=#{newAddress}
+		, city=#{city}
+		, county=#{county}
+		, village=#{village}
+		, ldate=sysdate
+		where
+		member_seq = #{member_seq}
 	</update>
+
+	<!-- 가계부 설정 입력 -->
+	<insert id="insertAccount" parameterType="Account">
+		insert into accounts(
+		member_seq, account, montly_salary, montly_save,
+		indate, inuser
+		)values(
+		#{member_seq}, #{account}, #{montly_salary}, #{montly_save}, sysdate,
+		#{inuser}
+		)
+	</insert>
+
+	<!-- 1개월 이내 검색 -->
+	<select parameterType="HouseHold" id="searchForAMonth" resultType="String"> 
+		select product, price, get_date, content 
+		from HouseHolds
+		where get_date between sysdate-30 and sysdate 
+		order by get_date desc
+	</select>
+
+	<!-- 3개월 이내 검색 -->
+	<select parameterType="HouseHold" id="searchForThreeMonth" resultType="String"> 
+		select product, price, get_date, content 
+		from HouseHolds
+		where get_date between sysdate-90 and sysdate 
+		order by get_date desc
+	</select>
+
+	<!-- 6개월 이내 검색 -->
+	<select parameterType="HouseHold" id="searchForSixMonth" resultType="String">
+		select product, price, get_date, content 
+		from HouseHolds
+		where get_date between sysdate-120 and sysdate 
+		order by get_date desc
+	</select>
+
+	<!-- 1년 이내 검색 -->
+	<select parameterType="HouseHold" id="searchForAnYear" resultType="String">	
+		select product, price, get_date, content 
+		from HouseHolds
+		where get_date between sysdate-365 and sysdate 
+		order by get_date desc
+	</select>
+
 </mapper>
   

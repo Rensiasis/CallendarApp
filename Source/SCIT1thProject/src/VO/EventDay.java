@@ -1,6 +1,6 @@
 package VO;
 
-public class EventDay {
+public class EventDay implements calListVO {
 	private String year;
 	private String month;
 	private String day;
@@ -62,10 +62,7 @@ public class EventDay {
 
 	@Override
 	public String toString() {
-		return "EventDay [year=" + year + ", month=" + month + ", day=" + day + ", type=" + type + ", name=" + name
-				+ "]";
+		return name;
 	}
-
-	
 
 }

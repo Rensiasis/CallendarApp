@@ -15,7 +15,7 @@ import Parser.SearchPostNumber;
 import VO.Address;
 import VO.Day;
 import VO.EventDay;
-import VO.calListVO;
+import VO.Schedule;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,7 +29,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 public class CalendarController implements Initializable {
@@ -132,92 +136,98 @@ public class CalendarController implements Initializable {
 	@FXML
 	private Label day42;
 	@FXML
-	private ListView<calListVO> list1;
+	private TextArea textArea1;
 	@FXML
-	private ListView<calListVO> list2;
+	private TextArea textArea2;
 	@FXML
-	private ListView<calListVO> list3;
+	private TextArea textArea3;
 	@FXML
-	private ListView<calListVO> list4;
+	private TextArea textArea4;
 	@FXML
-	private ListView<calListVO> list5;
+	private TextArea textArea5;
 	@FXML
-	private ListView<calListVO> list6;
+	private TextArea textArea6;
 	@FXML
-	private ListView<calListVO> list7;
+	private TextArea textArea7;
 	@FXML
-	private ListView<calListVO> list8;
+	private TextArea textArea8;
 	@FXML
-	private ListView<calListVO> list9;
+	private TextArea textArea9;
 	@FXML
-	private ListView<calListVO> list10;
+	private TextArea textArea10;
 	@FXML
-	private ListView<calListVO> list11;
+	private TextArea textArea11;
 	@FXML
-	private ListView<calListVO> list12;
+	private TextArea textArea12;
 	@FXML
-	private ListView<calListVO> list13;
+	private TextArea textArea13;
 	@FXML
-	private ListView<calListVO> list14;
+	private TextArea textArea14;
 	@FXML
-	private ListView<calListVO> list15;
+	private TextArea textArea15;
 	@FXML
-	private ListView<calListVO> list16;
+	private TextArea textArea16;
 	@FXML
-	private ListView<calListVO> list17;
+	private TextArea textArea17;
 	@FXML
-	private ListView<calListVO> list18;
+	private TextArea textArea18;
 	@FXML
-	private ListView<calListVO> list19;
+	private TextArea textArea19;
 	@FXML
-	private ListView<calListVO> list20;
+	private TextArea textArea20;
 	@FXML
-	private ListView<calListVO> list21;
+	private TextArea textArea21;
 	@FXML
-	private ListView<calListVO> list22;
+	private TextArea textArea22;
 	@FXML
-	private ListView<calListVO> list23;
+	private TextArea textArea23;
 	@FXML
-	private ListView<calListVO> list24;
+	private TextArea textArea24;
 	@FXML
-	private ListView<calListVO> list25;
+	private TextArea textArea25;
 	@FXML
-	private ListView<calListVO> list26;
+	private TextArea textArea26;
 	@FXML
-	private ListView<calListVO> list27;
+	private TextArea textArea27;
 	@FXML
-	private ListView<calListVO> list28;
+	private TextArea textArea28;
 	@FXML
-	private ListView<calListVO> list29;
+	private TextArea textArea29;
 	@FXML
-	private ListView<calListVO> list30;
+	private TextArea textArea30;
 	@FXML
-	private ListView<calListVO> list31;
+	private TextArea textArea31;
 	@FXML
-	private ListView<calListVO> list32;
+	private TextArea textArea32;
 	@FXML
-	private ListView<calListVO> list33;
+	private TextArea textArea33;
 	@FXML
-	private ListView<calListVO> list34;
+	private TextArea textArea34;
 	@FXML
-	private ListView<calListVO> list35;
+	private TextArea textArea35;
 	@FXML
-	private ListView<calListVO> list36;
+	private TextArea textArea36;
 	@FXML
-	private ListView<calListVO> list37;
+	private TextArea textArea37;
 	@FXML
-	private ListView<calListVO> list38;
+	private TextArea textArea38;
 	@FXML
-	private ListView<calListVO> list39;
+	private TextArea textArea39;
 	@FXML
-	private ListView<calListVO> list40;
+	private TextArea textArea40;
 	@FXML
-	private ListView<calListVO> list41;
+	private TextArea textArea41;
 	@FXML
-	private ListView<calListVO> list42;
+	private TextArea textArea42;
+	@FXML
+	private Label contentLabel;
+	@FXML
+	private Button insertMemo;
+	@FXML
+	private ListView<Object> contentListView;
 
 	private Label[] labelList;
-	private ArrayList<ListView<calListVO>> listList;
+	private TextArea[] areaList;
 
 	private Map<Integer, ArrayList<Day>> calList;
 
@@ -230,6 +240,9 @@ public class CalendarController implements Initializable {
 	}
 
 	public static Stage stage;
+	public static Schedule schedule;
+
+	private String selectedDay;
 
 	@FXML
 	public void btnLogout(ActionEvent event) {
@@ -348,49 +361,53 @@ public class CalendarController implements Initializable {
 		labelList[40] = day41;
 		labelList[41] = day42;
 
-		listList = new ArrayList<>();
-		listList.add(list1);
-		listList.add(list2);
-		listList.add(list3);
-		listList.add(list4);
-		listList.add(list5);
-		listList.add(list6);
-		listList.add(list7);
-		listList.add(list8);
-		listList.add(list9);
-		listList.add(list10);
-		listList.add(list11);
-		listList.add(list12);
-		listList.add(list13);
-		listList.add(list14);
-		listList.add(list15);
-		listList.add(list16);
-		listList.add(list17);
-		listList.add(list18);
-		listList.add(list19);
-		listList.add(list20);
-		listList.add(list21);
-		listList.add(list22);
-		listList.add(list23);
-		listList.add(list24);
-		listList.add(list25);
-		listList.add(list26);
-		listList.add(list27);
-		listList.add(list28);
-		listList.add(list29);
-		listList.add(list30);
-		listList.add(list31);
-		listList.add(list32);
-		listList.add(list33);
-		listList.add(list34);
-		listList.add(list35);
-		listList.add(list36);
-		listList.add(list37);
-		listList.add(list38);
-		listList.add(list39);
-		listList.add(list40);
-		listList.add(list41);
-		listList.add(list42);
+		areaList = new TextArea[42];
+		areaList[0] = textArea1;
+		areaList[1] = textArea2;
+		areaList[2] = textArea3;
+		areaList[3] = textArea4;
+		areaList[4] = textArea5;
+		areaList[5] = textArea6;
+		areaList[6] = textArea7;
+		areaList[7] = textArea8;
+		areaList[8] = textArea9;
+		areaList[9] = textArea10;
+		areaList[10] = textArea11;
+		areaList[11] = textArea12;
+		areaList[12] = textArea13;
+		areaList[13] = textArea14;
+		areaList[14] = textArea15;
+		areaList[15] = textArea16;
+		areaList[16] = textArea17;
+		areaList[17] = textArea18;
+		areaList[18] = textArea19;
+		areaList[19] = textArea20;
+		areaList[20] = textArea21;
+		areaList[21] = textArea22;
+		areaList[22] = textArea23;
+		areaList[23] = textArea24;
+		areaList[24] = textArea25;
+		areaList[25] = textArea26;
+		areaList[26] = textArea27;
+		areaList[27] = textArea28;
+		areaList[28] = textArea29;
+		areaList[29] = textArea30;
+		areaList[30] = textArea31;
+		areaList[31] = textArea32;
+		areaList[32] = textArea33;
+		areaList[33] = textArea34;
+		areaList[34] = textArea35;
+		areaList[35] = textArea36;
+		areaList[36] = textArea37;
+		areaList[37] = textArea38;
+		areaList[38] = textArea39;
+		areaList[39] = textArea40;
+		areaList[40] = textArea41;
+		areaList[41] = textArea42;
+		for (int i = 0; i < 42; i++) {
+			areaList[i].setEditable(false);
+			areaList[i].setOnMouseClicked(event -> selectDay(event));
+		}
 
 		gridPane.setGridLinesVisible(true);
 		gridPane.setAlignment(Pos.TOP_LEFT);
@@ -399,6 +416,8 @@ public class CalendarController implements Initializable {
 		yearBefore.setOnMouseClicked(event -> yearBefore());
 		monthAfter.setOnMouseClicked(event -> monthAfter());
 		monthBefore.setOnMouseClicked(event -> monthBefore());
+
+		insertMemo.setOnMouseClicked(event -> insertMemo());
 
 		calList = new HashMap<>();
 		makeCalandar();
@@ -429,7 +448,7 @@ public class CalendarController implements Initializable {
 		}
 
 		// 전체 데이터
-		for (int k = 0; k < 8; k++) {
+		for (int k = 0; k < 5; k++) {
 			ca.clear();
 			ca.set(year + k, 0, 1);
 			for (int i = 0; i < 12; i++) {
@@ -449,7 +468,7 @@ public class CalendarController implements Initializable {
 
 		// 후년 1월 데이터
 		ca.clear();
-		ca.set(year + 11, 1, 1);
+		ca.set(year + 5, 0, 1);
 		monthly = ca.getTime();
 		keyStr = format.format(monthly);
 		key = Integer.parseInt(keyStr);
@@ -480,12 +499,20 @@ public class CalendarController implements Initializable {
 		int firstIndex = cal.get(Calendar.DAY_OF_WEEK) - 1;
 		for (int i = firstIndex; i < dayList.size() + firstIndex; i++) {
 			labelList[i].setText((int) (i - firstIndex + 1) + "");
-			ObservableList<calListVO> observeList = FXCollections.observableArrayList();
-			ArrayList<EventDay> eList = dayList.get(i - firstIndex).getEvent();
-			for (int j = 0; j < eList.size(); j++) {
-				observeList.add(eList.get(j));
+			ArrayList<EventDay> eventList = dayList.get(i - firstIndex).getEvent();
+			areaList[i].setText("");
+			if (i % 7 == 0)
+				labelList[i].setTextFill(Color.RED);
+			else if (i % 7 == 6)
+				labelList[i].setTextFill(Color.BLUE);
+			else
+				labelList[i].setTextFill(Color.BLACK);
+			for (int j = 0; j < eventList.size(); j++) {
+				if (eventList.get(j).getType().contains("h")) {
+					labelList[i].setTextFill(Color.RED);
+				}
+				areaList[i].appendText(eventList.get(j).getName() + "\n");
 			}
-			listList.get(i).setItems(observeList);
 		}
 		int lastIndex = dayList.size() + firstIndex;
 		// 전달 세팅
@@ -500,31 +527,47 @@ public class CalendarController implements Initializable {
 		for (int i = 0; i < firstIndex; i++) {
 			calendar.setTime(dayList.get(dayList.size() - firstIndex + i).getDate());
 			labelList[i].setText(calendar.get(Calendar.DATE) + "");
-			ObservableList<calListVO> observeList = FXCollections.observableArrayList();
-			ArrayList<EventDay> eList = dayList.get(dayList.size() - firstIndex + i).getEvent();
-			for (int j = 0; j < eList.size(); j++) {
-				observeList.add(eList.get(j));
+			ArrayList<EventDay> eventList = dayList.get(dayList.size() - firstIndex + i).getEvent();
+			areaList[i].setText("");
+			if (i % 7 == 0)
+				labelList[i].setTextFill(Color.RED);
+			else if (i % 7 == 6)
+				labelList[i].setTextFill(Color.BLUE);
+			else
+				labelList[i].setTextFill(Color.BLACK);
+			for (int j = 0; j < eventList.size(); j++) {
+				if (eventList.get(j).getType().contains("h")) {
+					labelList[i].setTextFill(Color.RED);
+				}
+				areaList[i].appendText(eventList.get(j).getName() + "\n");
 			}
-			listList.get(i).setItems(observeList);
 		}
 
 		// 다음달 세팅
 		if (cal.get(Calendar.MONTH) == 12) {
 			cal.set(cal.get(Calendar.YEAR) + 1, 1, 1);
 		}
-		cal.add(Calendar.MONTH, 1);
+		cal.add(Calendar.MONTH, 2);
 		monthly = cal.getTime();
 		keyStr = format.format(monthly);
 		key = Integer.parseInt(keyStr);
 		dayList = calList.get(key);
 		for (int i = lastIndex; i < 42; i++) {
 			labelList[i].setText((int) (i - lastIndex + 1) + "");
-			ObservableList<calListVO> observeList = FXCollections.observableArrayList();
-			ArrayList<EventDay> eList = dayList.get(i - lastIndex).getEvent();
-			for (int j = 0; j < eList.size(); j++) {
-				observeList.add(eList.get(j));
+			ArrayList<EventDay> eventList = dayList.get(i - lastIndex).getEvent();
+			areaList[i].setText("");
+			if (i % 7 == 0)
+				labelList[i].setTextFill(Color.RED);
+			else if (i % 7 == 6)
+				labelList[i].setTextFill(Color.BLUE);
+			else
+				labelList[i].setTextFill(Color.BLACK);
+			for (int j = 0; j < eventList.size(); j++) {
+				if (eventList.get(j).getType().contains("h")) {
+					labelList[i].setTextFill(Color.RED);
+				}
+				areaList[i].appendText(eventList.get(j).getName() + "\n");
 			}
-			listList.get(i).setItems(observeList);
 		}
 	}
 
@@ -543,7 +586,7 @@ public class CalendarController implements Initializable {
 			month = 1;
 			year++;
 		}
-		if (year > 2025) {
+		if (year > 2022) {
 			return;
 		}
 		if (month < 10) {
@@ -591,7 +634,7 @@ public class CalendarController implements Initializable {
 		int month = Integer.parseInt(this.month.getText());
 		int year = Integer.parseInt(this.year.getText());
 		year = year + 1;
-		if (year > 2025) {
+		if (year > 2022) {
 			return;
 		}
 		if (month < 10) {
@@ -628,23 +671,44 @@ public class CalendarController implements Initializable {
 	}
 
 	public void setEventDay() {
-		for (int year = 2018; year <= 2025; year++) {
+		for (int year = 2018; year <= 2022; year++) {
 			ArrayList<EventDay> holidayList = EventDayParser.parshing("h", Integer.toString(year)); // 법정공휴일
 			ArrayList<EventDay> adayList = EventDayParser.parshing("a", Integer.toString(year)); // 법정기념일
 			ArrayList<EventDay> sdayList = EventDayParser.parshing("s", Integer.toString(year)); // 24절기
 			ArrayList<EventDay> tdayList = EventDayParser.parshing("t", Integer.toString(year)); // 그 외 절기
 			ArrayList<EventDay> pdayList = EventDayParser.parshing("p", Integer.toString(year)); // 대중 기념일
 			ArrayList<EventDay> edayList = EventDayParser.parshing("e", Integer.toString(year)); // 기타 기념일
-			setEvent(holidayList);
+			setHoliday(holidayList);
 			setEvent(adayList);
 			setEvent(sdayList);
 			setEvent(tdayList);
 			setEvent(pdayList);
 			setEvent(edayList);
 		}
+		calList.get(202301).get(0).getEvent().add(new EventDay("2023", "1", "1", "h", "신정"));
+		calList.get(202301).get(4).getEvent().add(new EventDay("2023", "1", "5", "s", "소한"));
 	}
 
 	public void setEvent(ArrayList<EventDay> eventList) {
+		for (int i = 0; i < eventList.size(); i++) {
+			EventDay event = eventList.get(i);
+			switch (event.getName()) {
+			case "설날":
+			case "어린이날":
+			case "추석":
+			case "현충일":
+				break;
+			default:
+				String keyStr = event.getYear() + event.getMonth();
+				int key = Integer.parseInt(keyStr);
+				int day = Integer.parseInt(event.getDay());
+				calList.get(key).get(day - 1).getEvent().add(event);
+				break;
+			}
+		}
+	}
+
+	public void setHoliday(ArrayList<EventDay> eventList) {
 		for (int i = 0; i < eventList.size(); i++) {
 			EventDay event = eventList.get(i);
 			String keyStr = event.getYear() + event.getMonth();
@@ -652,5 +716,58 @@ public class CalendarController implements Initializable {
 			int day = Integer.parseInt(event.getDay());
 			calList.get(key).get(day - 1).getEvent().add(event);
 		}
+	}
+
+	public void selectDay(MouseEvent event) {
+		String year = this.year.getText();
+		String month = this.month.getText();
+		int index = Integer.parseInt(event.getSource().toString().substring(20).split(",")[0]) - 1;
+		String day = labelList[index].getText();
+		if (index < 14 && Integer.parseInt(day) > 14) {
+			month = Integer.toString(Integer.parseInt(month) - 1);
+		} else if (index > 28 && Integer.parseInt(day) <= 14) {
+			month = Integer.toString(Integer.parseInt(month) + 1);
+		}
+		if (Integer.parseInt(month) > 12) {
+			year = Integer.toString(Integer.parseInt(year) + 1);
+			month = "1";
+		} else if (Integer.parseInt(month) < 1) {
+			year = Integer.toString(Integer.parseInt(year) - 1);
+			month = "12";
+		}
+		if (Integer.parseInt(month) < 10) {
+			selectedDay = year + "0" + month + day;
+		} else {
+			selectedDay = year + month + day;
+		}
+
+		ObservableList<Object> observeList = FXCollections.observableArrayList();
+
+		String[] eventList = areaList[index].getText().split("\n");
+		for (int i = 0; i < eventList.length; i++) {
+			if (!eventList[i].equals(""))
+				observeList.add("◎ " + eventList[i]);
+		}
+
+		contentListView.setItems(observeList);
+
+		contentLabel.setText(year + "년 " + month + "월 " + day + "일의 세부 일정");
+	}
+
+	public void insertMemo() {
+		AnchorPane memoPane;
+		try {
+			memoPane = FXMLLoader.load(getClass().getResource("/View/InsertMemo.fxml"));
+			Scene scene = new Scene(memoPane);
+			stage = new Stage();
+			stage.setScene(scene);
+			stage.setTitle("메모 입력");
+			stage.setResizable(false);
+			stage.show();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 }

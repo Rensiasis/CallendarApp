@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -12,13 +7,14 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="calendarPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Controller.CalendarController">
+<AnchorPane fx:id="calendarPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Controller.CalendarController">
    <children>
       <GridPane fx:id="gridPane" gridLinesVisible="true" layoutY="25.0" prefHeight="625.0" prefWidth="875.0" style="-fx-background-color: white; -fx-border-color: black;">
         <columnConstraints>
@@ -76,7 +72,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" />
+                  <TextArea fx:id="textArea1" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -86,7 +82,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutX="1.0" layoutY="31.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea2" editable="false" layoutX="1.0" layoutY="31.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
@@ -96,7 +92,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea3" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
@@ -106,7 +102,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea4" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
@@ -116,7 +112,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea5" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
@@ -126,7 +122,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea6" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="1">
@@ -136,7 +132,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea7" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
@@ -146,7 +142,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea8" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -156,7 +152,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea9" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
@@ -166,7 +162,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea10" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
@@ -176,7 +172,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea11" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
@@ -186,7 +182,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea12" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
@@ -196,7 +192,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea13" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="2">
@@ -206,7 +202,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea14" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
@@ -216,7 +212,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea15" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
@@ -226,7 +222,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea22" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="5">
@@ -236,7 +232,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea29" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="list18" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
@@ -246,7 +242,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea23" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
@@ -256,7 +252,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea16" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
@@ -266,7 +262,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea30" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
@@ -276,7 +272,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea17" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
@@ -286,7 +282,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea24" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
@@ -296,7 +292,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea31" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
@@ -306,7 +302,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea18" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
@@ -316,7 +312,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea25" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="5">
@@ -326,7 +322,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea32" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
@@ -336,7 +332,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea19" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="4">
@@ -346,7 +342,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea26" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="5">
@@ -356,7 +352,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea33" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="3">
@@ -366,7 +362,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea20" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="4">
@@ -376,7 +372,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea27" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="5">
@@ -386,7 +382,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea34" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="3">
@@ -396,7 +392,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea21" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="4">
@@ -406,7 +402,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea28" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="5">
@@ -416,7 +412,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea35" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="112.0" prefWidth="125.0" GridPane.rowIndex="6">
@@ -426,7 +422,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea36" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
@@ -436,7 +432,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea37" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
@@ -446,7 +442,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea38" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="6">
@@ -456,7 +452,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea39" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="6">
@@ -466,7 +462,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea40" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="6">
@@ -476,7 +472,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea41" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="6">
@@ -486,7 +482,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <TextArea fx:id="textArea42" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                </children>
             </AnchorPane>
          </children>
@@ -522,24 +518,40 @@
       <Button fx:id="yearAfter" layoutX="1121.0" layoutY="65.0" mnemonicParsing="false" text="&gt;&gt;" />
       <Button fx:id="yearBefore" layoutX="924.0" layoutY="65.0" mnemonicParsing="false" text="&lt;&lt;" />
       <Button fx:id="monthBefore" layoutX="924.0" layoutY="105.0" mnemonicParsing="false" text="&lt;&lt;" />
-      <Label fx:id="year" alignment="CENTER" layoutX="971.0" layoutY="58.0" prefHeight="32.0" prefWidth="136.0">
+      <Label fx:id="year" alignment="CENTER" layoutX="957.0" layoutY="58.0" prefHeight="32.0" prefWidth="136.0">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="month" alignment="CENTER" layoutX="971.0" layoutY="101.0" prefHeight="32.0" prefWidth="136.0">
+      <Label fx:id="month" alignment="CENTER" layoutX="957.0" layoutY="101.0" prefHeight="32.0" prefWidth="136.0">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="1078.0" layoutY="64.0" text="년">
+      <Label layoutX="1064.0" layoutY="64.0" text="년">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="1078.0" layoutY="104.0" text="월">
+      <Label layoutX="1064.0" layoutY="104.0" text="월">
          <font>
             <Font size="20.0" />
+         </font>
+      </Label>
+      <Button layoutX="908.0" layoutY="556.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="80.0" text="일정 추가">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="insertMemo" layoutX="908.0" layoutY="597.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="80.0" text="메모 추가">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <ListView fx:id="contentListView" layoutX="907.0" layoutY="181.0" prefHeight="363.0" prefWidth="262.0" />
+      <Label fx:id="contentLabel" alignment="CENTER" layoutX="907.0" layoutY="151.0" prefHeight="30.0" prefWidth="262.0">
+         <font>
+            <Font size="14.0" />
          </font>
       </Label>
    </children>

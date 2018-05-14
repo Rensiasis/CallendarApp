@@ -2,9 +2,10 @@ package VO;
 
 import java.io.Serializable;
 
-public class Schedule implements Serializable, calListVO{
+public class Schedule implements Serializable {
 
 	private String member_seq;
+	private String type;
 	private String from_date;
 	private String to_date;
 	private String content;
@@ -13,10 +14,11 @@ public class Schedule implements Serializable, calListVO{
 	private String inuser;
 	private String luser;
 
-	public Schedule(String member_seq, String from_date, String to_date, String content, String indate, String ldate,
-			String inuser, String luser) {
+	public Schedule(String member_seq, String type, String from_date, String to_date, String content, String indate,
+			String ldate, String inuser, String luser) {
 		super();
 		this.member_seq = member_seq;
+		this.type = type;
 		this.from_date = from_date;
 		this.to_date = to_date;
 		this.content = content;
@@ -36,6 +38,14 @@ public class Schedule implements Serializable, calListVO{
 
 	public void setMember_seq(String member_seq) {
 		this.member_seq = member_seq;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public String getFrom_date() {
@@ -96,8 +106,9 @@ public class Schedule implements Serializable, calListVO{
 
 	@Override
 	public String toString() {
-		return "Schedule [member_seq=" + member_seq + ", from_date=" + from_date + ", to_date=" + to_date + ", content="
-				+ content + ", indate=" + indate + ", ldate=" + ldate + ", inuser=" + inuser + ", luser=" + luser + "]";
+		return "Schedule [member_seq=" + member_seq + ", type=" + type + ", from_date=" + from_date + ", to_date="
+				+ to_date + ", content=" + content + ", indate=" + indate + ", ldate=" + ldate + ", inuser=" + inuser
+				+ ", luser=" + luser + "]";
 	}
 
 }

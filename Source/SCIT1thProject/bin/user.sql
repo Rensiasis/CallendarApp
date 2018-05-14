@@ -57,6 +57,7 @@ on delete cascade
 
 create table schedule(
 member_seq varchar2(6),
+data_type varchar2(10),
 from_date date,
 to_date date,
 content varchar2(500),

@@ -1,6 +1,6 @@
 package VO;
 
-public class EventDay implements calListVO {
+public class EventDay {
 	private String year;
 	private String month;
 	private String day;

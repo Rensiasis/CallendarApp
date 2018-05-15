@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="366.0" prefWidth="361.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="View.Controller.InsertScheduleController">
+   <children>
+      <DatePicker fx:id="to" layoutX="43.0" layoutY="84.0" />
+      <DatePicker fx:id="from" layoutX="43.0" layoutY="45.0" />
+      <Label layoutX="233.0" layoutY="47.0" text="부터">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="233.0" layoutY="86.0" text="까지">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="43.0" layoutY="123.0" text="내용">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="content" layoutX="43.0" layoutY="148.0" prefHeight="144.0" prefWidth="273.0" />
+      <Button fx:id="insert" layoutX="43.0" layoutY="306.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="123.0" text="추가">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="cancel" layoutX="193.0" layoutY="306.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="123.0" text="취소">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

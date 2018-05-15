@@ -59,4 +59,7 @@ public interface MemberMapper {
 	
 	//스케쥴 삭제
 	public void deleteSchedule(Schedule vo);
+	
+	//하루 스케쥴 리프레시
+	public ArrayList<Schedule> getDaySchedule(Schedule vo);
 }

@@ -261,8 +261,31 @@
 
 	<!-- 스케쥴 삭제하기 -->
 	<delete id="deleteSchedule" parameterType="Schedule">
-		delete Schedule
+		delete from
+		Schedule
 		where schedule_seq=#{schedule_seq}
 	</delete>
+
+	<!-- 스케쥴 리프레시 -->
+	<select id="getDaySchedule" parameterType="Schedule"
+		resultType="Schedule">
+		select
+		schedule_seq
+		,member_seq
+		,data_type
+		,to_char(from_date,'YYYYMMDD')
+		from_date
+		,to_char(to_date,'YYYYMMDD')
+		to_date
+		,content
+		,indate
+		,ldate
+		,inuser
+		,luser
+		from Schedule
+		where
+		from_date=#{from_date} OR
+		(#{from_date} between from_date and to_date)
+	</select>
 </mapper>
   

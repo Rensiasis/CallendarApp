@@ -228,12 +228,15 @@ public class CalendarController implements Initializable {
 	@FXML
 	private Button deleteButton;
 	@FXML
+	private Button insertSchedule;
+	@FXML
 	private ListView<Object> contentListView;
 
 	private static Label[] labelList;
 	private static TextArea[] areaList;
 
 	private static Map<Integer, ArrayList<Day>> calList;
+	private static ListView<Object> staticListView;
 
 	@FXML
 	private AnchorPane calendarPane;
@@ -424,8 +427,11 @@ public class CalendarController implements Initializable {
 
 		insertMemo.setOnMouseClicked(event -> insertMemo());
 		deleteButton.setOnMouseClicked(event -> delete());
+		insertSchedule.setOnMouseClicked(event ->insertSchedule());
 
 		calList = new HashMap<>();
+		staticListView=contentListView;
+		
 		makeCalandar();
 	}
 
@@ -525,7 +531,7 @@ public class CalendarController implements Initializable {
 			for (int j = 0; j < scheList.size(); j++) {
 				switch (scheList.get(j).getData_type()) {
 				case "M":
-					areaList[i].appendText(scheList.get(j).getContent());
+					areaList[i].appendText("-" + scheList.get(j).getContent() + "\n");
 					break;
 				}
 
@@ -563,7 +569,7 @@ public class CalendarController implements Initializable {
 			for (int j = 0; j < scheList.size(); j++) {
 				switch (scheList.get(j).getData_type()) {
 				case "M":
-					areaList[i].appendText(scheList.get(j).getContent());
+					areaList[i].appendText("-" + scheList.get(j).getContent() + "\n");
 					break;
 				}
 
@@ -600,7 +606,7 @@ public class CalendarController implements Initializable {
 			for (int j = 0; j < scheList.size(); j++) {
 				switch (scheList.get(j).getData_type()) {
 				case "M":
-					areaList[i].appendText("-" + scheList.get(j).getContent());
+					areaList[i].appendText("-" + scheList.get(j).getContent() + "\n");
 					break;
 				}
 
@@ -872,15 +878,78 @@ public class CalendarController implements Initializable {
 		}
 		calList.get(key).get(date - 1).getSchedule().add(vo);
 
+		refreshDaySchedule();
+
+		refreshContentList();
+		
 		refreshCalendar(selectedPage);
+	}
+	
+	public void insertSchedule() {
+		
 	}
 
 	public void delete() {
 		Object item = contentListView.getSelectionModel().getSelectedItem();
-//		if (item instanceof HouseHolds) {
-			Schedule vo = (Schedule) item;
-			Client.Client.summit(new SocketDB("deleteSchedule", vo));
-			refreshCalendar(selectedPage);
-//		}
+		// if (item instanceof HouseHolds) {
+
+		Schedule vo = (Schedule) item;
+		Client.Client.summit(new SocketDB("deleteSchedule", vo));
+
+		refreshDaySchedule();
+		
+		refreshContentList();
+
+		refreshCalendar(selectedPage);
+	}
+
+	public static void refreshDaySchedule() {
+		Schedule vo = new Schedule();
+		vo.setFrom_date(selectedDay);
+		ArrayList<Schedule> newSchedule = (ArrayList<Schedule>) Client.Client
+				.summit(new SocketDB("getDaySchedule", vo));
+
+		if (newSchedule == null)
+			newSchedule = new ArrayList<>();
+		String dateStr = vo.getFrom_date();
+		String keyStr = dateStr.substring(0, 6);
+		int key = Integer.parseInt(keyStr);
+		int date = 0;
+		if (dateStr.charAt(6) == '0') {
+			date = Integer.parseInt(dateStr.substring(7, 8));
+		} else {
+			date = Integer.parseInt(dateStr.substring(6, 8));
+		}
+		calList.get(key).get(date - 1).setSchedule(newSchedule);
+	}
+
+	public static void refreshContentList() {
+		
+		String keyStr = selectedDay.substring(0, 6);
+		int key = Integer.parseInt(keyStr);
+		int date = 0;
+		if (selectedDay.charAt(6) == '0') {
+			date = Integer.parseInt(selectedDay.substring(7, 8));
+		} else {
+			date = Integer.parseInt(selectedDay.substring(6, 8));
+		}
+
+		ArrayList<EventDay> eventList = calList.get(key).get(date-1).getEvent();
+		ArrayList<Schedule> scheList = calList.get(key).get(date-1).getSchedule();
+
+		ObservableList<Object> observeList = FXCollections.observableArrayList();
+
+		for (int i = 0; i < eventList.size(); i++) {
+			observeList.add(eventList.get(i));
+		}
+		for (int i = 0; i < scheList.size(); i++) {
+			switch (scheList.get(i).getData_type()) {
+			case "M":
+				observeList.add(scheList.get(i));
+				break;
+			}
+		}
+
+		staticListView.setItems(observeList);
 	}
 }

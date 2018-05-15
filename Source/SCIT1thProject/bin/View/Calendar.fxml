@@ -538,12 +538,12 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Button layoutX="908.0" layoutY="556.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="80.0" text="일정 추가">
+      <Button fx:id="insertSchedule" layoutX="908.0" layoutY="556.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="스케줄 추가">
          <font>
             <Font size="13.0" />
          </font>
       </Button>
-      <Button fx:id="insertMemo" layoutX="908.0" layoutY="597.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="80.0" text="메모 추가">
+      <Button fx:id="insertMemo" layoutX="908.0" layoutY="597.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="메모 추가">
          <font>
             <Font size="13.0" />
          </font>
@@ -554,7 +554,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button fx:id="deleteButton" layoutX="996.0" layoutY="554.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="165.0" text="삭제">
+      <Button fx:id="deleteButton" layoutX="1051.0" layoutY="597.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="삭제">
          <font>
             <Font size="13.0" />
          </font>

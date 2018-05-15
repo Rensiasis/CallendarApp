@@ -339,5 +339,26 @@ public class MemberDAO {
 			}
 		}
 	}
+	
+	public static ArrayList<Schedule> getDaySchedule(Schedule vo) {
+		SqlSession session = null;
+		ArrayList<Schedule> result = null;
+		try {
+			session = factory.openSession();
+			MemberMapper mapper = session.getMapper(MemberMapper.class);
+
+			result = mapper.getDaySchedule(vo);
+
+			session.commit();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+		return result;
+	}
 
 }

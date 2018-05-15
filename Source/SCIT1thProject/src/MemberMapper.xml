@@ -213,6 +213,7 @@
 
 
 	<!-- 캘린더 관련 쿼리문 -->
+	<!-- 메모추가 -->
 	<insert id="insertMemo" parameterType="Schedule">
 		insert into Schedule
 		(
@@ -228,11 +229,28 @@
 		#{member_seq}
 		, #{data_type}
 		, to_date(#{from_date},'YYYYMMDD')
-		, #{content}
+		,
+		#{content}
 		, sysdate
 		, #{inuser}
 		)
 	</insert>
 
+	<!-- 스케쥴 리스트 받아오기 -->
+	<select id="getSchedule" parameterType="Member"
+		resultType="Schedule">
+		select
+		member_seq
+		,data_type
+		,to_char(from_date,'YYYYMMDD') from_date
+		,to_char(to_date,'YYYYMMDD') to_date
+		,content
+		,indate
+		,ldate
+		,inuser
+		,luser
+		from Schedule
+		where member_seq=#{member_seq}
+	</select>
 </mapper>
   

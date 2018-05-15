@@ -70,6 +70,9 @@ public class SocketDB implements Serializable {
 		case "insertMemo":
 			MemberDAO.insertMemo((Schedule) inputObject);
 			break;
+		case "getSchedule":
+			result = MemberDAO.getSchedule((Members) inputObject);
+			break;
 		}
 		return result;
 	}

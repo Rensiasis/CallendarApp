@@ -484,6 +484,7 @@ public class CalendarController implements Initializable {
 		keyStr = format.format(todayDate);
 
 		setEventDay();
+		setSchedule();
 
 		refreshCalendar(keyStr);
 	}
@@ -749,6 +750,23 @@ public class CalendarController implements Initializable {
 		}
 	}
 
+	public void setSchedule() {
+		ArrayList<Schedule> sList = (ArrayList<Schedule>) Client.Client
+				.summit(new SocketDB("getSchedule", Client.User.user));
+		for (int i = 0; i < sList.size(); i++) {
+			switch (sList.get(i).getData_type()) {
+			case "M":
+				String fullDate = sList.get(i).getFrom_date();
+				System.out.println(sList.get(i));
+				String keyStr = fullDate.substring(0, 6);
+				int key = Integer.parseInt(keyStr);
+				int date = Integer.parseInt(fullDate.substring(6, 8));
+				calList.get(key).get(date - 1).getSchedule().add(sList.get(i));
+				break;
+			}
+		}
+	}
+
 	public void selectDay(MouseEvent event) {
 		String year = this.year.getText();
 		String month = this.month.getText();
@@ -766,30 +784,30 @@ public class CalendarController implements Initializable {
 			year = Integer.toString(Integer.parseInt(year) - 1);
 			month = "12";
 		}
-		
-		String keyStr="";
+
+		String keyStr = "";
 		if (Integer.parseInt(month) < 10) {
 			selectedDay = year + "0" + month + day;
-			keyStr=year+"0"+month;
+			keyStr = year + "0" + month;
 		} else {
 			selectedDay = year + month + day;
-			keyStr=year+month;
+			keyStr = year + month;
 		}
-		int key=Integer.parseInt(keyStr);
-		int dayIndex=Integer.parseInt(day)-1;
-		
-		ArrayList<EventDay> eventList=calList.get(key).get(dayIndex).getEvent();
-		ArrayList<Schedule> scheList=calList.get(key).get(dayIndex).getSchedule();
+		int key = Integer.parseInt(keyStr);
+		int dayIndex = Integer.parseInt(day) - 1;
+
+		ArrayList<EventDay> eventList = calList.get(key).get(dayIndex).getEvent();
+		ArrayList<Schedule> scheList = calList.get(key).get(dayIndex).getSchedule();
 
 		ObservableList<Object> observeList = FXCollections.observableArrayList();
-		
-		for(int i=0;i<eventList.size();i++) {
-			observeList.add("◎ "+eventList.get(i));			
+
+		for (int i = 0; i < eventList.size(); i++) {
+			observeList.add("◎ " + eventList.get(i));
 		}
-		for(int i=0;i<scheList.size();i++) {
-			switch(scheList.get(i).getData_type()) {
+		for (int i = 0; i < scheList.size(); i++) {
+			switch (scheList.get(i).getData_type()) {
 			case "M":
-				observeList.add("- "+scheList.get(i).getContent());
+				observeList.add("- " + scheList.get(i).getContent());
 				break;
 			}
 		}
@@ -822,9 +840,6 @@ public class CalendarController implements Initializable {
 		String keyStr = vo.getFrom_date().substring(0, 6);
 		int key = Integer.parseInt(keyStr);
 		int date = Integer.parseInt(vo.getFrom_date().substring(6, 8));
-		System.out.println(key);
-		System.out.println(date);
-		System.out.println(vo);
 		calList.get(key).get(date - 1).getSchedule().add(vo);
 
 		refreshCalendar(keyStr);

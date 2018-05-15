@@ -282,7 +282,7 @@ public class MemberDAO {
 
 	public static void insertMemo(Schedule vo) {
 		SqlSession session = null;
-		
+
 		try {
 			session = factory.openSession();
 			MemberMapper mapper = session.getMapper(MemberMapper.class);
@@ -298,6 +298,27 @@ public class MemberDAO {
 				session.close();
 			}
 		}
+	}
+
+	public static ArrayList<Schedule> getSchedule(Members vo) {
+		SqlSession session = null;
+		ArrayList<Schedule> result = null;
+		try {
+			session = factory.openSession();
+			MemberMapper mapper = session.getMapper(MemberMapper.class);
+
+			result = mapper.getSchedule(vo);
+
+			session.commit();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+		return result;
 	}
 
 }

@@ -78,3 +78,5 @@ select * from MEMBERS
 drop table accounts;
 
 select * from ACCOUNTS
+
+select * from schedule

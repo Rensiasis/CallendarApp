@@ -53,4 +53,7 @@ public interface MemberMapper {
 	
 	//캘린더 메모 추가
 	public void insertMemo(Schedule vo);
+	
+	//스케쥴 데이터 받아오기
+	public ArrayList<Schedule> getSchedule(Members vo);
 }

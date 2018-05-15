@@ -231,6 +231,8 @@ public class CalendarController implements Initializable {
 	@FXML
 	private Button insertSchedule;
 	@FXML
+	private Button insertTodo;
+	@FXML
 	private ListView<Object> contentListView;
 
 	private static Label[] labelList;
@@ -429,6 +431,7 @@ public class CalendarController implements Initializable {
 		insertMemo.setOnMouseClicked(event -> insertMemo());
 		deleteButton.setOnMouseClicked(event -> delete());
 		insertSchedule.setOnMouseClicked(event -> insertSchedule());
+		insertTodo.setOnMouseClicked(event -> insertTodo());
 
 		calList = new HashMap<>();
 		staticListView = contentListView;
@@ -891,6 +894,22 @@ public class CalendarController implements Initializable {
 	}
 
 	public void insertSchedule() {
+		AnchorPane schedulePane;
+		try {
+			schedulePane = FXMLLoader.load(getClass().getResource("/View/InsertSchedule.fxml"));
+			Scene scene = new Scene(schedulePane);
+			stage = new Stage();
+			stage.setScene(scene);
+			stage.setTitle("스케줄 입력");
+			stage.setResizable(false);
+			stage.show();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void insertTodo() {
 		AnchorPane schedulePane;
 		try {
 			schedulePane = FXMLLoader.load(getClass().getResource("/View/InsertSchedule.fxml"));

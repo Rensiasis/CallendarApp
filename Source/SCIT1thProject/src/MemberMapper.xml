@@ -78,7 +78,7 @@
 
 	<!-- 가계부정보 수정하기 -->	
 	<update id="fixHouseHold" parameterType="HouseHold">
-		update HouseHold
+		update households
 		set
 		product=#{product}
 		, price=#{price}

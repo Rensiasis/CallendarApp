@@ -15,7 +15,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
@@ -23,8 +25,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.ContextMenuEvent;
+import javafx.scene.layout.AnchorPane;
 
 public class HouseHoldController implements Initializable {
 	User user = new User();
@@ -42,6 +46,8 @@ public class HouseHoldController implements Initializable {
 	private Button delete;
 	@FXML
 	private Button fix;
+	@FXML
+	private AnchorPane HouseHoldPane;
 
 	@FXML
 	private ComboBox<String> searchCombo;
@@ -77,25 +83,59 @@ public class HouseHoldController implements Initializable {
 
 	@FXML
 	public void btnAddTView(ActionEvent event) {
-		HouseHolds hh = new HouseHolds();
+		Platform.runLater(new Runnable() {
 
-		hh.setMember_seq(user.getUser().getMember_seq());
-		hh.setProduct(product.getText());
-		hh.setPrice(price.getText());
-		hh.setContent(content.getText());
-		hh.setInuser(user.getUser().getId());
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				HouseHolds hh = new HouseHolds();
 
-		dao.insertHouseHold(hh);
-		product.clear();
-		price.clear();
-		content.clear();
+				hh.setMember_seq(user.getUser().getMember_seq());
+				hh.setProduct(product.getText());
+				hh.setPrice(price.getText());
+				hh.setContent(content.getText());
+				hh.setInuser(user.getUser().getId());
+
+				dao.insertHouseHold(hh);
+				product.clear();
+				price.clear();
+				content.clear();
+
+				try {
+					AnchorPane memberPane = FXMLLoader.load(getClass().getResource("/View/HouseHold.fxml"));
+					HouseHoldPane.getChildren().setAll(memberPane);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+
+		});
 
 	}
 
 	@FXML
 	public void btnDeleteTView(ActionEvent event) {
-		dao.deleteHouseHold(HHListView.getSelectionModel().getSelectedItem().getHousehold_seq());
-		HHListView.getItems().remove(HHListView.getSelectionModel().getSelectedIndex());
+		Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				if (HHListView.getSelectionModel().getSelectedItem() != null) {
+					dao.deleteHouseHold(HHListView.getSelectionModel().getSelectedItem().getHousehold_seq());
+					HHListView.getItems().remove(HHListView.getSelectionModel().getSelectedIndex());
+				} else {
+					Alert alert = new Alert(AlertType.ERROR);
+					alert.setTitle("삭제 에러");
+					alert.setHeaderText("삭제 정보 선택");
+					alert.setContentText("삭제할 정보를 선택해 주시기 바랍니다.");
+					alert.showAndWait();
+				}
+
+			}
+
+		});
 
 	}
 
@@ -106,19 +146,32 @@ public class HouseHoldController implements Initializable {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				if(HHListView.getSelectionModel().getSelectedItem() != null) {
-				HouseHolds hh = new HouseHolds();
-				hh.setHousehold_seq(HHListView.getSelectionModel().getSelectedItem().getHousehold_seq());
-				hh.setProduct(product.getText());
-				hh.setPrice(price.getText());
-				hh.setContent(content.getText());
+				if (HHListView.getSelectionModel().getSelectedItem() != null) {
+					HouseHolds hh = new HouseHolds();
+					hh.setHousehold_seq(HHListView.getSelectionModel().getSelectedItem().getHousehold_seq());
+					hh.setProduct(product.getText());
+					hh.setPrice(price.getText());
+					hh.setContent(content.getText());
 
-				dao.fixHouseHold(hh);
-				product.clear();
-				price.clear();
-				content.clear();
+					dao.fixHouseHold(hh);
+					product.clear();
+					price.clear();
+					content.clear();
+
+					try {
+						AnchorPane memberPane = FXMLLoader.load(getClass().getResource("/View/HouseHold.fxml"));
+						HouseHoldPane.getChildren().setAll(memberPane);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
 				} else {
-					
+					Alert alert = new Alert(AlertType.ERROR);
+					alert.setTitle("수정 에러");
+					alert.setHeaderText("수정 정보 선택");
+					alert.setContentText("수정할 정보를 선택해 주시기 바랍니다.");
+					alert.showAndWait();
 				}
 
 			}

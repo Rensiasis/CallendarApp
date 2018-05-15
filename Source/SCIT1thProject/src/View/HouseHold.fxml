@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="679.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Controller.HouseHoldController">
+<AnchorPane fx:id="HouseHoldPane" prefHeight="679.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Controller.HouseHoldController">
    <children>
       <DatePicker fx:id="FromDate" layoutX="528.0" layoutY="67.0" prefHeight="30.0" prefWidth="170.0" />
       <DatePicker fx:id="ToDate" layoutX="730.0" layoutY="67.0" prefHeight="30.0" prefWidth="170.0" />

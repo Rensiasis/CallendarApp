@@ -6,6 +6,7 @@ import VO.HouseHolds;
 import VO.Account;
 import VO.Address;
 import VO.Members;
+import VO.Schedule;
 
 public interface MemberMapper {
 	// 회원등록
@@ -49,5 +50,7 @@ public interface MemberMapper {
 
 	//최근 12개월 이내 내역 검색
 	public ArrayList<HouseHolds> searchForAnYear(HouseHolds vo);
-
+	
+	//캘린더 메모 추가
+	public void insertMemo(Schedule vo);
 }

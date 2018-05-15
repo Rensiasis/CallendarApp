@@ -10,6 +10,7 @@ import VO.HouseHolds;
 import VO.Account;
 import VO.Address;
 import VO.Members;
+import VO.Schedule;
 
 public class MemberDAO {
 
@@ -158,7 +159,7 @@ public class MemberDAO {
 		}
 	}
 
-	//가계부 설정 입력
+	// 가계부 설정 입력
 	public static void insertAccount(String member_seq) {
 		SqlSession session = null;
 
@@ -175,8 +176,8 @@ public class MemberDAO {
 			}
 		}
 	}
-	
-	//가계부 수정
+
+	// 가계부 수정
 	public static void updateAccount(Account a_vo) {
 		SqlSession session = null;
 
@@ -193,12 +194,11 @@ public class MemberDAO {
 			}
 		}
 	}
-	
 
 	public ArrayList<HouseHolds> searchForAMonth(HouseHolds vo) {
 
 		SqlSession session = null;
-		ArrayList<HouseHolds> hh = new  ArrayList<HouseHolds>();
+		ArrayList<HouseHolds> hh = new ArrayList<HouseHolds>();
 		try {
 			session = factory.openSession();
 			MemberMapper mapper = session.getMapper(MemberMapper.class);
@@ -216,9 +216,10 @@ public class MemberDAO {
 		}
 		return hh;
 	}
+
 	public ArrayList<HouseHolds> searchForThreeMonth(HouseHolds vo) {
 		SqlSession session = null;
-		ArrayList<HouseHolds> hh = new  ArrayList<HouseHolds>();
+		ArrayList<HouseHolds> hh = new ArrayList<HouseHolds>();
 		try {
 			session = factory.openSession();
 			MemberMapper mapper = session.getMapper(MemberMapper.class);
@@ -236,9 +237,10 @@ public class MemberDAO {
 		}
 		return hh;
 	}
+
 	public ArrayList<HouseHolds> searchForSixMonth(HouseHolds vo) {
 		SqlSession session = null;
-		ArrayList<HouseHolds> hh = new  ArrayList<HouseHolds>();
+		ArrayList<HouseHolds> hh = new ArrayList<HouseHolds>();
 		try {
 			session = factory.openSession();
 			MemberMapper mapper = session.getMapper(MemberMapper.class);
@@ -256,9 +258,10 @@ public class MemberDAO {
 		}
 		return hh;
 	}
+
 	public ArrayList<HouseHolds> searchForAnYear(HouseHolds vo) {
 		SqlSession session = null;
-		ArrayList<HouseHolds> hh = new  ArrayList<HouseHolds>();
+		ArrayList<HouseHolds> hh = new ArrayList<HouseHolds>();
 		try {
 			session = factory.openSession();
 			MemberMapper mapper = session.getMapper(MemberMapper.class);
@@ -275,6 +278,26 @@ public class MemberDAO {
 			}
 		}
 		return hh;
+	}
+
+	public static void insertMemo(Schedule vo) {
+		SqlSession session = null;
+		
+		try {
+			session = factory.openSession();
+			MemberMapper mapper = session.getMapper(MemberMapper.class);
+
+			mapper.insertMemo(vo);
+
+			session.commit();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
 	}
 
 }

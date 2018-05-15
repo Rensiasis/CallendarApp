@@ -16,6 +16,7 @@ import VO.Address;
 import VO.Day;
 import VO.EventDay;
 import VO.Schedule;
+import VO.SocketDB;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -226,10 +227,10 @@ public class CalendarController implements Initializable {
 	@FXML
 	private ListView<Object> contentListView;
 
-	private Label[] labelList;
-	private TextArea[] areaList;
+	private static Label[] labelList;
+	private static TextArea[] areaList;
 
-	private Map<Integer, ArrayList<Day>> calList;
+	private static Map<Integer, ArrayList<Day>> calList;
 
 	@FXML
 	private AnchorPane calendarPane;
@@ -242,7 +243,7 @@ public class CalendarController implements Initializable {
 	public static Stage stage;
 	public static Schedule schedule;
 
-	private String selectedDay;
+	private static String selectedDay;
 
 	@FXML
 	public void btnLogout(ActionEvent event) {
@@ -487,7 +488,7 @@ public class CalendarController implements Initializable {
 		refreshCalendar(keyStr);
 	}
 
-	public void refreshCalendar(String keyStr) {
+	public static void refreshCalendar(String keyStr) {
 		int key = Integer.parseInt(keyStr);
 		ArrayList<Day> dayList = calList.get(key);
 		Date firstDay = dayList.get(0).getDate();
@@ -512,6 +513,16 @@ public class CalendarController implements Initializable {
 					labelList[i].setTextFill(Color.RED);
 				}
 				areaList[i].appendText(eventList.get(j).getName() + "\n");
+			}
+
+			ArrayList<Schedule> scheList = dayList.get(i - firstIndex).getSchedule();
+			for (int j = 0; j < scheList.size(); j++) {
+				switch (scheList.get(j).getData_type()) {
+				case "M":
+					areaList[i].appendText(scheList.get(j).getContent());
+					break;
+				}
+
 			}
 		}
 		int lastIndex = dayList.size() + firstIndex;
@@ -541,6 +552,16 @@ public class CalendarController implements Initializable {
 				}
 				areaList[i].appendText(eventList.get(j).getName() + "\n");
 			}
+
+			ArrayList<Schedule> scheList = dayList.get(dayList.size() - firstIndex + i).getSchedule();
+			for (int j = 0; j < scheList.size(); j++) {
+				switch (scheList.get(j).getData_type()) {
+				case "M":
+					areaList[i].appendText(scheList.get(j).getContent());
+					break;
+				}
+
+			}
 		}
 
 		// 다음달 세팅
@@ -567,6 +588,16 @@ public class CalendarController implements Initializable {
 					labelList[i].setTextFill(Color.RED);
 				}
 				areaList[i].appendText(eventList.get(j).getName() + "\n");
+			}
+
+			ArrayList<Schedule> scheList = dayList.get(i - lastIndex).getSchedule();
+			for (int j = 0; j < scheList.size(); j++) {
+				switch (scheList.get(j).getData_type()) {
+				case "M":
+					areaList[i].appendText(scheList.get(j).getContent());
+					break;
+				}
+
 			}
 		}
 	}
@@ -735,18 +766,32 @@ public class CalendarController implements Initializable {
 			year = Integer.toString(Integer.parseInt(year) - 1);
 			month = "12";
 		}
+		
+		String keyStr="";
 		if (Integer.parseInt(month) < 10) {
 			selectedDay = year + "0" + month + day;
+			keyStr=year+"0"+month;
 		} else {
 			selectedDay = year + month + day;
+			keyStr=year+month;
 		}
+		int key=Integer.parseInt(keyStr);
+		int dayIndex=Integer.parseInt(day)-1;
+		
+		ArrayList<EventDay> eventList=calList.get(key).get(dayIndex).getEvent();
+		ArrayList<Schedule> scheList=calList.get(key).get(dayIndex).getSchedule();
 
 		ObservableList<Object> observeList = FXCollections.observableArrayList();
-
-		String[] eventList = areaList[index].getText().split("\n");
-		for (int i = 0; i < eventList.length; i++) {
-			if (!eventList[i].equals(""))
-				observeList.add("◎ " + eventList[i]);
+		
+		for(int i=0;i<eventList.size();i++) {
+			observeList.add("◎ "+eventList.get(i));			
+		}
+		for(int i=0;i<scheList.size();i++) {
+			switch(scheList.get(i).getData_type()) {
+			case "M":
+				observeList.add("- "+scheList.get(i).getContent());
+				break;
+			}
 		}
 
 		contentListView.setItems(observeList);
@@ -769,5 +814,19 @@ public class CalendarController implements Initializable {
 			e.printStackTrace();
 		}
 
+	}
+
+	public static void insertMemoReceiver(Schedule vo) {
+		vo.setFrom_date(selectedDay);
+		Client.Client.summit(new SocketDB("insertMemo", vo));
+		String keyStr = vo.getFrom_date().substring(0, 6);
+		int key = Integer.parseInt(keyStr);
+		int date = Integer.parseInt(vo.getFrom_date().substring(6, 8));
+		System.out.println(key);
+		System.out.println(date);
+		System.out.println(vo);
+		calList.get(key).get(date - 1).getSchedule().add(vo);
+
+		refreshCalendar(keyStr);
 	}
 }

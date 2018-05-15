@@ -134,16 +134,20 @@
 	<update id="updateMemInfo" parameterType="Member">
 		update members
 		set
-		id =#{id}
+		id
+		=#{id}
 		, password = #{password}
 		, name=#{name}
 		, email=#{email}
-		, phone_number=#{phone_number}
+		,
+		phone_number=#{phone_number}
 		, postNumber=#{postNumber}
-		, newAddress=#{newAddress}
+		,
+		newAddress=#{newAddress}
 		, city=#{city}
 		, county=#{county}
-		, village=#{village}
+		,
+		village=#{village}
 		, ldate=sysdate
 		where
 		member_seq = #{member_seq}
@@ -163,10 +167,12 @@
 		update accounts set
 		account = #{account}
 		, montly_salary=#{montly_salary}
-		, montly_save=#{montly_save}
+		,
+		montly_save=#{montly_save}
 		, indate=sysdate
 		, inuser=#{inuser}
-		where member_seq=#{member_seq}
+		where
+		member_seq=#{member_seq}
 	</update>
 
 	<!-- 1개월 이내 검색 -->
@@ -204,6 +210,29 @@
 		where get_date between sysdate-365 and sysdate
 		order by get_date desc
 	</select>
+
+
+	<!-- 캘린더 관련 쿼리문 -->
+	<insert id="insertMemo" parameterType="Schedule">
+		insert into Schedule
+		(
+		member_seq
+		,data_type
+		,from_date
+		,content
+		,indate
+		,inuser
+		)
+		values
+		(
+		#{member_seq}
+		, #{data_type}
+		, to_date(#{from_date},'YYYYMMDD')
+		, #{content}
+		, sysdate
+		, #{inuser}
+		)
+	</insert>
 
 </mapper>
   

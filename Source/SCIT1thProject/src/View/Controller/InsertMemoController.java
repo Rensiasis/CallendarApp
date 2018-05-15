@@ -1,6 +1,7 @@
 package View.Controller;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -29,10 +30,11 @@ public class InsertMemoController implements Initializable {
 	public void insert() {
 		Schedule vo=new Schedule();
 		vo.setMember_seq(Client.User.user.getMember_seq());
-		vo.setType("M");
+		vo.setData_type("M");
 		vo.setContent(this.content.getText());
 		vo.setInuser(Client.User.user.getName());
 		View.Controller.CalendarController.schedule=vo;
+		View.Controller.CalendarController.insertMemoReceiver(vo);
 		View.Controller.CalendarController.stage.close();
 	}
 

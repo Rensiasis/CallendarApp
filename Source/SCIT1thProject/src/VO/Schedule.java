@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Schedule implements Serializable {
 
 	private String member_seq;
-	private String type;
+	private String data_type;
 	private String from_date;
 	private String to_date;
 	private String content;
@@ -14,11 +14,11 @@ public class Schedule implements Serializable {
 	private String inuser;
 	private String luser;
 
-	public Schedule(String member_seq, String type, String from_date, String to_date, String content, String indate,
-			String ldate, String inuser, String luser) {
+	public Schedule(String member_seq, String data_type, String from_date, String to_date, String content,
+			String indate, String ldate, String inuser, String luser) {
 		super();
 		this.member_seq = member_seq;
-		this.type = type;
+		this.data_type = data_type;
 		this.from_date = from_date;
 		this.to_date = to_date;
 		this.content = content;
@@ -40,12 +40,12 @@ public class Schedule implements Serializable {
 		this.member_seq = member_seq;
 	}
 
-	public String getType() {
-		return type;
+	public String getData_type() {
+		return data_type;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setData_type(String data_type) {
+		this.data_type = data_type;
 	}
 
 	public String getFrom_date() {
@@ -106,7 +106,7 @@ public class Schedule implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Schedule [member_seq=" + member_seq + ", type=" + type + ", from_date=" + from_date + ", to_date="
+		return "Schedule [member_seq=" + member_seq + ", type=" + data_type + ", from_date=" + from_date + ", to_date="
 				+ to_date + ", content=" + content + ", indate=" + indate + ", ldate=" + ldate + ", inuser=" + inuser
 				+ ", luser=" + luser + "]";
 	}

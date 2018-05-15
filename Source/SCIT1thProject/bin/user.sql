@@ -71,6 +71,7 @@ foreign key (member_seq)
 references members (member_seq)
 on delete cascade
 )
+drop table schedule
 
 select * from MEMBERS
 

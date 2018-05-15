@@ -60,14 +60,6 @@
          </children>
       </AnchorPane>
       <Label layoutX="707.0" layoutY="75.0" text="~" />
-      <TableView fx:id="showHouseHold" layoutY="115.0" prefHeight="564.0" prefWidth="900.0">
-        <columns>
-          <TableColumn fx:id="TVproduct" prefWidth="93.0" text="물품명" />
-          <TableColumn fx:id="TVprice" prefWidth="86.0" text="가격" />
-            <TableColumn fx:id="TVdate" prefWidth="113.0" text="날짜" />
-            <TableColumn fx:id="TVcontent" prefWidth="607.0" text="상세내역" />
-        </columns>
-      </TableView>
       <Label layoutX="456.0" layoutY="68.0" prefHeight="30.0" prefWidth="64.0" text="기간 검색 :" />
       <MenuBar layoutY="-1.0" prefHeight="25.0" prefWidth="1200.0">
         <menus>
@@ -84,5 +76,6 @@
           </Menu>
         </menus>
       </MenuBar>
+      <ListView fx:id="HHListView" layoutY="107.0" prefHeight="573.0" prefWidth="900.0" />
    </children>
 </AnchorPane>

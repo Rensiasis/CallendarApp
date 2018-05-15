@@ -47,13 +47,13 @@ public class SocketDB implements Serializable {
 			MemberDAO.insertHouseHold((HouseHolds) inputObject);
 			break;
 		case "deleteHouseHold":
-			MemberDAO.deleteHouseHold((HouseHolds) inputObject);
+			MemberDAO.deleteHouseHold((String) inputObject);
 			break;
 		case "fixHouseHold":
 			MemberDAO.fixHouseHold((HouseHolds) inputObject);
 			break;
 		case "getHouseHoldList":
-			result = MemberDAO.getHouseHoldList((Members) inputObject);
+			result = MemberDAO.getHouseHoldList((String) inputObject);
 			break;
 		case "loginID":
 			result = MemberDAO.loginID((Members) inputObject);

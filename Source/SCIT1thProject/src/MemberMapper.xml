@@ -69,34 +69,34 @@
 		)
 	</insert>
 
-	<delete id="deleteHouseHold" parameterType="HouseHold">
+	<!-- 가계부정보 삭제하기 -->	
+	<delete id="deleteHouseHold" parameterType="String">
 		delete from
 		houseHolds
 		where household_seq=#{household_seq}
 	</delete>
 
+	<!-- 가계부정보 수정하기 -->	
 	<update id="fixHouseHold" parameterType="HouseHold">
 		update HouseHold
 		set
 		product=#{product}
-		,price=#{price}
-		,content=#{content}
-		,ldate=sysdate
-		,luser=#{inuser}
+		, price=#{price}
+		, content=#{content}
+		, ldate=sysdate
 		where
 		household_seq=#{household_seq}
 	</update>
 
-	<select id="getHouseHoldList" parameterType="Member"
+	<!-- 가계부정보받아오기 -->
+	<select id="getHouseHoldList" parameterType="String"
 		resultType="HouseHold">
 		select
 		household_seq
 		, member_seq
 		, product
 		, price
-		, count
-		,
-		date
+		, get_date
 		, content
 		, indate
 		, ldate
@@ -152,7 +152,7 @@
 		member_seq = #{member_seq}
 	</update>
 
-	<!-- 가계부 설정 입력 -->
+	<!-- 어카운트 설정 입력 -->
 	<insert id="insertAccount" parameterType="String">
 		insert into accounts(
 		member_seq
@@ -161,7 +161,7 @@
 		)
 	</insert>
 
-	<!-- 가계부 수정 -->
+	<!-- 어카운트 설정 수정 -->
 	<update id="updateAccount" parameterType="Account">
 		update accounts set
 		account = #{account}

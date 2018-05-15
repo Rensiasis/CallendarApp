@@ -19,13 +19,13 @@ public interface MemberMapper {
 	public void insertHouseHold(HouseHolds vo);
 
 	//가계부삭제
-	public void deleteHouseHold(HouseHolds vo);
+	public void deleteHouseHold(String household_seq);
 
 	//가계부수정
 	public void fixHouseHold(HouseHolds vo);
 
 	//가계부리스트반환
-	public ArrayList<HouseHolds> getHouseHoldList(Members vo);
+	public ArrayList<HouseHolds> getHouseHoldList(String member_seq);
 
 	//로그인
 	public Members loginID(Members vo);

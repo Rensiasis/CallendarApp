@@ -23,7 +23,7 @@
       <DatePicker fx:id="ToDate" layoutX="730.0" layoutY="67.0" prefHeight="30.0" prefWidth="170.0" />
       <AnchorPane layoutX="900.0" prefHeight="680.0" prefWidth="300.0">
          <children>
-            <Button fx:id="add" layoutX="15.0" layoutY="426.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="274.0" text="추가" />
+            <Button fx:id="add" layoutX="15.0" layoutY="426.0" mnemonicParsing="false" onAction="#btnAddTView" prefHeight="23.0" prefWidth="274.0" text="추가" />
             <GridPane layoutX="16.0" layoutY="118.0" prefHeight="294.0" prefWidth="274.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
@@ -45,8 +45,8 @@
                   <TextArea fx:id="content" prefHeight="137.0" prefWidth="129.0" GridPane.rowIndex="5" />
                </children>
             </GridPane>
-            <Button fx:id="delete" layoutX="15.0" layoutY="462.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="274.0" text="삭제" />
-            <Button fx:id="fix" layoutX="14.0" layoutY="496.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="274.0" text="수정" />
+            <Button fx:id="delete" layoutX="15.0" layoutY="462.0" mnemonicParsing="false" onAction="#btnDeleteTView" prefHeight="23.0" prefWidth="274.0" text="삭제" />
+            <Button fx:id="fix" layoutX="14.0" layoutY="496.0" mnemonicParsing="false" onAction="#btnCorrectTView" prefHeight="23.0" prefWidth="274.0" text="수정" />
             <Label layoutX="15.0" layoutY="532.0" text="소비 금액" />
             <Label layoutX="15.0" layoutY="572.0" text="저축 금액" />
             <Label layoutX="15.0" layoutY="614.0" text="총 재산" />
@@ -60,33 +60,22 @@
          </children>
       </AnchorPane>
       <Label layoutX="707.0" layoutY="75.0" text="~" />
-      <TableView fx:id="showHouseHold" layoutY="115.0" prefHeight="564.0" prefWidth="900.0">
-        <columns>
-          <TableColumn prefWidth="93.0" text="물품명" />
-          <TableColumn prefWidth="86.0" text="가격" />
-            <TableColumn prefWidth="113.0" text="날짜" />
-            <TableColumn prefWidth="607.0" text="상세내역" />
-        </columns>
-      </TableView>
       <Label layoutX="456.0" layoutY="68.0" prefHeight="30.0" prefWidth="64.0" text="기간 검색 :" />
       <MenuBar layoutY="-1.0" prefHeight="25.0" prefWidth="1200.0">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" text="프로그램">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+                  <MenuItem mnemonicParsing="false" text="로그아웃" />
+              <MenuItem mnemonicParsing="false" text="프로그램 종료" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
+          <Menu mnemonicParsing="false" text="도움말">
             <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem mnemonicParsing="false" text="프로그램 도움말" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
+      <ListView fx:id="HHListView" layoutY="107.0" prefHeight="573.0" prefWidth="900.0" />
    </children>
 </AnchorPane>

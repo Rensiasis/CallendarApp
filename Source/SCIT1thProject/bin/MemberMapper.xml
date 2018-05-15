@@ -45,6 +45,7 @@
 		where id=#{id}
 	</select>
 
+	<!-- 가계부정보 등록하기 -->	
 	<insert id="insertHouseHold" parameterType="HouseHold">
 		insert into
 		HouseHolds(
@@ -53,15 +54,13 @@
 		, product
 		, price
 		, get_date
-		,
-		content
+		, content
 		, indate
 		, inuser
 		) values (
 		household_seq.nextval
+		, #{member_seq}
 		, #{product}
-		,
-		#{product}
 		, #{price}
 		, sysdate
 		, #{content}
@@ -70,34 +69,34 @@
 		)
 	</insert>
 
-	<delete id="deleteHouseHold" parameterType="HouseHold">
+	<!-- 가계부정보 삭제하기 -->	
+	<delete id="deleteHouseHold" parameterType="String">
 		delete from
 		houseHolds
 		where household_seq=#{household_seq}
 	</delete>
 
+	<!-- 가계부정보 수정하기 -->	
 	<update id="fixHouseHold" parameterType="HouseHold">
 		update HouseHold
 		set
 		product=#{product}
-		,price=#{price}
-		,content=#{content}
-		,ldate=sysdate
-		,luser=#{inuser}
+		, price=#{price}
+		, content=#{content}
+		, ldate=sysdate
 		where
 		household_seq=#{household_seq}
 	</update>
 
-	<select id="getHouseHoldList" parameterType="Member"
+	<!-- 가계부정보받아오기 -->
+	<select id="getHouseHoldList" parameterType="String"
 		resultType="HouseHold">
 		select
 		household_seq
 		, member_seq
 		, product
 		, price
-		, count
-		,
-		date
+		, get_date
 		, content
 		, indate
 		, ldate
@@ -153,7 +152,7 @@
 		member_seq = #{member_seq}
 	</update>
 
-	<!-- 가계부 설정 입력 -->
+	<!-- 어카운트 설정 입력 -->
 	<insert id="insertAccount" parameterType="String">
 		insert into accounts(
 		member_seq
@@ -162,7 +161,7 @@
 		)
 	</insert>
 
-	<!-- 가계부 수정 -->
+	<!-- 어카운트 설정 수정 -->
 	<update id="updateAccount" parameterType="Account">
 		update accounts set
 		account = #{account}
@@ -265,6 +264,7 @@
 		Schedule
 		where schedule_seq=#{schedule_seq}
 	</delete>
+<<<<<<< HEAD
 
 	<!-- 스케쥴 리프레시 -->
 	<select id="getDaySchedule" parameterType="Schedule"
@@ -287,5 +287,8 @@
 		from_date=#{from_date} OR
 		(#{from_date} between from_date and to_date)
 	</select>
+=======
+		
+>>>>>>> master_branch
 </mapper>
   

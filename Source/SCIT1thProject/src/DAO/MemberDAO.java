@@ -35,7 +35,8 @@ public class MemberDAO {
 		}
 	}
 
-	public static int chkRepeatID(String id) {// 회원아이디 중복체크
+	// 회원아이디 중복체크
+	public static int chkRepeatID(String id) {
 		SqlSession session = null;
 		int i = 0;
 
@@ -54,6 +55,7 @@ public class MemberDAO {
 		return i;
 	}
 
+	//가계부 삽입
 	public static void insertHouseHold(HouseHolds vo) {
 		SqlSession session = null;
 
@@ -71,13 +73,14 @@ public class MemberDAO {
 		}
 	}
 
-	public static void deleteHouseHold(HouseHolds vo) {
+	//가계부 삭제
+	public static void deleteHouseHold(String household_seq) {
 		SqlSession session = null;
 
 		try {
 			session = factory.openSession();
 			MemberMapper mapper = session.getMapper(MemberMapper.class);
-			mapper.deleteHouseHold(vo);
+			mapper.deleteHouseHold(household_seq);
 			session.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -88,6 +91,7 @@ public class MemberDAO {
 		}
 	}
 
+	//가계부 수정
 	public static void fixHouseHold(HouseHolds vo) {
 		SqlSession session = null;
 
@@ -105,13 +109,14 @@ public class MemberDAO {
 		}
 	}
 
-	public static ArrayList<HouseHolds> getHouseHoldList(Members vo) {
+	//가계부 리스트불러오기
+	public static ArrayList<HouseHolds> getHouseHoldList(String member_seq) {
 		SqlSession session = null;
 		ArrayList<HouseHolds> result = null;
 		try {
 			session = factory.openSession();
 			MemberMapper mapper = session.getMapper(MemberMapper.class);
-			result = mapper.getHouseHoldList(vo);
+			result = mapper.getHouseHoldList(member_seq);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -195,7 +200,7 @@ public class MemberDAO {
 		}
 	}
 
-	public ArrayList<HouseHolds> searchForAMonth(HouseHolds vo) {
+	public static ArrayList<HouseHolds> searchForAMonth(HouseHolds vo) {
 
 		SqlSession session = null;
 		ArrayList<HouseHolds> hh = new ArrayList<HouseHolds>();
@@ -217,7 +222,7 @@ public class MemberDAO {
 		return hh;
 	}
 
-	public ArrayList<HouseHolds> searchForThreeMonth(HouseHolds vo) {
+	public static ArrayList<HouseHolds> searchForThreeMonth(HouseHolds vo) {
 		SqlSession session = null;
 		ArrayList<HouseHolds> hh = new ArrayList<HouseHolds>();
 		try {
@@ -238,7 +243,7 @@ public class MemberDAO {
 		return hh;
 	}
 
-	public ArrayList<HouseHolds> searchForSixMonth(HouseHolds vo) {
+	public static ArrayList<HouseHolds> searchForSixMonth(HouseHolds vo) {
 		SqlSession session = null;
 		ArrayList<HouseHolds> hh = new ArrayList<HouseHolds>();
 		try {
@@ -259,7 +264,7 @@ public class MemberDAO {
 		return hh;
 	}
 
-	public ArrayList<HouseHolds> searchForAnYear(HouseHolds vo) {
+	public static ArrayList<HouseHolds> searchForAnYear(HouseHolds vo) {
 		SqlSession session = null;
 		ArrayList<HouseHolds> hh = new ArrayList<HouseHolds>();
 		try {

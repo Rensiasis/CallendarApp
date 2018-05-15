@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -14,7 +19,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="calendarPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Controller.CalendarController">
+<AnchorPane fx:id="calendarPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Controller.CalendarController">
    <children>
       <GridPane fx:id="gridPane" gridLinesVisible="true" layoutY="25.0" prefHeight="625.0" prefWidth="875.0" style="-fx-background-color: white; -fx-border-color: black;">
         <columnConstraints>
@@ -514,26 +519,26 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Button fx:id="monthAfter" layoutX="1121.0" layoutY="105.0" mnemonicParsing="false" text="&gt;&gt;" />
-      <Button fx:id="yearAfter" layoutX="1121.0" layoutY="65.0" mnemonicParsing="false" text="&gt;&gt;" />
-      <Button fx:id="yearBefore" layoutX="924.0" layoutY="65.0" mnemonicParsing="false" text="&lt;&lt;" />
-      <Button fx:id="monthBefore" layoutX="924.0" layoutY="105.0" mnemonicParsing="false" text="&lt;&lt;" />
-      <Label fx:id="year" alignment="CENTER" layoutX="957.0" layoutY="58.0" prefHeight="32.0" prefWidth="136.0">
+      <Button fx:id="monthAfter" layoutX="1121.0" layoutY="120.0" mnemonicParsing="false" text="&gt;&gt;" />
+      <Button fx:id="yearAfter" layoutX="1121.0" layoutY="80.0" mnemonicParsing="false" text="&gt;&gt;" />
+      <Button fx:id="yearBefore" layoutX="924.0" layoutY="80.0" mnemonicParsing="false" text="&lt;&lt;" />
+      <Button fx:id="monthBefore" layoutX="924.0" layoutY="120.0" mnemonicParsing="false" text="&lt;&lt;" />
+      <Label fx:id="year" alignment="CENTER" layoutX="957.0" layoutY="80.0" prefHeight="32.0" prefWidth="136.0">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="month" alignment="CENTER" layoutX="957.0" layoutY="101.0" prefHeight="32.0" prefWidth="136.0">
+      <Label fx:id="month" alignment="CENTER" layoutX="957.0" layoutY="120.0" prefHeight="32.0" prefWidth="136.0">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="1064.0" layoutY="64.0" text="년">
+      <Label layoutX="1064.0" layoutY="80.0" text="년">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="1064.0" layoutY="104.0" text="월">
+      <Label layoutX="1064.0" layoutY="120.0" text="월">
          <font>
             <Font size="20.0" />
          </font>
@@ -559,5 +564,6 @@
             <Font size="13.0" />
          </font>
       </Button>
+      <Button layoutX="901.0" layoutY="40.0" mnemonicParsing="false" onAction="#btnOnHH" prefHeight="32.0" prefWidth="276.0" text="가계부 열기" />
    </children>
 </AnchorPane>

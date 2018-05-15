@@ -75,6 +75,6 @@ drop table schedule
 
 select * from MEMBERS
 
-drop table accounts;
+drop table schedule;
 
 select * from ACCOUNTS

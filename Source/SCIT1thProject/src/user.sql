@@ -78,7 +78,7 @@ create sequence schedule_seq
 
 drop sequence 
 
-select * from MEMBERS
+select * from households;
 
 drop table 
 

@@ -45,6 +45,7 @@
 		where id=#{id}
 	</select>
 
+	<!-- 가계부정보 등록하기 -->	
 	<insert id="insertHouseHold" parameterType="HouseHold">
 		insert into
 		HouseHolds(
@@ -53,15 +54,13 @@
 		, product
 		, price
 		, get_date
-		,
-		content
+		, content
 		, indate
 		, inuser
 		) values (
 		household_seq.nextval
+		, #{member_seq}
 		, #{product}
-		,
-		#{product}
 		, #{price}
 		, sysdate
 		, #{content}
@@ -264,5 +263,6 @@
 		delete Schedule
 		where schedule_seq=#{schedule_seq}
 	</delete>
+		
 </mapper>
   

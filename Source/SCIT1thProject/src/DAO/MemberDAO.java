@@ -54,6 +54,7 @@ public class MemberDAO {
 		return i;
 	}
 
+	//가계부 삽입
 	public static void insertHouseHold(HouseHolds vo) {
 		SqlSession session = null;
 

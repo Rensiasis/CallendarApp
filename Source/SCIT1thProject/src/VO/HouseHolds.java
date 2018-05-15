@@ -31,6 +31,9 @@ public class HouseHolds implements Serializable{
 		this.inuser = inuser;
 		this.luser = luser;
 	}
+	
+	
+	
 	public String getHousehold_seq() {
 		return household_seq;
 	}

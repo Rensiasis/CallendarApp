@@ -8,14 +8,14 @@ import VO.HouseHolds;
 import VO.SocketDB;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ContextMenuEvent;
 
 public class HouseHoldController implements Initializable {
 	@FXML
@@ -32,7 +32,10 @@ public class HouseHoldController implements Initializable {
 	private Button fix;
 	@FXML
 	private ListView contentList;
-
+	@FXML
+	private ComboBox<String> searchCombo;
+	
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
@@ -40,6 +43,17 @@ public class HouseHoldController implements Initializable {
 		add.setOnMouseClicked(event -> add());
 		delete.setOnMouseClicked(event -> delete());
 		fix.setOnMouseClicked(event -> fix());
+		
+		searchCombo.getItems().addAll(
+                "최근 1개월 이내 검색",
+                "최근 3개월 이내 검색",
+                "최근 6개월 이내 검색",
+                "최근 12개월 이내 검색",
+                "특정 기간 검색");
+				
+		searchCombo.setValue("검색옵션");
+		searchCombo.setVisibleRowCount(5);
+		
 	}
 
 	public void add() {
@@ -76,6 +90,29 @@ public class HouseHoldController implements Initializable {
 		ArrayList<HouseHolds> list = (ArrayList<HouseHolds>) Client.Client.summit(new SocketDB("getAll", Client.User.getUser()));
 		ObservableList observelist = FXCollections.observableList(list);
 		contentList.setItems(observelist);
+	}
+	public void searchOptions() {
+		
+		/*
+		String value2 = (String) searchCombo.getValue();
+		String value3 = (String) searchCombo.getValue();*/
+		
+		//*searchCombo.setOnContextMenuRequested(event-> comboSelectedEvent(event));
+		
+		/*searchCombo.setOnAction((e) -> {
+            System.out.println(searchCombo.getSelectionModel().getSelectedItem());;;
+		*/
+	}
+	
+	public void comboSelectedEvent(ContextMenuEvent event) {
+		
+		System.out.println(event.getPickResult().toString());
+		System.out.println(event.getPickResult().toString());
+		System.out.println(event.getPickResult().toString());
+		
+		
+		
+		
 	}
 
 }

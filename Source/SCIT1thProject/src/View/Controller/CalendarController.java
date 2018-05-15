@@ -1,6 +1,7 @@
 package View.Controller;
 
 import java.io.IOException;
+import java.lang.management.PlatformManagedObject;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -856,7 +857,6 @@ public class CalendarController implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 
 	public static void insertMemoReceiver(Schedule vo) {
@@ -877,10 +877,34 @@ public class CalendarController implements Initializable {
 
 	public void delete() {
 		Object item = contentListView.getSelectionModel().getSelectedItem();
-//		if (item instanceof HouseHolds) {
-			Schedule vo = (Schedule) item;
-			Client.Client.summit(new SocketDB("deleteSchedule", vo));
-			refreshCalendar(selectedPage);
-//		}
+		// if (item instanceof HouseHolds) {
+		Schedule vo = (Schedule) item;
+		Client.Client.summit(new SocketDB("deleteSchedule", vo));
+		refreshCalendar(selectedPage);
+		// }
 	}
+
+	@FXML
+	public void btnOnHH(ActionEvent event) {
+		Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				try {
+					AnchorPane memoPane = FXMLLoader.load(getClass().getResource("/View/HouseHold.fxml"));
+					Scene scene = new Scene(memoPane);
+					stage = new Stage();
+					stage.setScene(scene);
+					stage.setTitle("가계부");
+					stage.setResizable(false);
+					stage.show();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
 }

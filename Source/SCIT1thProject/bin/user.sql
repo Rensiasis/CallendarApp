@@ -76,11 +76,11 @@ on delete cascade
 create sequence schedule_seq
 
 
-drop table schedule
+drop sequence 
 
 select * from MEMBERS
 
-drop table schedule;
+drop table 
 
 select * from ACCOUNTS
 

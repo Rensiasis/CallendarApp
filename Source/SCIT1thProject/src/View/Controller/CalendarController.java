@@ -427,11 +427,11 @@ public class CalendarController implements Initializable {
 
 		insertMemo.setOnMouseClicked(event -> insertMemo());
 		deleteButton.setOnMouseClicked(event -> delete());
-		insertSchedule.setOnMouseClicked(event ->insertSchedule());
+		insertSchedule.setOnMouseClicked(event -> insertSchedule());
 
 		calList = new HashMap<>();
-		staticListView=contentListView;
-		
+		staticListView = contentListView;
+
 		makeCalandar();
 	}
 
@@ -866,6 +866,11 @@ public class CalendarController implements Initializable {
 	}
 
 	public static void insertMemoReceiver(Schedule vo) {
+		if (selectedDay == null)
+			return;
+		if (vo.getContent().equals(""))
+			return;
+
 		vo.setFrom_date(selectedDay);
 		Client.Client.summit(new SocketDB("insertMemo", vo));
 		String keyStr = vo.getFrom_date().substring(0, 6);
@@ -881,23 +886,42 @@ public class CalendarController implements Initializable {
 		refreshDaySchedule();
 
 		refreshContentList();
-		
+
 		refreshCalendar(selectedPage);
 	}
-	
+
 	public void insertSchedule() {
-		
+		AnchorPane schedulePane;
+		try {
+			schedulePane = FXMLLoader.load(getClass().getResource("/View/InsertSchedule.fxml"));
+			Scene scene = new Scene(schedulePane);
+			stage = new Stage();
+			stage.setScene(scene);
+			stage.setTitle("스케줄 입력");
+			stage.setResizable(false);
+			stage.show();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public static void insertScheduleReceiver() {
+		if (selectedDay == null)
+			return;
 	}
 
 	public void delete() {
 		Object item = contentListView.getSelectionModel().getSelectedItem();
+		if (item == null)
+			return;
 		// if (item instanceof HouseHolds) {
 
 		Schedule vo = (Schedule) item;
 		Client.Client.summit(new SocketDB("deleteSchedule", vo));
 
 		refreshDaySchedule();
-		
+
 		refreshContentList();
 
 		refreshCalendar(selectedPage);
@@ -924,7 +948,7 @@ public class CalendarController implements Initializable {
 	}
 
 	public static void refreshContentList() {
-		
+
 		String keyStr = selectedDay.substring(0, 6);
 		int key = Integer.parseInt(keyStr);
 		int date = 0;
@@ -934,8 +958,8 @@ public class CalendarController implements Initializable {
 			date = Integer.parseInt(selectedDay.substring(6, 8));
 		}
 
-		ArrayList<EventDay> eventList = calList.get(key).get(date-1).getEvent();
-		ArrayList<Schedule> scheList = calList.get(key).get(date-1).getSchedule();
+		ArrayList<EventDay> eventList = calList.get(key).get(date - 1).getEvent();
+		ArrayList<Schedule> scheList = calList.get(key).get(date - 1).getSchedule();
 
 		ObservableList<Object> observeList = FXCollections.observableArrayList();
 

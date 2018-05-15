@@ -73,6 +73,9 @@ public class SocketDB implements Serializable {
 		case "getSchedule":
 			result = MemberDAO.getSchedule((Members) inputObject);
 			break;
+		case "deleteSchedule":
+			MemberDAO.deleteSchedule((Schedule) inputObject);
+			break;
 		}
 		return result;
 	}

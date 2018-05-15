@@ -56,6 +56,7 @@ on delete cascade
 )
 
 create table schedule(
+schedule_seq varchar2(6),
 member_seq varchar2(6),
 data_type varchar2(10),
 from_date date,
@@ -71,6 +72,10 @@ foreign key (member_seq)
 references members (member_seq)
 on delete cascade
 )
+
+create sequence schedule_seq
+
+
 drop table schedule
 
 select * from MEMBERS

@@ -15,6 +15,7 @@ import Parser.SearchPostNumber;
 import VO.Address;
 import VO.Day;
 import VO.EventDay;
+import VO.HouseHolds;
 import VO.Schedule;
 import VO.SocketDB;
 import javafx.application.Platform;
@@ -225,6 +226,8 @@ public class CalendarController implements Initializable {
 	@FXML
 	private Button insertMemo;
 	@FXML
+	private Button deleteButton;
+	@FXML
 	private ListView<Object> contentListView;
 
 	private static Label[] labelList;
@@ -244,6 +247,7 @@ public class CalendarController implements Initializable {
 	public static Schedule schedule;
 
 	private static String selectedDay;
+	private static String selectedPage;
 
 	@FXML
 	public void btnLogout(ActionEvent event) {
@@ -419,6 +423,7 @@ public class CalendarController implements Initializable {
 		monthBefore.setOnMouseClicked(event -> monthBefore());
 
 		insertMemo.setOnMouseClicked(event -> insertMemo());
+		deleteButton.setOnMouseClicked(event -> delete());
 
 		calList = new HashMap<>();
 		makeCalandar();
@@ -595,7 +600,7 @@ public class CalendarController implements Initializable {
 			for (int j = 0; j < scheList.size(); j++) {
 				switch (scheList.get(j).getData_type()) {
 				case "M":
-					areaList[i].appendText(scheList.get(j).getContent());
+					areaList[i].appendText("-" + scheList.get(j).getContent());
 					break;
 				}
 
@@ -753,16 +758,24 @@ public class CalendarController implements Initializable {
 	public void setSchedule() {
 		ArrayList<Schedule> sList = (ArrayList<Schedule>) Client.Client
 				.summit(new SocketDB("getSchedule", Client.User.user));
-		for (int i = 0; i < sList.size(); i++) {
-			switch (sList.get(i).getData_type()) {
-			case "M":
-				String fullDate = sList.get(i).getFrom_date();
-				System.out.println(sList.get(i));
-				String keyStr = fullDate.substring(0, 6);
-				int key = Integer.parseInt(keyStr);
-				int date = Integer.parseInt(fullDate.substring(6, 8));
-				calList.get(key).get(date - 1).getSchedule().add(sList.get(i));
-				break;
+		if (sList != null) {
+			for (int i = 0; i < sList.size(); i++) {
+				switch (sList.get(i).getData_type()) {
+				case "M":
+					String fullDate = sList.get(i).getFrom_date();
+					System.out.println(sList.get(i));
+					String keyStr = fullDate.substring(0, 6);
+					int key = Integer.parseInt(keyStr);
+					int date = 0;
+					if (fullDate.charAt(6) == '0') {
+						date = Integer.parseInt(fullDate.substring(7, 8));
+					} else {
+						date = Integer.parseInt(fullDate.substring(6, 8));
+					}
+					System.out.println(date);
+					calList.get(key).get(date - 1).getSchedule().add(sList.get(i));
+					break;
+				}
 			}
 		}
 	}
@@ -770,6 +783,11 @@ public class CalendarController implements Initializable {
 	public void selectDay(MouseEvent event) {
 		String year = this.year.getText();
 		String month = this.month.getText();
+		if (Integer.parseInt(month) < 10) {
+			selectedPage = year + "0" + month;
+		} else {
+			selectedPage = year + month;
+		}
 		int index = Integer.parseInt(event.getSource().toString().substring(20).split(",")[0]) - 1;
 		String day = labelList[index].getText();
 		if (index < 14 && Integer.parseInt(day) > 14) {
@@ -787,12 +805,19 @@ public class CalendarController implements Initializable {
 
 		String keyStr = "";
 		if (Integer.parseInt(month) < 10) {
-			selectedDay = year + "0" + month + day;
+			selectedDay = year + "0" + month;
 			keyStr = year + "0" + month;
 		} else {
-			selectedDay = year + month + day;
+			selectedDay = year + month;
 			keyStr = year + month;
 		}
+
+		if (Integer.parseInt(day) < 10) {
+			selectedDay += "0" + day;
+		} else {
+			selectedDay += day;
+		}
+
 		int key = Integer.parseInt(keyStr);
 		int dayIndex = Integer.parseInt(day) - 1;
 
@@ -802,12 +827,12 @@ public class CalendarController implements Initializable {
 		ObservableList<Object> observeList = FXCollections.observableArrayList();
 
 		for (int i = 0; i < eventList.size(); i++) {
-			observeList.add("◎ " + eventList.get(i));
+			observeList.add(eventList.get(i));
 		}
 		for (int i = 0; i < scheList.size(); i++) {
 			switch (scheList.get(i).getData_type()) {
 			case "M":
-				observeList.add("- " + scheList.get(i).getContent());
+				observeList.add(scheList.get(i));
 				break;
 			}
 		}
@@ -839,9 +864,23 @@ public class CalendarController implements Initializable {
 		Client.Client.summit(new SocketDB("insertMemo", vo));
 		String keyStr = vo.getFrom_date().substring(0, 6);
 		int key = Integer.parseInt(keyStr);
-		int date = Integer.parseInt(vo.getFrom_date().substring(6, 8));
+		int date = 0;
+		if (vo.getFrom_date().charAt(6) == '0') {
+			date = Integer.parseInt(vo.getFrom_date().substring(7, 8));
+		} else {
+			date = Integer.parseInt(vo.getFrom_date().substring(6, 8));
+		}
 		calList.get(key).get(date - 1).getSchedule().add(vo);
 
-		refreshCalendar(keyStr);
+		refreshCalendar(selectedPage);
+	}
+
+	public void delete() {
+		Object item = contentListView.getSelectionModel().getSelectedItem();
+//		if (item instanceof HouseHolds) {
+			Schedule vo = (Schedule) item;
+			Client.Client.summit(new SocketDB("deleteSchedule", vo));
+			refreshCalendar(selectedPage);
+//		}
 	}
 }

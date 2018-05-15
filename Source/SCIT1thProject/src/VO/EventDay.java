@@ -62,7 +62,7 @@ public class EventDay {
 
 	@Override
 	public String toString() {
-		return name;
+		return "◎ "+name;
 	}
 
 }

@@ -3,7 +3,8 @@ package VO;
 import java.io.Serializable;
 
 public class Schedule implements Serializable {
-
+	
+	private String schedule_seq;
 	private String member_seq;
 	private String data_type;
 	private String from_date;
@@ -14,9 +15,12 @@ public class Schedule implements Serializable {
 	private String inuser;
 	private String luser;
 
-	public Schedule(String member_seq, String data_type, String from_date, String to_date, String content,
-			String indate, String ldate, String inuser, String luser) {
+	
+
+	public Schedule(String schedule_seq, String member_seq, String data_type, String from_date, String to_date,
+			String content, String indate, String ldate, String inuser, String luser) {
 		super();
+		this.schedule_seq = schedule_seq;
 		this.member_seq = member_seq;
 		this.data_type = data_type;
 		this.from_date = from_date;
@@ -30,6 +34,14 @@ public class Schedule implements Serializable {
 
 	public Schedule() {
 		super();
+	}
+
+	public String getSchedule_seq() {
+		return schedule_seq;
+	}
+
+	public void setSchedule_seq(String schedule_seq) {
+		this.schedule_seq = schedule_seq;
 	}
 
 	public String getMember_seq() {
@@ -106,9 +118,7 @@ public class Schedule implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Schedule [member_seq=" + member_seq + ", type=" + data_type + ", from_date=" + from_date + ", to_date="
-				+ to_date + ", content=" + content + ", indate=" + indate + ", ldate=" + ldate + ", inuser=" + inuser
-				+ ", luser=" + luser + "]";
+		return "-"+content;
 	}
 
 }

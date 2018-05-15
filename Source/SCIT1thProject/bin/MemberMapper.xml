@@ -217,7 +217,8 @@
 	<insert id="insertMemo" parameterType="Schedule">
 		insert into Schedule
 		(
-		member_seq
+		schedule_seq
+		,member_seq
 		,data_type
 		,from_date
 		,content
@@ -226,9 +227,11 @@
 		)
 		values
 		(
-		#{member_seq}
+		schedule_seq.nextval
+		,#{member_seq}
 		, #{data_type}
-		, to_date(#{from_date},'YYYYMMDD')
+		,
+		to_date(#{from_date},'YYYYMMDD')
 		,
 		#{content}
 		, sysdate
@@ -240,17 +243,26 @@
 	<select id="getSchedule" parameterType="Member"
 		resultType="Schedule">
 		select
-		member_seq
+		schedule_seq
+		,member_seq
 		,data_type
 		,to_char(from_date,'YYYYMMDD') from_date
-		,to_char(to_date,'YYYYMMDD') to_date
+		,to_char(to_date,'YYYYMMDD')
+		to_date
 		,content
 		,indate
 		,ldate
 		,inuser
 		,luser
 		from Schedule
-		where member_seq=#{member_seq}
+		where
+		member_seq=#{member_seq}
 	</select>
+
+	<!-- 스케쥴 삭제하기 -->
+	<delete id="deleteSchedule" parameterType="Schedule">
+		delete Schedule
+		where schedule_seq=#{schedule_seq}
+	</delete>
 </mapper>
   

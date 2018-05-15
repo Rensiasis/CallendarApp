@@ -56,4 +56,7 @@ public interface MemberMapper {
 	
 	//스케쥴 데이터 받아오기
 	public ArrayList<Schedule> getSchedule(Members vo);
+	
+	//스케쥴 삭제
+	public void deleteSchedule(Schedule vo);
 }

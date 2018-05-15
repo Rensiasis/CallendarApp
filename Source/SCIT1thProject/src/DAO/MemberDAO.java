@@ -321,4 +321,23 @@ public class MemberDAO {
 		return result;
 	}
 
+	public static void deleteSchedule(Schedule vo) {
+		SqlSession session = null;
+		try {
+			session = factory.openSession();
+			MemberMapper mapper = session.getMapper(MemberMapper.class);
+
+			mapper.deleteSchedule(vo);
+
+			session.commit();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+	}
+
 }

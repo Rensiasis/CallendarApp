@@ -554,5 +554,10 @@
             <Font size="14.0" />
          </font>
       </Label>
+      <Button fx:id="deleteButton" layoutX="996.0" layoutY="554.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="165.0" text="삭제">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

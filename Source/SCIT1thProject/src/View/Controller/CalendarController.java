@@ -913,7 +913,6 @@ public class CalendarController implements Initializable {
 
 	public void delete() {
 		Object item = contentListView.getSelectionModel().getSelectedItem();
-<<<<<<< HEAD
 		if (item == null)
 			return;
 		// if (item instanceof HouseHolds) {
@@ -976,13 +975,6 @@ public class CalendarController implements Initializable {
 		}
 
 		staticListView.setItems(observeList);
-=======
-		// if (item instanceof HouseHolds) {
-		Schedule vo = (Schedule) item;
-		Client.Client.summit(new SocketDB("deleteSchedule", vo));
-		refreshCalendar(selectedPage);
-		// }
->>>>>>> master_branch
 	}
 
 	@FXML

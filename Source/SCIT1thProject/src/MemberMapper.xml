@@ -264,7 +264,6 @@
 		Schedule
 		where schedule_seq=#{schedule_seq}
 	</delete>
-<<<<<<< HEAD
 
 	<!-- 스케쥴 리프레시 -->
 	<select id="getDaySchedule" parameterType="Schedule"
@@ -287,8 +286,6 @@
 		from_date=#{from_date} OR
 		(#{from_date} between from_date and to_date)
 	</select>
-=======
-		
->>>>>>> master_branch
+	
 </mapper>
   

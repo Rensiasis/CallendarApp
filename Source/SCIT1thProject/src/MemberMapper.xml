@@ -305,32 +305,29 @@
 
 
 	<!-- 일정추가 -->
-	<insert id="insertDaySchedule" parameterType="Schedule">
+	<insert id="insertDD" parameterType="Schedule">
 		insert into
 		Schedule
 		(
 		schedule_seq
-		,member_seq
-		,data_type
-		,from_date
-		,times
-		,content
-		,indate
-		,inuser
+		, member_seq
+		, data_type
+		, from_date
+		, times
+		, content
+		, indate
+		, inuser
 		)
 		values
 		(
 		schedule_seq.nextval
-		,#{member_seq}
+		, #{member_seq}
 		, #{data_type}
-		,
-		to_date(#{from_date},'YYYYMMDD')
+		, to_date(#{from_date},'YYYYMMDD')
 		, #{times}
-		,
-		#{content}
+		, #{content}
 		, sysdate
-		,
-		#{inuser}
+		, #{inuser}
 		)
 	</insert>
 
@@ -370,7 +367,8 @@
 		,member_seq
 		,data_type
 		,to_char(from_date,'YYYYMMDD') from_date
-		,to_char(to_date,'YYYYMMDD') to_date
+		,to_char(to_date,'YYYYMMDD')
+		to_date
 		,times
 		,content
 		,indate

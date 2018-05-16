@@ -83,5 +83,5 @@ select * from households;
 drop table 
 
 select * from ACCOUNTS
-
+drop table schedule
 select * from schedule

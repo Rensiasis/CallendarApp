@@ -802,7 +802,7 @@ public class CalendarController implements Initializable {
 					} else {
 						fromDate = Integer.parseInt(fromFullDate.substring(6, 8));
 					}
-					String toFullDate = sList.get(i).getFrom_date();
+					String toFullDate = sList.get(i).getTo_date();
 					String toKeyStr = toFullDate.substring(0, 6);
 					int toKey = Integer.parseInt(toKeyStr);
 					int toDate = 0;
@@ -900,6 +900,9 @@ public class CalendarController implements Initializable {
 		for (int i = 0; i < scheList.size(); i++) {
 			switch (scheList.get(i).getData_type()) {
 			case "M":
+				observeList.add(scheList.get(i));
+				break;
+			case "S":
 				observeList.add(scheList.get(i));
 				break;
 			}
@@ -1051,15 +1054,61 @@ public class CalendarController implements Initializable {
 			switch (vo.getData_type()) {
 			case "M":
 				Client.Client.summit(new SocketDB("deleteSchedule", vo));
+				refreshDaySchedule();
 				break;
 			case "S":
 				Client.Client.summit(new SocketDB("deleteSchedule", vo));
+				String from = vo.getFrom_date();
+				String to = vo.getTo_date();
+				String fromKeyStr = from.substring(0, 6);
+				String toKeyStr = to.substring(0, 6);
+				int fromKey = Integer.parseInt(fromKeyStr);
+				int toKey = Integer.parseInt(toKeyStr);
+				int fromDate = 0;
+				int toDate = 0;
+				if (from.charAt(6) == '0') {
+					fromDate = Integer.parseInt(from.substring(7, 8));
+				} else {
+					fromDate = Integer.parseInt(from.substring(6, 8));
+				}
+				if (to.charAt(6) == '0') {
+					toDate = Integer.parseInt(to.substring(7, 8));
+				} else {
+					toDate = Integer.parseInt(to.substring(6, 8));
+				}
+				fromDate--;
+				toDate--;
+
+				boolean first = true;
+				while (fromKey <= toKey) {
+					ArrayList<Day> dList = calList.get(fromKey);
+					if (fromKey < toKey) {
+						if (first = true) {
+							first = false;
+							for (int i = fromDate; i < dList.size(); i++) {
+								dList.get(i).getSchedule().remove(vo);
+							}
+							fromDate = 0;
+						} else {
+							for (int i = 0; i < dList.size(); i++) {
+								dList.get(i).getSchedule().remove(vo);
+							}
+						}
+					} else {
+						for (int i = fromDate; i <= toDate; i++) {
+							dList.get(i).getSchedule().remove(vo);
+						}
+					}
+					fromKey++;
+					if ((fromKey % 100) > 12) {
+						fromKey += 100;
+						fromKey -= 12;
+					}
+				}
 				break;
 			}
 
 		}
-
-		refreshDaySchedule();
 
 		refreshContentList();
 

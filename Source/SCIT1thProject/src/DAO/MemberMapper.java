@@ -33,7 +33,6 @@ public interface MemberMapper {
 	// 회원정보수정
 	public void updateMemInfo(Members vo);
 
-<<<<<<< Updated upstream
 	//어카운트 생성(로그인시 널값으로 생성)
 	public void insertAccount(String member_seq);
 
@@ -44,15 +43,6 @@ public interface MemberMapper {
 	public Account getAccountInfo(String member_seq);
 	
 	//최근 1개월 이내 내역 검색
-=======
-	// 가계부 설정 등록
-	public void insertAccount(String member_seq);
-
-	// 가계부
-	public void updateAccount(Account a_vo);
-
-	// 최근 1개월 이내 내역 검색
->>>>>>> Stashed changes
 	public ArrayList<HouseHolds> searchForAMonth(HouseHolds vo);
 
 	// 최근 3개월 이내 내역 검색

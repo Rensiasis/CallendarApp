@@ -34,12 +34,12 @@ public class InsertScheduleController implements Initializable {
 		// TODO Auto-generated method stub
 		insert.setOnMouseClicked(event -> insert());
 		cancel.setOnMouseClicked(event -> cancel());
-		
+
 		// DatePicker 초기화
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		Date today=new Date();
-		SimpleDateFormat format=new SimpleDateFormat("YYYY-MM-dd");
-		String formatedDay=format.format(today);
+		Date today = new Date();
+		SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd");
+		String formatedDay = format.format(today);
 		LocalDate localDate = LocalDate.parse(formatedDay, formatter);
 		from.setValue(localDate);
 		to.setValue(localDate);
@@ -51,17 +51,19 @@ public class InsertScheduleController implements Initializable {
 
 		if (Integer.parseInt(fromDate) <= Integer.parseInt(toDate)) {
 			if (!content.getText().equals("")) {
-				Schedule vo=new Schedule();
+				Schedule vo = new Schedule();
 				vo.setMember_seq(Client.User.user.getMember_seq());
 				vo.setData_type("S");
 				vo.setFrom_date(fromDate);
 				vo.setTo_date(toDate);
-				vo.setContent(content.getText());
+
+				vo.setContent(
+						"[" + parseDate(from.getValue()) + "~" + parseDate(to.getValue()) + "]\n" + content.getText());
 				vo.setInuser(Client.User.user.getName());
-				View.Controller.CalendarController.schedule=vo;
+				View.Controller.CalendarController.schedule = vo;
 				View.Controller.CalendarController.insertScheduleReceiver(vo);
 				View.Controller.CalendarController.stage.close();
-			}else {
+			} else {
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("입력 에러");
 				alert.setHeaderText("내용이 존재하지 않음");
@@ -83,6 +85,11 @@ public class InsertScheduleController implements Initializable {
 
 	public String parseString(LocalDate date) {
 		return date.toString().split("-")[0] + date.toString().split("-")[1] + date.toString().split("-")[2];
+	}
+
+	public String parseDate(LocalDate date) {
+		return date.toString().split("-")[0] + "/" + date.toString().split("-")[1] + "/"
+				+ date.toString().split("-")[2];
 	}
 
 }

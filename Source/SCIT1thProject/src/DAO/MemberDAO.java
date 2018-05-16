@@ -164,7 +164,7 @@ public class MemberDAO {
 		}
 	}
 
-	// 가계부 설정 입력
+	// 어카운트 설정 입력
 	public static void insertAccount(String member_seq) {
 		SqlSession session = null;
 
@@ -182,7 +182,7 @@ public class MemberDAO {
 		}
 	}
 
-	// 가계부 수정
+	// 어카운트 수정
 	public static void updateAccount(Account a_vo) {
 		SqlSession session = null;
 
@@ -198,6 +198,24 @@ public class MemberDAO {
 				session.close();
 			}
 		}
+	}
+	
+	//어카운트 정보 가져오기
+	public Account getAccountInfo(String member_seq) {
+		SqlSession session = null;
+		Account result = null;
+		try {
+			session = factory.openSession();
+			MemberMapper mapper = session.getMapper(MemberMapper.class);
+			result = mapper.getAccountInfo(member_seq);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+		return result;
 	}
 
 	public static ArrayList<HouseHolds> searchForAMonth(HouseHolds vo) {

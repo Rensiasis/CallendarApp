@@ -33,11 +33,14 @@ public interface MemberMapper {
 	//회원정보수정
 	public void updateMemInfo(Members vo);
 
-	//가계부 설정 등록
+	//어카운트 생성(로그인시 널값으로 생성)
 	public void insertAccount(String member_seq);
 
-	//가계부
+	//어카운트 정보 수정(메뉴바 설정 입력시 수정)
 	public void updateAccount(Account a_vo);
+	
+	//어카운트 정보 가져오기
+	public Account getAccountInfo(String member_seq);
 	
 	//최근 1개월 이내 내역 검색
 	public ArrayList<HouseHolds> searchForAMonth(HouseHolds vo);
@@ -62,4 +65,6 @@ public interface MemberMapper {
 	
 	//하루 스케쥴 리프레시
 	public ArrayList<Schedule> getDaySchedule(Schedule vo);
+	
+	
 }

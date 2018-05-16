@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import Client.User;
 import DAO.MemberDAO;
+import VO.Account;
 import VO.HouseHolds;
 import VO.Members;
 import VO.SocketDB;
@@ -53,6 +54,15 @@ public class HouseHoldController implements Initializable {
 	private ComboBox<String> searchCombo;
 
 	@FXML
+	private TextField showSpend;
+
+	@FXML
+	private TextField showSave;
+
+	@FXML
+	private TextField showTotalmoney;
+
+	@FXML
 	private ListView<HouseHolds> HHListView;
 
 	public ObservableList<HouseHolds> hlist = FXCollections.observableArrayList();
@@ -60,12 +70,19 @@ public class HouseHoldController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-
-		ArrayList<HouseHolds> hhList = dao.getHouseHoldList(user.getUser().getMember_seq());
+		String member_seq=user.getUser().getMember_seq();
+		
+		ArrayList<HouseHolds> hhList = dao.getHouseHoldList(member_seq);
 		for (int i = 0; i < hhList.size(); i++) {
 			hlist.add(hhList.get(i));
 		}
-		HHListView.setItems(hlist);
+		HHListView.setItems(hlist);// 리스트뷰에 가계부목록 출력하기
+
+		Account a_result= new Account();
+		a_result=dao.getAccountInfo(member_seq);
+		showSpend.getText();// 소비금액
+		showSave.getText();// 저축금액
+		showTotalmoney.setText(a_result.getAccount());// 총 재산
 
 		searchCombo.getItems().addAll("최근 1개월 이내 검색", "최근 3개월 이내 검색", "최근 6개월 이내 검색", "최근 12개월 이내 검색", "특정 기간 검색");
 		searchCombo.setValue("검색옵션");
@@ -88,27 +105,36 @@ public class HouseHoldController implements Initializable {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				HouseHolds hh = new HouseHolds();
+				if (product.getText().length() == 0 && price.getText().length() == 0
+						&& content.getText().length() == 0) {
+					Alert alert = new Alert(AlertType.ERROR);
+					alert.setTitle("가계부 추가 에러");
+					alert.setHeaderText("추가 정보 미입력");
+					alert.setContentText("추가할 정보를 모두 입력해 주시기 바랍니다.");
+					alert.showAndWait();
+				} else {
+					HouseHolds hh = new HouseHolds();
 
-				hh.setMember_seq(user.getUser().getMember_seq());
-				hh.setProduct(product.getText());
-				hh.setPrice(price.getText());
-				hh.setContent(content.getText());
-				hh.setInuser(user.getUser().getId());
+					hh.setMember_seq(user.getUser().getMember_seq());
+					hh.setProduct(product.getText());
+					hh.setPrice(price.getText());
+					hh.setContent(content.getText());
+					hh.setInuser(user.getUser().getId());
 
-				dao.insertHouseHold(hh);
-				product.clear();
-				price.clear();
-				content.clear();
+					dao.insertHouseHold(hh);
+					product.clear();
+					price.clear();
+					content.clear();
 
-				try {
-					AnchorPane memberPane = FXMLLoader.load(getClass().getResource("/View/HouseHold.fxml"));
-					HouseHoldPane.getChildren().setAll(memberPane);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					try {
+						AnchorPane memberPane = FXMLLoader.load(getClass().getResource("/View/HouseHold.fxml"));
+						HouseHoldPane.getChildren().setAll(memberPane);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
 				}
-
 			}
 
 		});
@@ -146,34 +172,42 @@ public class HouseHoldController implements Initializable {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				if (HHListView.getSelectionModel().getSelectedItem() != null) {
-					HouseHolds hh = new HouseHolds();
-					hh.setHousehold_seq(HHListView.getSelectionModel().getSelectedItem().getHousehold_seq());
-					hh.setProduct(product.getText());
-					hh.setPrice(price.getText());
-					hh.setContent(content.getText());
-
-					dao.fixHouseHold(hh);
-					product.clear();
-					price.clear();
-					content.clear();
-
-					try {
-						AnchorPane memberPane = FXMLLoader.load(getClass().getResource("/View/HouseHold.fxml"));
-						HouseHoldPane.getChildren().setAll(memberPane);
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-
-				} else {
+				if (product.getText().length() == 0 && price.getText().length() == 0
+						&& content.getText().length() == 0) {
 					Alert alert = new Alert(AlertType.ERROR);
 					alert.setTitle("수정 에러");
-					alert.setHeaderText("수정 정보 선택");
-					alert.setContentText("수정할 정보를 선택해 주시기 바랍니다.");
+					alert.setHeaderText("수정 정보 미입력");
+					alert.setContentText("수정할 정보를 모두 입력해 주시기 바랍니다.");
 					alert.showAndWait();
-				}
+				} else {
+					if (HHListView.getSelectionModel().getSelectedItem() != null) {
+						HouseHolds hh = new HouseHolds();
+						hh.setHousehold_seq(HHListView.getSelectionModel().getSelectedItem().getHousehold_seq());
+						hh.setProduct(product.getText());
+						hh.setPrice(price.getText());
+						hh.setContent(content.getText());
 
+						dao.fixHouseHold(hh);
+						product.clear();
+						price.clear();
+						content.clear();
+
+						try {
+							AnchorPane memberPane = FXMLLoader.load(getClass().getResource("/View/HouseHold.fxml"));
+							HouseHoldPane.getChildren().setAll(memberPane);
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
+					} else {
+						Alert alert = new Alert(AlertType.ERROR);
+						alert.setTitle("수정 에러");
+						alert.setHeaderText("수정 정보 선택");
+						alert.setContentText("수정할 정보를 선택해 주시기 바랍니다.");
+						alert.showAndWait();
+					}
+				}
 			}
 
 		});

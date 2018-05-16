@@ -53,9 +53,9 @@
             <TextField fx:id="showSpend" layoutX="74.0" layoutY="530.0" />
             <TextField fx:id="showSave" layoutX="74.0" layoutY="570.0" />
             <TextField fx:id="showTotalmoney" layoutX="74.0" layoutY="610.0" />
-            <Label layoutX="213.0" layoutY="534.0" text="원" />
-            <Label layoutX="213.0" layoutY="574.0" text="원" />
-            <Label layoutX="213.0" layoutY="613.0" text="원" />
+            <Label layoutX="225.0" layoutY="534.0" text="원" />
+            <Label layoutX="225.0" layoutY="574.0" text="원" />
+            <Label layoutX="225.0" layoutY="613.0" text="원" />
             <ComboBox fx:id="searchCombo" layoutX="18.0" layoutY="66.0" prefHeight="33.0" prefWidth="268.0" />
          </children>
       </AnchorPane>

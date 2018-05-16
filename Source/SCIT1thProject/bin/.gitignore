@@ -1,9 +1,3 @@
-/Client/
-/DAO/
-/Parser/
-/Server/
-/TestMain.class
-/Util/
-/VO/
 /View/
-/TestMain2.class
+/DAO/
+/VO/

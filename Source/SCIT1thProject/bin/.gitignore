@@ -1,20 +1,4 @@
-/Client/
-/DAO/
-/Image/
-<<<<<<< HEAD
-/DAO/
-/VO/
-/Util/
-=======
-/MemberMapper.xml
-/Parser/
-/Server/
-/Util/
 /VO/
 /View/
-/db.properties
-/mybatis-config.xml
-/user.sql
-/TestMain.class
-/TestMain2.class
->>>>>>> master_branch
+/Server/
+/Client/

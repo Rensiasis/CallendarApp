@@ -19,18 +19,18 @@ public class Client {
 		Object result=null;
 		try {
 			socket = new Socket("localhost", 7777);
-			System.out.println("OK!");
+			System.out.println("Socket connected");
 			
 			os = socket.getOutputStream();
 			oos = new ObjectOutputStream(os);
 			oos.writeObject(socketDB);
 			oos.flush();
-			System.out.println("OK!");
+			System.out.println("Data sumbit success");
 			
 			is = socket.getInputStream();
 			ois = new ObjectInputStream(is);
 			result=ois.readObject();
-			System.out.println("OK!");
+			System.out.println("Data receive success");
 		
 			
 		} catch (Exception e) {

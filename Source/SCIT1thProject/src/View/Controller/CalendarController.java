@@ -313,7 +313,171 @@ public class CalendarController implements Initializable {
 	@FXML
 	private Label min1;
 	@FXML
+	private Label min2;
+	@FXML
+	private Label min3;
+	@FXML
+	private Label min4;
+	@FXML
+	private Label min5;
+	@FXML
+	private Label min6;
+	@FXML
+	private Label min7;
+	@FXML
+	private Label min8;
+	@FXML
+	private Label min9;
+	@FXML
+	private Label min10;
+	@FXML
+	private Label min11;
+	@FXML
+	private Label min12;
+	@FXML
+	private Label min13;
+	@FXML
+	private Label min14;
+	@FXML
+	private Label min15;
+	@FXML
+	private Label min16;
+	@FXML
+	private Label min17;
+	@FXML
+	private Label min18;
+	@FXML
+	private Label min19;
+	@FXML
+	private Label min20;
+	@FXML
+	private Label min21;
+	@FXML
+	private Label min22;
+	@FXML
+	private Label min23;
+	@FXML
+	private Label min24;
+	@FXML
+	private Label min25;
+	@FXML
+	private Label min26;
+	@FXML
+	private Label min27;
+	@FXML
+	private Label min28;
+	@FXML
+	private Label min29;
+	@FXML
+	private Label min30;
+	@FXML
+	private Label min31;
+	@FXML
+	private Label min32;
+	@FXML
+	private Label min33;
+	@FXML
+	private Label min34;
+	@FXML
+	private Label min35;
+	@FXML
+	private Label min36;
+	@FXML
+	private Label min37;
+	@FXML
+	private Label min38;
+	@FXML
+	private Label min39;
+	@FXML
+	private Label min40;
+	@FXML
+	private Label min41;
+	@FXML
+	private Label min42;
+	@FXML
 	private Label max1;
+	@FXML
+	private Label max2;
+	@FXML
+	private Label max3;
+	@FXML
+	private Label max4;
+	@FXML
+	private Label max5;
+	@FXML
+	private Label max6;
+	@FXML
+	private Label max7;
+	@FXML
+	private Label max8;
+	@FXML
+	private Label max9;
+	@FXML
+	private Label max10;
+	@FXML
+	private Label max11;
+	@FXML
+	private Label max12;
+	@FXML
+	private Label max13;
+	@FXML
+	private Label max14;
+	@FXML
+	private Label max15;
+	@FXML
+	private Label max16;
+	@FXML
+	private Label max17;
+	@FXML
+	private Label max18;
+	@FXML
+	private Label max19;
+	@FXML
+	private Label max20;
+	@FXML
+	private Label max21;
+	@FXML
+	private Label max22;
+	@FXML
+	private Label max23;
+	@FXML
+	private Label max24;
+	@FXML
+	private Label max25;
+	@FXML
+	private Label max26;
+	@FXML
+	private Label max27;
+	@FXML
+	private Label max28;
+	@FXML
+	private Label max29;
+	@FXML
+	private Label max30;
+	@FXML
+	private Label max31;
+	@FXML
+	private Label max32;
+	@FXML
+	private Label max33;
+	@FXML
+	private Label max34;
+	@FXML
+	private Label max35;
+	@FXML
+	private Label max36;
+	@FXML
+	private Label max37;
+	@FXML
+	private Label max38;
+	@FXML
+	private Label max39;
+	@FXML
+	private Label max40;
+	@FXML
+	private Label max41;
+	@FXML
+	private Label max42;
 	@FXML
 	private Label contentLabel;
 	@FXML
@@ -562,12 +726,91 @@ public class CalendarController implements Initializable {
 
 		minList = new Label[42];
 		minList[0] = min1;
+		minList[1] = min2;
+		minList[2] = min3;
+		minList[3] = min4;
+		minList[4] = min5;
+		minList[5] = min6;
+		minList[6] = min7;
+		minList[7] = min8;
+		minList[8] = min9;
+		minList[9] = min10;
+		minList[10] = min11;
+		minList[11] = min12;
+		minList[12] = min13;
+		minList[13] = min14;
+		minList[14] = min15;
+		minList[15] = min16;
+		minList[16] = min17;
+		minList[17] = min18;
+		minList[18] = min19;
+		minList[19] = min20;
+		minList[20] = min21;
+		minList[21] = min22;
+		minList[22] = min23;
+		minList[23] = min24;
+		minList[24] = min25;
+		minList[25] = min26;
+		minList[26] = min27;
+		minList[27] = min28;
+		minList[28] = min29;
+		minList[29] = min30;
+		minList[30] = min31;
+		minList[31] = min32;
+		minList[32] = min33;
+		minList[33] = min34;
+		minList[34] = min35;
+		minList[35] = min36;
+		minList[36] = min37;
+		minList[37] = min38;
+		minList[38] = min39;
+		minList[39] = min40;
+		minList[40] = min41;
+		minList[41] = min42;
 
-		min1.setTextFill(Color.BLUE);
 		maxList = new Label[42];
 		maxList[0] = max1;
-
-		max1.setTextFill(Color.RED);
+		maxList[1] = max2;
+		maxList[2] = max3;
+		maxList[3] = max4;
+		maxList[4] = max5;
+		maxList[5] = max6;
+		maxList[6] = max7;
+		maxList[7] = max8;
+		maxList[8] = max9;
+		maxList[9] = max10;
+		maxList[10] = max11;
+		maxList[11] = max12;
+		maxList[12] = max13;
+		maxList[13] = max14;
+		maxList[14] = max15;
+		maxList[15] = max16;
+		maxList[16] = max17;
+		maxList[17] = max18;
+		maxList[18] = max19;
+		maxList[19] = max20;
+		maxList[20] = max21;
+		maxList[21] = max22;
+		maxList[22] = max23;
+		maxList[23] = max24;
+		maxList[24] = max25;
+		maxList[25] = max26;
+		maxList[26] = max27;
+		maxList[27] = max28;
+		maxList[28] = max29;
+		maxList[29] = max30;
+		maxList[30] = max31;
+		maxList[31] = max32;
+		maxList[32] = max33;
+		maxList[33] = max34;
+		maxList[34] = max35;
+		maxList[35] = max36;
+		maxList[36] = max37;
+		maxList[37] = max38;
+		maxList[38] = max39;
+		maxList[39] = max40;
+		maxList[40] = max41;
+		maxList[41] = max42;
 
 		gridPane.setGridLinesVisible(true);
 		gridPane.setAlignment(Pos.TOP_LEFT);
@@ -584,8 +827,13 @@ public class CalendarController implements Initializable {
 
 		calList = new HashMap<>();
 		staticListView = contentListView;
-
-		makeCalandar();
+		
+		calList = (Map<Integer, ArrayList<Day>>) Client.Client.summit(new SocketDB("requestCalendar",""));
+		System.out.println(calList);
+		
+		setInitialPage();
+		
+		setSchedule();
 
 		setWeather();
 
@@ -595,67 +843,12 @@ public class CalendarController implements Initializable {
 		refreshCalendar(keyStr);
 	}
 
-	public void makeCalandar() {
+	public void setInitialPage() {
 		Calendar today = Calendar.getInstance();
 		int year = today.get(Calendar.YEAR);
 		int month = today.get(Calendar.MONTH);
 		int day = today.get(Calendar.DATE);
 		setYearMonthLabel(year, month + 1);
-
-		Calendar ca = Calendar.getInstance();
-		ca.clear();
-
-		// 전년 12월 데이터
-		ca.set(year - 1, 11, 1);
-		Date monthly = ca.getTime();
-		SimpleDateFormat format = new SimpleDateFormat("YYYYMM");
-		String keyStr = format.format(monthly);
-		int key = Integer.parseInt(keyStr);
-		calList.put(key, new ArrayList<>());
-		for (int i = 1; i <= ca.getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
-			ca.set(Calendar.DATE, i);
-			Day dayVO = new Day();
-			dayVO.setDate(ca.getTime());
-			calList.get(key).add(dayVO);
-		}
-
-		// 전체 데이터
-		for (int k = 0; k < 5; k++) {
-			ca.clear();
-			ca.set(year + k, 0, 1);
-			for (int i = 0; i < 12; i++) {
-				ca.set(year + k, i, 1);
-				monthly = ca.getTime();
-				keyStr = format.format(monthly);
-				key = Integer.parseInt(keyStr);
-				calList.put(key, new ArrayList<>());
-				for (int j = 1; j <= ca.getActualMaximum(Calendar.DAY_OF_MONTH); j++) {
-					ca.set(Calendar.DATE, j);
-					Day dayVO = new Day();
-					dayVO.setDate(ca.getTime());
-					calList.get(key).add(dayVO);
-				}
-			}
-		}
-
-		// 후년 1월 데이터
-		ca.clear();
-		ca.set(year + 5, 0, 1);
-		monthly = ca.getTime();
-		keyStr = format.format(monthly);
-		key = Integer.parseInt(keyStr);
-		calList.put(key, new ArrayList<>());
-		for (int i = 1; i <= ca.getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
-			ca.set(Calendar.DATE, i);
-			Day dayVO = new Day();
-			dayVO.setDate(ca.getTime());
-			calList.get(key).add(dayVO);
-		}
-		Date todayDate = new Date();
-		keyStr = format.format(todayDate);
-
-		setEventDay();
-		setSchedule();
 	}
 
 	public void setWeather() {
@@ -764,6 +957,15 @@ public class CalendarController implements Initializable {
 
 			Weather weather = dayList.get(i - firstIndex).getWeather();
 			setWeatherView(weatherViewList[i], weather);
+			if (weather != null) {
+				minList[i].setText(weather.getTmin());
+				minList[i].setTextFill(Color.BLUE);
+				maxList[i].setText(weather.getTmax());
+				maxList[i].setTextFill(Color.RED);
+			} else {
+				minList[i].setText("");
+				maxList[i].setText("");
+			}
 		}
 		int lastIndex = dayList.size() + firstIndex;
 		// 전달 세팅
@@ -800,6 +1002,15 @@ public class CalendarController implements Initializable {
 
 			Weather weather = dayList.get(dayList.size() - firstIndex + i).getWeather();
 			setWeatherView(weatherViewList[i], weather);
+			if (weather != null) {
+				minList[i].setText(weather.getTmin());
+				minList[i].setTextFill(Color.BLUE);
+				maxList[i].setText(weather.getTmax());
+				maxList[i].setTextFill(Color.RED);
+			} else {
+				minList[i].setText("");
+				maxList[i].setText("");
+			}
 		}
 
 		// 다음달 세팅
@@ -835,6 +1046,15 @@ public class CalendarController implements Initializable {
 
 			Weather weather = dayList.get(i - lastIndex).getWeather();
 			setWeatherView(weatherViewList[i], weather);
+			if (weather != null) {
+				minList[i].setText(weather.getTmin());
+				minList[i].setTextFill(Color.BLUE);
+				maxList[i].setText(weather.getTmax());
+				maxList[i].setTextFill(Color.RED);
+			} else {
+				minList[i].setText("");
+				maxList[i].setText("");
+			}
 		}
 	}
 
@@ -937,54 +1157,6 @@ public class CalendarController implements Initializable {
 		this.year.setText(year + "");
 	}
 
-	public void setEventDay() {
-		for (int year = 2018; year <= 2022; year++) {
-			ArrayList<EventDay> holidayList = EventDayParser.parshing("h", Integer.toString(year)); // 법정공휴일
-			ArrayList<EventDay> adayList = EventDayParser.parshing("a", Integer.toString(year)); // 법정기념일
-			ArrayList<EventDay> sdayList = EventDayParser.parshing("s", Integer.toString(year)); // 24절기
-			ArrayList<EventDay> tdayList = EventDayParser.parshing("t", Integer.toString(year)); // 그 외 절기
-			ArrayList<EventDay> pdayList = EventDayParser.parshing("p", Integer.toString(year)); // 대중 기념일
-			ArrayList<EventDay> edayList = EventDayParser.parshing("e", Integer.toString(year)); // 기타 기념일
-			setHoliday(holidayList);
-			setEvent(adayList);
-			setEvent(sdayList);
-			setEvent(tdayList);
-			setEvent(pdayList);
-			setEvent(edayList);
-		}
-		calList.get(202301).get(0).getEvent().add(new EventDay("2023", "1", "1", "h", "신정"));
-		calList.get(202301).get(4).getEvent().add(new EventDay("2023", "1", "5", "s", "소한"));
-	}
-
-	public void setEvent(ArrayList<EventDay> eventList) {
-		for (int i = 0; i < eventList.size(); i++) {
-			EventDay event = eventList.get(i);
-			switch (event.getName()) {
-			case "설날":
-			case "어린이날":
-			case "추석":
-			case "현충일":
-				break;
-			default:
-				String keyStr = event.getYear() + event.getMonth();
-				int key = Integer.parseInt(keyStr);
-				int day = Integer.parseInt(event.getDay());
-				calList.get(key).get(day - 1).getEvent().add(event);
-				break;
-			}
-		}
-	}
-
-	public void setHoliday(ArrayList<EventDay> eventList) {
-		for (int i = 0; i < eventList.size(); i++) {
-			EventDay event = eventList.get(i);
-			String keyStr = event.getYear() + event.getMonth();
-			int key = Integer.parseInt(keyStr);
-			int day = Integer.parseInt(event.getDay());
-			calList.get(key).get(day - 1).getEvent().add(event);
-		}
-	}
-
 	public void setSchedule() {
 		ArrayList<Schedule> sList = (ArrayList<Schedule>) Client.Client
 				.summit(new SocketDB("getSchedule", Client.User.user));
@@ -1078,8 +1250,10 @@ public class CalendarController implements Initializable {
 					}
 					calList.get(key).get(date - 1).getSchedule().add(sList.get(i));
 					String content = sList.get(i).getContent();
-					/*if (inputDate.before(new Date()))
-						setAlarm(content.substring(7, content.length()), inputDate);*/
+					/*
+					 * if (inputDate.before(new Date())) setAlarm(content.substring(7,
+					 * content.length()), inputDate);
+					 */
 				}
 			}
 		}

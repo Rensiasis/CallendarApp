@@ -120,6 +120,6 @@ public class Address implements Serializable {
 
 	@Override
 	public String toString() {
-		return oldAddress;
+		return "("+postNumber+") "+newAddress+" \n       (구) "+oldAddress;
 	}
 }

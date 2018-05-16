@@ -33,6 +33,12 @@ public class SocketDB implements Serializable {
 	public void setInputObject(Object inputObject) {
 		this.inputObject = inputObject;
 	}
+	
+	public boolean isInitialAccess() {
+		if(toDo.equals("requestCalendar"))
+			return true;
+		return false;
+	}
 
 	public Object update() {
 		Object result = null;

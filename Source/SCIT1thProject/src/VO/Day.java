@@ -1,9 +1,10 @@
 package VO;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Day {
+public class Day implements Serializable{
 	public Date date;
 	public ArrayList<EventDay> event;
 	public ArrayList<Schedule> schedule;

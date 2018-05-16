@@ -1,6 +1,8 @@
 package VO;
 
-public class EventDay {
+import java.io.Serializable;
+
+public class EventDay implements Serializable{
 	private String year;
 	private String month;
 	private String day;

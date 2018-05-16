@@ -224,89 +224,89 @@ public class CalendarController implements Initializable {
 	@FXML
 	private TextArea textArea42;
 	@FXML
-    private ImageView weather1;
+	private ImageView weather1;
 	@FXML
-    private ImageView weather2;
+	private ImageView weather2;
 	@FXML
-    private ImageView weather3;
+	private ImageView weather3;
 	@FXML
-    private ImageView weather4;
+	private ImageView weather4;
 	@FXML
-    private ImageView weather5;
+	private ImageView weather5;
 	@FXML
-    private ImageView weather6;
+	private ImageView weather6;
 	@FXML
-    private ImageView weather7;
+	private ImageView weather7;
 	@FXML
-    private ImageView weather8;
+	private ImageView weather8;
 	@FXML
-    private ImageView weather9;
+	private ImageView weather9;
 	@FXML
-    private ImageView weather10;
+	private ImageView weather10;
 	@FXML
-    private ImageView weather11;
+	private ImageView weather11;
 	@FXML
-    private ImageView weather12;
+	private ImageView weather12;
 	@FXML
-    private ImageView weather13;
+	private ImageView weather13;
 	@FXML
-    private ImageView weather14;
+	private ImageView weather14;
 	@FXML
-    private ImageView weather15;
+	private ImageView weather15;
 	@FXML
-    private ImageView weather16;
+	private ImageView weather16;
 	@FXML
-    private ImageView weather17;
+	private ImageView weather17;
 	@FXML
-    private ImageView weather18;
+	private ImageView weather18;
 	@FXML
-    private ImageView weather19;
+	private ImageView weather19;
 	@FXML
-    private ImageView weather20;
+	private ImageView weather20;
 	@FXML
-    private ImageView weather21;
+	private ImageView weather21;
 	@FXML
-    private ImageView weather22;
+	private ImageView weather22;
 	@FXML
-    private ImageView weather23;
+	private ImageView weather23;
 	@FXML
-    private ImageView weather24;
+	private ImageView weather24;
 	@FXML
-    private ImageView weather25;
+	private ImageView weather25;
 	@FXML
-    private ImageView weather26;
+	private ImageView weather26;
 	@FXML
-    private ImageView weather27;
+	private ImageView weather27;
 	@FXML
-    private ImageView weather28;
+	private ImageView weather28;
 	@FXML
-    private ImageView weather29;
+	private ImageView weather29;
 	@FXML
-    private ImageView weather30;
+	private ImageView weather30;
 	@FXML
-    private ImageView weather31;
+	private ImageView weather31;
 	@FXML
-    private ImageView weather32;
+	private ImageView weather32;
 	@FXML
-    private ImageView weather33;
+	private ImageView weather33;
 	@FXML
-    private ImageView weather34;
+	private ImageView weather34;
 	@FXML
-    private ImageView weather35;
+	private ImageView weather35;
 	@FXML
-    private ImageView weather36;
+	private ImageView weather36;
 	@FXML
-    private ImageView weather37;
+	private ImageView weather37;
 	@FXML
-    private ImageView weather38;
+	private ImageView weather38;
 	@FXML
-    private ImageView weather39;
+	private ImageView weather39;
 	@FXML
-    private ImageView weather40;
+	private ImageView weather40;
 	@FXML
-    private ImageView weather41;
+	private ImageView weather41;
 	@FXML
-    private ImageView weather42;
+	private ImageView weather42;
 	@FXML
 	private Label contentLabel;
 	@FXML
@@ -1191,6 +1191,10 @@ public class CalendarController implements Initializable {
 						fromKey -= 12;
 					}
 				}
+				break;
+			case "D":
+				Client.Client.summit(new SocketDB("deleteSchedule", vo));
+				refreshDaySchedule();
 				break;
 			}
 

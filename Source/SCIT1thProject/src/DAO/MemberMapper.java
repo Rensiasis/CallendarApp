@@ -65,7 +65,7 @@ public interface MemberMapper {
 	public String returnInsertSchedule(Schedule vo);
 	
 	// 캘린더 일정 추가
-	public void insertDayScheduel(Schedule vo);
+	public void insertDD(Schedule vo);
 	
 	// 스케쥴 데이터 받아오기
 	public ArrayList<Schedule> getSchedule(Members vo);

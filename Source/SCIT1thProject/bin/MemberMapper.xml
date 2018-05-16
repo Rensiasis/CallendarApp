@@ -175,6 +175,7 @@
 		where
 		member_seq=#{member_seq}
 	</update>
+<<<<<<< HEAD
 	
 	
 	<!-- 현재잔액구하기 -->
@@ -182,6 +183,20 @@
 	select account 
 	from accounts 
 	where member_seq=#{member_seq}   
+=======
+
+	<!-- 어카운트 정보 가져오기 -->
+	<select id="getAccountInfo" parameterType="String"
+		resultType="Account">
+		select
+		member_seq,
+		account,
+		montly_salary,
+		montly_save
+		from
+		accounts
+		where member_seq=#{member_seq}
+>>>>>>> master_branch
 	</select>
 
 	<!-- 가계부 소비금액 총합구하기 -->
@@ -190,7 +205,8 @@
 		select
 		sum(price)
 		from households
-		where member_seq=#{member_seq}
+		where
+		member_seq=#{member_seq}
 	</select>
 
 	<!-- 1개월 이내 검색 -->
@@ -300,32 +316,29 @@
 
 
 	<!-- 일정추가 -->
-	<insert id="insertDaySchedule" parameterType="Schedule">
+	<insert id="insertDD" parameterType="Schedule">
 		insert into
 		Schedule
 		(
 		schedule_seq
-		,member_seq
-		,data_type
-		,from_date
-		,time
-		,content
-		,indate
-		,inuser
+		, member_seq
+		, data_type
+		, from_date
+		, times
+		, content
+		, indate
+		, inuser
 		)
 		values
 		(
 		schedule_seq.nextval
-		,#{member_seq}
+		, #{member_seq}
 		, #{data_type}
-		,
-		to_date(#{from_date},'YYYYMMDD')
-		, #{time}
-		,
-		#{content}
+		, to_date(#{from_date},'YYYYMMDD')
+		, #{times}
+		, #{content}
 		, sysdate
-		,
-		#{inuser}
+		, #{inuser}
 		)
 	</insert>
 
@@ -339,7 +352,7 @@
 		,to_char(from_date,'YYYYMMDD') from_date
 		,to_char(to_date,'YYYYMMDD')
 		to_date
-		,time
+		,times
 		,content
 		,indate
 		,ldate
@@ -365,10 +378,9 @@
 		,member_seq
 		,data_type
 		,to_char(from_date,'YYYYMMDD') from_date
-		from_date
-		,to_char(to_date,'YYYYMMDD') to_date
+		,to_char(to_date,'YYYYMMDD')
 		to_date
-		,time
+		,times
 		,content
 		,indate
 		,ldate
@@ -376,9 +388,9 @@
 		,luser
 		from Schedule
 		where
-		from_date=#{from_date} OR
-		(#{from_date}
-		between from_date and to_date)
+		from_date=to_date(#{from_date},'YYYYMMDD') or
+		(to_date(#{from_date},'YYYYMMDD')>=from_date and
+		to_date>=to_date(#{from_date},'YYYYMMDD'))
 	</select>
 
 </mapper>

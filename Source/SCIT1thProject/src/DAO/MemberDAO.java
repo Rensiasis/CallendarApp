@@ -366,15 +366,15 @@ public class MemberDAO {
 		return result;
 	}
 	
-	public static void insertDayScheduel(Schedule vo) {
+	public static void insertDaySchedule(Schedule vo) {
 		SqlSession session = null;
 
 		try {
 			session = factory.openSession();
 			MemberMapper mapper = session.getMapper(MemberMapper.class);
 
-			mapper.insertDayScheduel(vo);
-
+			mapper.insertDD(vo);
+			
 			session.commit();
 
 		} catch (Exception e) {

@@ -19,8 +19,8 @@
 
 <AnchorPane fx:id="HouseHoldPane" prefHeight="679.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Controller.HouseHoldController">
    <children>
-      <DatePicker fx:id="FromDate" layoutX="528.0" layoutY="67.0" prefHeight="30.0" prefWidth="170.0" />
-      <DatePicker fx:id="ToDate" layoutX="730.0" layoutY="67.0" prefHeight="30.0" prefWidth="170.0" />
+      <DatePicker fx:id="stardDay" layoutX="528.0" layoutY="67.0" prefHeight="30.0" prefWidth="170.0" />
+      <DatePicker fx:id="endDay" layoutX="730.0" layoutY="67.0" prefHeight="30.0" prefWidth="170.0" />
       <AnchorPane layoutX="900.0" prefHeight="680.0" prefWidth="300.0">
          <children>
             <Button fx:id="add" layoutX="15.0" layoutY="426.0" mnemonicParsing="false" onAction="#btnAddTView" prefHeight="23.0" prefWidth="274.0" text="추가" />
@@ -68,5 +68,10 @@
         </menus>
       </MenuBar>
       <ListView fx:id="HHListView" layoutY="107.0" prefHeight="573.0" prefWidth="900.0" />
+      <Button fx:id="search1" onAction="#btnSearchForAMonth" layoutX="14.0" layoutY="42.0" mnemonicParsing="false" prefWidth="120.0" text="1개월 내역" />
+      <Button fx:id="search3" onAction="#btnSearchForThreeMonth" layoutX="134.0" layoutY="42.0" mnemonicParsing="false" prefWidth="120.0" text="3개월 검색" />
+      <Button fx:id="search6" onAction="#btnSearchForSixMonth" layoutX="254.0" layoutY="42.0" mnemonicParsing="false" prefWidth="120.0" text="6개월 검색" />
+      <Button fx:id="search12" onAction="#btnSearchForAnYear" layoutX="374.0" layoutY="42.0" mnemonicParsing="false" prefWidth="120.0" text="1년 검색" />
+      <Button layoutX="538.0" layoutY="-74.0" mnemonicParsing="false" text="기간 검색" />
    </children>
 </AnchorPane>

@@ -77,6 +77,7 @@ on delete cascade
 create sequence schedule_seq
 
 
+<<<<<<< Updated upstream
 drop table schedule
 
 select sum(price) from households where member_seq='1';
@@ -85,3 +86,9 @@ select sum(price) from households where member_seq='1';
 select * from members;
 
 select * from accounts
+=======
+drop sequence member_seq
+select * from ACCOUNTS
+drop table members
+select * from schedule
+>>>>>>> Stashed changes

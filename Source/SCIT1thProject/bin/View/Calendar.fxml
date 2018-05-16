@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -14,7 +20,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="calendarPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Controller.CalendarController">
+<AnchorPane fx:id="calendarPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Controller.CalendarController">
    <children>
       <GridPane fx:id="gridPane" gridLinesVisible="true" layoutY="25.0" prefHeight="625.0" prefWidth="875.0" style="-fx-background-color: white; -fx-border-color: black;">
         <columnConstraints>
@@ -67,6 +73,7 @@
                </font></Label>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                <children>
+                  <ImageView fx:id="weather1" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                   <Label fx:id="day1" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" textFill="RED">
                      <font>
                         <Font size="18.0" />
@@ -83,6 +90,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea2" editable="false" layoutX="1.0" layoutY="31.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fx:id="weather2" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
@@ -93,6 +101,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea3" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fx:id="weather3" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
@@ -103,6 +112,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea4" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fx:id="weather4" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
@@ -113,6 +123,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea5" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fx:id="weather5" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
@@ -123,6 +134,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea6" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fx:id="weather6" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="1">
@@ -133,6 +145,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea7" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fx:id="weather7" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
@@ -143,6 +156,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea8" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fx:id="weather8" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -153,6 +167,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea9" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fx:id="weather9" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
@@ -163,6 +178,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea10" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fx:id="weather10" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
@@ -173,6 +189,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea11" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fx:id="weather11" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
@@ -183,6 +200,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea12" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fx:id="weather12" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
@@ -193,6 +211,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea13" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fx:id="weather13" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="2">
@@ -203,6 +222,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea14" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fx:id="weather14" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
@@ -213,6 +233,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea15" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fx:id="weather15" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
@@ -223,6 +244,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea22" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fx:id="weather22" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="5">
@@ -233,6 +255,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea29" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fx:id="weather29" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="list18" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
@@ -243,6 +266,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea23" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fx:id="weather23" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
@@ -253,6 +277,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea16" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fx:id="weather16" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
@@ -263,6 +288,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea30" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fx:id="weather30" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
@@ -273,6 +299,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea17" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fx:id="weather17" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
@@ -283,6 +310,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea24" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fx:id="weather24" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
@@ -293,6 +321,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea31" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fx:id="weather31" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
@@ -303,6 +332,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea18" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fx:id="weather18" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
@@ -313,6 +343,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea25" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fx:id="weather25" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="5">
@@ -323,6 +354,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea32" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
@@ -333,6 +365,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea19" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fx:id="weather19" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="4">
@@ -343,6 +376,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea26" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fx:id="weather26" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="5">
@@ -353,6 +387,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea33" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fx:id="weather33" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="3">
@@ -363,6 +398,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea20" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fx:id="weather20" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="4">
@@ -373,6 +409,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea27" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fx:id="weather27" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="5">
@@ -383,6 +420,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea34" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fx:id="weather34" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="3">
@@ -393,6 +431,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea21" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fx:id="weather21" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="4">
@@ -403,6 +442,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea28" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fx:id="weather28" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="5">
@@ -413,6 +453,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea35" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fx:id="weather35" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="112.0" prefWidth="125.0" GridPane.rowIndex="6">
@@ -423,6 +464,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea36" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fx:id="weather36" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
@@ -433,6 +475,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea37" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fx:id="weather37" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
@@ -443,6 +486,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea38" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fx:id="weather38" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="6">
@@ -453,6 +497,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea39" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fx:id="weather39" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="6">
@@ -463,6 +508,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea40" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fx:id="weather40" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="6">
@@ -473,6 +519,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea41" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fx:id="weather41" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="6">
@@ -483,6 +530,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="textArea42" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
+                  <ImageView fx:id="weather42" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
          </children>

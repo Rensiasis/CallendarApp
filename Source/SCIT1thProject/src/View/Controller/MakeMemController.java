@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import Client.User;
 import DAO.MemberDAO;
 import VO.Address;
 import VO.Members;
@@ -154,7 +155,9 @@ public class MakeMemController implements Initializable {
 						m_vo.setVillage(village);
 
 						Client.Client.summit(new SocketDB("insertMember", m_vo)); // 회원정보 DB등록
-
+						Members member = (Members) Client.Client.summit(new SocketDB("loginID", m_vo));
+						Client.User.user = member;
+						Client.Client.summit(new SocketDB("insertAccount", User.getUser().getMember_seq()));
 						try {
 							AnchorPane parent = FXMLLoader.load(getClass().getResource("/View/Home.fxml"));
 							mPane.getChildren().setAll(parent);

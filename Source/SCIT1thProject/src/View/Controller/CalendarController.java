@@ -33,6 +33,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -222,6 +223,90 @@ public class CalendarController implements Initializable {
 	private TextArea textArea41;
 	@FXML
 	private TextArea textArea42;
+	@FXML
+    private ImageView weather1;
+	@FXML
+    private ImageView weather2;
+	@FXML
+    private ImageView weather3;
+	@FXML
+    private ImageView weather4;
+	@FXML
+    private ImageView weather5;
+	@FXML
+    private ImageView weather6;
+	@FXML
+    private ImageView weather7;
+	@FXML
+    private ImageView weather8;
+	@FXML
+    private ImageView weather9;
+	@FXML
+    private ImageView weather10;
+	@FXML
+    private ImageView weather11;
+	@FXML
+    private ImageView weather12;
+	@FXML
+    private ImageView weather13;
+	@FXML
+    private ImageView weather14;
+	@FXML
+    private ImageView weather15;
+	@FXML
+    private ImageView weather16;
+	@FXML
+    private ImageView weather17;
+	@FXML
+    private ImageView weather18;
+	@FXML
+    private ImageView weather19;
+	@FXML
+    private ImageView weather20;
+	@FXML
+    private ImageView weather21;
+	@FXML
+    private ImageView weather22;
+	@FXML
+    private ImageView weather23;
+	@FXML
+    private ImageView weather24;
+	@FXML
+    private ImageView weather25;
+	@FXML
+    private ImageView weather26;
+	@FXML
+    private ImageView weather27;
+	@FXML
+    private ImageView weather28;
+	@FXML
+    private ImageView weather29;
+	@FXML
+    private ImageView weather30;
+	@FXML
+    private ImageView weather31;
+	@FXML
+    private ImageView weather32;
+	@FXML
+    private ImageView weather33;
+	@FXML
+    private ImageView weather34;
+	@FXML
+    private ImageView weather35;
+	@FXML
+    private ImageView weather36;
+	@FXML
+    private ImageView weather37;
+	@FXML
+    private ImageView weather38;
+	@FXML
+    private ImageView weather39;
+	@FXML
+    private ImageView weather40;
+	@FXML
+    private ImageView weather41;
+	@FXML
+    private ImageView weather42;
 	@FXML
 	private Label contentLabel;
 	@FXML

@@ -82,6 +82,12 @@ select sum(price) from households where member_seq='1';
 
 drop table 
 
+<<<<<<< HEAD
+select * from ACCOUNTS
+drop table schedule
+select * from schedule
+=======
 select * from members;
 
 select * from accounts
+>>>>>>> master_branch

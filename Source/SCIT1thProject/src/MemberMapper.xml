@@ -175,7 +175,6 @@
 		where
 		member_seq=#{member_seq}
 	</update>
-<<<<<<< HEAD
 	
 	
 	<!-- 현재잔액구하기 -->
@@ -183,20 +182,6 @@
 	select account 
 	from accounts 
 	where member_seq=#{member_seq}   
-=======
-
-	<!-- 어카운트 정보 가져오기 -->
-	<select id="getAccountInfo" parameterType="String"
-		resultType="Account">
-		select
-		member_seq,
-		account,
-		montly_salary,
-		montly_save
-		from
-		accounts
-		where member_seq=#{member_seq}
->>>>>>> master_branch
 	</select>
 
 	<!-- 가계부 소비금액 총합구하기 -->
@@ -350,8 +335,7 @@
 		,member_seq
 		,data_type
 		,to_char(from_date,'YYYYMMDD') from_date
-		,to_char(to_date,'YYYYMMDD')
-		to_date
+		,to_char(to_date,'YYYYMMDD') to_date
 		,times
 		,content
 		,indate

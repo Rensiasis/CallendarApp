@@ -101,8 +101,12 @@ public class SocketDB implements Serializable {
 			result = MemberDAO.searchForSixMonth((String)inputObject);
 			break;	
 		case "searchForAnYear":
-			result = MemberDAO.searchForSixMonth((String)inputObject);
-			break;	
+			result = MemberDAO.searchForAnYear((String)inputObject);
+			break;
+		case "speciPeriod":
+			result = MemberDAO.speciPeriod((HouseHolds)inputObject);
+			break;
+			
 		}
 		return result;
 	}

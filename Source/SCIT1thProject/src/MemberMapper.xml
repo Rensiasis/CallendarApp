@@ -236,6 +236,17 @@
 		get_date between sysdate-365 and sysdate
 		order by get_date desc	
 	</select>
+	
+	<!-- 특정기간 검색 -->
+	<select id="speciPeriod" parameterType="HouseHold" 
+		resultType="HouseHold" >
+		select household_seq, member_seq, product, price, get_date, content,
+		indate, ldate, inuser, luser 
+		from households
+		where member_seq=#{member_seq} and 
+		get_date between to_date(#{indate},'yyyy-MM-dd') and to_date(#{ldate},'yyyy-MM-dd')
+		order by get_date desc	
+	</select>
 
 
 	<!-- 캘린더 관련 쿼리문 -->

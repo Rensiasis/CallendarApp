@@ -9,22 +9,23 @@ public class Schedule implements Serializable {
 	private String data_type;
 	private String from_date;
 	private String to_date;
+	private String time;
 	private String content;
 	private String indate;
 	private String ldate;
 	private String inuser;
 	private String luser;
 
-	
 
 	public Schedule(String schedule_seq, String member_seq, String data_type, String from_date, String to_date,
-			String content, String indate, String ldate, String inuser, String luser) {
+			String time, String content, String indate, String ldate, String inuser, String luser) {
 		super();
 		this.schedule_seq = schedule_seq;
 		this.member_seq = member_seq;
 		this.data_type = data_type;
 		this.from_date = from_date;
 		this.to_date = to_date;
+		this.time = time;
 		this.content = content;
 		this.indate = indate;
 		this.ldate = ldate;
@@ -78,6 +79,14 @@ public class Schedule implements Serializable {
 
 	public String getContent() {
 		return content;
+	}
+
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
 	}
 
 	public void setContent(String content) {

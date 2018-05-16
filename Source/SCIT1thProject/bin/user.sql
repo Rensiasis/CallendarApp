@@ -61,6 +61,7 @@ member_seq varchar2(6),
 data_type varchar2(10),
 from_date date,
 to_date date,
+time varchar2(30),
 content varchar2(500),
 indate date,
 ldate date,
@@ -76,18 +77,11 @@ on delete cascade
 create sequence schedule_seq
 
 
-drop sequence 
+drop table schedule
 
 select sum(price) from households where member_seq='1';
 
-drop table 
 
-<<<<<<< HEAD
-select * from ACCOUNTS
-drop table schedule
-select * from schedule
-=======
 select * from members;
 
 select * from accounts
->>>>>>> master_branch

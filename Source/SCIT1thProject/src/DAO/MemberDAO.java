@@ -199,13 +199,8 @@ public class MemberDAO {
 			}
 		}
 	}
-<<<<<<< HEAD
-	
-	//어카운트 정보 가져오기
-=======
 
 	// 어카운트 정보 가져오기
->>>>>>> master_branch
 	public static Account getAccountInfo(String member_seq) {
 		SqlSession session = null;
 		Account result = null;
@@ -367,6 +362,26 @@ public class MemberDAO {
 			}
 		}
 		return result;
+	}
+	
+	public static void insertDayScheduel(Schedule vo) {
+		SqlSession session = null;
+
+		try {
+			session = factory.openSession();
+			MemberMapper mapper = session.getMapper(MemberMapper.class);
+
+			mapper.insertDayScheduel(vo);
+
+			session.commit();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
 	}
 
 	public static ArrayList<Schedule> getSchedule(Members vo) {

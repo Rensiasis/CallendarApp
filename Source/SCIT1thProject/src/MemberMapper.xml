@@ -175,26 +175,28 @@
 		where
 		member_seq=#{member_seq}
 	</update>
-	
+
 	<!-- 어카운트 정보 가져오기 -->
-	<select id="getAccountInfo" parameterType="String" resultType="Account">
-	select
-	member_seq,
-	account,
-	montly_salary,
-	montly_save
-	from accounts
-	where member_seq=#{member_seq}
+	<select id="getAccountInfo" parameterType="String"
+		resultType="Account">
+		select
+		member_seq,
+		account,
+		montly_salary,
+		montly_save
+		from accounts
+		where member_seq=#{member_seq}
 	</select>
-	
+
 	<!-- 가계부 소비금액 총합구하기 -->
-	<select id="sumPrice" parameterType="String" resultType="Integer">
-	select
-	sum(price)
-	from households
-	where member_seq=#{member_seq}
+	<select id="sumPrice" parameterType="String"
+		resultType="Integer">
+		select
+		sum(price)
+		from households
+		where member_seq=#{member_seq}
 	</select>
-	
+
 	<!-- 1개월 이내 검색 -->
 	<select parameterType="HouseHold" id="searchForAMonth"
 		resultType="String">
@@ -299,6 +301,37 @@
 		inuser=#{inuser}
 	</select>
 
+
+	<!-- 일정추가 -->
+	<insert id="insertDaySchedule" parameterType="Schedule">
+		insert into
+		Schedule
+		(
+		schedule_seq
+		,member_seq
+		,data_type
+		,from_date
+		,time
+		,content
+		,indate
+		,inuser
+		)
+		values
+		(
+		schedule_seq.nextval
+		,#{member_seq}
+		, #{data_type}
+		,
+		to_date(#{from_date},'YYYYMMDD')
+		, #{time}
+		,
+		#{content}
+		, sysdate
+		,
+		#{inuser}
+		)
+	</insert>
+
 	<!-- 스케쥴 리스트 받아오기 -->
 	<select id="getSchedule" parameterType="Member"
 		resultType="Schedule">
@@ -307,7 +340,9 @@
 		,member_seq
 		,data_type
 		,to_char(from_date,'YYYYMMDD') from_date
-		,to_char(to_date,'YYYYMMDD') to_date
+		,to_char(to_date,'YYYYMMDD')
+		to_date
+		,time
 		,content
 		,indate
 		,ldate
@@ -336,6 +371,7 @@
 		from_date
 		,to_char(to_date,'YYYYMMDD') to_date
 		to_date
+		,time
 		,content
 		,indate
 		,ldate
@@ -344,7 +380,8 @@
 		from Schedule
 		where
 		from_date=#{from_date} OR
-		(#{from_date} between from_date and to_date)
+		(#{from_date}
+		between from_date and to_date)
 	</select>
 
 </mapper>

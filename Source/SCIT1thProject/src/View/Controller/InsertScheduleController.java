@@ -56,9 +56,7 @@ public class InsertScheduleController implements Initializable {
 				vo.setData_type("S");
 				vo.setFrom_date(fromDate);
 				vo.setTo_date(toDate);
-
-				vo.setContent(
-						"[" + parseDate(from.getValue()) + "~" + parseDate(to.getValue()) + "]\n" + content.getText());
+				vo.setContent("(~" + parseDate(to.getValue()) + ") " + content.getText());
 				vo.setInuser(Client.User.user.getName());
 				View.Controller.CalendarController.schedule = vo;
 				View.Controller.CalendarController.insertScheduleReceiver(vo);
@@ -88,7 +86,7 @@ public class InsertScheduleController implements Initializable {
 	}
 
 	public String parseDate(LocalDate date) {
-		return date.toString().split("-")[0] + "/" + date.toString().split("-")[1] + "/"
+		return date.toString().split("-")[0].substring(2, 4) + "/" + date.toString().split("-")[1] + "/"
 				+ date.toString().split("-")[2];
 	}
 

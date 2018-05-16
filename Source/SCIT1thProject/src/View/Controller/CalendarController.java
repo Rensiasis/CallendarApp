@@ -252,7 +252,7 @@ public class CalendarController implements Initializable {
 	public static Stage stage;
 	public static Schedule schedule;
 
-	private static String selectedDay;
+	public static String selectedDay;
 	private static String selectedPage;
 
 	@FXML
@@ -431,7 +431,7 @@ public class CalendarController implements Initializable {
 		insertMemo.setOnMouseClicked(event -> insertMemo());
 		deleteButton.setOnMouseClicked(event -> delete());
 		insertSchedule.setOnMouseClicked(event -> insertSchedule());
-		insertTodo.setOnMouseClicked(event -> insertTodo());
+		insertTodo.setOnMouseClicked(event -> insertDaySchedule());
 
 		calList = new HashMap<>();
 		staticListView = contentListView;
@@ -533,14 +533,7 @@ public class CalendarController implements Initializable {
 
 			ArrayList<Schedule> scheList = dayList.get(i - firstIndex).getSchedule();
 			for (int j = 0; j < scheList.size(); j++) {
-				switch (scheList.get(j).getData_type()) {
-				case "M":
-					areaList[i].appendText(scheList.get(j).getContent() + "\n");
-					break;
-				case "S":
-					areaList[i].appendText(scheList.get(j).getContent() + "\n");
-					break;
-				}
+				areaList[i].appendText(scheList.get(j).getContent() + "\n");
 
 			}
 		}
@@ -574,15 +567,7 @@ public class CalendarController implements Initializable {
 
 			ArrayList<Schedule> scheList = dayList.get(dayList.size() - firstIndex + i).getSchedule();
 			for (int j = 0; j < scheList.size(); j++) {
-				switch (scheList.get(j).getData_type()) {
-				case "M":
-					areaList[i].appendText(scheList.get(j).getContent() + "\n");
-					break;
-				case "S":
-					areaList[i].appendText(scheList.get(j).getContent() + "\n");
-					break;
-				}
-
+				areaList[i].appendText(scheList.get(j).getContent() + "\n");
 			}
 		}
 
@@ -614,15 +599,7 @@ public class CalendarController implements Initializable {
 
 			ArrayList<Schedule> scheList = dayList.get(i - lastIndex).getSchedule();
 			for (int j = 0; j < scheList.size(); j++) {
-				switch (scheList.get(j).getData_type()) {
-				case "M":
-					areaList[i].appendText(scheList.get(j).getContent() + "\n");
-					break;
-				case "S":
-					areaList[i].appendText(scheList.get(j).getContent() + "\n");
-					break;
-				}
-
+				areaList[i].appendText(scheList.get(j).getContent() + "\n");
 			}
 		}
 	}
@@ -811,7 +788,7 @@ public class CalendarController implements Initializable {
 					} else {
 						toDate = Integer.parseInt(toFullDate.substring(6, 8));
 					}
-					
+
 					fromDate--;
 					toDate--;
 
@@ -843,6 +820,17 @@ public class CalendarController implements Initializable {
 					}
 
 					break;
+				case "D":
+					fullDate = sList.get(i).getFrom_date();
+					keyStr = fullDate.substring(0, 6);
+					key = Integer.parseInt(keyStr);
+					date = 0;
+					if (fullDate.charAt(6) == '0') {
+						date = Integer.parseInt(fullDate.substring(7, 8));
+					} else {
+						date = Integer.parseInt(fullDate.substring(6, 8));
+					}
+					calList.get(key).get(date - 1).getSchedule().add(sList.get(i));
 				}
 			}
 		}
@@ -898,14 +886,7 @@ public class CalendarController implements Initializable {
 			observeList.add(eventList.get(i));
 		}
 		for (int i = 0; i < scheList.size(); i++) {
-			switch (scheList.get(i).getData_type()) {
-			case "M":
-				observeList.add(scheList.get(i));
-				break;
-			case "S":
-				observeList.add(scheList.get(i));
-				break;
-			}
+			observeList.add(scheList.get(i));
 		}
 
 		contentListView.setItems(observeList);
@@ -971,8 +952,6 @@ public class CalendarController implements Initializable {
 	}
 
 	public static void insertScheduleReceiver(Schedule vo) {
-		if (selectedDay == null)
-			return;
 		String seq = (String) Client.Client.summit(new SocketDB("insertSchedule", vo));
 		vo.setSchedule_seq(seq);
 
@@ -1029,20 +1008,42 @@ public class CalendarController implements Initializable {
 		refreshCalendar(selectedPage);
 	}
 
-	public void insertTodo() {
-		AnchorPane schedulePane;
+	public void insertDaySchedule() {
+		AnchorPane daySchedulePane;
 		try {
-			schedulePane = FXMLLoader.load(getClass().getResource("/View/InsertSchedule.fxml"));
-			Scene scene = new Scene(schedulePane);
+			daySchedulePane = FXMLLoader.load(getClass().getResource("/View/InsertDaySchedule.fxml"));
+			Scene scene = new Scene(daySchedulePane);
 			stage = new Stage();
 			stage.setScene(scene);
-			stage.setTitle("스케줄 입력");
+			stage.setTitle("일정 입력");
 			stage.setResizable(false);
 			stage.show();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	public static void insertDayScheduleReceiver(Schedule vo) {
+		if (selectedDay == null)
+			return;
+
+		Client.Client.summit(new SocketDB("insertDaySchedule", vo));
+		String keyStr = vo.getFrom_date().substring(0, 6);
+		int key = Integer.parseInt(keyStr);
+		int date = 0;
+		if (vo.getFrom_date().charAt(6) == '0') {
+			date = Integer.parseInt(vo.getFrom_date().substring(7, 8));
+		} else {
+			date = Integer.parseInt(vo.getFrom_date().substring(6, 8));
+		}
+		calList.get(key).get(date - 1).getSchedule().add(vo);
+
+		refreshDaySchedule();
+
+		refreshContentList();
+
+		refreshCalendar(selectedPage);
 	}
 
 	public void delete() {
@@ -1155,14 +1156,7 @@ public class CalendarController implements Initializable {
 			observeList.add(eventList.get(i));
 		}
 		for (int i = 0; i < scheList.size(); i++) {
-			switch (scheList.get(i).getData_type()) {
-			case "M":
-				observeList.add(scheList.get(i));
-				break;
-			case "S":
-				observeList.add(scheList.get(i));
-				break;
-			}
+			observeList.add(scheList.get(i));
 		}
 
 		staticListView.setItems(observeList);

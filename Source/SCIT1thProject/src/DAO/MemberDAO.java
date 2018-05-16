@@ -200,12 +200,8 @@ public class MemberDAO {
 		}
 	}
 
-<<<<<<< Updated upstream
-	// 어카운트 정보 가져오기
-=======
 	
-	//어카운트 정보 가져오기
->>>>>>> Stashed changes
+	// 어카운트 정보 가져오기
 	public static Account getAccountInfo(String member_seq) {
 		SqlSession session = null;
 		Account result = null;

@@ -62,6 +62,7 @@ public class CorrectMemController implements Initializable {
 		System.exit(0);
 	}
 
+
 	@FXML // 주소검색버튼
 	public void research_add(ActionEvent event) {
 		Platform.runLater(new Runnable() {

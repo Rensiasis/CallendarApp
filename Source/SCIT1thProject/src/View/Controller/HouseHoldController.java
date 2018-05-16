@@ -1,5 +1,6 @@
 package View.Controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -55,7 +56,7 @@ public class HouseHoldController implements Initializable {
 
 	@FXML
 	private TextField showSpend;
-	
+
 	@FXML
 	private TextField showTotalmoney;
 
@@ -78,8 +79,12 @@ public class HouseHoldController implements Initializable {
 
 		Account a_result = new Account();
 		a_result = (Account) Client.Client.summit(new SocketDB("getAccountInfo", member_seq));
-//		String sSpend =(String)Client.Client.summit(new SocketDB("sumPrice",member_seq)); 
-//		showSpend.setText(sSpend);// 소비금액
+
+//		if (HHListView.getItems() != null) {
+//			String sSpend = (String) Client.Client.summit(new SocketDB("sumPrice", member_seq));
+//			showSpend.setText(sSpend);// 소비금액
+//		}
+
 		showTotalmoney.setText(a_result.getAccount());// 총 재산
 
 		searchCombo.getItems().addAll("최근 1개월 이내 검색", "최근 3개월 이내 검색", "최근 6개월 이내 검색", "최근 12개월 이내 검색", "특정 기간 검색");
@@ -186,7 +191,7 @@ public class HouseHoldController implements Initializable {
 						hh.setPrice(price.getText());
 						hh.setContent(content.getText());
 
-						Client.Client.summit(new SocketDB("fixHouseHold",hh));
+						Client.Client.summit(new SocketDB("fixHouseHold", hh));
 						product.clear();
 						price.clear();
 						content.clear();
@@ -212,5 +217,11 @@ public class HouseHoldController implements Initializable {
 		});
 
 	}
+	
+
+    @FXML
+    public void exitProgram(ActionEvent event) {
+		System.exit(0);
+    }
 
 }

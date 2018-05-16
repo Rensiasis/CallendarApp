@@ -3,13 +3,16 @@ package VO;
 public class Weather {
 	private String date;
 	private String sky;
+	private String skyCode;
 	private String tmax;
 	private String tmin;
 
-	public Weather(String date, String sky, String tmax, String tmin) {
+	
+	public Weather(String date, String sky, String skyCode, String tmax, String tmin) {
 		super();
 		this.date = date;
 		this.sky = sky;
+		this.skyCode = skyCode;
 		this.tmax = tmax;
 		this.tmin = tmin;
 	}
@@ -50,9 +53,18 @@ public class Weather {
 		this.tmin = tmin;
 	}
 
-	@Override
-	public String toString() {
-		return "Weather [date=" + date + ", sky=" + sky + ", tmax=" + tmax + ", tmin=" + tmin + "]";
+	public String getSkyCode() {
+		return skyCode;
 	}
 
+	public void setSkyCode(String skyCode) {
+		this.skyCode = skyCode;
+	}
+
+	@Override
+	public String toString() {
+		return "Weather [date=" + date + ", sky=" + sky + ", skyCode=" + skyCode + ", tmax=" + tmax + ", tmin=" + tmin
+				+ "]";
+	}
+	
 }

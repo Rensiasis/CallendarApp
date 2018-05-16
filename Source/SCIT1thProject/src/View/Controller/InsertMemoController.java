@@ -2,10 +2,14 @@ package View.Controller;
 
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+import Client.User;
+import Parser.WeatherPlanetParser;
 import VO.Schedule;
+import VO.Weather;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -27,6 +31,14 @@ public class InsertMemoController implements Initializable {
 		// TODO Auto-generated method stub
 		insert.setOnMouseClicked(event -> insert());
 		cancel.setOnMouseClicked(event -> cancel());
+		
+		WeatherPlanetParser w=new WeatherPlanetParser();
+		w.setAddress(User.user.getCity(), User.user.getCounty(), User.user.getVillage());
+		w.parshing();
+		ArrayList<Weather> wList=w.getWeatherList();
+		for(int i=0;i<wList.size();i++) {
+			System.out.println(wList.get(i));
+		}
 	}
 
 	public void insert() {

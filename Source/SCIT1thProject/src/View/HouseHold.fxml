@@ -24,7 +24,7 @@
       <AnchorPane layoutX="900.0" prefHeight="680.0" prefWidth="300.0">
          <children>
             <Button fx:id="add" layoutX="15.0" layoutY="426.0" mnemonicParsing="false" onAction="#btnAddTView" prefHeight="23.0" prefWidth="274.0" text="추가" />
-            <GridPane layoutX="16.0" layoutY="118.0" prefHeight="294.0" prefWidth="274.0">
+            <GridPane layoutX="13.0" layoutY="124.0" prefHeight="294.0" prefWidth="274.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                </columnConstraints>
@@ -53,7 +53,7 @@
             <TextField fx:id="showTotalmoney" editable="false" layoutX="74.0" layoutY="566.0" />
             <Label layoutX="225.0" layoutY="534.0" text="원" />
             <Label layoutX="225.0" layoutY="569.0" text="원" />
-            <ComboBox fx:id="searchCombo" layoutX="18.0" layoutY="66.0" prefHeight="33.0" prefWidth="268.0" />
+            <ComboBox fx:id="searchCombo" layoutX="18.0" layoutY="66.0" onAction="#searchComboClick" prefHeight="33.0" prefWidth="268.0" />
          </children>
       </AnchorPane>
       <Label layoutX="707.0" layoutY="75.0" text="~" />
@@ -68,10 +68,5 @@
         </menus>
       </MenuBar>
       <ListView fx:id="HHListView" layoutY="107.0" prefHeight="573.0" prefWidth="900.0" />
-      <Button fx:id="search1" onAction="#btnSearchForAMonth" layoutX="14.0" layoutY="42.0" mnemonicParsing="false" prefWidth="120.0" text="1개월 내역" />
-      <Button fx:id="search3" onAction="#btnSearchForThreeMonth" layoutX="134.0" layoutY="42.0" mnemonicParsing="false" prefWidth="120.0" text="3개월 검색" />
-      <Button fx:id="search6" onAction="#btnSearchForSixMonth" layoutX="254.0" layoutY="42.0" mnemonicParsing="false" prefWidth="120.0" text="6개월 검색" />
-      <Button fx:id="search12" onAction="#btnSearchForAnYear" layoutX="374.0" layoutY="42.0" mnemonicParsing="false" prefWidth="120.0" text="1년 검색" />
-      <Button layoutX="538.0" layoutY="-74.0" mnemonicParsing="false" text="기간 검색" />
    </children>
 </AnchorPane>

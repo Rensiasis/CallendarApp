@@ -45,7 +45,7 @@
 		where id=#{id}
 	</select>
 
-	<!-- 가계부정보 등록하기 -->	
+	<!-- 가계부정보 등록하기 -->
 	<insert id="insertHouseHold" parameterType="HouseHold">
 		insert into
 		HouseHolds(
@@ -54,7 +54,8 @@
 		, product
 		, price
 		, get_date
-		, content
+		,
+		content
 		, indate
 		, inuser
 		) values (
@@ -69,14 +70,14 @@
 		)
 	</insert>
 
-	<!-- 가계부정보 삭제하기 -->	
+	<!-- 가계부정보 삭제하기 -->
 	<delete id="deleteHouseHold" parameterType="String">
 		delete from
 		houseHolds
 		where household_seq=#{household_seq}
 	</delete>
 
-	<!-- 가계부정보 수정하기 -->	
+	<!-- 가계부정보 수정하기 -->
 	<update id="fixHouseHold" parameterType="HouseHold">
 		update households
 		set
@@ -97,7 +98,8 @@
 		, product
 		, price
 		, get_date
-		, content
+		,
+		content
 		, indate
 		, ldate
 		, inuser
@@ -249,6 +251,46 @@
 		)
 	</insert>
 
+	<!-- 스케쥴 추가 -->
+	<insert id="insertSchedule" parameterType="Schedule">
+		insert into Schedule
+		(
+		schedule_seq
+		,member_seq
+		,data_type
+		,from_date
+		,to_date
+		,content
+		,indate
+		,inuser
+		)
+		values
+		(
+		schedule_seq.nextval
+		,#{member_seq}
+		, #{data_type}
+		,
+		to_date(#{from_date},'YYYYMMDD')
+		,to_date(#{to_date},'YYYYMMDD')
+		,
+		#{content}
+		, sysdate
+		, #{inuser}
+		)
+	</insert>
+	<select id="returnInsertSchedule" parameterType="Schedule"
+		resultType="String">
+		select schedule_seq
+		from schedule
+		where
+		member_seq=#{member_seq} and
+		data_type= #{data_type} and
+		from_date=to_date(#{from_date},'YYYYMMDD') and
+		to_date=to_date(#{to_date},'YYYYMMDD')
+		and content=#{content} and
+		inuser=#{inuser}
+	</select>
+
 	<!-- 스케쥴 리스트 받아오기 -->
 	<select id="getSchedule" parameterType="Member"
 		resultType="Schedule">
@@ -257,8 +299,7 @@
 		,member_seq
 		,data_type
 		,to_char(from_date,'YYYYMMDD') from_date
-		,to_char(to_date,'YYYYMMDD')
-		to_date
+		,to_char(to_date,'YYYYMMDD') to_date
 		,content
 		,indate
 		,ldate
@@ -283,9 +324,9 @@
 		schedule_seq
 		,member_seq
 		,data_type
-		,to_char(from_date,'YYYYMMDD')
+		,to_char(from_date,'YYYYMMDD') from_date
 		from_date
-		,to_char(to_date,'YYYYMMDD')
+		,to_char(to_date,'YYYYMMDD') to_date
 		to_date
 		,content
 		,indate
@@ -297,6 +338,6 @@
 		from_date=#{from_date} OR
 		(#{from_date} between from_date and to_date)
 	</select>
-	
+
 </mapper>
   

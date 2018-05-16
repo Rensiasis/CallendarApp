@@ -535,7 +535,10 @@ public class CalendarController implements Initializable {
 			for (int j = 0; j < scheList.size(); j++) {
 				switch (scheList.get(j).getData_type()) {
 				case "M":
-					areaList[i].appendText("-" + scheList.get(j).getContent() + "\n");
+					areaList[i].appendText(scheList.get(j).getContent() + "\n");
+					break;
+				case "S":
+					areaList[i].appendText(scheList.get(j).getContent() + "\n");
 					break;
 				}
 
@@ -573,7 +576,10 @@ public class CalendarController implements Initializable {
 			for (int j = 0; j < scheList.size(); j++) {
 				switch (scheList.get(j).getData_type()) {
 				case "M":
-					areaList[i].appendText("-" + scheList.get(j).getContent() + "\n");
+					areaList[i].appendText(scheList.get(j).getContent() + "\n");
+					break;
+				case "S":
+					areaList[i].appendText(scheList.get(j).getContent() + "\n");
 					break;
 				}
 
@@ -610,7 +616,10 @@ public class CalendarController implements Initializable {
 			for (int j = 0; j < scheList.size(); j++) {
 				switch (scheList.get(j).getData_type()) {
 				case "M":
-					areaList[i].appendText("-" + scheList.get(j).getContent() + "\n");
+					areaList[i].appendText(scheList.get(j).getContent() + "\n");
+					break;
+				case "S":
+					areaList[i].appendText(scheList.get(j).getContent() + "\n");
 					break;
 				}
 
@@ -773,7 +782,6 @@ public class CalendarController implements Initializable {
 				switch (sList.get(i).getData_type()) {
 				case "M":
 					String fullDate = sList.get(i).getFrom_date();
-					System.out.println(sList.get(i));
 					String keyStr = fullDate.substring(0, 6);
 					int key = Integer.parseInt(keyStr);
 					int date = 0;
@@ -782,8 +790,58 @@ public class CalendarController implements Initializable {
 					} else {
 						date = Integer.parseInt(fullDate.substring(6, 8));
 					}
-					System.out.println(date);
 					calList.get(key).get(date - 1).getSchedule().add(sList.get(i));
+					break;
+				case "S":
+					String fromFullDate = sList.get(i).getFrom_date();
+					String fromKeyStr = fromFullDate.substring(0, 6);
+					int fromKey = Integer.parseInt(fromKeyStr);
+					int fromDate = 0;
+					if (fromFullDate.charAt(6) == '0') {
+						fromDate = Integer.parseInt(fromFullDate.substring(7, 8));
+					} else {
+						fromDate = Integer.parseInt(fromFullDate.substring(6, 8));
+					}
+					String toFullDate = sList.get(i).getFrom_date();
+					String toKeyStr = toFullDate.substring(0, 6);
+					int toKey = Integer.parseInt(toKeyStr);
+					int toDate = 0;
+					if (toFullDate.charAt(6) == '0') {
+						toDate = Integer.parseInt(toFullDate.substring(7, 8));
+					} else {
+						toDate = Integer.parseInt(toFullDate.substring(6, 8));
+					}
+					
+					fromDate--;
+					toDate--;
+
+					boolean first = true;
+					while (fromKey <= toKey) {
+						ArrayList<Day> dList = calList.get(fromKey);
+						if (fromKey < toKey) {
+							if (first = true) {
+								first = false;
+								for (int j = fromDate; j < dList.size(); j++) {
+									dList.get(j).getSchedule().add(sList.get(i));
+								}
+								fromDate = 0;
+							} else {
+								for (int j = 0; j < dList.size(); j++) {
+									dList.get(j).getSchedule().add(sList.get(i));
+								}
+							}
+						} else {
+							for (int j = fromDate; j <= toDate; j++) {
+								dList.get(j).getSchedule().add(sList.get(i));
+							}
+						}
+						fromKey++;
+						if ((fromKey % 100) > 12) {
+							fromKey += 100;
+							fromKey -= 12;
+						}
+					}
+
 					break;
 				}
 			}
@@ -908,7 +966,66 @@ public class CalendarController implements Initializable {
 			e.printStackTrace();
 		}
 	}
-	
+
+	public static void insertScheduleReceiver(Schedule vo) {
+		if (selectedDay == null)
+			return;
+		String seq = (String) Client.Client.summit(new SocketDB("insertSchedule", vo));
+		vo.setSchedule_seq(seq);
+
+		String from = vo.getFrom_date();
+		String to = vo.getTo_date();
+		String fromKeyStr = from.substring(0, 6);
+		String toKeyStr = to.substring(0, 6);
+		int fromKey = Integer.parseInt(fromKeyStr);
+		int toKey = Integer.parseInt(toKeyStr);
+		int fromDate = 0;
+		int toDate = 0;
+		if (from.charAt(6) == '0') {
+			fromDate = Integer.parseInt(from.substring(7, 8));
+		} else {
+			fromDate = Integer.parseInt(from.substring(6, 8));
+		}
+		if (to.charAt(6) == '0') {
+			toDate = Integer.parseInt(to.substring(7, 8));
+		} else {
+			toDate = Integer.parseInt(to.substring(6, 8));
+		}
+		fromDate--;
+		toDate--;
+
+		boolean first = true;
+		while (fromKey <= toKey) {
+			ArrayList<Day> dList = calList.get(fromKey);
+			if (fromKey < toKey) {
+				if (first = true) {
+					first = false;
+					for (int i = fromDate; i < dList.size(); i++) {
+						dList.get(i).getSchedule().add(vo);
+					}
+					fromDate = 0;
+				} else {
+					for (int i = 0; i < dList.size(); i++) {
+						dList.get(i).getSchedule().add(vo);
+					}
+				}
+			} else {
+				for (int i = fromDate; i <= toDate; i++) {
+					dList.get(i).getSchedule().add(vo);
+				}
+			}
+			fromKey++;
+			if ((fromKey % 100) > 12) {
+				fromKey += 100;
+				fromKey -= 12;
+			}
+		}
+
+		refreshContentList();
+
+		refreshCalendar(selectedPage);
+	}
+
 	public void insertTodo() {
 		AnchorPane schedulePane;
 		try {
@@ -925,19 +1042,22 @@ public class CalendarController implements Initializable {
 		}
 	}
 
-	public static void insertScheduleReceiver() {
-		if (selectedDay == null)
-			return;
-	}
-
 	public void delete() {
 		Object item = contentListView.getSelectionModel().getSelectedItem();
 		if (item == null)
 			return;
-		// if (item instanceof HouseHolds) {
+		if (item instanceof Schedule) {
+			Schedule vo = (Schedule) item;
+			switch (vo.getData_type()) {
+			case "M":
+				Client.Client.summit(new SocketDB("deleteSchedule", vo));
+				break;
+			case "S":
+				Client.Client.summit(new SocketDB("deleteSchedule", vo));
+				break;
+			}
 
-		Schedule vo = (Schedule) item;
-		Client.Client.summit(new SocketDB("deleteSchedule", vo));
+		}
 
 		refreshDaySchedule();
 
@@ -988,6 +1108,9 @@ public class CalendarController implements Initializable {
 		for (int i = 0; i < scheList.size(); i++) {
 			switch (scheList.get(i).getData_type()) {
 			case "M":
+				observeList.add(scheList.get(i));
+				break;
+			case "S":
 				observeList.add(scheList.get(i));
 				break;
 			}

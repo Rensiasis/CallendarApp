@@ -55,7 +55,7 @@ public class MemberDAO {
 		return i;
 	}
 
-	//가계부 삽입
+	// 가계부 삽입
 	public static void insertHouseHold(HouseHolds vo) {
 		SqlSession session = null;
 
@@ -73,7 +73,7 @@ public class MemberDAO {
 		}
 	}
 
-	//가계부 삭제
+	// 가계부 삭제
 	public static void deleteHouseHold(String household_seq) {
 		SqlSession session = null;
 
@@ -91,7 +91,7 @@ public class MemberDAO {
 		}
 	}
 
-	//가계부 수정
+	// 가계부 수정
 	public static void fixHouseHold(HouseHolds vo) {
 		SqlSession session = null;
 
@@ -109,7 +109,7 @@ public class MemberDAO {
 		}
 	}
 
-	//가계부 리스트불러오기
+	// 가계부 리스트불러오기
 	public static ArrayList<HouseHolds> getHouseHoldList(String member_seq) {
 		SqlSession session = null;
 		ArrayList<HouseHolds> result = null;
@@ -323,6 +323,29 @@ public class MemberDAO {
 		}
 	}
 
+	public static String insertSchedule(Schedule vo) {
+		SqlSession session = null;
+		String result = null;
+		try {
+			session = factory.openSession();
+			MemberMapper mapper = session.getMapper(MemberMapper.class);
+
+			mapper.insertSchedule(vo);
+
+			result = mapper.returnInsertSchedule(vo);
+
+			session.commit();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+		return result;
+	}
+
 	public static ArrayList<Schedule> getSchedule(Members vo) {
 		SqlSession session = null;
 		ArrayList<Schedule> result = null;
@@ -362,7 +385,7 @@ public class MemberDAO {
 			}
 		}
 	}
-	
+
 	public static ArrayList<Schedule> getDaySchedule(Schedule vo) {
 		SqlSession session = null;
 		ArrayList<Schedule> result = null;

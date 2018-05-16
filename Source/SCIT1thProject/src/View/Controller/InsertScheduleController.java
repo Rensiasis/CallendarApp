@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+import VO.Schedule;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -50,9 +51,15 @@ public class InsertScheduleController implements Initializable {
 
 		if (Integer.parseInt(fromDate) <= Integer.parseInt(toDate)) {
 			if (!content.getText().equals("")) {
-				System.out.println(from.getValue());
-				System.out.println(to.getValue());
-
+				Schedule vo=new Schedule();
+				vo.setMember_seq(Client.User.user.getMember_seq());
+				vo.setData_type("S");
+				vo.setFrom_date(fromDate);
+				vo.setTo_date(toDate);
+				vo.setContent(content.getText());
+				vo.setInuser(Client.User.user.getName());
+				View.Controller.CalendarController.schedule=vo;
+				View.Controller.CalendarController.insertScheduleReceiver(vo);
 				View.Controller.CalendarController.stage.close();
 			}else {
 				Alert alert = new Alert(AlertType.ERROR);

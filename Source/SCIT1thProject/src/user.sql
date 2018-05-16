@@ -78,10 +78,10 @@ create sequence schedule_seq
 
 drop sequence 
 
-select * from households;
+select sum(price) from households where member_seq='1';
 
 drop table 
 
-select * from ACCOUNTS
+select * from members;
 
-select * from schedule
+select * from accounts

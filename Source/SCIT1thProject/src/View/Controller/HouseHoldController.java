@@ -55,10 +55,7 @@ public class HouseHoldController implements Initializable {
 
 	@FXML
 	private TextField showSpend;
-
-	@FXML
-	private TextField showSave;
-
+	
 	@FXML
 	private TextField showTotalmoney;
 
@@ -81,8 +78,8 @@ public class HouseHoldController implements Initializable {
 
 		Account a_result = new Account();
 		a_result = (Account) Client.Client.summit(new SocketDB("getAccountInfo", member_seq));
-		showSpend.getText();// 소비금액
-		showSave.getText();// 저축금액
+		String sSpend =(String)Client.Client.summit(new SocketDB("sumPrice",member_seq)); 
+		showSpend.setText(sSpend);// 소비금액
 		showTotalmoney.setText(a_result.getAccount());// 총 재산
 
 		searchCombo.getItems().addAll("최근 1개월 이내 검색", "최근 3개월 이내 검색", "최근 6개월 이내 검색", "최근 12개월 이내 검색", "특정 기간 검색");

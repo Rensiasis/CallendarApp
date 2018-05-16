@@ -55,7 +55,7 @@ public class MemberDAO {
 		return i;
 	}
 
-	//가계부 삽입
+	// 가계부 삽입
 	public static void insertHouseHold(HouseHolds vo) {
 		SqlSession session = null;
 
@@ -73,7 +73,7 @@ public class MemberDAO {
 		}
 	}
 
-	//가계부 삭제
+	// 가계부 삭제
 	public static void deleteHouseHold(String household_seq) {
 		SqlSession session = null;
 
@@ -91,7 +91,7 @@ public class MemberDAO {
 		}
 	}
 
-	//가계부 수정
+	// 가계부 수정
 	public static void fixHouseHold(HouseHolds vo) {
 		SqlSession session = null;
 
@@ -109,7 +109,7 @@ public class MemberDAO {
 		}
 	}
 
-	//가계부 리스트불러오기
+	// 가계부 리스트불러오기
 	public static ArrayList<HouseHolds> getHouseHoldList(String member_seq) {
 		SqlSession session = null;
 		ArrayList<HouseHolds> result = null;
@@ -199,8 +199,8 @@ public class MemberDAO {
 			}
 		}
 	}
-	
-	//어카운트 정보 가져오기
+
+	// 어카운트 정보 가져오기
 	public static Account getAccountInfo(String member_seq) {
 		SqlSession session = null;
 		Account result = null;
@@ -208,6 +208,24 @@ public class MemberDAO {
 			session = factory.openSession();
 			MemberMapper mapper = session.getMapper(MemberMapper.class);
 			result = mapper.getAccountInfo(member_seq);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+		return result;
+	}
+
+	// 총가격 구하기
+	public static int sumPrice(String member_seq) {
+		SqlSession session = null;
+		int result = 0;
+		try {
+			session = factory.openSession();
+			MemberMapper mapper = session.getMapper(MemberMapper.class);
+			result = mapper.sumPrice(member_seq);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -362,7 +380,7 @@ public class MemberDAO {
 			}
 		}
 	}
-	
+
 	public static ArrayList<Schedule> getDaySchedule(Schedule vo) {
 		SqlSession session = null;
 		ArrayList<Schedule> result = null;

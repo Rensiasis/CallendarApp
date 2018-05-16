@@ -3,6 +3,7 @@ package View.Controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -10,10 +11,12 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Timer;
 
 import Client.User;
 import Parser.EventDayParser;
 import Parser.WeatherPlanetParser;
+import Util.Alarm;
 import VO.Day;
 import VO.EventDay;
 import VO.Schedule;
@@ -329,7 +332,7 @@ public class CalendarController implements Initializable {
 	private static ImageView[] weatherViewList;
 	private static Label[] minList;
 	private static Label[] maxList;
-			
+
 	private static Map<Integer, ArrayList<Day>> calList;
 	private static ListView<Object> staticListView;
 
@@ -556,14 +559,14 @@ public class CalendarController implements Initializable {
 		weatherViewList[39] = weather40;
 		weatherViewList[40] = weather41;
 		weatherViewList[41] = weather42;
-		
-		minList=new Label[42];
-		minList[0]=min1;
-		
+
+		minList = new Label[42];
+		minList[0] = min1;
+
 		min1.setTextFill(Color.BLUE);
-		maxList=new Label[42];
-		maxList[0]=max1;
-		
+		maxList = new Label[42];
+		maxList[0] = max1;
+
 		max1.setTextFill(Color.RED);
 
 		gridPane.setGridLinesVisible(true);
@@ -794,7 +797,7 @@ public class CalendarController implements Initializable {
 			for (int j = 0; j < scheList.size(); j++) {
 				areaList[i].appendText(scheList.get(j).getContent() + "\n");
 			}
-			
+
 			Weather weather = dayList.get(dayList.size() - firstIndex + i).getWeather();
 			setWeatherView(weatherViewList[i], weather);
 		}
@@ -829,7 +832,7 @@ public class CalendarController implements Initializable {
 			for (int j = 0; j < scheList.size(); j++) {
 				areaList[i].appendText(scheList.get(j).getContent() + "\n");
 			}
-			
+
 			Weather weather = dayList.get(i - lastIndex).getWeather();
 			setWeatherView(weatherViewList[i], weather);
 		}
@@ -1053,6 +1056,7 @@ public class CalendarController implements Initializable {
 					break;
 				case "D":
 					fullDate = sList.get(i).getFrom_date();
+					String times = sList.get(i).getTimes();
 					keyStr = fullDate.substring(0, 6);
 					key = Integer.parseInt(keyStr);
 					date = 0;
@@ -1061,7 +1065,21 @@ public class CalendarController implements Initializable {
 					} else {
 						date = Integer.parseInt(fullDate.substring(6, 8));
 					}
+					String dateStr = fullDate + times;
+					System.out.println(dateStr);
+					SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmm");
+					Date inputDate = null;
+					System.out.println(inputDate);
+					try {
+						inputDate = format.parse(dateStr);
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					calList.get(key).get(date - 1).getSchedule().add(sList.get(i));
+					String content = sList.get(i).getContent();
+					/*if (inputDate.before(new Date()))
+						setAlarm(content.substring(7, content.length()), inputDate);*/
 				}
 			}
 		}
@@ -1418,6 +1436,22 @@ public class CalendarController implements Initializable {
 				}
 			}
 		});
+	}
+
+	public static void setAlarm(String message, Date date) {
+		Alarm alarm = new Alarm();
+		Timer beforeTimer = new Timer();
+		Timer afterTimer = new Timer();
+		String beforeMessage = message + " 한 시간 전입니다.";
+		String afterMessage = message + " 할 시간 입니다.";
+		alarm.setMessage(afterMessage);
+		beforeTimer.schedule(alarm, date);
+		Calendar ca = Calendar.getInstance();
+		ca.setTime(date);
+		ca.add(Calendar.HOUR, -1);
+		Date beforeDate = ca.getTime();
+		alarm.setMessage(beforeMessage);
+		afterTimer.schedule(alarm, beforeDate);
 	}
 
 }

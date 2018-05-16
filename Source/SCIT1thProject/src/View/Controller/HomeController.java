@@ -2,9 +2,7 @@ package View.Controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import Client.User;
 import DAO.MemberDAO;
-import Util.Switcher;
 import VO.Members;
 import VO.SocketDB;
 import javafx.event.ActionEvent;
@@ -16,7 +14,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 public class HomeController implements Initializable {
 

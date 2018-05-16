@@ -270,7 +270,7 @@
                   </Label>
                   <TextArea fx:id="textArea10" editable="false" layoutY="30.0" prefHeight="66.0" prefWidth="124.0" style="-fx-background-insets: 0; -fx-padding: 0;" />
                   <ImageView fx:id="weather10" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="max10" layoutX="70.0" layoutY="6.0" prefHeight="20.0" prefWidth="20.0">
+                  <Label fx:id="min10" layoutX="70.0" layoutY="6.0" prefHeight="20.0" prefWidth="20.0">
                      <font>
                         <Font size="14.0" />
                      </font>

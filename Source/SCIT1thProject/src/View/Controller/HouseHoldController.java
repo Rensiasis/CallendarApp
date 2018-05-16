@@ -77,27 +77,17 @@ public class HouseHoldController implements Initializable {
 		}
 		HHListView.setItems(hlist);// 리스트뷰에 가계부목록 출력하기
 
-		Account a_result = new Account();
-		a_result = (Account) Client.Client.summit(new SocketDB("getAccountInfo", member_seq));
+		int i = (int) Client.Client.summit(new SocketDB("sumPrice", member_seq));
+		int a = (int) Client.Client.summit(new SocketDB("nowtotalMoney", member_seq)) - i;
 
-//		if (HHListView.getItems() != null) {
-//			String sSpend = (String) Client.Client.summit(new SocketDB("sumPrice", member_seq));
-//			showSpend.setText(sSpend);// 소비금액
-//		}
-
-		showTotalmoney.setText(a_result.getAccount());// 총 재산
+		String spendmoney = Integer.toString(i);
+		String nowtotalMoney = Integer.toString(a);
+		showSpend.setText(spendmoney);
+		showTotalmoney.setText(nowtotalMoney);// 총 재산
 
 		searchCombo.getItems().addAll("최근 1개월 이내 검색", "최근 3개월 이내 검색", "최근 6개월 이내 검색", "최근 12개월 이내 검색", "특정 기간 검색");
 		searchCombo.setValue("검색옵션");
 		searchCombo.setVisibleRowCount(5);
-
-	}
-
-	public void comboSelectedEvent(ContextMenuEvent event) {
-
-		System.out.println(event.getPickResult().toString());
-		System.out.println(event.getPickResult().toString());
-		System.out.println(event.getPickResult().toString());
 
 	}
 
@@ -155,6 +145,15 @@ public class HouseHoldController implements Initializable {
 					Client.Client.summit(new SocketDB("deleteHouseHold",
 							HHListView.getSelectionModel().getSelectedItem().getHousehold_seq()));
 					HHListView.getItems().remove(HHListView.getSelectionModel().getSelectedIndex());
+					
+					try {
+						AnchorPane memberPane = FXMLLoader.load(getClass().getResource("/View/HouseHold.fxml"));
+						HouseHoldPane.getChildren().setAll(memberPane);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
 				} else {
 					Alert alert = new Alert(AlertType.ERROR);
 					alert.setTitle("삭제 에러");
@@ -217,11 +216,10 @@ public class HouseHoldController implements Initializable {
 		});
 
 	}
-	
 
-    @FXML
-    public void exitProgram(ActionEvent event) {
+	@FXML
+	public void exitProgram(ActionEvent event) {
 		System.exit(0);
-    }
+	}
 
 }

@@ -175,17 +175,13 @@
 		where
 		member_seq=#{member_seq}
 	</update>
-
-	<!-- 어카운트 정보 가져오기 -->
-	<select id="getAccountInfo" parameterType="String"
-		resultType="Account">
-		select
-		member_seq,
-		account,
-		montly_salary,
-		montly_save
-		from accounts
-		where member_seq=#{member_seq}
+	
+	
+	<!-- 현재잔액구하기 -->
+	<select id="nowtotalMoney" parameterType="String" resultType="Integer">
+	select account 
+	from accounts 
+	where member_seq=#{member_seq}   
 	</select>
 
 	<!-- 가계부 소비금액 총합구하기 -->
@@ -288,6 +284,7 @@
 		, #{inuser}
 		)
 	</insert>
+	
 	<select id="returnInsertSchedule" parameterType="Schedule"
 		resultType="String">
 		select schedule_seq

@@ -85,6 +85,8 @@ public class SocketDB implements Serializable {
 		case "getAccountInfo":
 			result = MemberDAO.getAccountInfo((String)inputObject);
 			break;
+		case "sumPrice":
+			result = MemberDAO.sumPrice((String) inputObject);
 		}
 		return result;
 	}

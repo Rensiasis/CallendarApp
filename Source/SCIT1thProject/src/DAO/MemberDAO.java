@@ -199,8 +199,13 @@ public class MemberDAO {
 			}
 		}
 	}
+<<<<<<< HEAD
 	
 	//어카운트 정보 가져오기
+=======
+
+	// 어카운트 정보 가져오기
+>>>>>>> master_branch
 	public static Account getAccountInfo(String member_seq) {
 		SqlSession session = null;
 		Account result = null;
@@ -208,6 +213,24 @@ public class MemberDAO {
 			session = factory.openSession();
 			MemberMapper mapper = session.getMapper(MemberMapper.class);
 			result = mapper.getAccountInfo(member_seq);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+		return result;
+	}
+
+	// 총가격 구하기
+	public static int sumPrice(String member_seq) {
+		SqlSession session = null;
+		int result = 0;
+		try {
+			session = factory.openSession();
+			MemberMapper mapper = session.getMapper(MemberMapper.class);
+			result = mapper.sumPrice(member_seq);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

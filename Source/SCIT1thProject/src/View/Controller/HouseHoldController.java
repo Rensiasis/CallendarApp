@@ -55,10 +55,7 @@ public class HouseHoldController implements Initializable {
 
 	@FXML
 	private TextField showSpend;
-
-	@FXML
-	private TextField showSave;
-
+	
 	@FXML
 	private TextField showTotalmoney;
 
@@ -70,18 +67,19 @@ public class HouseHoldController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		String member_seq=user.getUser().getMember_seq();
-		
-		ArrayList<HouseHolds> hhList = dao.getHouseHoldList(member_seq);
+		String member_seq = user.getUser().getMember_seq();
+
+		ArrayList<HouseHolds> hhList = (ArrayList<HouseHolds>) Client.Client
+				.summit(new SocketDB("getHouseHoldList", member_seq));
 		for (int i = 0; i < hhList.size(); i++) {
 			hlist.add(hhList.get(i));
 		}
 		HHListView.setItems(hlist);// 리스트뷰에 가계부목록 출력하기
 
-		Account a_result= new Account();
-		a_result=dao.getAccountInfo(member_seq);
-		showSpend.getText();// 소비금액
-		showSave.getText();// 저축금액
+		Account a_result = new Account();
+		a_result = (Account) Client.Client.summit(new SocketDB("getAccountInfo", member_seq));
+		String sSpend =(String)Client.Client.summit(new SocketDB("sumPrice",member_seq)); 
+		showSpend.setText(sSpend);// 소비금액
 		showTotalmoney.setText(a_result.getAccount());// 총 재산
 
 		searchCombo.getItems().addAll("최근 1개월 이내 검색", "최근 3개월 이내 검색", "최근 6개월 이내 검색", "최근 12개월 이내 검색", "특정 기간 검색");
@@ -121,7 +119,7 @@ public class HouseHoldController implements Initializable {
 					hh.setContent(content.getText());
 					hh.setInuser(user.getUser().getId());
 
-					dao.insertHouseHold(hh);
+					Client.Client.summit(new SocketDB("insertHouseHold", hh));
 					product.clear();
 					price.clear();
 					content.clear();
@@ -149,7 +147,8 @@ public class HouseHoldController implements Initializable {
 			public void run() {
 				// TODO Auto-generated method stub
 				if (HHListView.getSelectionModel().getSelectedItem() != null) {
-					dao.deleteHouseHold(HHListView.getSelectionModel().getSelectedItem().getHousehold_seq());
+					Client.Client.summit(new SocketDB("deleteHouseHold",
+							HHListView.getSelectionModel().getSelectedItem().getHousehold_seq()));
 					HHListView.getItems().remove(HHListView.getSelectionModel().getSelectedIndex());
 				} else {
 					Alert alert = new Alert(AlertType.ERROR);
@@ -187,7 +186,7 @@ public class HouseHoldController implements Initializable {
 						hh.setPrice(price.getText());
 						hh.setContent(content.getText());
 
-						dao.fixHouseHold(hh);
+						Client.Client.summit(new SocketDB("fixHouseHold",hh));
 						product.clear();
 						price.clear();
 						content.clear();

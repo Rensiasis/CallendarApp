@@ -184,7 +184,8 @@
 		account,
 		montly_salary,
 		montly_save
-		from accounts
+		from
+		accounts
 		where member_seq=#{member_seq}
 	</select>
 
@@ -194,7 +195,8 @@
 		select
 		sum(price)
 		from households
-		where member_seq=#{member_seq}
+		where
+		member_seq=#{member_seq}
 	</select>
 
 	<!-- 1개월 이내 검색 -->
@@ -311,7 +313,7 @@
 		,member_seq
 		,data_type
 		,from_date
-		,time
+		,times
 		,content
 		,indate
 		,inuser
@@ -323,7 +325,7 @@
 		, #{data_type}
 		,
 		to_date(#{from_date},'YYYYMMDD')
-		, #{time}
+		, #{times}
 		,
 		#{content}
 		, sysdate
@@ -342,7 +344,7 @@
 		,to_char(from_date,'YYYYMMDD') from_date
 		,to_char(to_date,'YYYYMMDD')
 		to_date
-		,time
+		,times
 		,content
 		,indate
 		,ldate
@@ -368,10 +370,8 @@
 		,member_seq
 		,data_type
 		,to_char(from_date,'YYYYMMDD') from_date
-		from_date
 		,to_char(to_date,'YYYYMMDD') to_date
-		to_date
-		,time
+		,times
 		,content
 		,indate
 		,ldate
@@ -379,9 +379,9 @@
 		,luser
 		from Schedule
 		where
-		from_date=#{from_date} OR
-		(#{from_date}
-		between from_date and to_date)
+		from_date=to_date(#{from_date},'YYYYMMDD') or
+		(to_date(#{from_date},'YYYYMMDD')>=from_date and
+		to_date>=to_date(#{from_date},'YYYYMMDD'))
 	</select>
 
 </mapper>

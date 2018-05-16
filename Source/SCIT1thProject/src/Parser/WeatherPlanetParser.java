@@ -43,8 +43,10 @@ public class WeatherPlanetParser {
 		return weatherList;
 	}
 
-	public void setWeatherList(ArrayList<Weather> weatherList) {
-		this.weatherList = weatherList;
+	public void setAddress(String city, String county, String village) {
+		this.city = city;
+		this.county = county;
+		this.village = village;
 	}
 
 	public void parshing() {
@@ -60,12 +62,12 @@ public class WeatherPlanetParser {
 		weatherList.add(parseToday());
 	}
 
-	public Weather parseToday() {
+	private Weather parseToday() {
 		StringBuilder sb = null;
 		HttpURLConnection con = null;
 		try {
-			URL url = new URL(currentApiURL + "&city=" + encodeURL(city) + "&county=" + encodeURL(county)
-					+ "&village=" + encodeURL(village) + "&foretxt=" + encodeURL(foretxt));
+			URL url = new URL(currentApiURL + "&city=" + encodeURL(city) + "&county=" + encodeURL(county) + "&village="
+					+ encodeURL(village) + "&foretxt=" + encodeURL(foretxt));
 			con = (HttpURLConnection) url.openConnection();
 			con.setRequestMethod("GET");
 			con.setDoInput(true);
@@ -89,6 +91,7 @@ public class WeatherPlanetParser {
 		JsonObject sky = minutely.get(0).getAsJsonObject().get("sky").getAsJsonObject();
 		JsonObject temperature = minutely.get(0).getAsJsonObject().get("temperature").getAsJsonObject();
 		String currentSky = parseString(sky.get("name").toString());
+		String currentSkyCode = parseString(sky.get("code").toString());
 		String tmax = parseString(temperature.get("tmax").toString()).split("\\.")[0];
 		String tmin = parseString(temperature.get("tmin").toString()).split("\\.")[0];
 
@@ -96,11 +99,11 @@ public class WeatherPlanetParser {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 		String date = dateFormat.format(today);
 
-		Weather result = new Weather(date, currentSky, tmax, tmin);
+		Weather result = new Weather(date, currentSky, currentSkyCode, tmax, tmin);
 		return result;
 	}
 
-	public void getShortTermData() {
+	private void getShortTermData() {
 		StringBuilder sb = null;
 		HttpURLConnection con = null;
 		try {
@@ -133,7 +136,7 @@ public class WeatherPlanetParser {
 		parseShortTermWeather(temperature, sky);
 	}
 
-	public void parseShortTermWeather(JsonObject temperatureObj, JsonObject skyObj) {
+	private void parseShortTermWeather(JsonObject temperatureObj, JsonObject skyObj) {
 		Date today = new Date();
 		SimpleDateFormat time = new SimpleDateFormat("HH");
 		int currenthour = Integer.parseInt(time.format(today));
@@ -155,10 +158,10 @@ public class WeatherPlanetParser {
 		calendar.add(Calendar.DATE, 1);
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 		String date = dateFormat.format(calendar.getTime());
-		weatherList.add(new Weather(date, sky, tmax, tmin));
+		weatherList.add(new Weather(date, sky, parseString(skyCode), tmax, tmin));
 	}
 
-	public void getLongTermData() {
+	private void getLongTermData() {
 
 		StringBuilder sb = null;
 		HttpURLConnection con = null;
@@ -193,7 +196,7 @@ public class WeatherPlanetParser {
 		parseLongTermWeather(sky, temperature);
 	}
 
-	public void parseLongTermWeather(JsonObject skyObj, JsonObject temperatureObj) {
+	private void parseLongTermWeather(JsonObject skyObj, JsonObject temperatureObj) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.add(Calendar.DATE, 2);
 		for (int i = 2; i <= 10; i++) {
@@ -201,14 +204,15 @@ public class WeatherPlanetParser {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 			String date = dateFormat.format(today);
 			String sky = parseString(skyObj.get("amName" + Integer.toString(i) + "day").toString());
+			String skyCode = parseString(skyObj.get("amCode" + Integer.toString(i) + "day").toString());
 			String tmax = parseString(temperatureObj.get("tmax" + Integer.toString(i) + "day").toString());
 			String tmin = parseString(temperatureObj.get("tmin" + Integer.toString(i) + "day").toString());
-			weatherList.add(new Weather(date, sky, tmax, tmin));
+			weatherList.add(new Weather(date, sky, skyCode, tmax, tmin));
 			calendar.add(Calendar.DATE, 1);
 		}
 	}
 
-	public String encodeURL(String url) {
+	private String encodeURL(String url) {
 		try {
 			return URLEncoder.encode(url, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
@@ -218,7 +222,7 @@ public class WeatherPlanetParser {
 		return null;
 	}
 
-	public String skyToString(String code) {
+	private String skyToString(String code) {
 		switch (code) {
 		case "SKY_S01":
 			return "맑음";
@@ -252,13 +256,13 @@ public class WeatherPlanetParser {
 		return null;
 	}
 
-	public int skyCodeToInteger(String skyCode) {
+	private int skyCodeToInteger(String skyCode) {
 		int a = (int) skyCode.charAt(5) - '0';
 		int b = (int) skyCode.charAt(6) - '0';
 		return a * 10 + b;
 	}
 
-	public String parseString(String str) {
+	private String parseString(String str) {
 		return str.substring(1, str.length() - 1);
 	}
 }

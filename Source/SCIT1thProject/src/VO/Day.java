@@ -7,14 +7,15 @@ public class Day {
 	public Date date;
 	public ArrayList<EventDay> event;
 	public ArrayList<Schedule> schedule;
+	public Weather weather;
 
-	public Day(Date date, ArrayList<EventDay> event, ArrayList<Schedule> schedule) {
+
+	public Day(Date date, ArrayList<EventDay> event, ArrayList<Schedule> schedule, Weather weather) {
 		super();
 		this.date = date;
 		this.event = event;
 		this.schedule = schedule;
-		event=new ArrayList<>();
-		schedule=new ArrayList<>();
+		this.weather = weather;
 	}
 
 	public Day() {
@@ -47,9 +48,19 @@ public class Day {
 		this.schedule = schedule;
 	}
 
+	public Weather getWeather() {
+		return weather;
+	}
+
+	public void setWeather(Weather weather) {
+		this.weather = weather;
+	}
+
 	@Override
 	public String toString() {
-		return "Day [date=" + date + ", event=" + event + ", schedule=" + schedule + "]";
+		return "Day [date=" + date + ", event=" + event + ", schedule=" + schedule + ", weather=" + weather + "]";
 	}
+	
+	
 
 }

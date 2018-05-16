@@ -11,14 +11,17 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import Client.User;
 import Parser.EventDayParser;
 import Parser.SearchPostNumber;
+import Parser.WeatherPlanetParser;
 import VO.Address;
 import VO.Day;
 import VO.EventDay;
 import VO.HouseHolds;
 import VO.Schedule;
 import VO.SocketDB;
+import VO.Weather;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -322,6 +325,7 @@ public class CalendarController implements Initializable {
 
 	private static Label[] labelList;
 	private static TextArea[] areaList;
+	private static ImageView[] weatherViewList;
 
 	private static Map<Integer, ArrayList<Day>> calList;
 	private static ListView<Object> staticListView;
@@ -500,10 +504,46 @@ public class CalendarController implements Initializable {
 		areaList[39] = textArea40;
 		areaList[40] = textArea41;
 		areaList[41] = textArea42;
+		
 		for (int i = 0; i < 42; i++) {
 			areaList[i].setEditable(false);
 			areaList[i].setOnMouseClicked(event -> selectDay(event));
 		}
+		
+		weatherViewList=new ImageView[42];
+		weatherViewList[0]=weather1;
+		weatherViewList[0]=weather2;
+		weatherViewList[0]=weather3;
+		weatherViewList[0]=weather4;
+		weatherViewList[0]=weather5;
+		weatherViewList[0]=weather6;
+		weatherViewList[0]=weather1;
+		weatherViewList[0]=weather1;
+		weatherViewList[0]=weather1;
+		weatherViewList[0]=weather1;
+		weatherViewList[0]=weather1;
+		weatherViewList[0]=weather1;
+		weatherViewList[0]=weather1;
+		weatherViewList[0]=weather1;
+		weatherViewList[0]=weather1;
+		weatherViewList[0]=weather1;
+		weatherViewList[0]=weather1;
+		weatherViewList[0]=weather1;
+		weatherViewList[0]=weather1;
+		weatherViewList[0]=weather1;
+		weatherViewList[0]=weather1;
+		weatherViewList[0]=weather1;
+		weatherViewList[0]=weather1;
+		weatherViewList[0]=weather1;
+		weatherViewList[0]=weather1;
+		weatherViewList[0]=weather1;
+		weatherViewList[0]=weather1;
+		weatherViewList[0]=weather1;
+		weatherViewList[0]=weather1;
+		weatherViewList[0]=weather1;
+		
+		
+		
 
 		gridPane.setGridLinesVisible(true);
 		gridPane.setAlignment(Pos.TOP_LEFT);
@@ -522,6 +562,8 @@ public class CalendarController implements Initializable {
 		staticListView = contentListView;
 
 		makeCalandar();
+		
+		setWeather();
 	}
 
 	public void makeCalandar() {
@@ -588,6 +630,36 @@ public class CalendarController implements Initializable {
 
 		refreshCalendar(keyStr);
 	}
+	
+	public void setWeather() {
+		WeatherPlanetParser w=new WeatherPlanetParser();
+		w.setAddress(User.user.getCity(), User.user.getCounty(), User.user.getVillage());
+		w.parshing();
+		ArrayList<Weather> wList=w.getWeatherList();
+		Date today= new Date();
+		SimpleDateFormat format = new SimpleDateFormat("YYYYMM");
+		String keyStr = format.format(today);
+		format= new SimpleDateFormat("dd");
+		String dayStr=format.format(today);
+		int key=Integer.parseInt(keyStr);
+		int startIndex=0;
+		if (dayStr.charAt(0) == '0') {
+			startIndex=Integer.parseInt(dayStr.substring(0, 1))-1;
+		} else {
+			startIndex=Integer.parseInt(dayStr)-1;
+		}
+		for(int i=0;i<wList.size();i++) {
+			calList.get(key).get(startIndex++).setWeather(wList.get(i));
+			if(startIndex>=calList.get(key).size()) {
+				key++;
+				if ((key % 100) > 12) {
+					key += 100;
+					key -= 12;
+				}
+				startIndex=0;
+			}
+		}
+	}
 
 	public static void refreshCalendar(String keyStr) {
 		int key = Integer.parseInt(keyStr);
@@ -620,6 +692,11 @@ public class CalendarController implements Initializable {
 			for (int j = 0; j < scheList.size(); j++) {
 				areaList[i].appendText(scheList.get(j).getContent() + "\n");
 
+			}
+			
+			Weather weather = dayList.get(i - firstIndex).getWeather();
+			if(weather!=null) {
+				weather.getSkyCode();
 			}
 		}
 		int lastIndex = dayList.size() + firstIndex;

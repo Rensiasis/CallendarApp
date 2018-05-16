@@ -38,24 +38,24 @@ public interface MemberMapper {
 
 	//어카운트 정보 수정(메뉴바 설정 입력시 수정)
 	public void updateAccount(Account a_vo);
-	
-	//어카운트 정보 가져오기
-	public Account getAccountInfo(String member_seq);
-	
+
 	//가계부 사용 충 가격 구하기
 	public int sumPrice(String member_seq);
 	
+	//현재총액 가져오기
+	public int nowtotalMoney(String member_seq);
+	
 	//최근 1개월 이내 내역 검색
-	public ArrayList<HouseHolds> searchForAMonth(HouseHolds vo);
+	public HouseHolds searchForAMonth(String member_seq);
 
 	// 최근 3개월 이내 내역 검색
-	public ArrayList<HouseHolds> searchForThreeMonth(HouseHolds vo);
+	public HouseHolds searchForThreeMonth(String member_seq);
 
 	// 최근 6개월 이내 내역 검색
-	public ArrayList<HouseHolds> searchForSixMonth(HouseHolds vo);
+	public HouseHolds searchForSixMonth(String member_seq);
 
 	// 최근 12개월 이내 내역 검색
-	public ArrayList<HouseHolds> searchForAnYear(HouseHolds vo);
+	public HouseHolds searchForAnYear(String member_seq);
 
 	// 캘린더 메모 추가
 	public void insertMemo(Schedule vo);

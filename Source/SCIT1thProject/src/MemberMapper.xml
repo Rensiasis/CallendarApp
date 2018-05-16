@@ -176,16 +176,12 @@
 		member_seq=#{member_seq}
 	</update>
 
-	<!-- 어카운트 정보 가져오기 -->
-	<select id="getAccountInfo" parameterType="String"
-		resultType="Account">
-		select
-		member_seq,
-		account,
-		montly_salary,
-		montly_save
-		from
-		accounts
+
+	<!-- 현재잔액구하기 -->
+	<select id="nowtotalMoney" parameterType="String"
+		resultType="Integer">
+		select account
+		from accounts
 		where member_seq=#{member_seq}
 	</select>
 
@@ -200,39 +196,45 @@
 	</select>
 
 	<!-- 1개월 이내 검색 -->
-	<select parameterType="HouseHold" id="searchForAMonth"
-		resultType="String">
-		select product, price, get_date, content
-		from HouseHolds
-		where get_date between sysdate-30 and sysdate
-		order by get_date desc
+	<select id="searchForAMonth" parameterType="String" resultType="HouseHold">
+		select household_seq, member_seq, product, price, get_date, content,
+		indate, ldate, inuser, luser 
+		from households
+		where member_seq=#{member_seq} and 
+		get_date between sysdate-30 and sysdate
+		order by get_date desc	
 	</select>
 
 	<!-- 3개월 이내 검색 -->
-	<select parameterType="HouseHold" id="searchForThreeMonth"
-		resultType="String">
-		select product, price, get_date, content
-		from HouseHolds
-		where get_date between sysdate-90 and sysdate
-		order by get_date desc
+	<select id="searchForThreeMonth" parameterType="String" resultType="HouseHold">
+		select household_seq, member_seq, product, price, get_date, content,
+		indate, ldate, inuser, luser 
+		from households
+		where member_seq=#{member_seq} and 
+		get_date between sysdate-90 and sysdate
+		order by get_date desc	
 	</select>
 
 	<!-- 6개월 이내 검색 -->
-	<select parameterType="HouseHold" id="searchForSixMonth"
-		resultType="String">
-		select product, price, get_date, content
-		from HouseHolds
-		where get_date between sysdate-120 and sysdate
-		order by get_date desc
+	<select id="searchForSixMonth" parameterType="String"
+		resultType="HouseHold" >
+		select household_seq, member_seq, product, price, get_date, content,
+		indate, ldate, inuser, luser 
+		from households
+		where member_seq=#{member_seq} and 
+		get_date between sysdate-180 and sysdate
+		order by get_date desc	
 	</select>
 
 	<!-- 1년 이내 검색 -->
-	<select parameterType="HouseHold" id="searchForAnYear"
-		resultType="String">
-		select product, price, get_date, content
-		from HouseHolds
-		where get_date between sysdate-365 and sysdate
-		order by get_date desc
+	<select id="searchForAnYear" parameterType="String" 
+		resultType="HouseHold" >
+		select household_seq, member_seq, product, price, get_date, content,
+		indate, ldate, inuser, luser 
+		from households
+		where member_seq=#{member_seq} and 
+		get_date between sysdate-365 and sysdate
+		order by get_date desc	
 	</select>
 
 
@@ -290,6 +292,7 @@
 		, #{inuser}
 		)
 	</insert>
+
 	<select id="returnInsertSchedule" parameterType="Schedule"
 		resultType="String">
 		select schedule_seq
@@ -323,11 +326,13 @@
 		schedule_seq.nextval
 		, #{member_seq}
 		, #{data_type}
-		, to_date(#{from_date},'YYYYMMDD')
+		,
+		to_date(#{from_date},'YYYYMMDD')
 		, #{times}
 		, #{content}
 		, sysdate
-		, #{inuser}
+		,
+		#{inuser}
 		)
 	</insert>
 

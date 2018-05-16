@@ -4,18 +4,14 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import javax.xml.stream.events.StartDocument;
-
 import Client.User;
 import DAO.MemberDAO;
-import VO.Account;
 import VO.HouseHolds;
 import VO.SocketDB;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -27,8 +23,6 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.input.ContextMenuEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 public class HouseHoldController implements Initializable {
@@ -65,16 +59,6 @@ public class HouseHoldController implements Initializable {
 	private DatePicker startDay;
 	@FXML
 	private DatePicker endDay;
-	@FXML
-	private Button search1;
-	@FXML
-	private Button search3;
-	@FXML
-	private Button search6;
-	@FXML
-	private Button search12;
-	@FXML
-	private Button searchPeriod;
 
 	public ObservableList<HouseHolds> hlist = FXCollections.observableArrayList();
 
@@ -85,32 +69,22 @@ public class HouseHoldController implements Initializable {
 
 		ArrayList<HouseHolds> hhList = (ArrayList<HouseHolds>) Client.Client
 				.summit(new SocketDB("getHouseHoldList", member_seq));
-		for (int i = 0; i < hhList.size(); i++) {
-			hlist.add(hhList.get(i));
+		refreshList(hhList);
+
+		if (HHListView.getSelectionModel().getSelectedItems() != null) {
+			int i = (int) Client.Client.summit(new SocketDB("sumPrice", member_seq));
+			int a = (int) Client.Client.summit(new SocketDB("nowtotalMoney", member_seq)) - i;
+
+			String spendmoney = Integer.toString(i);
+			String nowtotalMoney = Integer.toString(a);
+			showSpend.setText(spendmoney);
+			showTotalmoney.setText(nowtotalMoney);// 총 재산
 		}
-		HHListView.setItems(hlist);// 리스트뷰에 가계부목록 출력하기
-
-		Account a_result = new Account();
-		a_result = (Account) Client.Client.summit(new SocketDB("getAccountInfo", member_seq));
-
-//		if (HHListView.getItems() != null) {
-//			String sSpend = (String) Client.Client.summit(new SocketDB("sumPrice", member_seq));
-//			showSpend.setText(sSpend);// 소비금액
-//		}
-
-		showTotalmoney.setText(a_result.getAccount());// 총 재산
+		;
 
 		searchCombo.getItems().addAll("최근 1개월 이내 검색", "최근 3개월 이내 검색", "최근 6개월 이내 검색", "최근 12개월 이내 검색", "특정 기간 검색");
 		searchCombo.setValue("검색옵션");
 		searchCombo.setVisibleRowCount(5);
-
-	}
-
-	public void comboSelectedEvent(ContextMenuEvent event) {
-
-		System.out.println(event.getPickResult().toString());
-		System.out.println(event.getPickResult().toString());
-		System.out.println(event.getPickResult().toString());
 
 	}
 
@@ -168,6 +142,15 @@ public class HouseHoldController implements Initializable {
 					Client.Client.summit(new SocketDB("deleteHouseHold",
 							HHListView.getSelectionModel().getSelectedItem().getHousehold_seq()));
 					HHListView.getItems().remove(HHListView.getSelectionModel().getSelectedIndex());
+
+					try {
+						AnchorPane memberPane = FXMLLoader.load(getClass().getResource("/View/HouseHold.fxml"));
+						HouseHoldPane.getChildren().setAll(memberPane);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
 				} else {
 					Alert alert = new Alert(AlertType.ERROR);
 					alert.setTitle("삭제 에러");
@@ -230,93 +213,60 @@ public class HouseHoldController implements Initializable {
 		});
 
 	}
-	
 
-    @FXML
-    public void exitProgram(ActionEvent event) {
+	@FXML
+	public void exitProgram(ActionEvent event) {
 		System.exit(0);
-    }
-    @FXML
-	public void btnSearchForAMonth (MouseEvent event) {
+	}
 
-		search1.setOnAction(new EventHandler<ActionEvent>() {
+	@FXML
+	public void searchComboClick(ActionEvent event) {
+		Platform.runLater(new Runnable() {
 
 			@Override
-			public void handle(ActionEvent event) {
-			
-				//Client.Client.summit(new SocketDB("insertAccount", User.getUser().getMember_seq()));
-				
-				System.out.println("1Button Clicked");
-				
+			public void run() {
+				// TODO Auto-generated method stub
+				HouseHolds hh = new HouseHolds();
+				switch (searchCombo.getSelectionModel().getSelectedIndex()) {
+				case 0:// 1개월내 검색
+					hh = (HouseHolds) Client.Client.summit(new SocketDB("searchForAMonth", user.getUser().getMember_seq()));
+					System.out.println(hh.toString());
+					
+					break;
+				case 1:// 3개월내 검색
+					HHListView.setItems(null);
+					hh = (HouseHolds) Client.Client.summit(new SocketDB("searchForThreeMonth", user.getUser().getMember_seq()));
+					System.out.println(hh.toString());
+					
+					break;
+				case 2:// 6개월내 검색
+					HHListView.setItems(null);
+					hh = (HouseHolds) Client.Client.summit(new SocketDB("searchForSixMonth", user.getUser().getMember_seq()));
+					System.out.println(hh.toString());
+					
+					break;
+				case 3:// 12개월내 검색
+					HHListView.setItems(null);
+					hh = (HouseHolds) Client.Client.summit(new SocketDB("searchForAnYear", user.getUser().getMember_seq()));
+					System.out.println(hh.toString());
 
+					break;
+				case 4:// 특정기간검색
+					
+					break;
+				}
 			}
 		});
-
 	}
-	public void btnSearchForThreeMonth (MouseEvent event) {
-
-		search3.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				
-				//Client.Client.summit(new SocketDB("insertAccount", User.getUser().getMember_seq()));
-				
-				System.out.println("3Button Clicked");
-				
-
-			}
-		});
-
+	
+	public void refreshList(ArrayList<HouseHolds> List) {
+		hlist.clear();
+		for (int i = 0; i < List.size(); i++) {
+			hlist.add(List.get(i));
+		}
+		
+		HHListView.setItems(hlist);// 리스트뷰에 가계부목록 출력하기
+		HHListView.refresh();
 	}
-	public void btnSearchForSixMonth(MouseEvent event) {
 
-		search6.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				
-				//Client.Client.summit(new SocketDB("insertAccount", User.getUser().getMember_seq()));
-				
-				System.out.println("6Button Clicked");
-			
-
-			}
-		});
-
-	}
-	public void btnSearchForAnYear(MouseEvent event) {
-
-		search12.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				
-				//Client.Client.summit(new SocketDB("insertAccount", User.getUser().getMember_seq()));
-				
-				
-				System.out.println("12Button Clicked");
-
-			}
-		});
-
-	}
-	public void btnSearchForPeriod(MouseEvent event) {
-
-		search12.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				
-				//Client.Client.summit(new SocketDB("insertAccount", User.getUser().getMember_seq()));
-				
-				
-				
-				
-				System.out.println("Period Button Clicked");
-
-			}
-		});
-
-	}
 }

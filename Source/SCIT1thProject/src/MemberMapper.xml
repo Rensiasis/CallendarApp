@@ -305,7 +305,7 @@
 
 
 	<!-- 일정추가 -->
-	<insert id="insertDaySchedule" parameterType="Schedule">
+	<insert id="insertDD" parameterType="Schedule">
 		insert into
 		Schedule
 		(

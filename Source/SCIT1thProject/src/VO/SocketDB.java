@@ -80,7 +80,7 @@ public class SocketDB implements Serializable {
 			result = MemberDAO.getDaySchedule((Schedule) inputObject);
 			break;
 		case "getAccountInfo":
-			result = MemberDAO.getAccountInfo((Account)inputObject);
+			result = MemberDAO.getAccountInfo((String)inputObject);
 			break;
 		}
 		return result;

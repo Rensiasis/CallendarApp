@@ -76,8 +76,11 @@ on delete cascade
 
 create sequence schedule_seq
 
+<<<<<<< HEAD
 drop table households
 
+=======
+>>>>>>> master_branch
 drop table schedule
 
 select sum(price) from households where member_seq='1';

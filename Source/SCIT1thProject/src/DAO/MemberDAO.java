@@ -200,6 +200,7 @@ public class MemberDAO {
 		}
 	}
 
+	
 	// 어카운트 정보 가져오기
 	public static Account getAccountInfo(String member_seq) {
 		SqlSession session = null;

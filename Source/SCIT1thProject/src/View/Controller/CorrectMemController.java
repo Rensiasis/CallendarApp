@@ -62,6 +62,7 @@ public class CorrectMemController implements Initializable {
 		System.exit(0);
 	}
 
+
 	@FXML // 주소검색버튼
 	public void research_add(ActionEvent event) {
 		Platform.runLater(new Runnable() {
@@ -96,38 +97,46 @@ public class CorrectMemController implements Initializable {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-
-				if (rePassword.getText().equals(rePassChk.getText())) {
-					m_vo.setMember_seq(user.getUser().getMember_seq());// 로그인되어있는아이디시퀀스!
-					m_vo.setId(user.getUser().getId());
-					m_vo.setName(reName.getText());
-					m_vo.setPassword(rePassword.getText());
-
-					m_vo.setPostNumber(re_postnum.getText());
-					m_vo.setNewAddress(re_add.getText());
-
-					String[] splitadd = oldAddress.split("\\s");
-					System.out.println(oldAddress);
-					String city = splitadd[0];
-					String county = splitadd[1];
-					String village = splitadd[2];
-
-					m_vo.setCity(city);
-					m_vo.setCounty(county);
-					m_vo.setVillage(village);
-
-					m_vo.setPhone_number(re_phone.getText());
-					m_vo.setEmail(re_email.getText());
-
-					Client.Client.summit(new SocketDB("updateMemInfo", m_vo));
-					View.Controller.CalendarController.stage.close();
-
-				} else {
+				if (reName.getText().length() == 0 && rePassword.getText().length() == 0
+						&& re_postnum.getText().length() == 0) {
 					Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("비밀번호 오류");
-					alert.setHeaderText("비밀번호가 일치하지 않습니다.");
-					alert.setContentText("다시 입력해주세요.");
+					alert.setTitle("회원정보 수정 오류");
+					alert.setHeaderText("수정정보 미입력 오류");
+					alert.setContentText("아이디, 비밀번호, 주소는 반드시 입력해주세요.");
 					alert.showAndWait();
+				} else {
+					if (rePassword.getText().equals(rePassChk.getText())) {
+						m_vo.setMember_seq(user.getUser().getMember_seq());// 로그인되어있는아이디시퀀스!
+						m_vo.setId(user.getUser().getId());
+						m_vo.setName(reName.getText());
+						m_vo.setPassword(rePassword.getText());
+
+						m_vo.setPostNumber(re_postnum.getText());
+						m_vo.setNewAddress(re_add.getText());
+
+						String[] splitadd = oldAddress.split("\\s");
+						System.out.println(oldAddress);
+						String city = splitadd[0];
+						String county = splitadd[1];
+						String village = splitadd[2];
+
+						m_vo.setCity(city);
+						m_vo.setCounty(county);
+						m_vo.setVillage(village);
+
+						m_vo.setPhone_number(re_phone.getText());
+						m_vo.setEmail(re_email.getText());
+
+						Client.Client.summit(new SocketDB("updateMemInfo", m_vo));
+						View.Controller.CalendarController.stage.close();
+
+					} else {
+						Alert alert = new Alert(AlertType.ERROR);
+						alert.setTitle("비밀번호 오류");
+						alert.setHeaderText("비밀번호가 일치하지 않습니다.");
+						alert.setContentText("다시 입력해주세요.");
+						alert.showAndWait();
+					}
 				}
 			}
 		});

@@ -1,7 +1,11 @@
 package View.Controller;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import Client.User;
@@ -56,7 +60,7 @@ public class HouseHoldController implements Initializable {
 	@FXML
 	private ListView<HouseHolds> HHListView;
 	@FXML
-	private DatePicker startDay;
+	private DatePicker stardDay;
 	@FXML
 	private DatePicker endDay;
 
@@ -85,6 +89,15 @@ public class HouseHoldController implements Initializable {
 		searchCombo.getItems().addAll("최근 1개월 이내 검색", "최근 3개월 이내 검색", "최근 6개월 이내 검색", "최근 12개월 이내 검색", "특정 기간 검색");
 		searchCombo.setValue("검색옵션");
 		searchCombo.setVisibleRowCount(5);
+
+		// DatePicker 초기화
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		Date today = new Date();
+		SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd");
+		String formatedDay = format.format(today);
+		LocalDate localDate = LocalDate.parse(formatedDay, formatter);
+		stardDay.setValue(localDate);
+		endDay.setValue(localDate);
 
 	}
 
@@ -226,45 +239,90 @@ public class HouseHoldController implements Initializable {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				HouseHolds hh = new HouseHolds();
+				ArrayList<HouseHolds> hh = new ArrayList<HouseHolds>();
+				int shMoney = 0;
+				String shMoney2 = null;
 				switch (searchCombo.getSelectionModel().getSelectedIndex()) {
 				case 0:// 1개월내 검색
-					hh = (HouseHolds) Client.Client.summit(new SocketDB("searchForAMonth", user.getUser().getMember_seq()));
-					System.out.println(hh.toString());
-					
+					hh = (ArrayList<HouseHolds>) Client.Client
+							.summit(new SocketDB("searchForAMonth", user.getUser().getMember_seq()));
+					refreshList(hh);
+					for (int i = 0; i < hh.size(); i++) {
+						shMoney += Integer.parseInt(hh.get(i).getPrice());
+					}
+					shMoney2 = Integer.toString(shMoney);
+					showSpend.setText(shMoney2);
 					break;
 				case 1:// 3개월내 검색
-					HHListView.setItems(null);
-					hh = (HouseHolds) Client.Client.summit(new SocketDB("searchForThreeMonth", user.getUser().getMember_seq()));
-					System.out.println(hh.toString());
-					
+					hh = (ArrayList<HouseHolds>) Client.Client
+							.summit(new SocketDB("searchForThreeMonth", user.getUser().getMember_seq()));
+					refreshList(hh);
+					for (int i = 0; i < hh.size(); i++) {
+						shMoney += Integer.parseInt(hh.get(i).getPrice());
+					}
+					shMoney2 = Integer.toString(shMoney);
+					showSpend.setText(shMoney2);
 					break;
 				case 2:// 6개월내 검색
-					HHListView.setItems(null);
-					hh = (HouseHolds) Client.Client.summit(new SocketDB("searchForSixMonth", user.getUser().getMember_seq()));
-					System.out.println(hh.toString());
-					
+					hh = (ArrayList<HouseHolds>) Client.Client
+							.summit(new SocketDB("searchForSixMonth", user.getUser().getMember_seq()));
+					refreshList(hh);
+					for (int i = 0; i < hh.size(); i++) {
+						shMoney += Integer.parseInt(hh.get(i).getPrice());
+					}
+					shMoney2 = Integer.toString(shMoney);
+					showSpend.setText(shMoney2);
 					break;
 				case 3:// 12개월내 검색
-					HHListView.setItems(null);
-					hh = (HouseHolds) Client.Client.summit(new SocketDB("searchForAnYear", user.getUser().getMember_seq()));
-					System.out.println(hh.toString());
-
+					hh = (ArrayList<HouseHolds>) Client.Client
+							.summit(new SocketDB("searchForAnYear", user.getUser().getMember_seq()));
+					refreshList(hh);
+					for (int i = 0; i < hh.size(); i++) {
+						shMoney += Integer.parseInt(hh.get(i).getPrice());
+					}
+					shMoney2 = Integer.toString(shMoney);
+					showSpend.setText(shMoney2);
 					break;
 				case 4:// 특정기간검색
-					
+					HouseHolds vo = new HouseHolds();
+					String fromDate = parseString(stardDay.getValue());
+					String toDate = parseString(endDay.getValue());
+
+					if (Integer.parseInt(fromDate) <= Integer.parseInt(toDate)) {
+						vo.setMember_seq(user.getUser().getMember_seq());
+						vo.setIndate(stardDay.getValue().toString());
+						vo.setLdate(endDay.getValue().toString());
+
+						hh = (ArrayList<HouseHolds>) Client.Client.summit(new SocketDB("speciPeriod", vo));
+						refreshList(hh);
+						for (int i = 0; i < hh.size(); i++) {
+							shMoney += Integer.parseInt(hh.get(i).getPrice());
+						}
+						shMoney2 = Integer.toString(shMoney);
+						showSpend.setText(shMoney2);
+					} else {
+						Alert alert = new Alert(AlertType.ERROR);
+						alert.setTitle("선택 에러");
+						alert.setHeaderText("날짜 선택 에러");
+						alert.setContentText("오른쪽 날짜 값을 더 최근일자로 선택해 주시기 바랍니다.");
+						alert.showAndWait();
+					}
 					break;
 				}
 			}
 		});
 	}
-	
+
+	public String parseString(LocalDate date) {
+		return date.toString().split("-")[0] + date.toString().split("-")[1] + date.toString().split("-")[2];
+	}
+
 	public void refreshList(ArrayList<HouseHolds> List) {
 		hlist.clear();
 		for (int i = 0; i < List.size(); i++) {
 			hlist.add(List.get(i));
 		}
-		
+
 		HHListView.setItems(hlist);// 리스트뷰에 가계부목록 출력하기
 		HHListView.refresh();
 	}

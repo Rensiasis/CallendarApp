@@ -46,16 +46,19 @@ public interface MemberMapper {
 	public int nowtotalMoney(String member_seq);
 	
 	//최근 1개월 이내 내역 검색
-	public HouseHolds searchForAMonth(String member_seq);
+	public ArrayList<HouseHolds> searchForAMonth(String member_seq);
 
 	// 최근 3개월 이내 내역 검색
-	public HouseHolds searchForThreeMonth(String member_seq);
+	public ArrayList<HouseHolds> searchForThreeMonth(String member_seq);
 
 	// 최근 6개월 이내 내역 검색
-	public HouseHolds searchForSixMonth(String member_seq);
+	public ArrayList<HouseHolds> searchForSixMonth(String member_seq);
 
 	// 최근 12개월 이내 내역 검색
-	public HouseHolds searchForAnYear(String member_seq);
+	public ArrayList<HouseHolds> searchForAnYear(String member_seq);
+	
+	//특정기간검색
+	public ArrayList<HouseHolds> speciPeriod(HouseHolds vo);
 
 	// 캘린더 메모 추가
 	public void insertMemo(Schedule vo);

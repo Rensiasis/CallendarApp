@@ -78,20 +78,6 @@ create sequence schedule_seq
 
 drop table members
 
-select sum(price) from households where member_seq='1';
-
-
-
-select account from ACCOUNTS 
-where member_seq='1'; 
-
 select * from members;
 select * from households
 select * from accounts
-
-insert into HOUSEHOLDS (household_seq, member_seq, product, price, get_date, content) 
-values (household_seq.nextval, '1', '1년전사과', 500, to_date('17/06/16', 'YY/MM/DD'), '실험용세팅1');
-insert into HOUSEHOLDS (household_seq, member_seq, product, price, get_date, content) 
-values (household_seq.nextval, '1', '6개월전사과', 800, to_date('18/01/01', 'YY/MM/DD'), '실험용세팅1');
-insert into HOUSEHOLDS (household_seq, member_seq, product, price, get_date, content) 
-values (household_seq.nextval, '1', '3개월전사과', 1000, to_date('18/03/16', 'YY/MM/DD'), '실험용세팅3');

@@ -53,7 +53,7 @@
             <TextField fx:id="showTotalmoney" editable="false" layoutX="74.0" layoutY="566.0" />
             <Label layoutX="225.0" layoutY="534.0" text="원" />
             <Label layoutX="225.0" layoutY="569.0" text="원" />
-            <ComboBox fx:id="searchCombo" layoutX="18.0" layoutY="66.0" prefHeight="33.0" prefWidth="268.0" />
+            <ComboBox fx:id="searchCombo" layoutX="18.0" layoutY="66.0" onAction="#searchComboClick" prefHeight="33.0" prefWidth="268.0" />
          </children>
       </AnchorPane>
       <Label layoutX="707.0" layoutY="75.0" text="~" />

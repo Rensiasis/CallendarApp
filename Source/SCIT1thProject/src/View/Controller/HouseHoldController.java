@@ -69,10 +69,7 @@ public class HouseHoldController implements Initializable {
 
 		ArrayList<HouseHolds> hhList = (ArrayList<HouseHolds>) Client.Client
 				.summit(new SocketDB("getHouseHoldList", member_seq));
-		for (int i = 0; i < hhList.size(); i++) {
-			hlist.add(hhList.get(i));
-		}
-		HHListView.setItems(hlist);// 리스트뷰에 가계부목록 출력하기
+		refreshList(hhList);
 
 		if (HHListView.getSelectionModel().getSelectedItems() != null) {
 			int i = (int) Client.Client.summit(new SocketDB("sumPrice", member_seq));
@@ -82,8 +79,9 @@ public class HouseHoldController implements Initializable {
 			String nowtotalMoney = Integer.toString(a);
 			showSpend.setText(spendmoney);
 			showTotalmoney.setText(nowtotalMoney);// 총 재산
-		};
-		
+		}
+		;
+
 		searchCombo.getItems().addAll("최근 1개월 이내 검색", "최근 3개월 이내 검색", "최근 6개월 이내 검색", "최근 12개월 이내 검색", "특정 기간 검색");
 		searchCombo.setValue("검색옵션");
 		searchCombo.setVisibleRowCount(5);
@@ -219,6 +217,56 @@ public class HouseHoldController implements Initializable {
 	@FXML
 	public void exitProgram(ActionEvent event) {
 		System.exit(0);
+	}
+
+	@FXML
+	public void searchComboClick(ActionEvent event) {
+		Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				HouseHolds hh = new HouseHolds();
+				switch (searchCombo.getSelectionModel().getSelectedIndex()) {
+				case 0:// 1개월내 검색
+					hh = (HouseHolds) Client.Client.summit(new SocketDB("searchForAMonth", user.getUser().getMember_seq()));
+					System.out.println(hh.toString());
+					
+					break;
+				case 1:// 3개월내 검색
+					HHListView.setItems(null);
+					hh = (HouseHolds) Client.Client.summit(new SocketDB("searchForThreeMonth", user.getUser().getMember_seq()));
+					System.out.println(hh.toString());
+					
+					break;
+				case 2:// 6개월내 검색
+					HHListView.setItems(null);
+					hh = (HouseHolds) Client.Client.summit(new SocketDB("searchForSixMonth", user.getUser().getMember_seq()));
+					System.out.println(hh.toString());
+					
+					break;
+				case 3:// 12개월내 검색
+					HHListView.setItems(null);
+					hh = (HouseHolds) Client.Client.summit(new SocketDB("searchForAnYear", user.getUser().getMember_seq()));
+					System.out.println(hh.toString());
+
+					break;
+				case 4:// 특정기간검색
+					
+					break;
+				}
+			}
+		});
+	}
+	
+	public void refreshList(ArrayList<HouseHolds> List) {
+		hlist.clear();
+		for (int i = 0; i < List.size(); i++) {
+			hlist.add(List.get(i));
+		}
+		
+		HHListView.setItems(hlist);// 리스트뷰에 가계부목록 출력하기
+		HHListView.refresh();
 	}
 
 }

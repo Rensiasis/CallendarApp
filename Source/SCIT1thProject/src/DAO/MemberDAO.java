@@ -167,7 +167,7 @@ public class MemberDAO {
 	// 어카운트 설정 입력
 	public static void insertAccount(String member_seq) {
 		SqlSession session = null;
-
+		
 		try {
 			session = factory.openSession();
 			MemberMapper mapper = session.getMapper(MemberMapper.class);
@@ -238,18 +238,15 @@ public class MemberDAO {
 		return i;
 	}
 	
-	public static ArrayList<HouseHolds> searchForAMonth(HouseHolds vo) {
-
+	//가계부 1달 검색
+	public static HouseHolds searchForAMonth(String member_seq) {
 		SqlSession session = null;
-		ArrayList<HouseHolds> hh = new ArrayList<HouseHolds>();
+		HouseHolds result = null;
 		try {
 			session = factory.openSession();
 			MemberMapper mapper = session.getMapper(MemberMapper.class);
-
-			hh = mapper.searchForAMonth(vo);
-
+			result = mapper.searchForAMonth(member_seq);
 			session.commit();
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -257,20 +254,17 @@ public class MemberDAO {
 				session.close();
 			}
 		}
-		return hh;
+		return result;
 	}
 
-	public static ArrayList<HouseHolds> searchForThreeMonth(HouseHolds vo) {
+	public static HouseHolds searchForThreeMonth(String member_seq) {
 		SqlSession session = null;
-		ArrayList<HouseHolds> hh = new ArrayList<HouseHolds>();
+		HouseHolds result = null;
 		try {
 			session = factory.openSession();
 			MemberMapper mapper = session.getMapper(MemberMapper.class);
-
-			hh = mapper.searchForThreeMonth(vo);
-
+			result = mapper.searchForAMonth(member_seq);
 			session.commit();
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -278,20 +272,17 @@ public class MemberDAO {
 				session.close();
 			}
 		}
-		return hh;
+		return result;
 	}
 
-	public static ArrayList<HouseHolds> searchForSixMonth(HouseHolds vo) {
+	public static HouseHolds searchForSixMonth(String member_seq) {
 		SqlSession session = null;
-		ArrayList<HouseHolds> hh = new ArrayList<HouseHolds>();
+		HouseHolds result = null;
 		try {
 			session = factory.openSession();
 			MemberMapper mapper = session.getMapper(MemberMapper.class);
-
-			hh = mapper.searchForSixMonth(vo);
-
+			result = mapper.searchForAMonth(member_seq);
 			session.commit();
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -299,20 +290,17 @@ public class MemberDAO {
 				session.close();
 			}
 		}
-		return hh;
+		return result;
 	}
 
-	public static ArrayList<HouseHolds> searchForAnYear(HouseHolds vo) {
+	public static HouseHolds searchForAnYear(String member_seq) {
 		SqlSession session = null;
-		ArrayList<HouseHolds> hh = new ArrayList<HouseHolds>();
+		HouseHolds result = null;
 		try {
 			session = factory.openSession();
 			MemberMapper mapper = session.getMapper(MemberMapper.class);
-
-			hh = mapper.searchForAnYear(vo);
-
+			result = mapper.searchForAMonth(member_seq);
 			session.commit();
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -320,7 +308,7 @@ public class MemberDAO {
 				session.close();
 			}
 		}
-		return hh;
+		return result;
 	}
 
 	public static void insertMemo(Schedule vo) {

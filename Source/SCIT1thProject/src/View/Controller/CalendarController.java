@@ -1,7 +1,7 @@
 package View.Controller;
 
+import java.io.File;
 import java.io.IOException;
-import java.lang.management.PlatformManagedObject;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -13,12 +13,9 @@ import java.util.ResourceBundle;
 
 import Client.User;
 import Parser.EventDayParser;
-import Parser.SearchPostNumber;
 import Parser.WeatherPlanetParser;
-import VO.Address;
 import VO.Day;
 import VO.EventDay;
-import VO.HouseHolds;
 import VO.Schedule;
 import VO.SocketDB;
 import VO.Weather;
@@ -36,11 +33,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 public class CalendarController implements Initializable {
@@ -311,6 +308,10 @@ public class CalendarController implements Initializable {
 	@FXML
 	private ImageView weather42;
 	@FXML
+	private Label min1;
+	@FXML
+	private Label max1;
+	@FXML
 	private Label contentLabel;
 	@FXML
 	private Button insertMemo;
@@ -326,7 +327,9 @@ public class CalendarController implements Initializable {
 	private static Label[] labelList;
 	private static TextArea[] areaList;
 	private static ImageView[] weatherViewList;
-
+	private static Label[] minList;
+	private static Label[] maxList;
+			
 	private static Map<Integer, ArrayList<Day>> calList;
 	private static ListView<Object> staticListView;
 
@@ -504,46 +507,64 @@ public class CalendarController implements Initializable {
 		areaList[39] = textArea40;
 		areaList[40] = textArea41;
 		areaList[41] = textArea42;
-		
+
 		for (int i = 0; i < 42; i++) {
 			areaList[i].setEditable(false);
 			areaList[i].setOnMouseClicked(event -> selectDay(event));
 		}
+
+		weatherViewList = new ImageView[42];
+		weatherViewList[0] = weather1;
+		weatherViewList[1] = weather2;
+		weatherViewList[2] = weather3;
+		weatherViewList[3] = weather4;
+		weatherViewList[4] = weather5;
+		weatherViewList[5] = weather6;
+		weatherViewList[6] = weather7;
+		weatherViewList[7] = weather8;
+		weatherViewList[8] = weather9;
+		weatherViewList[9] = weather10;
+		weatherViewList[10] = weather11;
+		weatherViewList[11] = weather12;
+		weatherViewList[12] = weather13;
+		weatherViewList[13] = weather14;
+		weatherViewList[14] = weather15;
+		weatherViewList[15] = weather16;
+		weatherViewList[16] = weather17;
+		weatherViewList[17] = weather18;
+		weatherViewList[18] = weather19;
+		weatherViewList[19] = weather20;
+		weatherViewList[20] = weather21;
+		weatherViewList[21] = weather22;
+		weatherViewList[22] = weather23;
+		weatherViewList[23] = weather24;
+		weatherViewList[24] = weather25;
+		weatherViewList[25] = weather26;
+		weatherViewList[26] = weather27;
+		weatherViewList[27] = weather28;
+		weatherViewList[28] = weather29;
+		weatherViewList[29] = weather30;
+		weatherViewList[30] = weather31;
+		weatherViewList[31] = weather32;
+		weatherViewList[32] = weather33;
+		weatherViewList[33] = weather34;
+		weatherViewList[34] = weather35;
+		weatherViewList[35] = weather36;
+		weatherViewList[36] = weather37;
+		weatherViewList[37] = weather38;
+		weatherViewList[38] = weather39;
+		weatherViewList[39] = weather40;
+		weatherViewList[40] = weather41;
+		weatherViewList[41] = weather42;
 		
-		weatherViewList=new ImageView[42];
-		weatherViewList[0]=weather1;
-		weatherViewList[0]=weather2;
-		weatherViewList[0]=weather3;
-		weatherViewList[0]=weather4;
-		weatherViewList[0]=weather5;
-		weatherViewList[0]=weather6;
-		weatherViewList[0]=weather1;
-		weatherViewList[0]=weather1;
-		weatherViewList[0]=weather1;
-		weatherViewList[0]=weather1;
-		weatherViewList[0]=weather1;
-		weatherViewList[0]=weather1;
-		weatherViewList[0]=weather1;
-		weatherViewList[0]=weather1;
-		weatherViewList[0]=weather1;
-		weatherViewList[0]=weather1;
-		weatherViewList[0]=weather1;
-		weatherViewList[0]=weather1;
-		weatherViewList[0]=weather1;
-		weatherViewList[0]=weather1;
-		weatherViewList[0]=weather1;
-		weatherViewList[0]=weather1;
-		weatherViewList[0]=weather1;
-		weatherViewList[0]=weather1;
-		weatherViewList[0]=weather1;
-		weatherViewList[0]=weather1;
-		weatherViewList[0]=weather1;
-		weatherViewList[0]=weather1;
-		weatherViewList[0]=weather1;
-		weatherViewList[0]=weather1;
+		minList=new Label[42];
+		minList[0]=min1;
 		
+		min1.setTextFill(Color.BLUE);
+		maxList=new Label[42];
+		maxList[0]=max1;
 		
-		
+		max1.setTextFill(Color.RED);
 
 		gridPane.setGridLinesVisible(true);
 		gridPane.setAlignment(Pos.TOP_LEFT);
@@ -562,8 +583,13 @@ public class CalendarController implements Initializable {
 		staticListView = contentListView;
 
 		makeCalandar();
-		
+
 		setWeather();
+
+		Date today = new Date();
+		SimpleDateFormat format = new SimpleDateFormat("YYYYMM");
+		String keyStr = format.format(today);
+		refreshCalendar(keyStr);
 	}
 
 	public void makeCalandar() {
@@ -627,37 +653,76 @@ public class CalendarController implements Initializable {
 
 		setEventDay();
 		setSchedule();
-
-		refreshCalendar(keyStr);
 	}
-	
+
 	public void setWeather() {
-		WeatherPlanetParser w=new WeatherPlanetParser();
+		WeatherPlanetParser w = new WeatherPlanetParser();
 		w.setAddress(User.user.getCity(), User.user.getCounty(), User.user.getVillage());
 		w.parshing();
-		ArrayList<Weather> wList=w.getWeatherList();
-		Date today= new Date();
+		ArrayList<Weather> wList = w.getWeatherList();
+		Date today = new Date();
 		SimpleDateFormat format = new SimpleDateFormat("YYYYMM");
 		String keyStr = format.format(today);
-		format= new SimpleDateFormat("dd");
-		String dayStr=format.format(today);
-		int key=Integer.parseInt(keyStr);
-		int startIndex=0;
+		format = new SimpleDateFormat("dd");
+		String dayStr = format.format(today);
+		int key = Integer.parseInt(keyStr);
+		int startIndex = 0;
 		if (dayStr.charAt(0) == '0') {
-			startIndex=Integer.parseInt(dayStr.substring(0, 1))-1;
+			startIndex = Integer.parseInt(dayStr.substring(0, 1)) - 1;
 		} else {
-			startIndex=Integer.parseInt(dayStr)-1;
+			startIndex = Integer.parseInt(dayStr) - 1;
 		}
-		for(int i=0;i<wList.size();i++) {
+		System.out.println(startIndex);
+		for (int i = 0; i < wList.size(); i++) {
 			calList.get(key).get(startIndex++).setWeather(wList.get(i));
-			if(startIndex>=calList.get(key).size()) {
+			if (startIndex >= calList.get(key).size()) {
 				key++;
 				if ((key % 100) > 12) {
 					key += 100;
 					key -= 12;
 				}
-				startIndex=0;
+				startIndex = 0;
 			}
+		}
+	}
+
+	public static void setWeatherView(ImageView view, Weather weather) {
+		if (weather == null) {
+			view.setVisible(false);
+		} else {
+			File file = null;
+			if (weather.getSkyCode().substring(5, 7).equals("01")) {
+				file = new File("src/Image/SKY_A01.PNG");
+			} else if (weather.getSkyCode().substring(5, 7).equals("02")) {
+				file = new File("src/Image/SKY_A02.PNG");
+			} else if (weather.getSkyCode().substring(5, 7).equals("03")) {
+				file = new File("src/Image/SKY_A03.PNG");
+			} else if (weather.getSkyCode().substring(5, 7).equals("04")) {
+				file = new File("src/Image/SKY_A04.PNG");
+			} else if (weather.getSkyCode().substring(5, 7).equals("05")) {
+				file = new File("src/Image/SKY_A05.PNG");
+			} else if (weather.getSkyCode().substring(5, 7).equals("06")) {
+				file = new File("src/Image/SKY_A06.PNG");
+			} else if (weather.getSkyCode().substring(5, 7).equals("07")) {
+				file = new File("src/Image/SKY_A07.PNG");
+			} else if (weather.getSkyCode().substring(5, 7).equals("08")) {
+				file = new File("src/Image/SKY_A08.PNG");
+			} else if (weather.getSkyCode().substring(5, 7).equals("09")) {
+				file = new File("src/Image/SKY_A09.PNG");
+			} else if (weather.getSkyCode().substring(5, 7).equals("10")) {
+				file = new File("src/Image/SKY_A10.PNG");
+			} else if (weather.getSkyCode().substring(5, 7).equals("11")) {
+				file = new File("src/Image/SKY_A11.PNG");
+			} else if (weather.getSkyCode().substring(5, 7).equals("12")) {
+				file = new File("src/Image/SKY_A12.PNG");
+			} else if (weather.getSkyCode().substring(5, 7).equals("13")) {
+				file = new File("src/Image/SKY_A13.PNG");
+			} else if (weather.getSkyCode().substring(5, 7).equals("14")) {
+				file = new File("src/Image/SKY_A14.PNG");
+			}
+			Image image = new Image(file.toURI().toString());
+			view.setImage(image);
+			view.setVisible(true);
 		}
 	}
 
@@ -693,11 +758,9 @@ public class CalendarController implements Initializable {
 				areaList[i].appendText(scheList.get(j).getContent() + "\n");
 
 			}
-			
+
 			Weather weather = dayList.get(i - firstIndex).getWeather();
-			if(weather!=null) {
-				weather.getSkyCode();
-			}
+			setWeatherView(weatherViewList[i], weather);
 		}
 		int lastIndex = dayList.size() + firstIndex;
 		// 전달 세팅
@@ -731,6 +794,9 @@ public class CalendarController implements Initializable {
 			for (int j = 0; j < scheList.size(); j++) {
 				areaList[i].appendText(scheList.get(j).getContent() + "\n");
 			}
+			
+			Weather weather = dayList.get(dayList.size() - firstIndex + i).getWeather();
+			setWeatherView(weatherViewList[i], weather);
 		}
 
 		// 다음달 세팅
@@ -763,6 +829,9 @@ public class CalendarController implements Initializable {
 			for (int j = 0; j < scheList.size(); j++) {
 				areaList[i].appendText(scheList.get(j).getContent() + "\n");
 			}
+			
+			Weather weather = dayList.get(i - lastIndex).getWeather();
+			setWeatherView(weatherViewList[i], weather);
 		}
 	}
 

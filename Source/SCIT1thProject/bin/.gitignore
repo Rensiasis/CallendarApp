@@ -1,14 +1,2 @@
-/Client/
-/DAO/
-/Image/
-/MemberMapper.xml
-/Parser/
-/Server/
-/Util/
-/VO/
 /View/
-/db.properties
-/mybatis-config.xml
-/user.sql
-/TestMain.class
-/TestMain2.class
+/Image/

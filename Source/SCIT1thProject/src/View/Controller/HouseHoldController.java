@@ -1,35 +1,34 @@
 package View.Controller;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import javax.xml.stream.events.StartDocument;
 
 import Client.User;
 import DAO.MemberDAO;
 import VO.Account;
 import VO.HouseHolds;
-import VO.Members;
 import VO.SocketDB;
 import javafx.application.Platform;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.ContextMenuEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 public class HouseHoldController implements Initializable {
@@ -62,6 +61,20 @@ public class HouseHoldController implements Initializable {
 
 	@FXML
 	private ListView<HouseHolds> HHListView;
+	@FXML
+	private DatePicker startDay;
+	@FXML
+	private DatePicker endDay;
+	@FXML
+	private Button search1;
+	@FXML
+	private Button search3;
+	@FXML
+	private Button search6;
+	@FXML
+	private Button search12;
+	@FXML
+	private Button searchPeriod;
 
 	public ObservableList<HouseHolds> hlist = FXCollections.observableArrayList();
 
@@ -223,5 +236,87 @@ public class HouseHoldController implements Initializable {
     public void exitProgram(ActionEvent event) {
 		System.exit(0);
     }
+    @FXML
+	public void btnSearchForAMonth (MouseEvent event) {
 
+		search1.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+			
+				//Client.Client.summit(new SocketDB("insertAccount", User.getUser().getMember_seq()));
+				
+				System.out.println("1Button Clicked");
+				
+
+			}
+		});
+
+	}
+	public void btnSearchForThreeMonth (MouseEvent event) {
+
+		search3.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				
+				//Client.Client.summit(new SocketDB("insertAccount", User.getUser().getMember_seq()));
+				
+				System.out.println("3Button Clicked");
+				
+
+			}
+		});
+
+	}
+	public void btnSearchForSixMonth(MouseEvent event) {
+
+		search6.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				
+				//Client.Client.summit(new SocketDB("insertAccount", User.getUser().getMember_seq()));
+				
+				System.out.println("6Button Clicked");
+			
+
+			}
+		});
+
+	}
+	public void btnSearchForAnYear(MouseEvent event) {
+
+		search12.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				
+				//Client.Client.summit(new SocketDB("insertAccount", User.getUser().getMember_seq()));
+				
+				
+				System.out.println("12Button Clicked");
+
+			}
+		});
+
+	}
+	public void btnSearchForPeriod(MouseEvent event) {
+
+		search12.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				
+				//Client.Client.summit(new SocketDB("insertAccount", User.getUser().getMember_seq()));
+				
+				
+				
+				
+				System.out.println("Period Button Clicked");
+
+			}
+		});
+
+	}
 }

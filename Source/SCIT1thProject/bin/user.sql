@@ -8,6 +8,7 @@ email varchar2(50),
 phone_number varchar2(30),
 postNumber varchar2(30),
 newAddress varchar2(1000),
+oldAddress varchar2(1000),
 city varchar2(30),
 county varchar2(30),
 village varchar2(30),
@@ -76,3 +77,7 @@ on delete cascade
 
 create sequence schedule_seq
 
+select * from members;
+
+drop sequence member_seq;
+drop table members

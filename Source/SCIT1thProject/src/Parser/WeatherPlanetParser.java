@@ -314,8 +314,9 @@ public class WeatherPlanetParser {
 			weatherVO.setHum(parseString(humidity.get("rh"+Integer.toString(hour)+"hour").toString()));
 			weatherVO.setSkyCode(parseString(sky.get("code"+Integer.toString(hour)+"hour").toString()));
 			weatherVO.setPrdb(parseString(precipitation.get("prob"+Integer.toString(hour)+"hour").toString()));
-			weatherVO.setTempo(temperature.get("temp"+Integer.toString(hour)+"hour").toString());
+			weatherVO.setTempo(parseString(temperature.get("temp"+Integer.toString(hour)+"hour").toString()));
 			wList.add(weatherVO);
+			hour+=3;
 		}
 		return wList;
 	}

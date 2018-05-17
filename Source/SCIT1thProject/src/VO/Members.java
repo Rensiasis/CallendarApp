@@ -17,13 +17,14 @@ public class Members implements Serializable {
 	private String luser;
 	private String postNumber;
 	private String newAddress;
+	private String oldAddress;
 	private String city;
 	private String county;
 	private String village;
 
 	public Members(String member_seq, String id, String password, String name, String gender, String email,
 			String phone_number, String indate, String ldate, String inuser, String luser, String postNumber,
-			String newAddress, String city, String county, String village) {
+			String newAddress, String oldAddress, String city, String county, String village) {
 		super();
 		this.member_seq = member_seq;
 		this.id = id;
@@ -38,6 +39,7 @@ public class Members implements Serializable {
 		this.luser = luser;
 		this.postNumber = postNumber;
 		this.newAddress = newAddress;
+		this.oldAddress = oldAddress;
 		this.city = city;
 		this.county = county;
 		this.village = village;
@@ -149,6 +151,14 @@ public class Members implements Serializable {
 
 	public void setNewAddress(String newAddress) {
 		this.newAddress = newAddress;
+	}
+
+	public String getOldAddress() {
+		return oldAddress;
+	}
+
+	public void setOldAddress(String oldAddress) {
+		this.oldAddress = oldAddress;
 	}
 
 	public String getCity() {

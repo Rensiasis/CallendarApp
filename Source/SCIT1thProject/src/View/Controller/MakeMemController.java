@@ -106,7 +106,7 @@ public class MakeMemController implements Initializable {
 
 				if (Chk_true_agree.isSelected()) {
 					if (Input_ID.getText().length() == 0 || Input_Pass.getText().length() == 0
-							|| postNum.getText().length() == 0 || detailAddress.getText().length() ==0 || Chk_Gender.getValue() == null) {
+							|| postNum.getText().length() == 0 || detailAddress.getText().length() ==0) {
 						Alert alert = new Alert(AlertType.ERROR);
 						alert.setTitle("회원가입 실패");
 						alert.setHeaderText("회원가입에 실패하셨습니다.");

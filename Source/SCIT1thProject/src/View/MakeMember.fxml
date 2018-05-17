@@ -25,11 +25,6 @@
 						<MenuItem mnemonicParsing="false" onAction="#btnActionExit" text="프로그램 종료" />
 					</items>
 				</Menu>
-				<Menu mnemonicParsing="false" text="도움말">
-					<items>
-						<MenuItem mnemonicParsing="false" onAction="#openHelp" text="about" />
-					</items>
-				</Menu>
 			</menus>
 		</MenuBar>
 		<Label fx:id="사용자약관" layoutX="21.0" layoutY="39.0" prefHeight="25.0" prefWidth="65.0" text="사용자약관" />

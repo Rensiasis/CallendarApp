@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Controller.HelpController">
+   <children>
+      <Label layoutX="34.0" layoutY="166.0" prefHeight="17.0" prefWidth="231.0" text="- 문의사항 : chlrbghdla@naver.com" />
+      <Label layoutX="34.0" layoutY="207.0" prefHeight="17.0" prefWidth="231.0" text="- 케치데모 다이죠부 대표 :  이재만" />
+      <Label layoutX="34.0" layoutY="242.0" text="- Thanks to 전상수" />
+      <Label layoutX="34.0" layoutY="63.0" text="'케치데모 다이죠부'를 ">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="35.0" layoutY="90.0" text="사용해주셔서 감사합니다.">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

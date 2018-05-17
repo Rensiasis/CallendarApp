@@ -184,15 +184,27 @@
 		from accounts
 		where member_seq=#{member_seq}
 	</select>
+	
+	
 
-	<!-- 가계부 소비금액 총합구하기 -->
+	<!-- 가계부 지출 총합구하기 -->
 	<select id="sumPrice" parameterType="String"
 		resultType="Integer">
 		select
 		sum(price)
 		from households
 		where
-		member_seq=#{member_seq}
+		member_seq=#{member_seq} and 0>price
+	</select>
+	
+	<!-- 가계부 수입 총합구하기 -->
+	<select id="sumPrice2" parameterType="String"
+		resultType="Integer">
+		select
+		sum(price)
+		from households
+		where
+		member_seq=#{member_seq} and price>0
 	</select>
 
 	<!-- 1개월 이내 검색 -->

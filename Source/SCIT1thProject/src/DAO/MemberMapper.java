@@ -39,8 +39,11 @@ public interface MemberMapper {
 	//어카운트 정보 수정(메뉴바 설정 입력시 수정)
 	public void updateAccount(Account a_vo);
 
-	//가계부 사용 충 가격 구하기
+	//가계부 지출 구하기
 	public int sumPrice(String member_seq);
+	
+	//가계부 수입 구하기
+	public int sumPrice2(String member_seq);
 	
 	//현재총액 가져오기
 	public int nowtotalMoney(String member_seq);

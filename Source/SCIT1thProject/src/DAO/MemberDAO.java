@@ -167,7 +167,7 @@ public class MemberDAO {
 	// 어카운트 설정 입력
 	public static void insertAccount(String member_seq) {
 		SqlSession session = null;
-		
+
 		try {
 			session = factory.openSession();
 			MemberMapper mapper = session.getMapper(MemberMapper.class);
@@ -219,7 +219,26 @@ public class MemberDAO {
 		return i;
 	}
 
-	//현재 총액 구하기
+	// 총가격 구하기
+	public static int sumPrice2(String member_seq) {
+		SqlSession session = null;
+		int i = 0;
+		try {
+			session = factory.openSession();
+			MemberMapper mapper = session.getMapper(MemberMapper.class);
+			i = mapper.sumPrice2(member_seq);
+			session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+		return i;
+	}
+
+	// 현재 총액 구하기
 	public static int nowtotalMoney(String member_seq) {
 		SqlSession session = null;
 		int i = 0;
@@ -237,8 +256,8 @@ public class MemberDAO {
 		}
 		return i;
 	}
-	
-	//가계부 1달 검색
+
+	// 가계부 1달 검색
 	public static ArrayList<HouseHolds> searchForAMonth(String member_seq) {
 		SqlSession session = null;
 		ArrayList<HouseHolds> result = null;
@@ -310,8 +329,8 @@ public class MemberDAO {
 		}
 		return result;
 	}
-	
-	public static ArrayList<HouseHolds> speciPeriod(HouseHolds vo){
+
+	public static ArrayList<HouseHolds> speciPeriod(HouseHolds vo) {
 		SqlSession session = null;
 		ArrayList<HouseHolds> result = null;
 		try {
@@ -328,7 +347,6 @@ public class MemberDAO {
 		}
 		return result;
 	}
-	
 
 	public static void insertMemo(Schedule vo) {
 		SqlSession session = null;
@@ -372,7 +390,7 @@ public class MemberDAO {
 		}
 		return result;
 	}
-	
+
 	public static void insertDaySchedule(Schedule vo) {
 		SqlSession session = null;
 
@@ -381,7 +399,7 @@ public class MemberDAO {
 			MemberMapper mapper = session.getMapper(MemberMapper.class);
 
 			mapper.insertDD(vo);
-			
+
 			session.commit();
 
 		} catch (Exception e) {

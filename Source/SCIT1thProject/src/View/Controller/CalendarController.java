@@ -997,11 +997,11 @@ public class CalendarController implements Initializable {
 
 	public void setWeather() {
 		WeatherPlanetParser w = new WeatherPlanetParser();
-		GeoCodingParser g= new GeoCodingParser();
+		GeoCodingParser g = new GeoCodingParser();
 		g.setAddress(User.user.getNewAddress());
 		g.parshing();
-		double lat=g.getLat();
-		double lon=g.getLon();
+		double lat = g.getLat();
+		double lon = g.getLon();
 		w.setCoordinates(lat, lon);
 		w.parshing();
 		ArrayList<Weather> wList = w.getWeatherList();
@@ -1096,7 +1096,7 @@ public class CalendarController implements Initializable {
 			labelList[i].setText((int) (i - firstIndex + 1) + "");
 
 			if (key == todayKey && todayIndex == (i - firstIndex)) {
-				areaList[i].setStyle("-fx-border-width: 4; -fx-border-color : #ff1818;");
+				areaList[i].setStyle("-fx-border-width: 4; -fx-border-color : #ffae01;");
 			} else {
 				areaList[i].setStyle(";");
 			}
@@ -1149,7 +1149,7 @@ public class CalendarController implements Initializable {
 			labelList[i].setText(calendar.get(Calendar.DATE) + "");
 
 			if (key == todayKey && todayIndex == (dayList.size() - firstIndex + i)) {
-				areaList[i].setStyle("-fx-border-width: 4; -fx-border-color : #ff1818;");
+				areaList[i].setStyle("-fx-border-width: 4; -fx-border-color : #ffae01;");
 			} else {
 				areaList[i].setStyle(";");
 			}
@@ -1200,7 +1200,7 @@ public class CalendarController implements Initializable {
 			labelList[i].setText((int) (i - lastIndex + 1) + "");
 
 			if (key == todayKey && todayIndex == (i - lastIndex)) {
-				areaList[i].setStyle("-fx-border-width: 4; -fx-border-color : #ff1818;");
+				areaList[i].setStyle("-fx-border-width: 4; -fx-border-color : #ffae01;");
 			} else {
 				areaList[i].setStyle(";");
 			}
@@ -1505,6 +1505,7 @@ public class CalendarController implements Initializable {
 					memoPane = FXMLLoader.load(getClass().getResource("/View/InsertMemo.fxml"));
 					Scene scene = new Scene(memoPane);
 					stage = new Stage();
+					stage.getIcons().add(new Image("/Image/ICON.png"));
 					stage.setScene(scene);
 					stage.setTitle("메모 입력");
 					stage.setResizable(false);
@@ -1552,6 +1553,7 @@ public class CalendarController implements Initializable {
 					schedulePane = FXMLLoader.load(getClass().getResource("/View/InsertSchedule.fxml"));
 					Scene scene = new Scene(schedulePane);
 					stage = new Stage();
+					stage.getIcons().add(new Image("/Image/ICON.png"));
 					stage.setScene(scene);
 					stage.setTitle("스케줄 입력");
 					stage.setResizable(false);
@@ -1631,6 +1633,7 @@ public class CalendarController implements Initializable {
 					daySchedulePane = FXMLLoader.load(getClass().getResource("/View/InsertDaySchedule.fxml"));
 					Scene scene = new Scene(daySchedulePane);
 					stage = new Stage();
+					stage.getIcons().add(new Image("/Image/ICON.png"));
 					stage.setScene(scene);
 					stage.setTitle("일정 입력");
 					stage.setResizable(false);
@@ -1728,8 +1731,8 @@ public class CalendarController implements Initializable {
 						if (first = true) {
 							first = false;
 							for (int i = fromDate; i < dList.size(); i++) {
-								for(int j=0;j<dList.get(i).getSchedule().size();j++) {
-									if(equalSchedule(dList.get(i).getSchedule().get(j),vo)) {
+								for (int j = 0; j < dList.get(i).getSchedule().size(); j++) {
+									if (equalSchedule(dList.get(i).getSchedule().get(j), vo)) {
 										dList.get(i).getSchedule().remove(vo);
 									}
 								}
@@ -1737,8 +1740,8 @@ public class CalendarController implements Initializable {
 							fromDate = 0;
 						} else {
 							for (int i = 0; i < dList.size(); i++) {
-								for(int j=0;j<dList.get(i).getSchedule().size();j++) {
-									if(equalSchedule(dList.get(i).getSchedule().get(j),vo)) {
+								for (int j = 0; j < dList.get(i).getSchedule().size(); j++) {
+									if (equalSchedule(dList.get(i).getSchedule().get(j), vo)) {
 										dList.get(i).getSchedule().remove(vo);
 									}
 								}
@@ -1746,8 +1749,8 @@ public class CalendarController implements Initializable {
 						}
 					} else {
 						for (int i = fromDate; i <= toDate; i++) {
-							for(int j=0;j<dList.get(i).getSchedule().size();j++) {
-								if(equalSchedule(dList.get(i).getSchedule().get(j),vo)) {
+							for (int j = 0; j < dList.get(i).getSchedule().size(); j++) {
+								if (equalSchedule(dList.get(i).getSchedule().get(j), vo)) {
 									dList.get(i).getSchedule().remove(vo);
 								}
 							}
@@ -1776,9 +1779,10 @@ public class CalendarController implements Initializable {
 
 		refreshCalendar(selectedPage);
 	}
-	
-	public boolean equalSchedule(Schedule sc1,Schedule sc2) {
-		if(sc1.getContent().equals(sc2.getContent()) && sc1.getFrom_date().equals(sc2.getFrom_date()) && sc1.getTo_date().equals(sc2.getTo_date())) {
+
+	public boolean equalSchedule(Schedule sc1, Schedule sc2) {
+		if (sc1.getContent().equals(sc2.getContent()) && sc1.getFrom_date().equals(sc2.getFrom_date())
+				&& sc1.getTo_date().equals(sc2.getTo_date())) {
 			return true;
 		}
 		return false;
@@ -1838,9 +1842,11 @@ public class CalendarController implements Initializable {
 				AnchorPane weatherPane;
 				try {
 					weatherPane = FXMLLoader.load(getClass().getResource("/View/Weather.fxml"));
-					weatherPane.setBackground(new Background(new BackgroundImage(new Image("/Image/backimg.jpg"),null,null,BackgroundPosition.DEFAULT,BackgroundSize.DEFAULT)));
+					weatherPane.setBackground(new Background(new BackgroundImage(new Image("/Image/backimg.jpg"), null,
+							null, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
 					Scene scene = new Scene(weatherPane);
 					stage = new Stage();
+					stage.getIcons().add(new Image("/Image/ICON.png"));
 					stage.setScene(scene);
 					stage.setTitle("날씨 현황");
 					stage.setResizable(false);
@@ -1884,29 +1890,30 @@ public class CalendarController implements Initializable {
 		}
 	}
 
-	@FXML//가계부 열기
+	@FXML // 가계부 열기
 	public void btnOnHH(ActionEvent event) {
-		
-		
+
 		Platform.runLater(new Runnable() {
 
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				int i= (int) Client.Client.summit(new SocketDB("beforeOpenAcc",User.getUser().getMember_seq()));
-				if( i == 0){
+				int i = (int) Client.Client.summit(new SocketDB("beforeOpenAcc", User.getUser().getMember_seq()));
+				if (i == 0) {
 					Alert alert = new Alert(AlertType.ERROR);
 					alert.setTitle("가계부 미설정 오류");
 					alert.setHeaderText("가계부 정보 입력필요");
 					alert.setContentText("가계부 설정에서 정보를 입력해주세요.");
 					alert.showAndWait();
 					return;
-				}else {
+				} else {
 					try {
 						AnchorPane memoPane = FXMLLoader.load(getClass().getResource("/View/HouseHold.fxml"));
-						memoPane.setBackground(new Background(new BackgroundImage(new Image("/Image/backimg.jpg"),null,null,BackgroundPosition.DEFAULT,BackgroundSize.DEFAULT)));
+						memoPane.setBackground(new Background(new BackgroundImage(new Image("/Image/backimg.jpg"), null,
+								null, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
 						Scene scene = new Scene(memoPane);
 						stage = new Stage();
+						stage.getIcons().add(new Image("/Image/ICON.png"));
 						stage.setScene(scene);
 						stage.setTitle("가계부");
 						stage.setResizable(false);
@@ -1915,10 +1922,9 @@ public class CalendarController implements Initializable {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					
+
 				}
-				
-				
+
 			}
 		});
 	}

@@ -38,8 +38,8 @@ public class Alarm extends TimerTask {
 			public void run() {
 				Client.MainApp.timeAlert = new Alert(AlertType.INFORMATION);
 				Client.MainApp.timeAlert.setTitle("알람");
-				Client.MainApp.timeAlert.setHeaderText("내용이 존재하지 않음");
-				Client.MainApp.timeAlert.setContentText("내용을 입력해주시기 바랍니다.");
+				Client.MainApp.timeAlert.setHeaderText("알람 메시지");
+				Client.MainApp.timeAlert.setContentText(message);
 				Client.MainApp.timeAlert.showAndWait();
 			}
 		});

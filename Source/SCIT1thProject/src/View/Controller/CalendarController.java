@@ -500,11 +500,10 @@ public class CalendarController implements Initializable {
 	private static ImageView[] weatherViewList;
 	private static Label[] minList;
 	private static Label[] maxList;
-	public static Alarm alarm=new Alarm();
 
 	private static Map<Integer, ArrayList<Day>> calList;
 	private static ListView<Object> staticListView;
-
+	private static Map<Integer,Alarm> alarmManager;
 	@FXML
 	private AnchorPane calendarPane;
 
@@ -832,6 +831,7 @@ public class CalendarController implements Initializable {
 		openWeather.setOnInputMethodTextChanged(event-> openWeather());
 
 		calList = new HashMap<>();
+		alarmManager = new HashMap<>();
 		staticListView = contentListView;
 
 		calList = (Map<Integer, ArrayList<Day>>) Client.Client.summit(new SocketDB("requestCalendar", ""));
@@ -1251,15 +1251,10 @@ public class CalendarController implements Initializable {
 						e.printStackTrace();
 					}
 					calList.get(key).get(date - 1).getSchedule().add(sList.get(i));
+					
 					String content = sList.get(i).getContent();
-					System.out.println(content.split("\\s")[0]);
-					String[] splitContent = content.split("\\s");
-					String alarmMessage = null;
-					for (int j = 1; j < splitContent.length; j++) {
-						alarmMessage += splitContent[j];
-					}
 					if (inputDate.after(new Date()))
-						setAlarm(alarmMessage, inputDate);
+						setAlarm(content, inputDate);
 
 				}
 			}
@@ -1487,6 +1482,21 @@ public class CalendarController implements Initializable {
 		}
 		calList.get(key).get(date - 1).getSchedule().add(vo);
 
+
+		String dateStr = vo.getFrom_date() + vo.getTimes();
+		SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmm");
+		Date inputDate = null;
+		try {
+			inputDate = format.parse(dateStr);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String content = vo.getContent();
+		if (inputDate.after(new Date()))
+			setAlarm(content, inputDate);
+		
+
 		refreshDaySchedule();
 
 		refreshContentList();
@@ -1659,23 +1669,30 @@ public class CalendarController implements Initializable {
 		});
 	}
 
-	public static void setAlarm(String message, Date date) {
+	public static void setAlarm(String content, Date date) {
+		String[] splitContent = content.split("\\s");
+		String alarmMessage = "";
+		for (int j = 1; j < splitContent.length; j++) {
+			alarmMessage += " "+splitContent[j];
+		}
 		Timer beforeTimer = new Timer();
 		Timer afterTimer = new Timer();
-		String beforeMessage = message + " 한 시간 전입니다.";
-		String afterMessage = message + " 할 시간 입니다.";
-		alarm.setMessage(afterMessage);
-		afterTimer.schedule(alarm, date);
+		String beforeMessage = alarmMessage + " 한 시간 전입니다.";
+		String afterMessage = alarmMessage + " 할 시간 입니다.";
+		Alarm afterAlarm=new Alarm();
+		afterAlarm.setMessage(afterMessage);
+		afterTimer.schedule(afterAlarm, date);
 		Calendar ca = Calendar.getInstance();
 		ca.setTime(date);
 		ca.add(Calendar.HOUR, -1);
 		System.out.println(ca);
 		System.out.println(Calendar.getInstance());
 		if (ca.after(Calendar.getInstance())) {
+			Alarm beforeAlarm =new Alarm();
 			Date beforeDate = ca.getTime();
-			alarm.setMessage(beforeMessage);
-			System.out.println(alarm);
-			beforeTimer.schedule(alarm, beforeDate);
+			beforeAlarm.setMessage(beforeMessage);
+			System.out.println(beforeAlarm);
+			beforeTimer.schedule(beforeAlarm, beforeDate);
 		}
 	}
 

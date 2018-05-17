@@ -1,22 +1,8 @@
-<<<<<<< Updated upstream
-/VO/
-/View/
-/Server/
-/Client/
-/Util/
-=======
 /Client/
 /DAO/
-/Image/
-/MemberMapper.xml
 /Parser/
 /Server/
-/TestMain.class
-/TestMain2.class
 /Util/
 /VO/
 /View/
-/db.properties
-/mybatis-config.xml
 /user.sql
->>>>>>> Stashed changes

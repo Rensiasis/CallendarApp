@@ -106,11 +106,11 @@ public class MakeMemController implements Initializable {
 
 				if (Chk_true_agree.isSelected()) {
 					if (Input_ID.getText().length() == 0 || Input_Pass.getText().length() == 0
-							|| postNum.getText().length() == 0) {
+							|| postNum.getText().length() == 0 || detailAddress.getText().length() ==0 || Chk_Gender.getValue() == null) {
 						Alert alert = new Alert(AlertType.ERROR);
 						alert.setTitle("회원가입 실패");
 						alert.setHeaderText("회원가입에 실패하셨습니다.");
-						alert.setContentText("필수정보를 입력해주세요.(아이디, 패스워드, 주소)");
+						alert.setContentText("필수정보를 입력해주세요.(아이디, 패스워드, 주소, 성별)");
 						alert.showAndWait();
 
 					} else if (!chkID) {

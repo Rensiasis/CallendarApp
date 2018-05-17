@@ -118,7 +118,6 @@ public class WeatherPlanetParser {
 			while ((input = in.readLine()) != null) {
 				sb.append(input);
 			}
-			System.out.println(sb.toString());
 		} catch (Exception e) {
 			con.disconnect();
 		}
@@ -286,7 +285,6 @@ public class WeatherPlanetParser {
 			con.disconnect();
 		}
 		String json = sb.toString();
-		System.out.println(json);
 		JsonObject root = new JsonParser().parse(json).getAsJsonObject();
 		JsonObject weather = root.get("weather").getAsJsonObject();
 		JsonArray forecast3days = weather.get("forecast3days").getAsJsonArray();
@@ -301,7 +299,6 @@ public class WeatherPlanetParser {
 		
 		String timeRelease =forecast3days.get(0).getAsJsonObject().get("timeRelease").toString();
 		SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		System.out.println(timeRelease);
 		Date today = null;
 		try {
 			today=format.parse(parseString(timeRelease.toString()));

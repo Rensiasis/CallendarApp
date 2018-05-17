@@ -80,6 +80,5 @@ public class GeoCodingParser {
 		JsonObject location = geometry.get("location").getAsJsonObject();
 		lat = location.get("lat").getAsDouble();
 		lon = location.get("lng").getAsDouble();
-		System.out.println(lat + " " + lon);
 	}
 }

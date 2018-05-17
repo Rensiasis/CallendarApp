@@ -149,7 +149,6 @@ public class MakeMemController implements Initializable {
 						
 						
 						String[] splitadd = addressVO.getOldAddress().split("\\s");
-						System.out.println(addressVO.getOldAddress());
 						String city = splitadd[0];
 						String county = splitadd[1];
 						String village = splitadd[2];

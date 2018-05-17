@@ -57,11 +57,6 @@ public class CorrectMemController implements Initializable {
 	Members m_vo = new Members();
 	User user = new User();
 
-	@FXML // 메뉴바 프로그램 종료
-	public void btnExitAction(ActionEvent event) {
-		System.exit(0);
-	}
-
 
 	@FXML // 주소검색버튼
 	public void research_add(ActionEvent event) {

@@ -44,6 +44,12 @@
 		from members
 		where id=#{id}
 	</select>
+	
+	<!-- 회원 탈퇴 -->
+	<delete id="deleteID" parameterType="String">
+	delete members
+	where member_seq=#{member_seq}
+	</delete>
 
 	<!-- 가계부정보 등록하기 -->
 	<insert id="insertHouseHold" parameterType="HouseHold">

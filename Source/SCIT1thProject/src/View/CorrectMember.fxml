@@ -26,5 +26,14 @@
       <TextField fx:id="re_phone" layoutX="129.0" layoutY="333.0" />
       <Button layoutX="21.0" layoutY="378.0" mnemonicParsing="false" onAction="#recorrectMem" text="회원정보 수정하기" />
       <Button layoutX="150.0" layoutY="378.0" mnemonicParsing="false" onAction="#returnCalendar" prefHeight="25.0" prefWidth="129.0" text="취소하기" />
+      <MenuBar layoutX="-3.0" layoutY="-1.0" prefHeight="25.0" prefWidth="306.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="회원탈퇴">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#deletemember" text="회원탈퇴" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
    </children>
 </AnchorPane>

@@ -55,6 +55,23 @@ public class MemberDAO {
 		return i;
 	}
 
+	// 회원아이디 중복체크
+	public static void deleteID(String member_seq) {
+		SqlSession session = null;
+		try {
+			session = factory.openSession();
+			MemberMapper mapper = session.getMapper(MemberMapper.class);
+			mapper.deleteID(member_seq);
+			session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+	}
+
 	// 가계부 삽입
 	public static void insertHouseHold(HouseHolds vo) {
 		SqlSession session = null;

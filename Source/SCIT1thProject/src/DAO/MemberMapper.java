@@ -14,6 +14,9 @@ public interface MemberMapper {
 
 	// 중복아이디검사
 	public int chkRepeatID(String id);
+	
+	// 회원탈퇴
+	public void deleteID(String member_seq);
 
 	// 가계부등록
 	public void insertHouseHold(HouseHolds vo);

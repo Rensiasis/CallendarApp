@@ -354,6 +354,7 @@ public class WeatherController implements Initializable{
 		WeatherPlanetParser phaser = new WeatherPlanetParser();
 		GeoCodingParser geo = new GeoCodingParser();
 		geo.setAddress(User.user.getNewAddress());
+		geo.parshing();
 		double lat=geo.getLat();
 		double lon=geo.getLon();
 		phaser.setCoordinates(lat, lon);

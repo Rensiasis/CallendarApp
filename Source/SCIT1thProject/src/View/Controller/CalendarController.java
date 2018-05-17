@@ -996,9 +996,12 @@ public class CalendarController implements Initializable {
 		WeatherPlanetParser w = new WeatherPlanetParser();
 		GeoCodingParser g= new GeoCodingParser();
 		g.setAddress(User.user.getNewAddress());
+		System.out.println(User.user.getNewAddress());
 		g.parshing();
 		double lat=g.getLat();
 		double lon=g.getLon();
+		System.out.println(lat);
+		System.out.println(lon);
 		w.setCoordinates(lat, lon);
 		w.parshing();
 		ArrayList<Weather> wList = w.getWeatherList();

@@ -24,7 +24,7 @@ public class WeatherPlanetParser {
 //	private final static String appKey = "4abe6551-2de1-4a44-b099-5f35ace58669";
 	private final static String appKey = "f0fb15d6-19d0-4e4d-960b-28cf859732f5";
 	private final static String currentApiURL = "https://api2.sktelecom.com/weather/current/minutely?version=2";
-	private final static String ShortTermApiURL = "https://api2.sktelecom.com/weather/forecast/3days?version=version=2";
+	private final static String ShortTermApiURL = "https://api2.sktelecom.com/weather/forecast/3days?version=2";
 	private final static String LongTermApiURL = "https://api2.sktelecom.com/weather/forecast/6days?version=2";
 	private ArrayList<Weather> weatherList;
 	private double lat;
@@ -104,7 +104,7 @@ public class WeatherPlanetParser {
 		StringBuilder sb = null;
 		HttpURLConnection con = null;
 		try {
-			URL url = new URL(currentApiURL + "&lat=" + lat + "&lon=" + lon + "&foretxt=" + encodeURL(foretxt));
+			URL url = new URL(ShortTermApiURL + "&lat=" + lat + "&lon=" + lon + "&foretxt=" + encodeURL(foretxt));
 			con = (HttpURLConnection) url.openConnection();
 			con.setRequestMethod("GET");
 			con.setDoInput(true);
@@ -118,6 +118,7 @@ public class WeatherPlanetParser {
 			while ((input = in.readLine()) != null) {
 				sb.append(input);
 			}
+			System.out.println(sb.toString());
 		} catch (Exception e) {
 			con.disconnect();
 		}
@@ -162,7 +163,7 @@ public class WeatherPlanetParser {
 		StringBuilder sb = null;
 		HttpURLConnection con = null;
 		try {
-			URL url = new URL(currentApiURL + "&lat=" + lat + "&lon=" + lon + "&foretxt=" + encodeURL(foretxt));
+			URL url = new URL(LongTermApiURL + "&lat=" + lat + "&lon=" + lon + "&foretxt=" + encodeURL(foretxt));
 			con = (HttpURLConnection) url.openConnection();
 			con.setRequestMethod("GET");
 			con.setDoInput(true);
@@ -266,7 +267,7 @@ public class WeatherPlanetParser {
 		StringBuilder sb = null;
 		HttpURLConnection con = null;
 		try {
-			URL url = new URL(currentApiURL + "&lat=" + lat + "&lon=" + lon + "&foretxt=" + encodeURL(foretxt));
+			URL url = new URL(ShortTermApiURL + "&lat=" + lat + "&lon=" + lon + "&foretxt=" + encodeURL(foretxt));
 			con = (HttpURLConnection) url.openConnection();
 			con.setRequestMethod("GET");
 			con.setDoInput(true);
@@ -285,6 +286,7 @@ public class WeatherPlanetParser {
 			con.disconnect();
 		}
 		String json = sb.toString();
+		System.out.println(json);
 		JsonObject root = new JsonParser().parse(json).getAsJsonObject();
 		JsonObject weather = root.get("weather").getAsJsonObject();
 		JsonArray forecast3days = weather.get("forecast3days").getAsJsonArray();

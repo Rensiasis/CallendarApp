@@ -55,6 +55,9 @@ public class HouseHoldController implements Initializable {
 	private TextField showSpend;
 
 	@FXML
+	private TextField showSpend2;
+
+	@FXML
 	private TextField showTotalmoney;
 
 	@FXML
@@ -77,11 +80,14 @@ public class HouseHoldController implements Initializable {
 
 		if (HHListView.getSelectionModel().getSelectedItems() != null) {
 			int i = (int) Client.Client.summit(new SocketDB("sumPrice", member_seq));
-			int a = (int) Client.Client.summit(new SocketDB("nowtotalMoney", member_seq)) - i;
+			int b = (int) Client.Client.summit(new SocketDB("sumPrice2", member_seq));
+			int a = (int) Client.Client.summit(new SocketDB("nowtotalMoney", member_seq)) + i + b;
 
 			String spendmoney = Integer.toString(i);
 			String nowtotalMoney = Integer.toString(a);
+			String takemoney = Integer.toString(b);
 			showSpend.setText(spendmoney);
+			showSpend2.setText(takemoney);
 			showTotalmoney.setText(nowtotalMoney);// 총 재산
 		}
 		;
@@ -120,6 +126,47 @@ public class HouseHoldController implements Initializable {
 
 					hh.setMember_seq(user.getUser().getMember_seq());
 					hh.setProduct(product.getText());
+					hh.setPrice("-"+price.getText());
+					hh.setContent(content.getText());
+					hh.setInuser(user.getUser().getId());
+
+					Client.Client.summit(new SocketDB("insertHouseHold", hh));
+					product.clear();
+					price.clear();
+					content.clear();
+
+					try {
+						AnchorPane memberPane = FXMLLoader.load(getClass().getResource("/View/HouseHold.fxml"));
+						HouseHoldPane.getChildren().setAll(memberPane);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+		});
+	}
+
+
+    @FXML
+    public void btnAddTView2(ActionEvent event) {
+    	Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				if (product.getText().length() == 0 && price.getText().length() == 0
+						&& content.getText().length() == 0) {
+					Alert alert = new Alert(AlertType.ERROR);
+					alert.setTitle("가계부 추가 에러");
+					alert.setHeaderText("추가 정보 미입력");
+					alert.setContentText("추가할 정보를 모두 입력해 주시기 바랍니다.");
+					alert.showAndWait();
+				} else {
+					HouseHolds hh = new HouseHolds();
+
+					hh.setMember_seq(user.getUser().getMember_seq());
+					hh.setProduct(product.getText());
 					hh.setPrice(price.getText());
 					hh.setContent(content.getText());
 					hh.setInuser(user.getUser().getId());
@@ -136,14 +183,13 @@ public class HouseHoldController implements Initializable {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-
 				}
 			}
-
 		});
+    }
 
-	}
-
+	
+	
 	@FXML
 	public void btnDeleteTView(ActionEvent event) {
 		Platform.runLater(new Runnable() {

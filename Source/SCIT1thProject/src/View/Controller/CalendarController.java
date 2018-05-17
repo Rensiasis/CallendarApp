@@ -36,6 +36,9 @@ import javafx.geometry.Pos;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -1835,6 +1838,7 @@ public class CalendarController implements Initializable {
 				AnchorPane weatherPane;
 				try {
 					weatherPane = FXMLLoader.load(getClass().getResource("/View/Weather.fxml"));
+					weatherPane.setBackground(new Background(new BackgroundImage(new Image("/Image/backimg.jpg"),null,null,BackgroundPosition.DEFAULT,BackgroundSize.DEFAULT)));
 					Scene scene = new Scene(weatherPane);
 					stage = new Stage();
 					stage.setScene(scene);
@@ -1900,6 +1904,7 @@ public class CalendarController implements Initializable {
 				}else {
 					try {
 						AnchorPane memoPane = FXMLLoader.load(getClass().getResource("/View/HouseHold.fxml"));
+						memoPane.setBackground(new Background(new BackgroundImage(new Image("/Image/backimg.jpg"),null,null,BackgroundPosition.DEFAULT,BackgroundSize.DEFAULT)));
 						Scene scene = new Scene(memoPane);
 						stage = new Stage();
 						stage.setScene(scene);

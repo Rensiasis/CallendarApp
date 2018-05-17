@@ -131,6 +131,7 @@ public class MakeMemController implements Initializable {
 							alert.setHeaderText("비밀번호가 일치하지 않습니다.");
 							alert.setContentText("다시 입력해주세요.");
 							alert.showAndWait();
+							return;
 						}
 
 						if (Chk_Gender.getValue().equals("남자")) {

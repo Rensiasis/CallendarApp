@@ -78,6 +78,8 @@ on delete cascade
 create sequence schedule_seq
 
 select * from members;
-
+select * from accounts;
+select * from schedule;
+select * from households;
 drop sequence member_seq;
 drop table members

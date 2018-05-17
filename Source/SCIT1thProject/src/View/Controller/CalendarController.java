@@ -29,8 +29,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -481,6 +485,90 @@ public class CalendarController implements Initializable {
 	@FXML
 	private Label max42;
 	@FXML
+	private AnchorPane dayPane1;
+	@FXML
+	private AnchorPane dayPane2;
+	@FXML
+	private AnchorPane dayPane3;
+	@FXML
+	private AnchorPane dayPane4;
+	@FXML
+	private AnchorPane dayPane5;
+	@FXML
+	private AnchorPane dayPane6;
+	@FXML
+	private AnchorPane dayPane7;
+	@FXML
+	private AnchorPane dayPane8;
+	@FXML
+	private AnchorPane dayPane9;
+	@FXML
+	private AnchorPane dayPane10;
+	@FXML
+	private AnchorPane dayPane11;
+	@FXML
+	private AnchorPane dayPane12;
+	@FXML
+	private AnchorPane dayPane13;
+	@FXML
+	private AnchorPane dayPane14;
+	@FXML
+	private AnchorPane dayPane15;
+	@FXML
+	private AnchorPane dayPane16;
+	@FXML
+	private AnchorPane dayPane17;
+	@FXML
+	private AnchorPane dayPane18;
+	@FXML
+	private AnchorPane dayPane19;
+	@FXML
+	private AnchorPane dayPane20;
+	@FXML
+	private AnchorPane dayPane21;
+	@FXML
+	private AnchorPane dayPane22;
+	@FXML
+	private AnchorPane dayPane23;
+	@FXML
+	private AnchorPane dayPane24;
+	@FXML
+	private AnchorPane dayPane25;
+	@FXML
+	private AnchorPane dayPane26;
+	@FXML
+	private AnchorPane dayPane27;
+	@FXML
+	private AnchorPane dayPane28;
+	@FXML
+	private AnchorPane dayPane29;
+	@FXML
+	private AnchorPane dayPane30;
+	@FXML
+	private AnchorPane dayPane31;
+	@FXML
+	private AnchorPane dayPane32;
+	@FXML
+	private AnchorPane dayPane33;
+	@FXML
+	private AnchorPane dayPane34;
+	@FXML
+	private AnchorPane dayPane35;
+	@FXML
+	private AnchorPane dayPane36;
+	@FXML
+	private AnchorPane dayPane37;
+	@FXML
+	private AnchorPane dayPane38;
+	@FXML
+	private AnchorPane dayPane39;
+	@FXML
+	private AnchorPane dayPane40;
+	@FXML
+	private AnchorPane dayPane41;
+	@FXML
+	private AnchorPane dayPane42;
+	@FXML
 	private Label contentLabel;
 	@FXML
 	private Button insertMemo;
@@ -500,10 +588,11 @@ public class CalendarController implements Initializable {
 	private static ImageView[] weatherViewList;
 	private static Label[] minList;
 	private static Label[] maxList;
+	private static AnchorPane[] dayPaneList;
 
 	private static Map<Integer, ArrayList<Day>> calList;
 	private static ListView<Object> staticListView;
-	private static Map<Integer,Alarm> alarmManager;
+	private static Map<Integer, Alarm> alarmManager;
 	@FXML
 	private AnchorPane calendarPane;
 
@@ -816,6 +905,50 @@ public class CalendarController implements Initializable {
 		maxList[40] = max41;
 		maxList[41] = max42;
 
+		dayPaneList = new AnchorPane[42];
+		dayPaneList[0] = dayPane1;
+		dayPaneList[1] = dayPane2;
+		dayPaneList[2] = dayPane3;
+		dayPaneList[3] = dayPane4;
+		dayPaneList[4] = dayPane5;
+		dayPaneList[5] = dayPane6;
+		dayPaneList[6] = dayPane7;
+		dayPaneList[7] = dayPane8;
+		dayPaneList[8] = dayPane9;
+		dayPaneList[9] = dayPane10;
+		dayPaneList[10] = dayPane11;
+		dayPaneList[11] = dayPane12;
+		dayPaneList[12] = dayPane13;
+		dayPaneList[13] = dayPane14;
+		dayPaneList[14] = dayPane15;
+		dayPaneList[15] = dayPane16;
+		dayPaneList[16] = dayPane17;
+		dayPaneList[17] = dayPane18;
+		dayPaneList[18] = dayPane19;
+		dayPaneList[19] = dayPane20;
+		dayPaneList[20] = dayPane21;
+		dayPaneList[21] = dayPane22;
+		dayPaneList[22] = dayPane23;
+		dayPaneList[23] = dayPane24;
+		dayPaneList[24] = dayPane25;
+		dayPaneList[25] = dayPane26;
+		dayPaneList[26] = dayPane27;
+		dayPaneList[27] = dayPane28;
+		dayPaneList[28] = dayPane29;
+		dayPaneList[29] = dayPane30;
+		dayPaneList[30] = dayPane31;
+		dayPaneList[31] = dayPane32;
+		dayPaneList[32] = dayPane33;
+		dayPaneList[33] = dayPane34;
+		dayPaneList[34] = dayPane35;
+		dayPaneList[35] = dayPane36;
+		dayPaneList[36] = dayPane37;
+		dayPaneList[37] = dayPane38;
+		dayPaneList[38] = dayPane39;
+		dayPaneList[39] = dayPane40;
+		dayPaneList[40] = dayPane41;
+		dayPaneList[41] = dayPane42;
+
 		gridPane.setGridLinesVisible(true);
 		gridPane.setAlignment(Pos.TOP_LEFT);
 
@@ -828,7 +961,7 @@ public class CalendarController implements Initializable {
 		deleteButton.setOnMouseClicked(event -> delete());
 		insertSchedule.setOnMouseClicked(event -> insertSchedule());
 		insertTodo.setOnMouseClicked(event -> insertDaySchedule());
-		openWeather.setOnInputMethodTextChanged(event-> openWeather());
+		openWeather.setOnInputMethodTextChanged(event -> openWeather());
 
 		calList = new HashMap<>();
 		alarmManager = new HashMap<>();
@@ -869,7 +1002,7 @@ public class CalendarController implements Initializable {
 		int key = Integer.parseInt(keyStr);
 		int startIndex = 0;
 		if (dayStr.charAt(0) == '0') {
-			startIndex = Integer.parseInt(dayStr.substring(0, 1)) - 1;
+			startIndex = Integer.parseInt(dayStr.substring(1, 2)) - 1;
 		} else {
 			startIndex = Integer.parseInt(dayStr) - 1;
 		}
@@ -934,10 +1067,29 @@ public class CalendarController implements Initializable {
 		cal.clear();
 		cal.setTime(firstDay);
 
+		Date today = new Date();
+		SimpleDateFormat formatToday = new SimpleDateFormat("YYYYMM");
+		String todayKeyStr = formatToday.format(today);
+		formatToday = new SimpleDateFormat("dd");
+		String todayStr = formatToday.format(today);
+		int todayKey = Integer.parseInt(todayKeyStr);
+		int todayIndex = 0;
+		if (todayStr.charAt(0) == '0') {
+			todayIndex = Integer.parseInt(todayStr.substring(1, 2)) - 1;
+		} else {
+			todayIndex = Integer.parseInt(todayStr) - 1;
+		}
 		// 이번달 세팅
 		int firstIndex = cal.get(Calendar.DAY_OF_WEEK) - 1;
 		for (int i = firstIndex; i < dayList.size() + firstIndex; i++) {
 			labelList[i].setText((int) (i - firstIndex + 1) + "");
+
+			if (key == todayKey && todayIndex == (i - firstIndex)) {
+				areaList[i].setStyle("-fx-border-width: 4; -fx-border-color : #ff1818;");
+			} else {
+				areaList[i].setStyle(";");
+			}
+
 			ArrayList<EventDay> eventList = dayList.get(i - firstIndex).getEvent();
 			areaList[i].setText("");
 			if (i % 7 == 0)
@@ -984,6 +1136,13 @@ public class CalendarController implements Initializable {
 		for (int i = 0; i < firstIndex; i++) {
 			calendar.setTime(dayList.get(dayList.size() - firstIndex + i).getDate());
 			labelList[i].setText(calendar.get(Calendar.DATE) + "");
+
+			if (key == todayKey && todayIndex == (dayList.size() - firstIndex + i)) {
+				areaList[i].setStyle("-fx-border-width: 4; -fx-border-color : #ff1818;");
+			} else {
+				areaList[i].setStyle(";");
+			}
+
 			ArrayList<EventDay> eventList = dayList.get(dayList.size() - firstIndex + i).getEvent();
 			areaList[i].setText("");
 			if (i % 7 == 0)
@@ -1028,6 +1187,13 @@ public class CalendarController implements Initializable {
 		dayList = calList.get(key);
 		for (int i = lastIndex; i < 42; i++) {
 			labelList[i].setText((int) (i - lastIndex + 1) + "");
+
+			if (key == todayKey && todayIndex == (i - lastIndex)) {
+				areaList[i].setStyle("-fx-border-width: 4; -fx-border-color : #ff1818;");
+			} else {
+				areaList[i].setStyle(";");
+			}
+
 			ArrayList<EventDay> eventList = dayList.get(i - lastIndex).getEvent();
 			areaList[i].setText("");
 			if (i % 7 == 0)
@@ -1251,11 +1417,10 @@ public class CalendarController implements Initializable {
 						e.printStackTrace();
 					}
 					calList.get(key).get(date - 1).getSchedule().add(sList.get(i));
-					
+
 					String content = sList.get(i).getContent();
 					if (inputDate.after(new Date()))
-						setAlarm(content, inputDate);
-
+						setAlarm(content, inputDate, sList.get(i).getSchedule_seq());
 				}
 			}
 		}
@@ -1482,7 +1647,6 @@ public class CalendarController implements Initializable {
 		}
 		calList.get(key).get(date - 1).getSchedule().add(vo);
 
-
 		String dateStr = vo.getFrom_date() + vo.getTimes();
 		SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmm");
 		Date inputDate = null;
@@ -1492,12 +1656,20 @@ public class CalendarController implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String content = vo.getContent();
-		if (inputDate.after(new Date()))
-			setAlarm(content, inputDate);
-		
 
 		refreshDaySchedule();
+
+		ArrayList<Schedule> sList = calList.get(key).get(date - 1).getSchedule();
+		for (int i = 0; i < sList.size(); i++) {
+			if (sList.get(i).getData_type().equals("D") && sList.get(i).getFrom_date().equals(vo.getFrom_date())
+					&& sList.get(i).getContent().equals(vo.getContent())
+					&& sList.get(i).getTimes().equals(vo.getTimes())) {
+				vo = sList.get(i);
+			}
+		}
+		String content = vo.getContent();
+		if (inputDate.after(new Date()))
+			setAlarm(content, inputDate, vo.getSchedule_seq());
 
 		refreshContentList();
 
@@ -1567,6 +1739,10 @@ public class CalendarController implements Initializable {
 				break;
 			case "D":
 				Client.Client.summit(new SocketDB("deleteSchedule", vo));
+				if (alarmManager.get(Integer.parseInt(vo.getSchedule_seq())) != null)
+					alarmManager.get(Integer.parseInt(vo.getSchedule_seq())).cancel();
+				if (alarmManager.get(-Integer.parseInt(vo.getSchedule_seq())) != null)
+					alarmManager.get(-Integer.parseInt(vo.getSchedule_seq())).cancel();
 				refreshDaySchedule();
 				break;
 			}
@@ -1623,7 +1799,7 @@ public class CalendarController implements Initializable {
 
 		staticListView.setItems(observeList);
 	}
-	
+
 	public void openWeather() {
 		Platform.runLater(new Runnable() {
 			@Override
@@ -1644,6 +1820,38 @@ public class CalendarController implements Initializable {
 				}
 			}
 		});
+	}
+
+	public static void setAlarm(String content, Date date, String key) {
+		String[] splitContent = content.split("\\s");
+		String alarmMessage = "";
+		int intKey = Integer.parseInt(key);
+		for (int j = 1; j < splitContent.length; j++) {
+			alarmMessage += " " + splitContent[j];
+		}
+		Timer beforeTimer = new Timer();
+		Timer afterTimer = new Timer();
+		String beforeMessage = alarmMessage + " 한 시간 전입니다.";
+		String afterMessage = alarmMessage + " 할 시간 입니다.";
+
+		// 정시 알람 설정
+		Alarm afterAlarm = new Alarm();
+		afterAlarm.setMessage(afterMessage);
+		afterTimer.schedule(afterAlarm, date);
+		alarmManager.put(intKey, afterAlarm);
+
+		// 1시간전 알람 설정
+		Calendar ca = Calendar.getInstance();
+		ca.setTime(date);
+		ca.add(Calendar.HOUR, -1);
+		if (ca.after(Calendar.getInstance())) {
+			Alarm beforeAlarm = new Alarm();
+			Date beforeDate = ca.getTime();
+			beforeAlarm.setMessage(beforeMessage);
+			System.out.println(beforeAlarm);
+			beforeTimer.schedule(beforeAlarm, beforeDate);
+			alarmManager.put(-intKey, beforeAlarm);
+		}
 	}
 
 	@FXML
@@ -1668,32 +1876,4 @@ public class CalendarController implements Initializable {
 			}
 		});
 	}
-
-	public static void setAlarm(String content, Date date) {
-		String[] splitContent = content.split("\\s");
-		String alarmMessage = "";
-		for (int j = 1; j < splitContent.length; j++) {
-			alarmMessage += " "+splitContent[j];
-		}
-		Timer beforeTimer = new Timer();
-		Timer afterTimer = new Timer();
-		String beforeMessage = alarmMessage + " 한 시간 전입니다.";
-		String afterMessage = alarmMessage + " 할 시간 입니다.";
-		Alarm afterAlarm=new Alarm();
-		afterAlarm.setMessage(afterMessage);
-		afterTimer.schedule(afterAlarm, date);
-		Calendar ca = Calendar.getInstance();
-		ca.setTime(date);
-		ca.add(Calendar.HOUR, -1);
-		System.out.println(ca);
-		System.out.println(Calendar.getInstance());
-		if (ca.after(Calendar.getInstance())) {
-			Alarm beforeAlarm =new Alarm();
-			Date beforeDate = ca.getTime();
-			beforeAlarm.setMessage(beforeMessage);
-			System.out.println(beforeAlarm);
-			beforeTimer.schedule(beforeAlarm, beforeDate);
-		}
-	}
-
 }

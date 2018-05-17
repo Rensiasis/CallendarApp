@@ -66,7 +66,7 @@
                <font>
                   <Font size="15.0" />
                </font></Label>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+            <AnchorPane fx:id="dayPane1" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                <children>
                   <ImageView fx:id="weather1" fitHeight="30.0" fitWidth="30.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true" />
                   <Label fx:id="day1" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" textFill="RED">
@@ -87,7 +87,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <AnchorPane fx:id="dayPane2" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
                   <Label fx:id="day2" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER">
                      <font>
@@ -108,7 +108,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <AnchorPane fx:id="dayPane3" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <children>
                   <Label fx:id="day3" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER">
                      <font>
@@ -129,7 +129,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <AnchorPane fx:id="dayPane4" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                <children>
                   <Label fx:id="day4" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="32.0" prefWidth="33.0" textAlignment="CENTER" AnchorPane.bottomAnchor="64.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="92.0" AnchorPane.topAnchor="0.0">
                      <font>
@@ -150,7 +150,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+            <AnchorPane fx:id="dayPane5" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
                <children>
                   <Label fx:id="day5" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER">
                      <font>
@@ -171,7 +171,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
+            <AnchorPane fx:id="dayPane6" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
                <children>
                   <Label fx:id="day6" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER">
                      <font>
@@ -192,7 +192,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="1">
+            <AnchorPane fx:id="dayPane7" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="1">
                <children>
                   <Label fx:id="day7" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" textFill="#0051ff">
                      <font>
@@ -213,7 +213,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+            <AnchorPane fx:id="dayPane8" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                <children>
                   <Label fx:id="day8" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" textFill="RED">
                      <font>
@@ -234,7 +234,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <AnchorPane fx:id="dayPane9" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
                   <Label fx:id="day9" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER">
                      <font>
@@ -255,7 +255,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <AnchorPane fx:id="dayPane10" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <children>
                   <Label fx:id="day10" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER">
                      <font>
@@ -276,7 +276,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+            <AnchorPane fx:id="dayPane11" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <children>
                   <Label fx:id="day11" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER">
                      <font>
@@ -297,7 +297,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
+            <AnchorPane fx:id="dayPane12" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
                <children>
                   <Label fx:id="day12" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER">
                      <font>
@@ -318,7 +318,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
+            <AnchorPane fx:id="dayPane13" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
                <children>
                   <Label fx:id="day13" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER">
                      <font>
@@ -339,7 +339,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="2">
+            <AnchorPane fx:id="dayPane14" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="2">
                <children>
                   <Label fx:id="day14" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" textFill="#0051ff">
                      <font>
@@ -360,7 +360,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
+            <AnchorPane fx:id="dayPane15" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
                <children>
                   <Label fx:id="day15" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" textFill="RED">
                      <font>
@@ -381,7 +381,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
+            <AnchorPane fx:id="dayPane22" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
                <children>
                   <Label fx:id="day22" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" textFill="RED">
                      <font>
@@ -402,7 +402,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="5">
+            <AnchorPane fx:id="dayPane29" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="5">
                <children>
                   <Label fx:id="day29" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" textFill="RED">
                      <font>
@@ -423,7 +423,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="list18" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <AnchorPane fx:id="dayPane23" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <children>
                   <Label fx:id="day23" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER">
                      <font>
@@ -444,7 +444,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <AnchorPane fx:id="dayPane16" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
                   <Label fx:id="day16" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER">
                      <font>
@@ -465,7 +465,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <AnchorPane fx:id="dayPane30" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <children>
                   <Label fx:id="day30" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER">
                      <font>
@@ -486,7 +486,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <AnchorPane fx:id="dayPane17" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <children>
                   <Label fx:id="day17" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER">
                      <font>
@@ -507,7 +507,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+            <AnchorPane fx:id="dayPane24" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
                <children>
                   <Label fx:id="day24" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER">
                      <font>
@@ -528,7 +528,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+            <AnchorPane fx:id="dayPane31" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
                <children>
                   <Label fx:id="day31" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER">
                      <font>
@@ -549,7 +549,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+            <AnchorPane fx:id="dayPane18" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
                <children>
                   <Label fx:id="day18" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER">
                      <font>
@@ -570,7 +570,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
+            <AnchorPane fx:id="dayPane25" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
                <children>
                   <Label fx:id="day25" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER">
                      <font>
@@ -591,7 +591,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="5">
+            <AnchorPane fx:id="dayPane32" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="5">
                <children>
                   <Label fx:id="day32" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER">
                      <font>
@@ -612,7 +612,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
+            <AnchorPane fx:id="dayPane19" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
                <children>
                   <Label fx:id="day19" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER">
                      <font>
@@ -633,7 +633,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="4">
+            <AnchorPane fx:id="dayPane26" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="4">
                <children>
                   <Label fx:id="day26" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER">
                      <font>
@@ -654,7 +654,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="5">
+            <AnchorPane fx:id="dayPane33" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="5">
                <children>
                   <Label fx:id="day33" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER">
                      <font>
@@ -675,7 +675,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="3">
+            <AnchorPane fx:id="dayPane20" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="3">
                <children>
                   <Label fx:id="day20" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER">
                      <font>
@@ -696,7 +696,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="4">
+            <AnchorPane fx:id="dayPane27" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="4">
                <children>
                   <Label fx:id="day27" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER">
                      <font>
@@ -717,7 +717,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="5">
+            <AnchorPane fx:id="dayPane34" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="5">
                <children>
                   <Label fx:id="day34" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER">
                      <font>
@@ -738,7 +738,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="3">
+            <AnchorPane fx:id="dayPane21" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="3">
                <children>
                   <Label fx:id="day21" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" textFill="#0051ff">
                      <font>
@@ -759,7 +759,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="4">
+            <AnchorPane fx:id="dayPane28" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="4">
                <children>
                   <Label fx:id="day28" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" textFill="#0051ff">
                      <font>
@@ -780,7 +780,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="5">
+            <AnchorPane fx:id="dayPane35" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="5">
                <children>
                   <Label fx:id="day35" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" textFill="#0051ff">
                      <font>
@@ -801,7 +801,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="112.0" prefWidth="125.0" GridPane.rowIndex="6">
+            <AnchorPane fx:id="dayPane36" prefHeight="112.0" prefWidth="125.0" GridPane.rowIndex="6">
                <children>
                   <Label fx:id="day36" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" textFill="RED">
                      <font>
@@ -822,7 +822,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <AnchorPane fx:id="dayPane37" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                <children>
                   <Label fx:id="day37" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER">
                      <font>
@@ -843,7 +843,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
+            <AnchorPane fx:id="dayPane38" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
                <children>
                   <Label fx:id="day38" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER">
                      <font>
@@ -864,7 +864,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="6">
+            <AnchorPane fx:id="dayPane39" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="6">
                <children>
                   <Label fx:id="day39" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER">
                      <font>
@@ -885,7 +885,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="6">
+            <AnchorPane fx:id="dayPane40" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="6">
                <children>
                   <Label fx:id="day40" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER">
                      <font>
@@ -906,7 +906,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="6">
+            <AnchorPane fx:id="dayPane41" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="6">
                <children>
                   <Label fx:id="day41" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER">
                      <font>
@@ -927,7 +927,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="6">
+            <AnchorPane fx:id="dayPane42" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="6">
                <children>
                   <Label fx:id="day42" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="30.0" prefWidth="30.0" textAlignment="CENTER" textFill="#0051ff">
                      <font>

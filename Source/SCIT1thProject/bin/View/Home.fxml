@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -8,6 +9,11 @@
 
 <AnchorPane fx:id="mPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Controller.HomeController">
    <children>
+      <ImageView fitHeight="400.0" fitWidth="600.0">
+         <image>
+            <Image url="@../../../../../../backimg.jpg" />
+         </image>
+      </ImageView>
       <MenuBar prefHeight="38.0" prefWidth="600.0">
         <menus>
           <Menu mnemonicParsing="false" text="프로그램">
@@ -30,10 +36,15 @@
       <TextField fx:id="tfId" layoutX="450.0" layoutY="70.0" prefHeight="30.0" prefWidth="120.0" promptText="ID 입력" />
       <PasswordField fx:id="pfPw" layoutX="450.0" layoutY="120.0" prefHeight="30.0" prefWidth="120.0" promptText="PASSWORD 입력" />
       <Label fx:id="lblMessage" alignment="CENTER" layoutX="363.0" layoutY="312.0" prefHeight="62.0" prefWidth="221.0" text="" textFill="#e80606" />
-      <ImageView fx:id="InsertImage" fitHeight="300.0" fitWidth="400.0" layoutX="32.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-      <Image url="Image/kechiman.PNG" />
-      </image>
-      </ImageView>
+      <Label layoutX="36.0" layoutY="77.0" prefHeight="97.0" prefWidth="221.0" text="けちでも">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Label layoutX="121.0" layoutY="154.0" prefHeight="97.0" prefWidth="221.0" text="大丈夫!">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

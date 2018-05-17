@@ -6,6 +6,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -16,10 +17,12 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import VO.ShortWeather;
 import VO.Weather;
 
 public class WeatherPlanetParser {
-	private final static String appKey = "4abe6551-2de1-4a44-b099-5f35ace58669";
+//	private final static String appKey = "4abe6551-2de1-4a44-b099-5f35ace58669";
+	private final static String appKey = "f0fb15d6-19d0-4e4d-960b-28cf859732f5";
 	private final static String currentApiURL = "https://api2.sktelecom.com/weather/current/minutely?version=2";
 	private final static String ShortTermApiURL = "https://api2.sktelecom.com/weather/forecast/3days?version=version=2";
 	private final static String LongTermApiURL = "https://api2.sktelecom.com/weather/forecast/6days?version=2";
@@ -44,21 +47,22 @@ public class WeatherPlanetParser {
 	}
 
 	public void setAddress(String city, String county, String village) {
-		this.city = city;
+		if(city.equals("서울특별시")){
+			this.city="서울";
+		}else {
+			this.city=city;
+		}
 		this.county = county;
 		this.village = village;
 	}
 
 	public void parshing() {
-		city = "서울";
-		county = "강남구";
-		village = "도곡동";
 		getTodayData();
 		getShortTermData();
 		getLongTermData();
 	}
 
-	public void getTodayData() {
+	private void getTodayData() {
 		weatherList.add(parseToday());
 	}
 
@@ -121,6 +125,7 @@ public class WeatherPlanetParser {
 			String input;
 			while ((input = in.readLine()) != null) {
 				sb.append(input);
+				System.out.println(sb.toString());
 			}
 		} catch (Exception e) {
 			con.disconnect();
@@ -264,5 +269,65 @@ public class WeatherPlanetParser {
 
 	private String parseString(String str) {
 		return str.substring(1, str.length() - 1);
+	}
+
+	public ArrayList<ShortWeather> getShortWeather() {
+		ArrayList<ShortWeather> wList = new ArrayList<>();
+		StringBuilder sb = null;
+		HttpURLConnection con = null;
+		try {
+			URL url = new URL(ShortTermApiURL + "&city=" + encodeURL(city) + "&county=" + encodeURL(county)
+					+ "&village=" + encodeURL(village) + "&foretxt=" + encodeURL(foretxt));
+			con = (HttpURLConnection) url.openConnection();
+			con.setRequestMethod("GET");
+			con.setDoInput(true);
+			con.setUseCaches(false);
+			con.setRequestProperty("Accept", "application/json");
+			con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+			con.setRequestProperty("appKey", appKey);
+			BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+			sb = new StringBuilder();
+			String input;
+			while ((input = in.readLine()) != null) {
+				sb.append(input);
+			}
+			sb.toString();
+		} catch (Exception e) {
+			con.disconnect();
+		}
+		String json = sb.toString();
+		JsonObject root = new JsonParser().parse(json).getAsJsonObject();
+		JsonObject weather = root.get("weather").getAsJsonObject();
+		JsonArray forecast3days = weather.get("forecast3days").getAsJsonArray();
+		JsonObject precipitation = forecast3days.get(0).getAsJsonObject().get("fcst3hour").getAsJsonObject()
+				.get("precipitation").getAsJsonObject();
+		JsonObject sky = forecast3days.get(0).getAsJsonObject().get("fcst3hour").getAsJsonObject().get("sky")
+				.getAsJsonObject();
+		JsonObject temperature = forecast3days.get(0).getAsJsonObject().get("fcst3hour").getAsJsonObject()
+				.get("temperature").getAsJsonObject();
+		JsonObject humidity = forecast3days.get(0).getAsJsonObject().get("fcst3hour").getAsJsonObject().get("humidity")
+				.getAsJsonObject();
+		
+		String timeRelease =forecast3days.get(0).getAsJsonObject().get("timeRelease").toString();
+		SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		System.out.println(timeRelease);
+		Date today = null;
+		try {
+			today=format.parse(parseString(timeRelease.toString()));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		int hour=4;
+		for(int i=0;i<15;i++) {
+			ShortWeather weatherVO=new ShortWeather();
+			weatherVO.setTimeRelease(today);
+			weatherVO.setHum(parseString(humidity.get("rh"+Integer.toString(hour)+"hour").toString()));
+			weatherVO.setSkyCode(parseString(sky.get("code"+Integer.toString(hour)+"hour").toString()));
+			weatherVO.setPrdb(parseString(precipitation.get("prob"+Integer.toString(hour)+"hour").toString()));
+			weatherVO.setTempo(temperature.get("temp"+Integer.toString(hour)+"hour").toString());
+			wList.add(weatherVO);
+		}
+		return wList;
 	}
 }

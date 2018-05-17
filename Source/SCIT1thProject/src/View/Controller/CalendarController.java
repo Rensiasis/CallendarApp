@@ -961,7 +961,7 @@ public class CalendarController implements Initializable {
 		deleteButton.setOnMouseClicked(event -> delete());
 		insertSchedule.setOnMouseClicked(event -> insertSchedule());
 		insertTodo.setOnMouseClicked(event -> insertDaySchedule());
-		openWeather.setOnInputMethodTextChanged(event -> openWeather());
+		openWeather.setOnMouseClicked(event -> openWeather());
 
 		calList = new HashMap<>();
 		alarmManager = new HashMap<>();
@@ -1811,7 +1811,7 @@ public class CalendarController implements Initializable {
 					Scene scene = new Scene(weatherPane);
 					stage = new Stage();
 					stage.setScene(scene);
-					stage.setTitle("일정 입력");
+					stage.setTitle("날씨 현황");
 					stage.setResizable(false);
 					stage.show();
 				} catch (Exception e) {

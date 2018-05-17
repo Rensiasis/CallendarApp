@@ -14,6 +14,7 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 
 import Client.User;
+import DAO.MemberDAO;
 import Parser.EventDayParser;
 import Parser.WeatherPlanetParser;
 import Util.Alarm;
@@ -593,6 +594,7 @@ public class CalendarController implements Initializable {
 	private static Map<Integer, ArrayList<Day>> calList;
 	private static ListView<Object> staticListView;
 	private static Map<Integer, Alarm> alarmManager;
+
 	@FXML
 	private AnchorPane calendarPane;
 
@@ -1854,25 +1856,40 @@ public class CalendarController implements Initializable {
 		}
 	}
 
-	@FXML
+	@FXML//가계부 열기
 	public void btnOnHH(ActionEvent event) {
+		
+		
 		Platform.runLater(new Runnable() {
 
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				try {
-					AnchorPane memoPane = FXMLLoader.load(getClass().getResource("/View/HouseHold.fxml"));
-					Scene scene = new Scene(memoPane);
-					stage = new Stage();
-					stage.setScene(scene);
-					stage.setTitle("가계부");
-					stage.setResizable(false);
-					stage.show();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				int i= (int) Client.Client.summit(new SocketDB("beforeOpenAcc",User.getUser().getMember_seq()));
+				if( i == 0){
+					Alert alert = new Alert(AlertType.ERROR);
+					alert.setTitle("가계부 미설정 오류");
+					alert.setHeaderText("가계부 정보 입력필요");
+					alert.setContentText("가계부 설정에서 정보를 입력해주세요.");
+					alert.showAndWait();
+					return;
+				}else {
+					try {
+						AnchorPane memoPane = FXMLLoader.load(getClass().getResource("/View/HouseHold.fxml"));
+						Scene scene = new Scene(memoPane);
+						stage = new Stage();
+						stage.setScene(scene);
+						stage.setTitle("가계부");
+						stage.setResizable(false);
+						stage.show();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
 				}
+				
+				
 			}
 		});
 	}

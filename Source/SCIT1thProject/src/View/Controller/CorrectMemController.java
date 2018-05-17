@@ -2,6 +2,7 @@ package View.Controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import Client.User;
@@ -17,6 +18,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -57,12 +59,6 @@ public class CorrectMemController implements Initializable {
 	Members m_vo = new Members();
 	User user = new User();
 
-	@FXML // 메뉴바 프로그램 종료
-	public void btnExitAction(ActionEvent event) {
-		System.exit(0);
-	}
-
-
 	@FXML // 주소검색버튼
 	public void research_add(ActionEvent event) {
 		Platform.runLater(new Runnable() {
@@ -97,8 +93,8 @@ public class CorrectMemController implements Initializable {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				if (reName.getText().length() == 0 && rePassword.getText().length() == 0
-						&& re_postnum.getText().length() == 0) {
+				if (reName.getText().length() == 0 || rePassword.getText().length() == 0
+						|| re_postnum.getText().length() == 0) {
 					Alert alert = new Alert(AlertType.ERROR);
 					alert.setTitle("회원정보 수정 오류");
 					alert.setHeaderText("수정정보 미입력 오류");
@@ -127,6 +123,7 @@ public class CorrectMemController implements Initializable {
 						m_vo.setPhone_number(re_phone.getText());
 						m_vo.setEmail(re_email.getText());
 
+						Client.User.user = m_vo;
 						Client.Client.summit(new SocketDB("updateMemInfo", m_vo));
 						View.Controller.CalendarController.stage.close();
 
@@ -145,6 +142,23 @@ public class CorrectMemController implements Initializable {
 	@FXML // 달력으로 돌아가기
 	public void returnCalendar(ActionEvent event) {
 		View.Controller.CalendarController.stage.close();
+	}
+
+	@FXML
+	public void deletemember(ActionEvent event) {
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("회원탈퇴");
+		alert.setHeaderText("회원탈퇴 확인메세지");
+		alert.setContentText("회원탈퇴를 하시겠습니까?");
+
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == ButtonType.OK) {
+			String member_seq = user.getUser().getMember_seq();
+			Client.Client.summit(new SocketDB("deleteID", member_seq));
+		} else {
+			return;
+		}
+
 	}
 
 	@Override

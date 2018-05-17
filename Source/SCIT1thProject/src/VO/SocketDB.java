@@ -49,6 +49,9 @@ public class SocketDB implements Serializable {
 		case "chkRepeatID":
 			result = MemberDAO.chkRepeatID((String) inputObject);
 			break;
+		case "deleteID":
+			MemberDAO.deleteID((String) inputObject);
+			break;
 		case "insertHouseHold":
 			MemberDAO.insertHouseHold((HouseHolds) inputObject);
 			break;
@@ -72,6 +75,9 @@ public class SocketDB implements Serializable {
 			break;
 		case "updateAccount":
 			MemberDAO.updateAccount((Account) inputObject);
+			break;
+		case "beforeOpenAcc":
+			result = MemberDAO.beforeOpenAcc((String) inputObject);
 			break;
 		case "insertMemo":
 			MemberDAO.insertMemo((Schedule) inputObject);
@@ -114,6 +120,21 @@ public class SocketDB implements Serializable {
 			break;
 		case "speciPeriod":
 			result = MemberDAO.speciPeriod((HouseHolds)inputObject);
+			break;
+		case "searchForAMonth2":
+			result = MemberDAO.searchForAMonth2((String)inputObject);
+			break;
+		case "searchForThreeMonth2":
+			result = MemberDAO.searchForThreeMonth2((String)inputObject);
+			break;
+		case "searchForSixMonth2":
+			result = MemberDAO.searchForSixMonth2((String)inputObject);
+			break;	
+		case "searchForAnYear2":
+			result = MemberDAO.searchForAnYear2((String)inputObject);
+			break;
+		case "speciPeriod2":
+			result = MemberDAO.speciPeriod2((HouseHolds)inputObject);
 			break;
 			
 		}

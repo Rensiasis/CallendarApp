@@ -76,9 +76,3 @@ on delete cascade
 
 create sequence schedule_seq
 
-drop table members
-
-select * from members;
-select * from households
-select * from accounts
-

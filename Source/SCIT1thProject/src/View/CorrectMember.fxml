@@ -7,20 +7,6 @@
 
 <AnchorPane fx:id="CorrectMember" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Controller.CorrectMemController">
    <children>
-      <MenuBar prefHeight="25.0" prefWidth="300.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="프로그램">
-            <items>
-              <MenuItem mnemonicParsing="false" onAction="#btnExitAction" text="프로그램종료" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="도움말">
-            <items>
-              <MenuItem mnemonicParsing="false" text="프로그램 도움말" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
       <Label layoutX="21.0" layoutY="82.0" text="비밀번호" />
       <Label layoutX="21.0" layoutY="119.0" text="비밀번호 확인" />
       <Label layoutX="23.0" layoutY="159.0" text="우편번호" />
@@ -33,12 +19,21 @@
       <PasswordField fx:id="rePassword" layoutX="129.0" layoutY="78.0" />
       <PasswordField fx:id="rePassChk" layoutX="129.0" layoutY="115.0" />
       <TextField fx:id="re_postnum" editable="false" layoutX="129.0" layoutY="155.0" />
+      <Button layoutX="214.0" layoutY="184.0" mnemonicParsing="false" onAction="#research_add" text="주소검색" />
       <TextField fx:id="re_add" editable="false" layoutX="129.0" layoutY="216.0" />
       <TextField fx:id="re_detailadd" layoutX="129.0" layoutY="254.0" />
       <TextField fx:id="re_email" layoutX="129.0" layoutY="292.0" />
       <TextField fx:id="re_phone" layoutX="129.0" layoutY="333.0" />
-      <Button layoutX="214.0" layoutY="184.0" mnemonicParsing="false" onAction="#research_add" text="주소검색" />
       <Button layoutX="21.0" layoutY="378.0" mnemonicParsing="false" onAction="#recorrectMem" text="회원정보 수정하기" />
       <Button layoutX="150.0" layoutY="378.0" mnemonicParsing="false" onAction="#returnCalendar" prefHeight="25.0" prefWidth="129.0" text="취소하기" />
+      <MenuBar layoutX="-3.0" layoutY="-1.0" prefHeight="25.0" prefWidth="306.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="회원탈퇴">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#deletemember" text="회원탈퇴" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
    </children>
 </AnchorPane>

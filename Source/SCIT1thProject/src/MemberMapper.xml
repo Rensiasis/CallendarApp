@@ -234,7 +234,7 @@
 		where member_seq=#{member_seq} and
 		get_date between sysdate-30 and sysdate
 		and 0>price
-		order by get_date desc
+		order by get_date desc, household_seq asc
 	</select>
 
 	<!-- 1개월 이내 검색 -->
@@ -247,7 +247,7 @@
 		where member_seq=#{member_seq} and
 		get_date between sysdate-30 and sysdate
 		and price>0
-		order by get_date desc
+		order by get_date desc, household_seq asc
 	</select>
 
 	<!-- 3개월 이내 검색 -->
@@ -260,7 +260,7 @@
 		where member_seq=#{member_seq} and
 		get_date between sysdate-90 and sysdate
 		and 0>price
-		order by get_date desc
+		order by get_date desc, household_seq asc
 	</select>
 
 	<!-- 3개월 이내 검색 -->
@@ -273,7 +273,7 @@
 		where member_seq=#{member_seq} and
 		get_date between sysdate-90 and sysdate
 		and price>0
-		order by get_date desc
+		order by get_date desc, household_seq asc
 	</select>
 
 	<!-- 6개월 이내 검색 -->
@@ -286,7 +286,7 @@
 		where member_seq=#{member_seq} and
 		get_date between sysdate-180 and sysdate
 		and 0>price
-		order by get_date desc
+		order by get_date desc, household_seq asc
 	</select>
 
 	<!-- 6개월 이내 검색 -->
@@ -299,7 +299,7 @@
 		where member_seq=#{member_seq} and
 		get_date between sysdate-180 and sysdate
 		and price>0
-		order by get_date desc
+		order by get_date desc, household_seq asc
 	</select>
 
 	<!-- 1년 이내 검색 -->
@@ -312,7 +312,7 @@
 		where member_seq=#{member_seq} and
 		get_date between sysdate-365 and sysdate
 		and 0>price
-		order by get_date desc
+		order by get_date desc, household_seq asc
 	</select>
 
 	<!-- 1년 이내 검색 -->
@@ -325,7 +325,7 @@
 		where member_seq=#{member_seq} and
 		get_date between sysdate-365 and sysdate
 		and price>0
-		order by get_date desc
+		order by get_date desc, household_seq asc
 	</select>
 
 	<!-- 특정기간 검색 -->
@@ -339,7 +339,7 @@
 		get_date between to_date(#{indate},'yyyy-MM-dd') and
 		to_date(#{ldate},'yyyy-MM-dd')
 		and 0>price
-		order by get_date desc
+		order by get_date desc, household_seq asc
 	</select>
 
 	<!-- 특정기간 검색 -->
@@ -353,7 +353,7 @@
 		get_date between to_date(#{indate},'yyyy-MM-dd') and
 		to_date(#{ldate},'yyyy-MM-dd')
 		and price>0
-		order by get_date desc
+		order by get_date desc, household_seq asc
 	</select>
 
 

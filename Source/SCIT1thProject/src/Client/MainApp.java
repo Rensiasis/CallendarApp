@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 
 public class MainApp extends Application {
@@ -24,6 +25,7 @@ public class MainApp extends Application {
 			rootLayout = (AnchorPane) FXMLLoader.load(getClass().getResource("/View/Home.fxml"));
 			Scene scene = new Scene(rootLayout);
 			primaryStage.setTitle("けちでも大丈夫(짠돌이라도 괜찮아)");
+			primaryStage.getIcons().add(new Image("/Image/ICON.png"));
 			primaryStage.setWidth(600);
 			primaryStage.setHeight(450);
 			primaryStage.setResizable(false);

@@ -16,6 +16,7 @@ import java.util.Timer;
 import Client.User;
 import DAO.MemberDAO;
 import Parser.EventDayParser;
+import Parser.GeoCodingParser;
 import Parser.WeatherPlanetParser;
 import Util.Alarm;
 import VO.Day;
@@ -993,7 +994,12 @@ public class CalendarController implements Initializable {
 
 	public void setWeather() {
 		WeatherPlanetParser w = new WeatherPlanetParser();
-		w.setAddress(User.user.getCity(), User.user.getCounty(), User.user.getVillage());
+		GeoCodingParser g= new GeoCodingParser();
+		g.setAddress(User.user.getNewAddress());
+		g.parshing();
+		double lat=g.getLat();
+		double lon=g.getLon();
+		w.setCoordinates(lat, lon);
 		w.parshing();
 		ArrayList<Weather> wList = w.getWeatherList();
 		Date today = new Date();
@@ -1850,7 +1856,6 @@ public class CalendarController implements Initializable {
 			Alarm beforeAlarm = new Alarm();
 			Date beforeDate = ca.getTime();
 			beforeAlarm.setMessage(beforeMessage);
-			System.out.println(beforeAlarm);
 			beforeTimer.schedule(beforeAlarm, beforeDate);
 			alarmManager.put(-intKey, beforeAlarm);
 		}

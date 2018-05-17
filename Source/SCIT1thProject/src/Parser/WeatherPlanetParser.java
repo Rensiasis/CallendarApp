@@ -27,9 +27,8 @@ public class WeatherPlanetParser {
 	private final static String ShortTermApiURL = "https://api2.sktelecom.com/weather/forecast/3days?version=version=2";
 	private final static String LongTermApiURL = "https://api2.sktelecom.com/weather/forecast/6days?version=2";
 	private ArrayList<Weather> weatherList;
-	private String city;
-	private String county;
-	private String village;
+	private double lat;
+	private double lon;
 	private final static String foretxt = "N";
 
 	public WeatherPlanetParser(ArrayList<Weather> weatherList) {
@@ -45,15 +44,10 @@ public class WeatherPlanetParser {
 	public ArrayList<Weather> getWeatherList() {
 		return weatherList;
 	}
-
-	public void setAddress(String city, String county, String village) {
-		if(city.equals("서울특별시")){
-			this.city="서울";
-		}else {
-			this.city=city;
-		}
-		this.county = county;
-		this.village = village;
+	
+	public void setCoordinates(double lat,double lon) {
+		this.lat=lat;
+		this.lon=lon;
 	}
 
 	public void parshing() {
@@ -70,8 +64,7 @@ public class WeatherPlanetParser {
 		StringBuilder sb = null;
 		HttpURLConnection con = null;
 		try {
-			URL url = new URL(currentApiURL + "&city=" + encodeURL(city) + "&county=" + encodeURL(county) + "&village="
-					+ encodeURL(village) + "&foretxt=" + encodeURL(foretxt));
+			URL url = new URL(currentApiURL + "&lat=" + lat + "&lon=" + lon + "&foretxt=" + encodeURL(foretxt));
 			con = (HttpURLConnection) url.openConnection();
 			con.setRequestMethod("GET");
 			con.setDoInput(true);
@@ -111,8 +104,7 @@ public class WeatherPlanetParser {
 		StringBuilder sb = null;
 		HttpURLConnection con = null;
 		try {
-			URL url = new URL(ShortTermApiURL + "&city=" + encodeURL(city) + "&county=" + encodeURL(county)
-					+ "&village=" + encodeURL(village) + "&foretxt=" + encodeURL(foretxt));
+			URL url = new URL(currentApiURL + "&lat=" + lat + "&lon=" + lon + "&foretxt=" + encodeURL(foretxt));
 			con = (HttpURLConnection) url.openConnection();
 			con.setRequestMethod("GET");
 			con.setDoInput(true);
@@ -125,7 +117,6 @@ public class WeatherPlanetParser {
 			String input;
 			while ((input = in.readLine()) != null) {
 				sb.append(input);
-				System.out.println(sb.toString());
 			}
 		} catch (Exception e) {
 			con.disconnect();
@@ -171,8 +162,7 @@ public class WeatherPlanetParser {
 		StringBuilder sb = null;
 		HttpURLConnection con = null;
 		try {
-			URL url = new URL(LongTermApiURL + "&city=" + encodeURL(city) + "&county=" + encodeURL(county) + "&village="
-					+ encodeURL(village) + "&foretxt=" + encodeURL(foretxt));
+			URL url = new URL(currentApiURL + "&lat=" + lat + "&lon=" + lon + "&foretxt=" + encodeURL(foretxt));
 			con = (HttpURLConnection) url.openConnection();
 			con.setRequestMethod("GET");
 			con.setDoInput(true);
@@ -276,8 +266,7 @@ public class WeatherPlanetParser {
 		StringBuilder sb = null;
 		HttpURLConnection con = null;
 		try {
-			URL url = new URL(ShortTermApiURL + "&city=" + encodeURL(city) + "&county=" + encodeURL(county)
-					+ "&village=" + encodeURL(village) + "&foretxt=" + encodeURL(foretxt));
+			URL url = new URL(currentApiURL + "&lat=" + lat + "&lon=" + lon + "&foretxt=" + encodeURL(foretxt));
 			con = (HttpURLConnection) url.openConnection();
 			con.setRequestMethod("GET");
 			con.setDoInput(true);

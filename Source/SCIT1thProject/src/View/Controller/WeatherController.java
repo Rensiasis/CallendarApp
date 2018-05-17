@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 import Client.User;
+import Parser.GeoCodingParser;
 import Parser.WeatherPlanetParser;
 import VO.ShortWeather;
 import VO.Weather;
@@ -351,7 +352,11 @@ public class WeatherController implements Initializable{
 	
 	public void getWeatherData() {
 		WeatherPlanetParser phaser = new WeatherPlanetParser();
-		phaser.setAddress(User.user.getCity(), User.user.getCounty(), User.user.getVillage());
+		GeoCodingParser geo = new GeoCodingParser();
+		geo.setAddress(User.user.getNewAddress());
+		double lat=geo.getLat();
+		double lon=geo.getLon();
+		phaser.setCoordinates(lat, lon);
 		ArrayList<ShortWeather> wList=phaser.getShortWeather();
 		SimpleDateFormat format=new SimpleDateFormat("yyyy/MM/dd hh:mm E요일");
 		Calendar ca=Calendar.getInstance();

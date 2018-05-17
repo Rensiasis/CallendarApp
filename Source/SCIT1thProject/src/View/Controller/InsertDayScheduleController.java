@@ -51,7 +51,19 @@ public class InsertDayScheduleController implements Initializable {
 			vo.setMember_seq(Client.User.user.getMember_seq());
 			vo.setData_type("D");
 			vo.setFrom_date(selectedDay);
-			vo.setTimes(Integer.toString(hour.getValue()) + Integer.toString(minute.getValue()));
+			String hourStr=null;
+			if(hour.getValue()<10) {
+				hourStr="0"+Integer.toString(hour.getValue());
+			}else {
+				hourStr=Integer.toString(hour.getValue());
+			}
+			String minuteStr=null;
+			if(minute.getValue()<10) {
+				minuteStr="0"+Integer.toString(minute.getValue());
+			}else {
+				minuteStr=Integer.toString(minute.getValue());
+			}
+			vo.setTimes(hourStr+minuteStr);
 			vo.setContent("(" + hour.getValue() + ":" + minute.getValue() + ") " + content.getText());
 			vo.setInuser(Client.User.user.getName());
 			View.Controller.CalendarController.schedule = vo;

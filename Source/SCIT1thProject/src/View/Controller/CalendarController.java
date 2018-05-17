@@ -489,6 +489,8 @@ public class CalendarController implements Initializable {
 	@FXML
 	private Button insertTodo;
 	@FXML
+	private Button openWeather;
+	@FXML
 	private ListView<Object> contentListView;
 
 	private static Label[] labelList;
@@ -824,15 +826,15 @@ public class CalendarController implements Initializable {
 		deleteButton.setOnMouseClicked(event -> delete());
 		insertSchedule.setOnMouseClicked(event -> insertSchedule());
 		insertTodo.setOnMouseClicked(event -> insertDaySchedule());
+		openWeather.setOnInputMethodTextChanged(event-> openWeather());
 
 		calList = new HashMap<>();
 		staticListView = contentListView;
-		
-		calList = (Map<Integer, ArrayList<Day>>) Client.Client.summit(new SocketDB("requestCalendar",""));
-		System.out.println(calList);
-		
+
+		calList = (Map<Integer, ArrayList<Day>>) Client.Client.summit(new SocketDB("requestCalendar", ""));
+
 		setInitialPage();
-		
+
 		setSchedule();
 
 		setWeather();
@@ -868,7 +870,6 @@ public class CalendarController implements Initializable {
 		} else {
 			startIndex = Integer.parseInt(dayStr) - 1;
 		}
-		System.out.println(startIndex);
 		for (int i = 0; i < wList.size(); i++) {
 			calList.get(key).get(startIndex++).setWeather(wList.get(i));
 			if (startIndex >= calList.get(key).size()) {
@@ -1238,10 +1239,8 @@ public class CalendarController implements Initializable {
 						date = Integer.parseInt(fullDate.substring(6, 8));
 					}
 					String dateStr = fullDate + times;
-					System.out.println(dateStr);
 					SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmm");
 					Date inputDate = null;
-					System.out.println(inputDate);
 					try {
 						inputDate = format.parse(dateStr);
 					} catch (ParseException e) {
@@ -1250,10 +1249,15 @@ public class CalendarController implements Initializable {
 					}
 					calList.get(key).get(date - 1).getSchedule().add(sList.get(i));
 					String content = sList.get(i).getContent();
-					/*
-					 * if (inputDate.before(new Date())) setAlarm(content.substring(7,
-					 * content.length()), inputDate);
-					 */
+					System.out.println(content.split("\\s")[0]);
+					String[] splitContent = content.split("\\s");
+					String alarmMessage = null;
+					for (int j = 1; j < splitContent.length; j++) {
+						alarmMessage += splitContent[j];
+					}
+					if (inputDate.after(new Date()))
+						setAlarm(alarmMessage, inputDate);
+
 				}
 			}
 		}
@@ -1318,19 +1322,25 @@ public class CalendarController implements Initializable {
 	}
 
 	public void insertMemo() {
-		AnchorPane memoPane;
-		try {
-			memoPane = FXMLLoader.load(getClass().getResource("/View/InsertMemo.fxml"));
-			Scene scene = new Scene(memoPane);
-			stage = new Stage();
-			stage.setScene(scene);
-			stage.setTitle("메모 입력");
-			stage.setResizable(false);
-			stage.show();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				AnchorPane memoPane;
+				try {
+					memoPane = FXMLLoader.load(getClass().getResource("/View/InsertMemo.fxml"));
+					Scene scene = new Scene(memoPane);
+					stage = new Stage();
+					stage.setScene(scene);
+					stage.setTitle("메모 입력");
+					stage.setResizable(false);
+					stage.show();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
 	public static void insertMemoReceiver(Schedule vo) {
@@ -1359,19 +1369,25 @@ public class CalendarController implements Initializable {
 	}
 
 	public void insertSchedule() {
-		AnchorPane schedulePane;
-		try {
-			schedulePane = FXMLLoader.load(getClass().getResource("/View/InsertSchedule.fxml"));
-			Scene scene = new Scene(schedulePane);
-			stage = new Stage();
-			stage.setScene(scene);
-			stage.setTitle("스케줄 입력");
-			stage.setResizable(false);
-			stage.show();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				AnchorPane schedulePane;
+				try {
+					schedulePane = FXMLLoader.load(getClass().getResource("/View/InsertSchedule.fxml"));
+					Scene scene = new Scene(schedulePane);
+					stage = new Stage();
+					stage.setScene(scene);
+					stage.setTitle("스케줄 입력");
+					stage.setResizable(false);
+					stage.show();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
 	public static void insertScheduleReceiver(Schedule vo) {
@@ -1432,19 +1448,25 @@ public class CalendarController implements Initializable {
 	}
 
 	public void insertDaySchedule() {
-		AnchorPane daySchedulePane;
-		try {
-			daySchedulePane = FXMLLoader.load(getClass().getResource("/View/InsertDaySchedule.fxml"));
-			Scene scene = new Scene(daySchedulePane);
-			stage = new Stage();
-			stage.setScene(scene);
-			stage.setTitle("일정 입력");
-			stage.setResizable(false);
-			stage.show();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				AnchorPane daySchedulePane;
+				try {
+					daySchedulePane = FXMLLoader.load(getClass().getResource("/View/InsertDaySchedule.fxml"));
+					Scene scene = new Scene(daySchedulePane);
+					stage = new Stage();
+					stage.setScene(scene);
+					stage.setTitle("일정 입력");
+					stage.setResizable(false);
+					stage.show();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
 	public static void insertDayScheduleReceiver(Schedule vo) {
@@ -1588,6 +1610,28 @@ public class CalendarController implements Initializable {
 
 		staticListView.setItems(observeList);
 	}
+	
+	public void openWeather() {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				AnchorPane weatherPane;
+				try {
+					weatherPane = FXMLLoader.load(getClass().getResource("/View/Weather.fxml"));
+					Scene scene = new Scene(weatherPane);
+					stage = new Stage();
+					stage.setScene(scene);
+					stage.setTitle("일정 입력");
+					stage.setResizable(false);
+					stage.show();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
 	@FXML
 	public void btnOnHH(ActionEvent event) {
@@ -1613,19 +1657,23 @@ public class CalendarController implements Initializable {
 	}
 
 	public static void setAlarm(String message, Date date) {
-		Alarm alarm = new Alarm();
 		Timer beforeTimer = new Timer();
 		Timer afterTimer = new Timer();
 		String beforeMessage = message + " 한 시간 전입니다.";
 		String afterMessage = message + " 할 시간 입니다.";
+		Alarm alarm=new Alarm();
 		alarm.setMessage(afterMessage);
-		beforeTimer.schedule(alarm, date);
+		afterTimer.schedule(alarm, date);
 		Calendar ca = Calendar.getInstance();
 		ca.setTime(date);
 		ca.add(Calendar.HOUR, -1);
-		Date beforeDate = ca.getTime();
-		alarm.setMessage(beforeMessage);
-		afterTimer.schedule(alarm, beforeDate);
+		System.out.println(ca);
+		System.out.println(Calendar.getInstance());
+		if (ca.after(Calendar.getInstance())) {
+			Date beforeDate = ca.getTime();
+			alarm.setMessage(beforeMessage);
+			beforeTimer.schedule(alarm, beforeDate);
+		}
 	}
 
 }

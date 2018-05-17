@@ -73,6 +73,9 @@ public class SocketDB implements Serializable {
 		case "updateAccount":
 			MemberDAO.updateAccount((Account) inputObject);
 			break;
+		case "beforeOpenAcc":
+			result = MemberDAO.beforeOpenAcc((String) inputObject);
+			break;
 		case "insertMemo":
 			MemberDAO.insertMemo((Schedule) inputObject);
 			break;

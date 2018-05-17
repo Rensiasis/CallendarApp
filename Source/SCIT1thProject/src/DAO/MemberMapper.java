@@ -39,6 +39,9 @@ public interface MemberMapper {
 	//어카운트 정보 수정(메뉴바 설정 입력시 수정)
 	public void updateAccount(Account a_vo);
 
+	//가계부열기전 어카운트정보 체크
+	public int beforeOpenAcc(String member_seq);
+	
 	//가계부 지출 구하기
 	public int sumPrice(String member_seq);
 	

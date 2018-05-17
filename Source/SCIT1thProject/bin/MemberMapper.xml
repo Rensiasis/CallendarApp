@@ -174,6 +174,12 @@
 		member_seq=#{member_seq}
 	</update>
 
+	<select id="beforeOpenAcc" parameterType="String" resultType="Integer">
+	select count(account) 
+	from accounts 
+	where member_seq=#{member_seq}
+	</select>
+
 
 	<!-- 현재잔액구하기 -->
 	<select id="nowtotalMoney" parameterType="String"

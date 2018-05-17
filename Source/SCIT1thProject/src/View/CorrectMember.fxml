@@ -33,11 +33,11 @@
       <PasswordField fx:id="rePassword" layoutX="129.0" layoutY="78.0" />
       <PasswordField fx:id="rePassChk" layoutX="129.0" layoutY="115.0" />
       <TextField fx:id="re_postnum" editable="false" layoutX="129.0" layoutY="155.0" />
+      <Button layoutX="214.0" layoutY="184.0" mnemonicParsing="false" onAction="#research_add" text="주소검색" />
       <TextField fx:id="re_add" editable="false" layoutX="129.0" layoutY="216.0" />
       <TextField fx:id="re_detailadd" layoutX="129.0" layoutY="254.0" />
       <TextField fx:id="re_email" layoutX="129.0" layoutY="292.0" />
       <TextField fx:id="re_phone" layoutX="129.0" layoutY="333.0" />
-      <Button layoutX="214.0" layoutY="184.0" mnemonicParsing="false" onAction="#research_add" text="주소검색" />
       <Button layoutX="21.0" layoutY="378.0" mnemonicParsing="false" onAction="#recorrectMem" text="회원정보 수정하기" />
       <Button layoutX="150.0" layoutY="378.0" mnemonicParsing="false" onAction="#returnCalendar" prefHeight="25.0" prefWidth="129.0" text="취소하기" />
    </children>

@@ -200,7 +200,26 @@ public class MemberDAO {
 		}
 	}
 
-	// 총가격 구하기
+	public static int beforeOpenAcc(String member_seq) {
+		SqlSession session = null;
+		int i = 0;
+
+		try {
+			session = factory.openSession();
+			MemberMapper mapper = session.getMapper(MemberMapper.class);
+			i = mapper.beforeOpenAcc(member_seq);
+			session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+		return i;
+	}
+
+	// 지출 구하기
 	public static int sumPrice(String member_seq) {
 		SqlSession session = null;
 		int i = 0;
@@ -219,7 +238,7 @@ public class MemberDAO {
 		return i;
 	}
 
-	// 총가격 구하기
+	// 수입 구하기
 	public static int sumPrice2(String member_seq) {
 		SqlSession session = null;
 		int i = 0;

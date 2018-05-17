@@ -996,12 +996,9 @@ public class CalendarController implements Initializable {
 		WeatherPlanetParser w = new WeatherPlanetParser();
 		GeoCodingParser g= new GeoCodingParser();
 		g.setAddress(User.user.getNewAddress());
-		System.out.println(User.user.getNewAddress());
 		g.parshing();
 		double lat=g.getLat();
 		double lon=g.getLon();
-		System.out.println(lat);
-		System.out.println(lon);
 		w.setCoordinates(lat, lon);
 		w.parshing();
 		ArrayList<Weather> wList = w.getWeatherList();
@@ -1728,17 +1725,29 @@ public class CalendarController implements Initializable {
 						if (first = true) {
 							first = false;
 							for (int i = fromDate; i < dList.size(); i++) {
-								dList.get(i).getSchedule().remove(vo);
+								for(int j=0;j<dList.get(i).getSchedule().size();j++) {
+									if(equalSchedule(dList.get(i).getSchedule().get(j),vo)) {
+										dList.get(i).getSchedule().remove(vo);
+									}
+								}
 							}
 							fromDate = 0;
 						} else {
 							for (int i = 0; i < dList.size(); i++) {
-								dList.get(i).getSchedule().remove(vo);
+								for(int j=0;j<dList.get(i).getSchedule().size();j++) {
+									if(equalSchedule(dList.get(i).getSchedule().get(j),vo)) {
+										dList.get(i).getSchedule().remove(vo);
+									}
+								}
 							}
 						}
 					} else {
 						for (int i = fromDate; i <= toDate; i++) {
-							dList.get(i).getSchedule().remove(vo);
+							for(int j=0;j<dList.get(i).getSchedule().size();j++) {
+								if(equalSchedule(dList.get(i).getSchedule().get(j),vo)) {
+									dList.get(i).getSchedule().remove(vo);
+								}
+							}
 						}
 					}
 					fromKey++;
@@ -1763,6 +1772,13 @@ public class CalendarController implements Initializable {
 		refreshContentList();
 
 		refreshCalendar(selectedPage);
+	}
+	
+	public boolean equalSchedule(Schedule sc1,Schedule sc2) {
+		if(sc1.getContent().equals(sc2.getContent()) && sc1.getFrom_date().equals(sc2.getFrom_date()) && sc1.getTo_date().equals(sc2.getTo_date())) {
+			return true;
+		}
+		return false;
 	}
 
 	public static void refreshDaySchedule() {

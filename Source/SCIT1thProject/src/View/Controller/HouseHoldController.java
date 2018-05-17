@@ -81,13 +81,13 @@ public class HouseHoldController implements Initializable {
 		refreshList(hhList);
 
 		if (HHListView.getSelectionModel().getSelectedItems() != null) {
-			int i = (int) Client.Client.summit(new SocketDB("sumPrice", member_seq));
-			int b = (int) Client.Client.summit(new SocketDB("sumPrice2", member_seq));
-			int a = (int) Client.Client.summit(new SocketDB("nowtotalMoney", member_seq)) + i + b;
+			long i = (long) Client.Client.summit(new SocketDB("sumPrice", member_seq));
+			long b = (long) Client.Client.summit(new SocketDB("sumPrice2", member_seq));
+			long a = (long) Client.Client.summit(new SocketDB("nowtotalMoney", member_seq)) + i + b;
 
-			String spendmoney = Integer.toString(i);
-			String nowtotalMoney = Integer.toString(a);
-			String takemoney = Integer.toString(b);
+			String spendmoney = Long.toString(i);
+			String nowtotalMoney = Long.toString(a);
+			String takemoney = Long.toString(b);
 			showSpend.setText(spendmoney);
 			showSpend2.setText(takemoney);
 			showTotalmoney.setText(nowtotalMoney);// 총 재산
@@ -317,48 +317,81 @@ public class HouseHoldController implements Initializable {
 			public void run() {
 				// TODO Auto-generated method stub
 				ArrayList<HouseHolds> hh = new ArrayList<HouseHolds>();
+				ArrayList<HouseHolds> hh2 = new ArrayList<HouseHolds>();
 				int shMoney = 0;
-				String shMoney2 = null;
+				int shMoney2 = 0;
+				String shMoney3 = null;
+				String shMoney4 = null;
 				switch (searchCombo.getSelectionModel().getSelectedIndex()) {
 				case 0:// 1개월내 검색
 					hh = (ArrayList<HouseHolds>) Client.Client
 							.summit(new SocketDB("searchForAMonth", user.getUser().getMember_seq()));
-					refreshList(hh);
+					hh2 = (ArrayList<HouseHolds>) Client.Client
+							.summit(new SocketDB("searchForAMonth2", user.getUser().getMember_seq()));
+					System.out.println(hh.toString());
+					System.out.println(hh2.toString());
+					refreshTwoList(hh, hh2);
 					for (int i = 0; i < hh.size(); i++) {
 						shMoney += Integer.parseInt(hh.get(i).getPrice());
 					}
-					shMoney2 = Integer.toString(shMoney);
-					showSpend.setText(shMoney2);
+					for (int i = 0; i < hh2.size(); i++) {
+						shMoney2 += Integer.parseInt(hh2.get(i).getPrice());
+					}
+					shMoney3 = Integer.toString(shMoney);
+					showSpend.setText(shMoney3);
+					shMoney4 = Integer.toString(shMoney2);
+					showSpend2.setText(shMoney4);
 					break;
 				case 1:// 3개월내 검색
 					hh = (ArrayList<HouseHolds>) Client.Client
 							.summit(new SocketDB("searchForThreeMonth", user.getUser().getMember_seq()));
-					refreshList(hh);
+					hh2 = (ArrayList<HouseHolds>) Client.Client
+							.summit(new SocketDB("searchForThreeMonth2", user.getUser().getMember_seq()));
+					refreshTwoList(hh, hh2);
 					for (int i = 0; i < hh.size(); i++) {
 						shMoney += Integer.parseInt(hh.get(i).getPrice());
 					}
-					shMoney2 = Integer.toString(shMoney);
-					showSpend.setText(shMoney2);
+					for (int i = 0; i < hh2.size(); i++) {
+						shMoney2 += Integer.parseInt(hh2.get(i).getPrice());
+					}
+					shMoney3 = Integer.toString(shMoney);
+					showSpend.setText(shMoney3);
+					shMoney4 = Integer.toString(shMoney2);
+					showSpend2.setText(shMoney4);
 					break;
 				case 2:// 6개월내 검색
 					hh = (ArrayList<HouseHolds>) Client.Client
 							.summit(new SocketDB("searchForSixMonth", user.getUser().getMember_seq()));
-					refreshList(hh);
+					hh2 = (ArrayList<HouseHolds>) Client.Client
+							.summit(new SocketDB("searchForSixMonth2", user.getUser().getMember_seq()));
+					refreshTwoList(hh, hh2);
 					for (int i = 0; i < hh.size(); i++) {
 						shMoney += Integer.parseInt(hh.get(i).getPrice());
 					}
-					shMoney2 = Integer.toString(shMoney);
-					showSpend.setText(shMoney2);
+					for (int i = 0; i < hh2.size(); i++) {
+						shMoney2 += Integer.parseInt(hh2.get(i).getPrice());
+					}
+					shMoney3 = Integer.toString(shMoney);
+					showSpend.setText(shMoney3);
+					shMoney4 = Integer.toString(shMoney2);
+					showSpend2.setText(shMoney4);
 					break;
 				case 3:// 12개월내 검색
 					hh = (ArrayList<HouseHolds>) Client.Client
 							.summit(new SocketDB("searchForAnYear", user.getUser().getMember_seq()));
-					refreshList(hh);
+					hh2 = (ArrayList<HouseHolds>) Client.Client
+							.summit(new SocketDB("searchForAnYear2", user.getUser().getMember_seq()));
+					refreshTwoList(hh, hh2);
 					for (int i = 0; i < hh.size(); i++) {
 						shMoney += Integer.parseInt(hh.get(i).getPrice());
 					}
-					shMoney2 = Integer.toString(shMoney);
-					showSpend.setText(shMoney2);
+					for (int i = 0; i < hh2.size(); i++) {
+						shMoney2 += Integer.parseInt(hh2.get(i).getPrice());
+					}
+					shMoney3 = Integer.toString(shMoney);
+					showSpend.setText(shMoney3);
+					shMoney4 = Integer.toString(shMoney2);
+					showSpend2.setText(shMoney4);
 					break;
 				case 4:// 특정기간검색
 					HouseHolds vo = new HouseHolds();
@@ -371,12 +404,18 @@ public class HouseHoldController implements Initializable {
 						vo.setLdate(endDay.getValue().toString());
 
 						hh = (ArrayList<HouseHolds>) Client.Client.summit(new SocketDB("speciPeriod", vo));
-						refreshList(hh);
+						hh2 = (ArrayList<HouseHolds>) Client.Client.summit(new SocketDB("speciPeriod2", vo));
+						refreshTwoList(hh, hh2);
 						for (int i = 0; i < hh.size(); i++) {
 							shMoney += Integer.parseInt(hh.get(i).getPrice());
 						}
-						shMoney2 = Integer.toString(shMoney);
-						showSpend.setText(shMoney2);
+						for (int i = 0; i < hh2.size(); i++) {
+							shMoney2 += Integer.parseInt(hh2.get(i).getPrice());
+						}
+						shMoney3 = Integer.toString(shMoney);
+						showSpend.setText(shMoney3);
+						shMoney4 = Integer.toString(shMoney2);
+						showSpend2.setText(shMoney4);
 					} else {
 						Alert alert = new Alert(AlertType.ERROR);
 						alert.setTitle("선택 에러");
@@ -404,4 +443,15 @@ public class HouseHoldController implements Initializable {
 		HHListView.refresh();
 	}
 
+	public void refreshTwoList(ArrayList<HouseHolds> List,ArrayList<HouseHolds> List2) {
+		hlist.clear();
+		for (int i = 0; i < List.size(); i++) {
+			hlist.add(List.get(i));
+		}
+		for (int i = 0; i < List2.size(); i++) {
+			hlist.add(List2.get(i));
+		}
+		HHListView.setItems(hlist);// 리스트뷰에 가계부목록 출력하기
+		HHListView.refresh();
+	}
 }

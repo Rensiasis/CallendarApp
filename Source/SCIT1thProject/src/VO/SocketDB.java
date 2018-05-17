@@ -118,6 +118,21 @@ public class SocketDB implements Serializable {
 		case "speciPeriod":
 			result = MemberDAO.speciPeriod((HouseHolds)inputObject);
 			break;
+		case "searchForAMonth2":
+			result = MemberDAO.searchForAMonth2((String)inputObject);
+			break;
+		case "searchForThreeMonth2":
+			result = MemberDAO.searchForThreeMonth2((String)inputObject);
+			break;
+		case "searchForSixMonth2":
+			result = MemberDAO.searchForSixMonth2((String)inputObject);
+			break;	
+		case "searchForAnYear2":
+			result = MemberDAO.searchForAnYear2((String)inputObject);
+			break;
+		case "speciPeriod2":
+			result = MemberDAO.speciPeriod2((HouseHolds)inputObject);
+			break;
 			
 		}
 		return result;

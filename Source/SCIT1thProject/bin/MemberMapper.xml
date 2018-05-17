@@ -174,6 +174,7 @@
 		member_seq=#{member_seq}
 	</update>
 
+	<!-- 계좌열기전에 체크하기 -->
 	<select id="beforeOpenAcc" parameterType="String" resultType="Integer">
 	select count(account) 
 	from accounts 
@@ -183,7 +184,7 @@
 
 	<!-- 현재잔액구하기 -->
 	<select id="nowtotalMoney" parameterType="String"
-		resultType="Integer">
+		resultType="Long">
 		select account
 		from accounts
 		where member_seq=#{member_seq}
@@ -193,7 +194,7 @@
 
 	<!-- 가계부 지출 총합구하기 -->
 	<select id="sumPrice" parameterType="String"
-		resultType="Integer">
+		resultType="Long">
 		select
 		sum(price)
 		from households
@@ -203,7 +204,7 @@
 	
 	<!-- 가계부 수입 총합구하기 -->
 	<select id="sumPrice2" parameterType="String"
-		resultType="Integer">
+		resultType="Long">
 		select
 		sum(price)
 		from households
@@ -218,6 +219,18 @@
 		from households
 		where member_seq=#{member_seq} and 
 		get_date between sysdate-30 and sysdate
+		and 0>price
+		order by get_date desc	
+	</select>
+	
+	<!-- 1개월 이내 검색 -->
+	<select id="searchForAMonth2" parameterType="String" resultType="HouseHold">
+		select household_seq, member_seq, product, price, get_date, content,
+		indate, ldate, inuser, luser 
+		from households
+		where member_seq=#{member_seq} and 
+		get_date between sysdate-30 and sysdate
+		and price>0
 		order by get_date desc	
 	</select>
 
@@ -228,6 +241,18 @@
 		from households
 		where member_seq=#{member_seq} and 
 		get_date between sysdate-90 and sysdate
+		and 0>price 
+		order by get_date desc	
+	</select>
+
+	<!-- 3개월 이내 검색 -->
+	<select id="searchForThreeMonth2" parameterType="String" resultType="HouseHold">
+		select household_seq, member_seq, product, price, get_date, content,
+		indate, ldate, inuser, luser 
+		from households
+		where member_seq=#{member_seq} and 
+		get_date between sysdate-90 and sysdate
+		and price>0 
 		order by get_date desc	
 	</select>
 
@@ -239,6 +264,19 @@
 		from households
 		where member_seq=#{member_seq} and 
 		get_date between sysdate-180 and sysdate
+		and 0>price
+		order by get_date desc	
+	</select>
+
+	<!-- 6개월 이내 검색 -->
+	<select id="searchForSixMonth2" parameterType="String"
+		resultType="HouseHold" >
+		select household_seq, member_seq, product, price, get_date, content,
+		indate, ldate, inuser, luser 
+		from households
+		where member_seq=#{member_seq} and 
+		get_date between sysdate-180 and sysdate
+		and price>0
 		order by get_date desc	
 	</select>
 
@@ -250,6 +288,19 @@
 		from households
 		where member_seq=#{member_seq} and 
 		get_date between sysdate-365 and sysdate
+		and 0>price
+		order by get_date desc	
+	</select>
+	
+	<!-- 1년 이내 검색 -->
+	<select id="searchForAnYear2" parameterType="String" 
+		resultType="HouseHold" >
+		select household_seq, member_seq, product, price, get_date, content,
+		indate, ldate, inuser, luser 
+		from households
+		where member_seq=#{member_seq} and 
+		get_date between sysdate-365 and sysdate
+		and price>0
 		order by get_date desc	
 	</select>
 	
@@ -261,6 +312,19 @@
 		from households
 		where member_seq=#{member_seq} and 
 		get_date between to_date(#{indate},'yyyy-MM-dd') and to_date(#{ldate},'yyyy-MM-dd')
+		and 0>price
+		order by get_date desc	
+	</select>
+	
+	<!-- 특정기간 검색 -->
+	<select id="speciPeriod2" parameterType="HouseHold" 
+		resultType="HouseHold" >
+		select household_seq, member_seq, product, price, get_date, content,
+		indate, ldate, inuser, luser 
+		from households
+		where member_seq=#{member_seq} and 
+		get_date between to_date(#{indate},'yyyy-MM-dd') and to_date(#{ldate},'yyyy-MM-dd')
+		and price>0
 		order by get_date desc	
 	</select>
 

@@ -71,7 +71,7 @@ public class HomeController implements Initializable {
 			
 		}	else {
 		
-			lblMessage.setText(" ID 나 PASSWORD가 일치하지 않습니다! \n 다시 입력바랍니다.");
+			lblMessage.setText(" ID 나 PASSWORD가 \n 일치하지 않거나 \n 존재하지 않습니다. \n 다시 입력바랍니다.");
 
 		}
 

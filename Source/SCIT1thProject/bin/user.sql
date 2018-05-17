@@ -76,3 +76,4 @@ on delete cascade
 
 create sequence schedule_seq
 
+select * from members;

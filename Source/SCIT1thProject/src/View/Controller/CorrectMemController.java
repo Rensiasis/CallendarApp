@@ -155,6 +155,9 @@ public class CorrectMemController implements Initializable {
 		if (result.get() == ButtonType.OK) {
 			String member_seq = user.getUser().getMember_seq();
 			Client.Client.summit(new SocketDB("deleteID", member_seq));
+
+			System.exit(0);
+
 		} else {
 			return;
 		}

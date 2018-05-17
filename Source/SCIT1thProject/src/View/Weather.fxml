@@ -294,17 +294,17 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" lineSpacing="1.0" prefHeight="42.0" prefWidth="36.0" text="온도" textAlignment="CENTER" textFill="#1100fc" GridPane.rowIndex="2">
+            <Label alignment="CENTER" contentDisplay="CENTER" lineSpacing="1.0" prefHeight="60.0" prefWidth="53.0" text="온도℃" textFill="#1100fc" GridPane.rowIndex="2">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" lineSpacing="1.0" prefHeight="42.0" prefWidth="36.0" text="습도" textAlignment="CENTER" textFill="#1100fc" GridPane.rowIndex="3">
+            <Label alignment="CENTER" contentDisplay="CENTER" lineSpacing="1.0" prefHeight="71.0" prefWidth="57.0" text="습도%" textAlignment="CENTER" textFill="#1100fc" GridPane.rowIndex="3">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" lineSpacing="1.0" prefHeight="42.0" prefWidth="64.0" text="강수확률" textAlignment="CENTER" textFill="#1100fc" GridPane.rowIndex="4">
+            <Label alignment="CENTER" contentDisplay="CENTER" lineSpacing="1.0" prefHeight="65.0" prefWidth="60.0" text="강수확률" textAlignment="CENTER" textFill="#1100fc" GridPane.rowIndex="4">
                <font>
                   <Font size="14.0" />
                </font>

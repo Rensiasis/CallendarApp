@@ -123,17 +123,23 @@ public class HouseHoldController implements Initializable {
 					alert.setHeaderText("추가 정보 미입력");
 					alert.setContentText("추가할 정보를 모두 입력해 주시기 바랍니다.");
 					alert.showAndWait();
+				} else if (isNumber(price.getText())) {
+					Alert alert = new Alert(AlertType.ERROR);
+					alert.setTitle("가계부 추가 에러");
+					alert.setHeaderText("정보 오류 입력");
+					alert.setContentText("가격정보를 숫자로 입력해주세요.");
+					alert.showAndWait();
 				} else {
 					HouseHolds hh = new HouseHolds();
 
 					hh.setMember_seq(user.getUser().getMember_seq());
 					hh.setProduct(product.getText());
-					hh.setPrice("-"+price.getText());
+					hh.setPrice("-" + price.getText());
 					hh.setContent(content.getText());
 					hh.setInuser(user.getUser().getId());
 					System.out.println(chooseDate.getValue().toString());
 					hh.setGet_date(chooseDate.getValue().toString());
-					
+
 					Client.Client.summit(new SocketDB("insertHouseHold", hh));
 					product.clear();
 					price.clear();
@@ -151,10 +157,19 @@ public class HouseHoldController implements Initializable {
 		});
 	}
 
+	public boolean isNumber(String str) {
+		boolean check = false;
+		for (int i = 0; i < str.length(); i++) {
+			if (str.charAt(i) < '0' || str.charAt(i) > '9') {
+				check = true;
+			}
+		}
+		return check;
+	}
 
-    @FXML
-    public void btnAddTView2(ActionEvent event) {
-    	Platform.runLater(new Runnable() {
+	@FXML
+	public void btnAddTView2(ActionEvent event) {
+		Platform.runLater(new Runnable() {
 
 			@Override
 			public void run() {
@@ -165,6 +180,12 @@ public class HouseHoldController implements Initializable {
 					alert.setTitle("가계부 추가 에러");
 					alert.setHeaderText("추가 정보 미입력");
 					alert.setContentText("추가할 정보를 모두 입력해 주시기 바랍니다.");
+					alert.showAndWait();
+				} else if (isNumber(price.getText())) {
+					Alert alert = new Alert(AlertType.ERROR);
+					alert.setTitle("가계부 추가 에러");
+					alert.setHeaderText("정보 오류 입력");
+					alert.setContentText("가격정보를 숫자로 입력해주세요.");
 					alert.showAndWait();
 				} else {
 					HouseHolds hh = new HouseHolds();
@@ -192,10 +213,8 @@ public class HouseHoldController implements Initializable {
 				}
 			}
 		});
-    }
+	}
 
-	
-	
 	@FXML
 	public void btnDeleteTView(ActionEvent event) {
 		Platform.runLater(new Runnable() {
@@ -243,6 +262,12 @@ public class HouseHoldController implements Initializable {
 					alert.setTitle("수정 에러");
 					alert.setHeaderText("수정 정보 미입력");
 					alert.setContentText("수정할 정보를 모두 입력해 주시기 바랍니다.");
+					alert.showAndWait();
+				} else if (isNumber(price.getText())) {
+					Alert alert = new Alert(AlertType.ERROR);
+					alert.setTitle("가계부 추가 에러");
+					alert.setHeaderText("정보 오류 입력");
+					alert.setContentText("가격정보를 숫자로 입력해주세요.");
 					alert.showAndWait();
 				} else {
 					if (HHListView.getSelectionModel().getSelectedItem() != null) {

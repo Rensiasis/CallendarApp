@@ -20,12 +20,12 @@
 
 <AnchorPane fx:id="HouseHoldPane" prefHeight="679.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Controller.HouseHoldController">
    <children>
-      <DatePicker fx:id="stardDay" layoutX="528.0" layoutY="67.0" prefHeight="30.0" prefWidth="170.0" />
-      <DatePicker fx:id="endDay" layoutX="730.0" layoutY="67.0" prefHeight="30.0" prefWidth="170.0" />
+      <DatePicker fx:id="stardDay" editable="false" layoutX="528.0" layoutY="67.0" prefHeight="30.0" prefWidth="170.0" />
+      <DatePicker fx:id="endDay" editable="false" layoutX="730.0" layoutY="67.0" prefHeight="30.0" prefWidth="170.0" />
       <AnchorPane layoutX="900.0" prefHeight="680.0" prefWidth="300.0">
          <children>
             <ComboBox fx:id="searchCombo" layoutX="18.0" layoutY="66.0" onAction="#searchComboClick" prefHeight="33.0" prefWidth="268.0" />
-            <DatePicker fx:id="chooseDate" layoutX="50.0" layoutY="108.0" prefHeight="23.0" prefWidth="235.0" promptText="날짜를 선택해 주세요" />
+            <DatePicker fx:id="chooseDate" editable="false" layoutX="50.0" layoutY="108.0" prefHeight="23.0" prefWidth="235.0" />
             <Button fx:id="add" layoutX="15.0" layoutY="445.0" mnemonicParsing="false" onAction="#btnAddTView" prefHeight="23.0" prefWidth="274.0" text="지출" />
             <Button fx:id="add1" layoutX="15.0" layoutY="477.0" mnemonicParsing="false" onAction="#btnAddTView2" prefHeight="23.0" prefWidth="274.0" text="수입" />
             <Button fx:id="delete" layoutX="15.0" layoutY="509.0" mnemonicParsing="false" onAction="#btnDeleteTView" prefHeight="23.0" prefWidth="274.0" text="삭제" />

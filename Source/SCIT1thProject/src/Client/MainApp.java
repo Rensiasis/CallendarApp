@@ -4,12 +4,14 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 
 public class MainApp extends Application {
 	public static Stage primaryStage;
 	private AnchorPane rootLayout;
-
+	public static Alert timeAlert;
+	
 	public static void main(String[] args) {
 		launch(args);
 	}

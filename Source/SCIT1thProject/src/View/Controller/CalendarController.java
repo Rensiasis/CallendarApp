@@ -32,10 +32,12 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -498,6 +500,7 @@ public class CalendarController implements Initializable {
 	private static ImageView[] weatherViewList;
 	private static Label[] minList;
 	private static Label[] maxList;
+	public static Alarm alarm=new Alarm();
 
 	private static Map<Integer, ArrayList<Day>> calList;
 	private static ListView<Object> staticListView;
@@ -1661,7 +1664,6 @@ public class CalendarController implements Initializable {
 		Timer afterTimer = new Timer();
 		String beforeMessage = message + " 한 시간 전입니다.";
 		String afterMessage = message + " 할 시간 입니다.";
-		Alarm alarm=new Alarm();
 		alarm.setMessage(afterMessage);
 		afterTimer.schedule(alarm, date);
 		Calendar ca = Calendar.getInstance();
@@ -1672,6 +1674,7 @@ public class CalendarController implements Initializable {
 		if (ca.after(Calendar.getInstance())) {
 			Date beforeDate = ca.getTime();
 			alarm.setMessage(beforeMessage);
+			System.out.println(alarm);
 			beforeTimer.schedule(alarm, beforeDate);
 		}
 	}

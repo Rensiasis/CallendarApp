@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import Client.User;
 import DAO.MemberDAO;
+import VO.Address;
 import VO.Members;
 import VO.SocketDB;
 import javafx.application.Platform;
@@ -54,7 +55,7 @@ public class CorrectMemController implements Initializable {
 	public static Stage stage;
 	public static TextField staticPostNo;
 	public static TextField staticAddress;
-	public static String oldAddress;
+	public static Address addressVO;
 	MemberDAO dao = new MemberDAO();
 	Members m_vo = new Members();
 	User user = new User();
@@ -72,7 +73,7 @@ public class CorrectMemController implements Initializable {
 					AnchorPane memberPane = FXMLLoader.load(getClass().getResource("/View/FindAddress2.fxml"));
 					staticAddress = re_add;
 					staticPostNo = re_postnum;
-					oldAddress = null;
+					addressVO = null;
 					Scene scene = new Scene(memberPane);
 					stage = new Stage();
 					stage.setScene(scene);
@@ -109,9 +110,10 @@ public class CorrectMemController implements Initializable {
 
 						m_vo.setPostNumber(re_postnum.getText());
 						m_vo.setNewAddress(re_add.getText());
+						m_vo.setOldAddress(addressVO.getOldAddress());
 
-						String[] splitadd = oldAddress.split("\\s");
-						System.out.println(oldAddress);
+						String[] splitadd = addressVO.getOldAddress().split("\\s");
+						System.out.println(addressVO.getOldAddress());
 						String city = splitadd[0];
 						String county = splitadd[1];
 						String village = splitadd[2];

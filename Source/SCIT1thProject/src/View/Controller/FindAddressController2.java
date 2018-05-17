@@ -69,7 +69,7 @@ public class FindAddressController2 implements Initializable {
 					// TODO Auto-generated method stub
 					View.Controller.CorrectMemController.staticPostNo.setText(selectedAddress.getPostNumber());
 					View.Controller.CorrectMemController.staticAddress.setText(selectedAddress.getNewAddress());
-					View.Controller.CorrectMemController.oldAddress = selectedAddress.getOldAddress();
+					View.Controller.CorrectMemController.addressVO = selectedAddress;
 					View.Controller.CorrectMemController.stage.close();
 				}
 

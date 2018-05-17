@@ -353,7 +353,7 @@ public class WeatherController implements Initializable{
 		WeatherPlanetParser phaser = new WeatherPlanetParser();
 		phaser.setAddress(User.user.getCity(), User.user.getCounty(), User.user.getVillage());
 		ArrayList<ShortWeather> wList=phaser.getShortWeather();
-		SimpleDateFormat format=new SimpleDateFormat("yyyy/MM/dd hh:mm E요일");
+		SimpleDateFormat format=new SimpleDateFormat("yy/MM/dd\n(E) hh:mm ");
 		Calendar ca=Calendar.getInstance();
 		Date observeTime=wList.get(0).getTimeRelease();
 		ca.setTime(observeTime);

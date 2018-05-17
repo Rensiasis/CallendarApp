@@ -82,7 +82,7 @@ public class MakeMemController implements Initializable {
 	public static Stage stage;
 	public static TextField staticPostNo;
 	public static TextField staticAddress;
-	public static String oldAddress;
+	public static Address addressVO;
 
 	private boolean chkID;
 
@@ -144,10 +144,12 @@ public class MakeMemController implements Initializable {
 						m_vo.setEmail(Input_Email.getText());
 						m_vo.setPhone_number(Input_Phone.getText());
 						m_vo.setPostNumber(postNum.getText());
-						m_vo.setNewAddress(address.getText() + " " + detailAddress.getText());
-
-						String[] splitadd = oldAddress.split("\\s");
-						System.out.println(oldAddress);
+						m_vo.setNewAddress(address.getText());
+						m_vo.setOldAddress(addressVO.getOldAddress() + " " + detailAddress.getText());
+						
+						
+						String[] splitadd = addressVO.getOldAddress().split("\\s");
+						System.out.println(addressVO.getOldAddress());
 						String city = splitadd[0];
 						String county = splitadd[1];
 						String village = splitadd[2];
@@ -192,7 +194,7 @@ public class MakeMemController implements Initializable {
 					AnchorPane memberPane = FXMLLoader.load(getClass().getResource("/View/FindAddress.fxml"));
 					staticAddress = address;
 					staticPostNo = postNum;
-					oldAddress = null;
+					addressVO = null;
 					Scene scene = new Scene(memberPane);
 					stage = new Stage();
 					stage.setScene(scene);

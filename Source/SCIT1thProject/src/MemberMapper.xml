@@ -16,6 +16,7 @@
 		phone_number,
 		postNumber,
 		newAddress,
+		oldAddress,
 		city,
 		county,
 		village,
@@ -30,6 +31,7 @@
 		#{phone_number},
 		#{postNumber},
 		#{newAddress},
+		#{oldAddress},
 		#{city},
 		#{county},
 		#{village},
@@ -44,11 +46,11 @@
 		from members
 		where id=#{id}
 	</select>
-	
+
 	<!-- 회원 탈퇴 -->
 	<delete id="deleteID" parameterType="String">
-	delete members
-	where member_seq=#{member_seq}
+		delete members
+		where member_seq=#{member_seq}
 	</delete>
 
 	<!-- 가계부정보 등록하기 -->
@@ -60,7 +62,8 @@
 		, product
 		, price
 		, get_date
-		, content
+		,
+		content
 		, indate
 		, inuser
 		) values (
@@ -103,7 +106,8 @@
 		, product
 		, price
 		, get_date
-		, content
+		,
+		content
 		, indate
 		, ldate
 		, inuser
@@ -149,13 +153,16 @@
 		, postNumber=#{postNumber}
 		,
 		newAddress=#{newAddress}
+		, oldAddress=#{oldAddress}
 		, city=#{city}
-		, county=#{county}
+		,
+		county=#{county}
 		,
 		village=#{village}
 		, ldate=sysdate
 		where
-		member_seq = #{member_seq}
+		member_seq =
+		#{member_seq}
 	</update>
 
 	<!-- 어카운트 설정 입력 -->
@@ -181,10 +188,11 @@
 	</update>
 
 	<!-- 계좌열기전에 체크하기 -->
-	<select id="beforeOpenAcc" parameterType="String" resultType="Integer">
-	select count(account) 
-	from accounts 
-	where member_seq=#{member_seq}
+	<select id="beforeOpenAcc" parameterType="String"
+		resultType="Integer">
+		select count(account)
+		from accounts
+		where member_seq=#{member_seq}
 	</select>
 
 
@@ -195,22 +203,20 @@
 		from accounts
 		where member_seq=#{member_seq}
 	</select>
-	
-	
+
+
 
 	<!-- 가계부 지출 총합구하기 -->
-	<select id="sumPrice" parameterType="String"
-		resultType="Long">
+	<select id="sumPrice" parameterType="String" resultType="Long">
 		select
 		sum(price)
 		from households
 		where
 		member_seq=#{member_seq} and 0>price
 	</select>
-	
+
 	<!-- 가계부 수입 총합구하기 -->
-	<select id="sumPrice2" parameterType="String"
-		resultType="Long">
+	<select id="sumPrice2" parameterType="String" resultType="Long">
 		select
 		sum(price)
 		from households
@@ -219,119 +225,135 @@
 	</select>
 
 	<!-- 1개월 이내 검색 -->
-	<select id="searchForAMonth" parameterType="String" resultType="HouseHold">
-		select household_seq, member_seq, product, price, get_date, content,
-		indate, ldate, inuser, luser 
+	<select id="searchForAMonth" parameterType="String"
+		resultType="HouseHold">
+		select household_seq, member_seq, product, price, get_date,
+		content,
+		indate, ldate, inuser, luser
 		from households
-		where member_seq=#{member_seq} and 
+		where member_seq=#{member_seq} and
 		get_date between sysdate-30 and sysdate
 		and 0>price
-		order by get_date desc	
+		order by get_date desc
 	</select>
-	
+
 	<!-- 1개월 이내 검색 -->
-	<select id="searchForAMonth2" parameterType="String" resultType="HouseHold">
-		select household_seq, member_seq, product, price, get_date, content,
-		indate, ldate, inuser, luser 
+	<select id="searchForAMonth2" parameterType="String"
+		resultType="HouseHold">
+		select household_seq, member_seq, product, price, get_date,
+		content,
+		indate, ldate, inuser, luser
 		from households
-		where member_seq=#{member_seq} and 
+		where member_seq=#{member_seq} and
 		get_date between sysdate-30 and sysdate
 		and price>0
-		order by get_date desc	
+		order by get_date desc
 	</select>
 
 	<!-- 3개월 이내 검색 -->
-	<select id="searchForThreeMonth" parameterType="String" resultType="HouseHold">
-		select household_seq, member_seq, product, price, get_date, content,
-		indate, ldate, inuser, luser 
+	<select id="searchForThreeMonth" parameterType="String"
+		resultType="HouseHold">
+		select household_seq, member_seq, product, price, get_date,
+		content,
+		indate, ldate, inuser, luser
 		from households
-		where member_seq=#{member_seq} and 
+		where member_seq=#{member_seq} and
 		get_date between sysdate-90 and sysdate
-		and 0>price 
-		order by get_date desc	
+		and 0>price
+		order by get_date desc
 	</select>
 
 	<!-- 3개월 이내 검색 -->
-	<select id="searchForThreeMonth2" parameterType="String" resultType="HouseHold">
-		select household_seq, member_seq, product, price, get_date, content,
-		indate, ldate, inuser, luser 
+	<select id="searchForThreeMonth2" parameterType="String"
+		resultType="HouseHold">
+		select household_seq, member_seq, product, price, get_date,
+		content,
+		indate, ldate, inuser, luser
 		from households
-		where member_seq=#{member_seq} and 
+		where member_seq=#{member_seq} and
 		get_date between sysdate-90 and sysdate
-		and price>0 
-		order by get_date desc	
+		and price>0
+		order by get_date desc
 	</select>
 
 	<!-- 6개월 이내 검색 -->
 	<select id="searchForSixMonth" parameterType="String"
-		resultType="HouseHold" >
-		select household_seq, member_seq, product, price, get_date, content,
-		indate, ldate, inuser, luser 
+		resultType="HouseHold">
+		select household_seq, member_seq, product,
+		price, get_date, content,
+		indate, ldate, inuser, luser
 		from households
-		where member_seq=#{member_seq} and 
+		where member_seq=#{member_seq} and
 		get_date between sysdate-180 and sysdate
 		and 0>price
-		order by get_date desc	
+		order by get_date desc
 	</select>
 
 	<!-- 6개월 이내 검색 -->
 	<select id="searchForSixMonth2" parameterType="String"
-		resultType="HouseHold" >
-		select household_seq, member_seq, product, price, get_date, content,
-		indate, ldate, inuser, luser 
+		resultType="HouseHold">
+		select household_seq, member_seq, product,
+		price, get_date, content,
+		indate, ldate, inuser, luser
 		from households
-		where member_seq=#{member_seq} and 
+		where member_seq=#{member_seq} and
 		get_date between sysdate-180 and sysdate
 		and price>0
-		order by get_date desc	
+		order by get_date desc
 	</select>
 
 	<!-- 1년 이내 검색 -->
-	<select id="searchForAnYear" parameterType="String" 
-		resultType="HouseHold" >
-		select household_seq, member_seq, product, price, get_date, content,
-		indate, ldate, inuser, luser 
+	<select id="searchForAnYear" parameterType="String"
+		resultType="HouseHold">
+		select household_seq, member_seq, product,
+		price, get_date, content,
+		indate, ldate, inuser, luser
 		from households
-		where member_seq=#{member_seq} and 
+		where member_seq=#{member_seq} and
 		get_date between sysdate-365 and sysdate
 		and 0>price
-		order by get_date desc	
+		order by get_date desc
 	</select>
-	
+
 	<!-- 1년 이내 검색 -->
-	<select id="searchForAnYear2" parameterType="String" 
-		resultType="HouseHold" >
-		select household_seq, member_seq, product, price, get_date, content,
-		indate, ldate, inuser, luser 
+	<select id="searchForAnYear2" parameterType="String"
+		resultType="HouseHold">
+		select household_seq, member_seq, product,
+		price, get_date, content,
+		indate, ldate, inuser, luser
 		from households
-		where member_seq=#{member_seq} and 
+		where member_seq=#{member_seq} and
 		get_date between sysdate-365 and sysdate
 		and price>0
-		order by get_date desc	
+		order by get_date desc
 	</select>
-	
+
 	<!-- 특정기간 검색 -->
-	<select id="speciPeriod" parameterType="HouseHold" 
-		resultType="HouseHold" >
-		select household_seq, member_seq, product, price, get_date, content,
-		indate, ldate, inuser, luser 
+	<select id="speciPeriod" parameterType="HouseHold"
+		resultType="HouseHold">
+		select household_seq, member_seq, product,
+		price, get_date, content,
+		indate, ldate, inuser, luser
 		from households
-		where member_seq=#{member_seq} and 
-		get_date between to_date(#{indate},'yyyy-MM-dd') and to_date(#{ldate},'yyyy-MM-dd')
+		where member_seq=#{member_seq} and
+		get_date between to_date(#{indate},'yyyy-MM-dd') and
+		to_date(#{ldate},'yyyy-MM-dd')
 		and 0>price
-		order by get_date desc	
+		order by get_date desc
 	</select>
-	
+
 	<!-- 특정기간 검색 -->
-	<select id="speciPeriod2" parameterType="HouseHold" 
-		resultType="HouseHold" >
-		select household_seq, member_seq, product, price, get_date, content,
-		indate, ldate, inuser, luser 
+	<select id="speciPeriod2" parameterType="HouseHold"
+		resultType="HouseHold">
+		select household_seq, member_seq, product,
+		price, get_date, content,
+		indate, ldate, inuser, luser
 		from households
-		where member_seq=#{member_seq} and 
-		get_date between to_date(#{indate},'yyyy-MM-dd') and to_date(#{ldate},'yyyy-MM-dd')
+		where member_seq=#{member_seq} and
+		get_date between to_date(#{indate},'yyyy-MM-dd') and
+		to_date(#{ldate},'yyyy-MM-dd')
 		and price>0
-		order by get_date desc	
+		order by get_date desc
 	</select>
 
 

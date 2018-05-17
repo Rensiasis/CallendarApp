@@ -66,6 +66,8 @@ public class HouseHoldController implements Initializable {
 	private DatePicker stardDay;
 	@FXML
 	private DatePicker endDay;
+	@FXML
+	private DatePicker chooseDate;
 
 	public ObservableList<HouseHolds> hlist = FXCollections.observableArrayList();
 
@@ -104,7 +106,7 @@ public class HouseHoldController implements Initializable {
 		LocalDate localDate = LocalDate.parse(formatedDay, formatter);
 		stardDay.setValue(localDate);
 		endDay.setValue(localDate);
-
+		chooseDate.setValue(localDate);
 	}
 
 	@FXML
@@ -129,7 +131,9 @@ public class HouseHoldController implements Initializable {
 					hh.setPrice("-"+price.getText());
 					hh.setContent(content.getText());
 					hh.setInuser(user.getUser().getId());
-
+					System.out.println(chooseDate.getValue().toString());
+					hh.setGet_date(chooseDate.getValue().toString());
+					
 					Client.Client.summit(new SocketDB("insertHouseHold", hh));
 					product.clear();
 					price.clear();
@@ -170,6 +174,8 @@ public class HouseHoldController implements Initializable {
 					hh.setPrice(price.getText());
 					hh.setContent(content.getText());
 					hh.setInuser(user.getUser().getId());
+					System.out.println(chooseDate.getValue().toString());
+					hh.setGet_date(chooseDate.getValue().toString());
 
 					Client.Client.summit(new SocketDB("insertHouseHold", hh));
 					product.clear();

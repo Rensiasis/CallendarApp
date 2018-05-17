@@ -1,19 +1,23 @@
 package View.Controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import DAO.MemberDAO;
 import VO.Members;
 import VO.SocketDB;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class HomeController implements Initializable {
 
@@ -37,6 +41,7 @@ public class HomeController implements Initializable {
 	private AnchorPane mPane;
 
 	MemberDAO dao = new MemberDAO();
+	public Stage stage = new Stage();
 
 	@FXML // 로그인버튼
 	private void btnLogInAction(ActionEvent event) throws Exception {
@@ -61,8 +66,12 @@ public class HomeController implements Initializable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} else {
-			lblMessage.setText("ID 나 PASSWORD가 일치하지 않습니다! \n 다시 입력바랍니다.");
+		} 	else if(tfId.getText().length() == 0 || pfPw.getText().length() == 0) {
+			lblMessage.setText(" ID 나 PASSWORD가 \n 입력되지 않았습니다! \n 다시 입력바랍니다.");
+			
+		}	else {
+		
+			lblMessage.setText(" ID 나 PASSWORD가 일치하지 않습니다! \n 다시 입력바랍니다.");
 
 		}
 
@@ -80,15 +89,35 @@ public class HomeController implements Initializable {
 	}
 
 	@FXML
-	private void btnExitAction(ActionEvent event) {
+	public void btnExitAction(ActionEvent event) {
 		System.exit(0);
 	}
 
-	@FXML
-	// 메뉴바에 FILE에 메뉴바로 돌아가는 기능
-	private void backToMain(ActionEvent event) {
-	}
+    @FXML
+    public void openHelp(ActionEvent event) {
+    	Platform.runLater(new Runnable() {
 
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+
+				try {
+					AnchorPane memberPane = FXMLLoader.load(getClass().getResource("/View/Help.fxml"));
+					Scene scene = new Scene(memberPane);
+					stage = new Stage();
+					stage.setScene(scene);
+					stage.setTitle("도움말");
+					stage.setResizable(false);
+					stage.show();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+    }
+
+	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		// TODO Auto-generated method stub

@@ -12,11 +12,13 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class FindAddressController2 implements Initializable {
@@ -53,19 +55,27 @@ public class FindAddressController2 implements Initializable {
 
 	@FXML
 	public void addressInput(ActionEvent event) {
-		Platform.runLater(new Runnable() {
-			Address selectedAddress = Add_list.getSelectionModel().getSelectedItem();
+		if (Add_list.getSelectionModel().getSelectedItem() == null) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("주소 검색 에러");
+			alert.setHeaderText("주소 선택 안함.");
+			alert.setContentText("주소를 선택해주시기 바랍니다.");
+			alert.showAndWait();
+		} else {
+			Platform.runLater(new Runnable() {
+				Address selectedAddress = Add_list.getSelectionModel().getSelectedItem();
 
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				View.Controller.CorrectMemController.staticPostNo.setText(selectedAddress.getPostNumber());
-				View.Controller.CorrectMemController.staticAddress.setText(selectedAddress.getNewAddress());
-				View.Controller.CorrectMemController.oldAddress=selectedAddress.getOldAddress();
-				View.Controller.CorrectMemController.stage.close();
-			}
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					View.Controller.CorrectMemController.staticPostNo.setText(selectedAddress.getPostNumber());
+					View.Controller.CorrectMemController.staticAddress.setText(selectedAddress.getNewAddress());
+					View.Controller.CorrectMemController.oldAddress = selectedAddress.getOldAddress();
+					View.Controller.CorrectMemController.stage.close();
+				}
 
-		});
+			});
+		}
 	}
 
 	@Override

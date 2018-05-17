@@ -81,3 +81,4 @@ drop table members
 select * from members;
 select * from households
 select * from accounts
+
